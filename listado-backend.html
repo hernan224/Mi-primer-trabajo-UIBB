@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Listado de alumnos | Mi primer Trabajo</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,600italic,700italic|Montserrat:400,700'>
+
+    <link rel="stylesheet" href="css/estilos.css">
+    
+  </head>
+
+  <body >
+
+    <!--MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE ALUMNO-->
+    <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminación">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title texto-azul">Confirmar eliminación</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">¿Está seguro que quiere eliminar el/los siguiente/s alumno/s?</p>
+                    <ul class="alumnos-eliminados">
+                        <li>Alumno 1</li>
+                        <li>Alumno 2</li>
+                        <li>Alumno 3</li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+                    <button type="button" class="btn btn-primary">SI</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+   <!--PLANTILLA BASE PARA EL ARMADO DEL LISTADO DE ALUMNOS, VISIBLE PARA ESCUELAS (BACK-END) -->
+
+  <div id="contenedorPrincipal">
+
+      <div class="container">
+
+          <nav class="nav-listado">
+
+              <div class="row">
+                  <div class="col-xs-2 col-sm-2">
+                      <a id="crearNuevo" href="#" class="link-nav-listado">
+                          <span class="glyphicon glyphicon-file"></span>
+                          <span class="texto-nav hidden-sm">Nuevo</span>
+                      </a>
+                  </div> <!--btn nuevoa-->
+
+                  <div class="col-xs-2 col-sm-2">
+                      <a id="eliminarItems" href="#" class="link-nav-listado disable btn-eliminar"   data-target="#confirmarEliminar">
+                          <span class="glyphicon glyphicon-trash"></span>
+                          <span class="texto-nav hidden-sm">Eliminar</span>
+                      </a>
+                  </div> <!--btn eliminar-->
+
+                  <div class="col-xs-2 col-sm-2 col-sm-offset-2">
+                      <div class="dropdown">
+                          <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
+                             aria-haspopup="true" aria-expanded="false" class="link-nav-listado"><span
+                                  class="glyphicon glyphicon-sort"></span><span
+                                  class="texto-nav texto-ordenar hidden-sm"> Ordenar</span></a> <!--a btn dropdown ordenar-->
+
+                          <div id="contenedorOrdenar" class="contenedor-ordenar dropdown-menu"
+                               aria-labelledby="dropOrdenar">
+                              <form action="#" class="form-ordenar">
+                                  <select class="form-control select-ordenar" name="ordenar">
+                                      <option>Fecha</option>
+                                      <option>Promedio</option>
+                                      <option>Nombre</option>
+                                      <option>Especialidad</option>
+                                      <option>Docente</option>
+                                  </select> <!--.select-orden-->
+
+                                  <div class="modo-orden text-center">
+                                      <label class="radio-inline ordenar-asc">
+                                          <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                                 value="option1" checked> <span class="sr-only">ASC</span><span
+                                              class="glyphicon glyphicon-sort-by-alphabet"></span>
+                                      </label>
+                                      <label class="radio-inline ordenar-dsc">
+                                          <input type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                                 value="option2"> <span class="sr-only">DSC</span><span
+                                              class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                                      </label>
+                                  </div> <!--.modo-orden-->
+                              </form> <!--form.form-ordenar-->
+
+                          </div><!--  ./dropdown-menu -->
+
+                      </div> <!--.dropdown-->
+
+                  </div> <!--contenedor ordenar-->
+
+                  <div class="col-xs-6 col-sm-4">
+                      <div class="input-group buscar-listado">
+                          <input type="text" class="form-control input-buscar" placeholder="Buscar">
+                          <span class="input-group-btn">
+                              <button class="btn btn-default btn-buscar" type="button"><span class="sr-only">Buscar</span>
+                                  <span class="glyphicon glyphicon-search"></span>
+                              </button>
+                          </span>
+                      </div><!-- /input-group -->
+                  </div> <!-- buscador-->
+
+              </div> <!--.row-->
+          </nav> <!--nav.nav-listado-->
+
+          <div id="contenedorLista" class="contenedor-lista vista-listado backend">
+              <ul class="list-unstyled lista-alumnos">
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto femenino" ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                        <div class="checkbox">
+                        	<label>
+                        		<input class="check-alumno" type="checkbox" value="">
+
+                        	</label>
+                        </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto masculino"
+                                  ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto femenino"
+                                  ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno "
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno "
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto masculino"
+                                  ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto masculino"
+                                  ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto femenino"
+                                  ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno" data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto masculino"
+                          ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto masculino"
+                          ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno sin-foto femenino"
+                          ></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno"   data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+
+                  <li class="item-alumno">
+                      <a class="link-foto-alumno" href="#">
+                          <figure class="foto-alumno"
+                                  style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
+                          <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                      </a> <!--a.link-foto-alumno-->
+
+                      <div class="info-alumno">
+                          <h4 class="nombre-alumno"><a href="#">
+                              Gilberto Manhatan Ruiz
+                          </a></h4> <!--h4.nombre-alumno-->
+
+                          <div class="datos-alumno">
+                              <div class="datos-personales">
+                                  <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
+                                  <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
+                                  <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
+                              </div> <!--.datos-personales-->
+                              <div class="datos-academicos">
+                                  <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                  <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                              </div> <!--.datos-academicos-->
+                          </div> <!--.datos-alumno-->
+                      </div> <!--.info-alumno-->
+
+                      <div class="ultimo-bloque">
+
+                          <div class="btn-acciones">
+                              <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
+                              <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip" data-placement="bottom" title="Editar alumno">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </a>
+                              <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip" data-placement="bottom" title="Eliminar alumno" data-target="#confirmarEliminar">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </a>
+                          </div> <!--.btn-acciones-->
+                      </div> <!--.ultimo-bloque-->
+                      <div class="checkbox">
+                          <label>
+                              <input class="check-alumno" type="checkbox" value="">
+
+                          </label>
+                      </div>
+                  </li>
+              </ul> <!--ul.lista-alumnos-->
+          </div> <!--#contenedorLista-->
+
+          <nav class="center-flex">
+              <ul class="pagination">
+                  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                      <a href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+
+      </div> <!-- /.container -->
+
+
+
+  </div> <!--#contendorPrincipal-->
+
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+  <script src="js/main.js"></script>
+
+
+  </body>
+</html>

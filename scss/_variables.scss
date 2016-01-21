@@ -1,0 +1,27 @@
+//COLORES
+$azul: #2C72B4;
+$celeste: #C7DEE2;
+$gris-claro: #F1F7F8;
+
+//tamaños
+$screen-xs-min: 320px;
+$screen-xs-max: 480px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+//Breakpoints
+$breakpoints: (
+        'tel-chico': $screen-xs-min,
+        'tel-grande': $screen-xs-max,
+        'tablet': $screen-sm-min,
+        'desktop': $screen-md-min,
+        'hd': $screen-lg-min
+);
+
+//Clases Fantasma
+%esconder-input{
+  position: absolute;
+  left: -9999px;
+  clip: rect(0,0,0,0);
+}
