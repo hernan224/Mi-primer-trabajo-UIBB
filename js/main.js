@@ -46,7 +46,7 @@
     });
 
      //Mostrar label en carga de datos
-     var inputAlumno = $('.cargar-alumno input.form-control');
+     var inputAlumno = $('.form-mpt input.form-control');
 
      inputAlumno.on('change', function(){
          var este = $(this);

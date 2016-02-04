@@ -1,5 +1,11 @@
 //ESTILOS GENERALES
+html{
+  height: 100%;
+}
+
 body{
+  position: relative;
+  min-height: 100%;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -32,6 +38,18 @@ h6, .h6{
   color: #fff;
 }
 
+.bg-azul{
+  background-color: $azul;
+}
+
+.hide-svg{
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  margin-top: -999em;
+}
+
 .fila-flex{
   display: flex;
   justify-content: flex-start;
@@ -41,9 +59,249 @@ h6, .h6{
   justify-content: center;
 }
 
-.container{
-  margin-top: 1.5em;
+.container-general-flex{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  min-height: 100vh;
 }
+
+//.container{
+//  margin-top: 1.5em;
+//}
+
+#contendorPrincipal{
+  margin-bottom: 1.5em;
+}
+
+.panel-bg-color{
+  background-color: $gris-claro;
+  border-top: 2px solid $azul;
+  padding:1.5em;
+}
+
+figure.foto-bg{
+  border-radius: 100%;
+  background: transparent no-repeat center center /cover;
+}
+
+.dropdown-menu{
+  border: none;
+  margin: 0;
+  border-radius: 0;
+}
+
+//LOGOS
+.logo-mpt{
+  &.logo-blanco{
+    fill: #fff;
+  }
+  &.logo-azul{
+    fill: $azul;
+  }
+}
+
+.logo-uibb{
+  text-indent: -999em;
+  //width: 107px;
+  //height: 43px;
+  display: inline-block;
+  background: transparent no-repeat center right /cover;
+
+  &.uibb-blanco{
+    background-image: url(../img/logo-uibb-blanco.png);
+  }
+  &.uibb-negro{
+    background-image: url(../img/logo-uibb-negro.png);
+  }
+}
+
+//HEADERS
+.acceso-usuario-container{
+  align-self: center;
+
+  .fila-flex{
+    align-items: center;
+  }
+}
+
+.foto-usuario{
+  width: 50px;
+  height: 50px;
+  margin-right: 1em;
+
+  &.sin-foto{
+    background-image: url(../img/foto-alumno-back.png);
+  }
+}
+
+.nombre-usuario{
+  margin-right: 1em;
+}
+
+#dropdownUsuario{
+  color: #000;
+  text-decoration: none;
+
+  &:hover,
+  .open &{
+    color: $azul;
+  }
+}
+
+.btn-menu-usuario{
+  font-size: 21px;
+  width: 2.5em;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  color: $celeste;
+
+  a:hover > &,
+  .open &{
+    background-color: $gris-claro;
+    color: #000;
+  }
+
+}
+
+.submenu-usuario{
+  right: 0;
+  left: auto;
+  background-color: $gris-claro;
+  box-shadow: -2px 2px 2px rgba(#000, 0.25);
+  text-align: right;
+  padding: 1em;
+  min-width: 180px;
+
+  li{
+    padding: 0.5em 0.5em 0.5em 1em;
+
+    a{
+      padding: 0;
+
+      &:hover{
+        color: $azul;
+      }
+    }
+  }
+}
+
+.btn-acceder{
+  //height: 50px;
+  //line-height: 50px;
+  display: block;
+  align-self: center;
+  font-size: 18px;
+  //font-weight: 700;
+  text-decoration: none;
+  padding: 0.5em 2em;
+  background-color: transparent;
+  border: 2px solid;
+
+  .glyphicon{
+    //font-size: 14px;
+    margin: 0.25em 0 0 0.75em;
+  }
+
+  &.btn-linea-blanco{
+   @extend .texto-blanco;
+  }
+  &.btn-linea-azul{
+    @extend .texto-azul;
+  }
+  &.btn-linea-negro{
+    @extend .texto-negro;
+  }
+
+  &:hover{
+    background-color: $gris-claro;
+    color: $azul;
+    border-color: $gris-claro;
+    text-decoration: none;
+  }
+}
+
+//Header simple
+.header-simple{
+  margin: 1em auto 1.5em;
+  padding: 1em 0;
+
+  .marca-container{
+    text-align: center;
+    a{
+       display: block;
+    }
+  }
+
+  .logo-mpt{
+    max-width: 280px;
+    width: 85%;
+    //margin: 0 auto;
+    text-align: center;
+  }
+
+  .logo-uibb{
+    width:140px;
+    height:44px;
+  }
+
+  .mpt-by{
+    margin-top: 0.5em;
+    text-align: center;
+
+    .texto-servicio{
+      position: relative;
+      top: 1em;
+    }
+  }
+}
+
+//Header usuario logeado
+.header-acceso{
+  justify-content: space-between;
+  padding: 1em 0;
+  margin: 1em auto;
+
+  .logo-mpt{
+    max-width: 165px;
+  }
+}
+
+.acceso-entidad-educativa{
+  .nombre-docente,
+  .nombre-entidad{
+    display: block;
+  }
+}
+
+//Header Home
+.header-home{
+  justify-content: space-between;
+  padding: 2em 0;
+  margin: 1em auto;
+
+  .logo-mpt{
+    max-width: 197px;
+  }
+
+  .mpt-by{
+    margin-left: 1em;
+    align-self: flex-end;
+  }
+
+  .texto-servicio{
+    vertical-align: 5px;
+  }
+
+  .logo-uibb{
+    width: 100px;
+    height: 33px;
+   // margin-left: 2px;
+    vertical-align: 20px;
+  }
+}
+
 
 // .btn-cambiar-vista.activo{
 //   background-color: #595959;
@@ -93,26 +351,10 @@ button[type="submit"].btn-primary{
   }
 }
 
-//Carga de datos de alumno
-.cargar-alumno{
-  margin: 1.5em auto;
-
-  .fila-flex{
-    justify-content: space-between;
-  }
-}
-
-.cargar-datos{
-  width: 67%;
-  padding: 0 0.5em;
-
-  //.titulo-seccion{
-  //  padding-left: 1em;
-  //}
-  
+.form-mpt{
   fieldset{
     margin-top: 2em;
-    
+
     legend{
       border: none;
       padding-left: 1em;
@@ -164,9 +406,9 @@ button[type="submit"].btn-primary{
     padding-left: 0.5em;
     color: #000;
 
-      @include input-placeholder(){
-        color: #000;
-      }
+    @include input-placeholder(){
+      color: #000;
+    }
 
     &:focus{
       background-color: $gris-claro;
@@ -189,9 +431,49 @@ button[type="submit"].btn-primary{
       }
     }
   }
-
-
 }
+
+.form-invertido{
+  .form-control{
+    background-color: $gris-claro;
+    border-color: #000;
+
+    &:focus{
+      background-color: #fff;
+    }
+  }
+
+  .form-group{
+    margin-bottom: 2em;
+
+    &.cargado .form-control{
+      background-color: #fff;
+    }
+  }
+
+  .btn-login{
+    margin-top: 3em;
+  }
+}
+
+//Carga de datos de alumno
+.cargar-alumno{
+  margin: 1.5em auto;
+
+  .fila-flex{
+    justify-content: space-between;
+  }
+}
+
+.cargar-datos{
+  width: 67%;
+  padding: 0 0.5em;
+}
+
+  //.titulo-seccion{
+  //  padding-left: 1em;
+  //}
+
 
 .datos-fijos{
   width: 30%;
@@ -224,9 +506,9 @@ button[type="submit"].btn-primary{
   }
 
   .guardar-datos{
-    background-color: $gris-claro;
-    border-top: 2px solid $azul;
-    padding: 1.5em;
+    //background-color: $gris-claro;
+    //border-top: 2px solid $azul;
+    //padding: 1.5em;
     margin-top: 3em;
   }
 
@@ -239,11 +521,73 @@ button[type="submit"].btn-primary{
   }
 }
 
+//LOGIN
+.login-form{
+  padding: 2em 3em;
+  margin: 1em auto 4em;
+}
+
+.btn-registro{
+  background-color: $celeste;
+  color: $azul;
+  font-weight: 700;
+  margin: 2em auto;
+  display: block;
+  max-width: 310px;
+  padding: 1.25em;
+  border-radius:0;
+
+  &:hover{
+    background-color: $azul;
+    color: #fff;
+  }
+}
+
+.recu-form{
+  padding: 1em 2em;
+}
+
+//Form Tabs
+.form-tabs{
+  margin-top: 1.5em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+
+  li{
+    width: 50%;
+    a{
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.125em;
+      color: #000;
+      border-radius: 0;
+      margin: 0;
+
+      &:hover,
+      &:focus,
+      &:active{
+        background-color: $gris-claro;
+        //color: $azul;
+      }
+    }
+
+    &.active{
+      a,
+      a:hover,
+      a:focus,
+      a:active{
+        background-color: $celeste;
+        color: $azul;
+      }
+    }
+  }
+}
+
 
 //Elementos Alumnos
 .foto-alumno{
-  border-radius: 100%;
-  background: transparent no-repeat center center /cover;
   margin: 0 auto;
 
   &.sin-foto.masculino{
@@ -534,6 +878,63 @@ button[type="submit"].btn-primary{
   }
 }
 
+//Pagination
+ul.pagination{
+  border-radius: 0;
+
+  li{
+
+    a{
+      color: $azul;
+      border: none;
+      font-size: 18px;
+      padding: 4px 12px;
+      margin: 0 2px;
+      border-radius: 100%;
+      
+      &:hover,
+      &:focus{
+        background-color: $gris-claro;
+      }
+    }
+
+    &:first-child a,
+    &:first-child span,
+    &:last-child a,
+    &:last-child span{
+      border-radius: 0;
+      background-color: #fff;
+      font-size: 21px;
+
+      &:hover,
+      &:focus{
+        background-color: #fff;
+        color: $celeste;
+      }
+    }
+
+    &.active{
+      a, span,
+      a:hover, span:hover,
+      a:focus, span:focus{
+        background-color: $azul;
+        //font-weight: 700;
+        color: #fff;
+      }
+    }
+
+    &.disabled{
+      a, span,
+      a:hover, span:hover,
+      a:focus, span:focus{
+        //background-color: $azul;
+        //font-weight: 700;
+        color: $gris-claro;
+      }
+    }
+  }
+}
+
 
 // Alumno individual
 .alumno-individual{
@@ -576,13 +977,16 @@ button[type="submit"].btn-primary{
     margin-right: 1.5em;
 
     section{
-      background-color: $gris-claro;
-      padding: 1.5em;
+      //background-color: $gris-claro;
+      //padding: 1.5em;
       margin-bottom: 1.5em;
 
-      &.contacto-docente{
-        border-top: 2px solid $azul;
+      &.contacto-alumno{
+        border-top: none;
+      }
 
+      &.contacto-docente{
+        //border-top: 2px solid $azul;
         li{
           padding: 0.1em 0 0.2em;
         }
@@ -695,6 +1099,95 @@ button[type="submit"].btn-primary{
   }
 }
 
+//Modal
+.estilo-modal-bg{
+  background-color: rgba(#fff, 0.7);
+}
+
+.estilo-modal-container{
+  background-color: $celeste;
+  box-shadow: -2px 0 2px rgba(#000, 0.25);
+}
+
+a.btn-cerrar{
+  //font-size: 0.85em;
+  //text-transform: uppercase;
+  //padding-top: 2.25em;
+  color: #fff;
+  text-indent: -999em;
+  width: 4em;
+  height: 3em;
+
+  &::after,
+  &::before{
+    content: '';
+    width: 4px;
+    height: 28px;
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -2px;
+  }
+
+  &::after{
+    transform: rotate(45deg);
+  }
+  &::before{
+    transform: rotate(-45deg);
+  }
+
+  &:hover{
+    color: #000;
+    transition: color 0.2s ease;
+
+    &::after,
+    &::before{
+      background-color: #000;
+      transition: background 0.2s ease;
+    }
+  }
+
+  &.close{
+    position: absolute;
+    top: 2em;
+    right: 1.5em;
+    font-size: 14px;
+    opacity: 0.75;
+
+    &:hover{
+      color: #000;
+      opacity: 1;
+    }
+  }
+}
+
+.modal-content{
+  border-radius: 0;
+  border: none;
+  padding: 1.5em 2em;
+}
+
+.modal-header{
+  border: none;
+}
+
+.modal-footer{
+  border: none;
+  text-align: center;
+
+  .btn{
+    border-radius: 0;
+    padding: 0;
+    width: 5em;
+    height: 3em;
+    line-height: 3em;
+  }
+}
+
+
+
 //FILTROS
 .modulo-filtro{
   margin: 1.5em 0;
@@ -769,7 +1262,6 @@ button[type="submit"].btn-primary{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(#fff, 0.7);
     display: none;
   }
   
@@ -783,8 +1275,6 @@ button[type="submit"].btn-primary{
     width: 25%;
     max-width: 380px;
     padding: 2em;
-    background-color: $celeste;
-    box-shadow: -2px 0 2px rgba(#000, 0.25);
     transform: translate(100%, 0);
     transition: transform 0.2s ease-out;
   }
@@ -796,46 +1286,12 @@ button[type="submit"].btn-primary{
   }
   
   a.cerrar-filtros{
-    font-size: 0.85em;
-    text-transform: uppercase;
+
     //font-weight: 700;
     position: absolute;
-    top: 4em;
-    right: 3em;
-    padding-top: 2.25em;
-    color: #fff;
+    top: 3em;
+    right: 1.5em;
     z-index: 1050;
-    
-    &::after,
-    &::before{
-      content: '';
-      width: 4px;
-      height: 28px;
-      display: block;
-      background-color: #fff;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      margin-left: -2px;
-    }
-
-    &::after{
-      transform: rotate(45deg);
-    }
-    &::before{
-      transform: rotate(-45deg);
-    }
-
-    &:hover{
-      color: #000;
-      transition: color 0.2s ease;
-
-      &::after,
-      &::before{
-        background-color: #000;
-        transition: background 0.2s ease;
-      }
-    }
   }
   
   &.mostrar-filtros{
@@ -934,14 +1390,11 @@ button[type="submit"].btn-primary{
 
 //Dropdown ordenar
 .contenedor-ordenar{
-  border: none;
   background-color: $celeste;
-  margin: 0;
+  box-shadow: 0 2px 2px rgba(#000, 0.25);
   padding: 1em 0.5em;
   //max-width: 18em;
   width: 240px;
-  box-shadow: 0 2px 2px rgba(#000, 0.25);
-  border-radius: 0;
 }
 
 .dropdown.open{
@@ -992,6 +1445,71 @@ button[type="submit"].btn-primary{
     &:checked ~ .glyphicon{
       background-color: $azul;
       color: #fff;
+    }
+  }
+}
+
+
+//FOOTER
+footer.pie-pagina{
+  background-color: #666;
+  color: #fff;
+  padding: 1em 0.5em;
+  margin-top: 3em;
+  //position: absolute;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
+
+  a{
+    color: #fff;
+  }
+  
+//  .contenido-footer{
+//    margin-bottom: 1.5em;
+//  }
+  .subfooter{
+    margin-top: 3em;
+    //margin-bottom: 1.5em;
+    font-size: 0.85em;
+  }
+
+  .logo-mpt{
+    max-width: 195px;
+    //fill: #fff;
+  }
+  .mpt-by{
+    .texto-servicio{
+      font-size: 0.85em;
+      position: relative;
+      top: 1em;
+    }
+    .uibb-blanco{
+      //text-indent: -999em;
+      width: 107px;
+      height: 43px;
+      //display: inline-block;
+      //background: transparent url(../img/logo-uibb-blanco.png) no-repeat center right /cover;
+    }
+  }
+
+  .nav-list{
+    li{
+      padding: 0;
+      &::before{
+        content: "|";
+        padding: 0 0.5em;
+      }
+
+      &:first-child{
+        &::before{
+          display: none;
+        }
+      }
+    }
+
+    &.menu-principal{
+      margin-top: 4.5em;
     }
   }
 }
