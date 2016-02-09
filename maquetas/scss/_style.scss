@@ -194,8 +194,9 @@ figure.foto-bg{
   align-self: center;
   font-size: 18px;
   //font-weight: 700;
+  text-align: center;
   text-decoration: none;
-  padding: 0.5em 2em;
+  padding: 0.75em 2em;
   background-color: transparent;
   border: 2px solid;
 
@@ -213,12 +214,27 @@ figure.foto-bg{
   &.btn-linea-negro{
     @extend .texto-negro;
   }
+  &.btn-full-azul{
+    border-color:$azul;
+    background-color: $azul;
+    color: #fff;
+  }
+  &.btn-max-360{
+    width: 90%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   &:hover{
     background-color: $gris-claro;
     color: $azul;
     border-color: $gris-claro;
     text-decoration: none;
+  }
+  &.btn-h-celeste:hover{
+    background-color: $celeste;
+    border-color: $celeste;
   }
 }
 
@@ -301,6 +317,96 @@ figure.foto-bg{
     vertical-align: 20px;
   }
 }
+
+//Contenido Home
+.contenido-home{
+
+  .foto--seccion-info{
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  section.info-home{
+    padding: 1em 0;
+    margin: 1em auto;
+  }
+
+  h2.titulo-seccion{
+    margin-bottom: 0.75em;
+  }
+
+  .logos-organizadores{
+    .logo-img{
+      max-height: 75px;
+      margin: 2em auto 1.5em;
+    }
+  }
+
+  .info--participantes{
+    padding: 1em 0;
+    margin: 1em auto;
+  }
+
+  .btn-banner{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: $celeste;
+    padding: 1.5em;
+    margin: 1em auto 2em;
+
+    .banner-icono{
+      width: 100px;
+      height: 100px;
+      margin-right: 1.5em;
+    }
+
+    .banner-texto{
+      h4{
+        font-size: 21px;
+        margin: 0 0 0.15em;
+        font-weight:700;
+      }
+      p{
+        font-size:16px;
+        font-weight:700;
+        margin-bottom: 0;
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus{
+      background-color: $gris-claro;
+      text-decoration: none;
+    }
+  }
+
+  .sub-sec-acceso{
+    margin-top:1.5em;
+    margin-bottom:2em;
+
+    p{
+      font-size: 16px;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .jumbotron{
+    margin-bottom: 0;
+  }
+
+  section.info-contacto{
+    padding: 2em 0;
+
+    p.especial{
+      font-size: 24px;
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
 
 
 // .btn-cambiar-vista.activo{
@@ -1460,6 +1566,9 @@ footer.pie-pagina{
   //bottom: 0;
   //left: 0;
   //right: 0;
+  &.pie-home{
+    margin:0;
+  }
 
   a{
     color: #fff;
