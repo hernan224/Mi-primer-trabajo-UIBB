@@ -71,9 +71,6 @@ h6, .h6 {
   justify-content: space-between;
   min-height: 100vh; }
 
-#contendorPrincipal {
-  margin-bottom: 1.5em; }
-
 .panel-bg-color {
   background-color: #F1F7F8;
   border-top: 2px solid #2C72B4;
@@ -502,6 +499,8 @@ button[type="submit"].btn-primary {
 .login-form {
   padding: 2em 3em;
   margin: 1em auto 4em; }
+  .login-form a.recuperar-pass {
+    margin-top: 1em; }
 
 .btn-registro {
   background-color: #C7DEE2;

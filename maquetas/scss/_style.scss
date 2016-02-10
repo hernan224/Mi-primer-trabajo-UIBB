@@ -70,9 +70,9 @@ h6, .h6{
 //  margin-top: 1.5em;
 //}
 
-#contendorPrincipal{
-  margin-bottom: 1.5em;
-}
+// #contenedorPrincipal{
+  // margin-bottom: 1.5em;
+// }
 
 .panel-bg-color{
   background-color: $gris-claro;
@@ -711,6 +711,10 @@ button[type="submit"].btn-primary{
 .login-form{
   padding: 2em 3em;
   margin: 1em auto 4em;
+
+  a.recuperar-pass {
+    margin-top: 1em;
+  }
 }
 
 .btn-registro{

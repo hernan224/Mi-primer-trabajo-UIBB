@@ -1,66 +1,66 @@
-@extends('layouts.app')
+{{-- Pantalla login. URL: /login --}}
+@extends('layouts.base')
+
+@section('title')
+    Login
+@endsection
+
+@section('header')
+    @include('layouts.header_simple')
+@endsection
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+    <main class="contenido-login">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                <h3 class="texto-azul">Iniciar Sesión</h3>
+                <form method="POST" action="{{ url('/login') }}" role="form" class="login-form panel-bg-color form-mpt form-invertido">
+                    {!! csrf_field() !!}
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label class="sr-only input-label small" for="usuario">Email</label>
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label class="sr-only input-label small" for="pass">Contraseña</label>
+                        <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                    <div class="checkbox">
+                        <label for="permanencia">
+                            <input type="checkbox" name="remember" checked>
+                            Permanecer conectado
+                        </label>
+                    </div>
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                    <div class="contenedor-btns">
+                        <button type="submit" class="btn btn-primary btn-login center-block">
+                            Iniciar Sesión
+                        </button>
+                        <a class="btn btn-link center-block recuperar-pass" href="#ToDo{{-- {{ url('/password/reset') }} --}}">
+                            Recuperar contraseña
+                        </a>
+                    </div>
+                </form>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong> y
+                    desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros:</p>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <a class="btn btn-registro" href="#ToDo">Solicitar acceso a la plataforma</a>
             </div>
+
         </div>
-    </div>
+    </main>
 </div>
+
 @endsection

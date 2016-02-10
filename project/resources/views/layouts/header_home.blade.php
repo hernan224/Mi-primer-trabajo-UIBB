@@ -50,7 +50,7 @@
             <a class="logo-uibb uibb-blanco" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>
         </div> {{-- .mpt-by --}}
 
-        <a href="#ToDo" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
+        <a href="{{ url('/acceso') }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
             Acceder a la Plataforma
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>

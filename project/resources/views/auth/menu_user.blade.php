@@ -1,4 +1,4 @@
-{{-- Dropdown usuario: sólo se muestra si hay usuario --}}
+{{-- Dropdown usuario: incluido en header, sólo se muestra si hay usuario --}}
 @if (Auth::check())
 <div class="acceso-usuario-container dropdown">
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -19,7 +19,7 @@
     </a>
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
         @if (isset($home) && $home)
-        <li><a href="#ToDo" class="acceder-plataforma">Acceder a la Plataforma
+        <li><a href="{{ url('/acceso') }}" class="acceder-plataforma">Acceder a la Plataforma
                 <span class="glyphicon glyphicon-arrow-right"></span></a>
         </li>
         @endif

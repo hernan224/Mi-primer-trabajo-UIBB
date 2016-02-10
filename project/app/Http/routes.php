@@ -41,9 +41,18 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 
+    // Acceso a plataforma:
+    //    redirecciona a login si no está autenticado, o al listado de alumnos si está logueado
+    Route::get('/acceso', function () {
+        return redirect('/login');
+    })->middleware('guest'); // el middleware guest hace redireccion a /alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
+
+
 });
 
 // Routes con autenticacion
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['web','auth']], function () {
 
+    // Listado de alumnos: cambia segun rol de usuario
+    Route::get('/alumnos','AlumnosController@listadoAlumnos');
 });

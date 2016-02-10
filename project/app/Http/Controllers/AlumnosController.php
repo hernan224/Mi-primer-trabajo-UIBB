@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+// Actions para listado, carga, edicion y eliminación de CVs de alumnos.
+class AlumnosController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,12 +19,15 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Muestra pantalla con listado de alumnos.
+     * Depende del rol de usuario.
+     *
+     * URL: /alumnos
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function listado()
     {
-        
+        return view('alumnos.listado');
     }
 }

@@ -20,7 +20,7 @@
                     <li><strong><a href="#ToDo">Empresas</a></strong></li>
                     <li><strong><a href="#ToDo">Instituciones Educativas</a></strong></li>
                     <li><strong><a href="#ToDo">Contacto</a></strong></li>
-                    <li><strong><a href="#ToDo">Acceder a la plataforma</a></strong></li>
+                    <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>
                 </ul> <!--.menu-principal-->
                 <ul class="list-inline nav-list menu-tc-pp text-right">
                     <li><a href="#ToDo">Términos y condiciones</a></li>
