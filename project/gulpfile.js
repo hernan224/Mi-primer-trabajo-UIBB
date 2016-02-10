@@ -11,6 +11,11 @@ var elixir = require('laravel-elixir');
  |
  */
 
+elixir.config.publicPath = '../www';
+elixir.config.assetsPath = '../maquetas';
+elixir.config.css.sass.folder = 'scss';
+
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('estilos.scss');
+    mix.scripts(['main.js'], '../www/js/main.js');
 });
