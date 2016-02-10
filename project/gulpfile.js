@@ -11,11 +11,24 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir.config.publicPath = '../www';
-elixir.config.assetsPath = '../maquetas';
+var src = '../maquetas',
+    dest = '../www'
+
+elixir.config.publicPath = dest;
+elixir.config.assetsPath = src;
 elixir.config.css.sass.folder = 'scss';
 
 elixir(function(mix) {
+    // compilacion scss
     mix.sass('estilos.scss');
-    mix.scripts(['main.js'], '../www/js/main.js');
+    //  concatenacion y copia js
+    mix.scripts(['main.js','app.js'], dest+'/js/main.js');
+    // copio css sueltos
+    mix.copy(src+'/css/normalize.css', dest+'/css/normalize.css');
+    // copio js sueltos
+    // copio img
+    mix.copy(src+'/img', dest+'/img');
+
+    // versionado de js y css (para evitar que use cache si cambian assets)
+    // mix.version(['css/estilos.css', 'js/main.js']);
 });
