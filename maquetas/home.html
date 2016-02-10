@@ -49,51 +49,59 @@
     <div id="contenedorPrincipal">
         <header class="header-home acceso-entidad-educativa">
 
-            <div class="header-bg carousel slide fade-carousel" id="carouselBg" data-ride="carousel">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
+            <div class="header-bg">
+                <div class="carousel slide carousel-fade" id="carouselBg" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
 
-                    <div class="item active"
-                         style="background-image: url(img/bg-home-1.jpg);background-position: center right;">
-                        <!--<div class="slide-img"></div>-->  </div> <!--/.item-->
-                    <div class="item" style="background-image: url(img/bg-home-2.jpg);background-position: top left;">
-                        <!--<div class="slide-img"></div> --> </div><!--/.item-->
-                    <div class="item" style="background-image: url(img/bg-home-3.jpg);background-position: top center;">
-                        <!--<div class="slide-img"></div> --> </div><!--/.item-->
-                    <div class="item"
-                         style="background-image: url(img/bg-home-4.jpg);background-position: center right;">
-                        <!--<div class="slide-img"></div> --> </div><!--/.item-->
-                    <div class="item" style="background-image: url(img/bg-home-5.jpg);background-position: top right;">
-                        <!--<div class="slide-img"></div> --> </div><!--/.item-->
+                        <div class="item active"
+                             style="background-image: url(img/bg-home-1.jpg);background-position: center right;">
+                            <!--<div class="slide-img"></div>-->  </div> <!--/.item-->
+                        <div class="item"
+                             style="background-image: url(img/bg-home-2.jpg);background-position: top left;">
+                            <!--<div class="slide-img"></div> --> </div><!--/.item-->
+                        <div class="item"
+                             style="background-image: url(img/bg-home-3.jpg);background-position: top center;">
+                            <!--<div class="slide-img"></div> --> </div><!--/.item-->
+                        <div class="item"
+                             style="background-image: url(img/bg-home-4.jpg);background-position: center right;">
+                            <!--<div class="slide-img"></div> --> </div><!--/.item-->
+                        <div class="item"
+                             style="background-image: url(img/bg-home-5.jpg);background-position: top right;">
+                            <!--<div class="slide-img"></div> --> </div><!--/.item-->
 
-                </div> <!--/.carousel-inner-->
-            </div> <!--/#carouselBg-->
+                    </div> <!--/.carousel-inner-->
+                </div> <!--/#carouselBg-->
+            </div> <!--/.carousel-bg-container-->
 
-            <div class="bg-nav-home"></div> <!--/.bg-nav-home-->
+            <div class="login-nav-home">
+                <!--SI NO HAY USUARIO LOGEADO, EL CONTENDOR QUEDARÍA VACIO-->
 
-            <div class="container cotnenido-header-home">
-
-                <div class="fila-flex contenedor-acceso">
+                <div class="fila-flex contenedor-acceso container">
                     <div class="acceso-usuario-container dropdown">
                         <a id="dropdownUsuario" class="fila-flex" data-target="#" href="http://uibb.org.ar"
                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <figure class="foto-bg foto-usuario sin-foto"></figure>
+                            <figure class="foto-bg foto-usuario sin-foto"></figure> <!--//Icono usuario-->
                             <h5 class="nombre-usuario texto-blanco"><strong class="nombre-docente">Juana Ana
                                 Triana</strong> <span class="nombre-entidad">Escuela de Educación Técnica N°1</span>
-                            </h5>
+                            </h5> <!--//Nombre Usuario-->
                             <button class="btn-menu-usuario">
                                 <span class="sr-only">Menú usuario</span>
                                 <span class="glyphicon glyphicon-menu-down"></span>
                             </button>
-                        </a>
+                        </a> <!--//link usuario-->
                         <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
                             <li><a href="listado-backend.html" class="acceder-plataforma">Acceder a la Plataforma <span
                                     class="glyphicon glyphicon-arrow-right"></span></a></li>
                             <li><a href="#">Ayuda y Soporte</a></li>
                             <li><a href="#" class="cerrar-sesion"><strong>Cerrar sesión</strong></a></li>
-                        </ul>
+                        </ul> <!--//dropdown-menu-->
                     </div>
                 </div> <!--//.fila-flex contenedor-acceso-->
+
+            </div> <!--/.login-nav-home-->
+
+            <div class="container contenido-header-home">
 
                 <div class="marca-container marca-home">
                     <a href="#">

@@ -273,28 +273,100 @@ a:hover > .btn-menu-usuario,
 }
 
 .header-home {
-  justify-content: space-between;
-  padding: 2em 0;
-  margin: 1em auto;
+  margin: 0 auto 2em;
+  position: relative;
+  min-height: 85vh;
 }
 
-.header-home .logo-mpt {
-  max-width: 197px;
+.header-home .contenido-header-home {
+  padding: 2em 0 5em;
+}
+
+.header-home .marca-home {
+  width: 85%;
+  max-width: 350px;
+  margin: 3em auto;
+}
+
+.header-home .marca-home .logo-mpt {
+  width: 100%;
 }
 
 .header-home .mpt-by {
-  margin-left: 1em;
-  align-self: flex-end;
+  margin: 1em auto 5em;
+  text-align: center;
 }
 
 .header-home .texto-servicio {
-  vertical-align: 5px;
+  font-size: 16px;
 }
 
 .header-home .logo-uibb {
-  width: 100px;
-  height: 33px;
-  vertical-align: 20px;
+  width: 150px;
+  height: 48px;
+  vertical-align: 30px;
+}
+
+.header-home .btn-acceder {
+  margin: 2em auto;
+}
+
+.header-home .login-nav-home {
+  background: linear-gradient(180deg, #2c72b3 20%, rgba(44, 114, 179, 0) 100%);
+}
+
+.header-home .login-nav-home .contenedor-acceso {
+  padding: 2em 1.5em 4em;
+}
+
+.header-home .login-nav-home .acceso-usuario-container {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background: #2C72B4;
+}
+
+.header-bg .carousel,
+.header-bg .carousel-inner,
+.header-bg .item {
+  width: 100%;
+  height: 100%;
+}
+
+.header-bg .item {
+  background: #2C72B4 no-repeat/cover;
+}
+
+.header-bg .carousel-fade .carousel-inner .item {
+  transition-property: opacity;
+}
+
+.header-bg .carousel-fade .carousel-inner .item,
+.header-bg .carousel-fade .carousel-inner .active.left,
+.header-bg .carousel-fade .carousel-inner .active.right {
+  opacity: 0;
+}
+
+.header-bg .carousel-fade .carousel-inner .active,
+.header-bg .carousel-fade .carousel-inner .next.left,
+.header-bg .carousel-fade .carousel-inner .prev.right {
+  opacity: 0.8;
+}
+
+.header-bg .carousel-fade .carousel-inner .next,
+.header-bg .carousel-fade .carousel-inner .prev,
+.header-bg .carousel-fade .carousel-inner .active.left,
+.header-bg .carousel-fade .carousel-inner .active.right {
+  left: 0;
+  transform: translate3d(0, 0, 0);
 }
 
 .contenido-home .foto--seccion-info {
@@ -318,7 +390,7 @@ a:hover > .btn-menu-usuario,
 
 .contenido-home .info--participantes {
   padding: 1em 0;
-  margin: 1em auto;
+  margin: 2em auto 1em;
 }
 
 .contenido-home .btn-banner {
@@ -332,8 +404,8 @@ a:hover > .btn-menu-usuario,
 }
 
 .contenido-home .btn-banner .banner-icono {
-  width: 100px;
-  height: 100px;
+  width: 20%;
+  max-width: 100px;
   margin-right: 1.5em;
 }
 
@@ -1479,7 +1551,7 @@ a.btn-cerrar.close:hover {
 footer.pie-pagina {
   background-color: #666;
   color: #fff;
-  padding: 1em 0.5em;
+  padding: 3em 0.5em;
   margin-top: 3em;
 }
 
