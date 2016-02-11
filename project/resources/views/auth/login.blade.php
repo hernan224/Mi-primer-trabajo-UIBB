@@ -19,7 +19,7 @@
                     {!! csrf_field() !!}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label class="sr-only input-label small" for="usuario">Email</label>
-                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label class="sr-only input-label small" for="pass">Contraseña</label>
-                        <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                         @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="checkbox">
-                        <label for="permanencia">
+                        <label>
                             <input type="checkbox" name="remember" checked>
                             Permanecer conectado
                         </label>
@@ -47,9 +47,11 @@
                         <button type="submit" class="btn btn-primary btn-login center-block">
                             Iniciar Sesión
                         </button>
-                        <a class="btn btn-link center-block recuperar-pass" href="#ToDo{{-- {{ url('/password/reset') }} --}}">
+                        {{-- ToDo: implementar recuperación de contraseña?? 
+                        <a class="btn btn-link center-block recuperar-pass" href="{{ url('/password/reset') }}">
                             Recuperar contraseña
                         </a>
+                        --}}
                     </div>
                 </form>
 

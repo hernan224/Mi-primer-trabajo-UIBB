@@ -1,3 +1,4 @@
+{{-- Footer, incluido en base (se ve en todas las pantallas) --}}
 <footer class="pie-pagina {{ $home ? 'pie-home' : ''}}">
     <div class="container">
         <div class="contenido-footer row">
@@ -8,11 +9,11 @@
                             <use xlink:href="#logoMPT"></use>
                         </svg>
                     </a>
-                </div> <!--.marca-container-->
+                </div> {{-- .marca-container --}}
                 <div class="mpt-by">
                     <span class="texto-servicio">un servicio de:</span>
                     <a class="logo-uibb uibb-blanco" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>
-                </div> <!--.mpt-by-->
+                </div> {{-- .mpt-by --}}
             </div>
             <div class="col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
@@ -21,13 +22,13 @@
                     <li><strong><a href="#ToDo">Instituciones Educativas</a></strong></li>
                     <li><strong><a href="#ToDo">Contacto</a></strong></li>
                     <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>
-                </ul> <!--.menu-principal-->
+                </ul> {{-- .menu-principal --}}
                 <ul class="list-inline nav-list menu-tc-pp text-right">
                     <li><a href="#ToDo">Términos y condiciones</a></li>
                     <li><a href="#ToDo">Políticas de privacidad</a></li>
-                </ul> <!--.menu-tc-pp-->
+                </ul> {{-- .menu-tc-pp --}}
             </div>
-        </div> <!--.contenido-footer-->
+        </div> {{-- .contenido-footer --}}
 
         <div class="subfooter row">
             <div class="col-sm-6">
@@ -40,6 +41,6 @@
                     <strong><a href="http://www.imotionconsulting.com.ar">Imotion Consulting</a></strong>
                 </p>
             </div>
-        </div> <!--.subfooter-->
-    </div> <!--.container-->
+        </div> {{-- .subfooter --}}
+    </div> {{-- .container --}}
 </footer>

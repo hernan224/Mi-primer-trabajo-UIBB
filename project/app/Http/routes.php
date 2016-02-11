@@ -33,7 +33,7 @@ Route::group(['middleware' => 'web'], function () {
     // Route::auth(); // no incluyo routes de registro
     // Login & logut
     Route::get('login', 'Auth\AuthController@showLoginForm');
-    Route::post('login', 'Auth\AuthController@login');
+    Route::post('login', 'Auth\AuthController@login'); // si es ok redirecciona a /listado-alumnos (seteado en AuthController)
     Route::get('logout', 'Auth\AuthController@logout');
 
     // Password Reset Routes...
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'web'], function () {
     //    redirecciona a login si no está autenticado, o al listado de alumnos si está logueado
     Route::get('/acceso', function () {
         return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
 
 
 });
@@ -54,5 +54,5 @@ Route::group(['middleware' => 'web'], function () {
 Route::group(['middleware' => ['web','auth']], function () {
 
     // Listado de alumnos: cambia segun rol de usuario
-    Route::get('/alumnos','AlumnosController@listadoAlumnos');
+    Route::get('/listado-alumnos','AlumnosController@listado');
 });

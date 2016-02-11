@@ -1,3 +1,5 @@
+{{-- NO USADO ACTUALMENTE --}}
+
 @extends('layouts.app')
 
 @section('content')

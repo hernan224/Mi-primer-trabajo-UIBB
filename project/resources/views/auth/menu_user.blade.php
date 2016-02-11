@@ -2,15 +2,14 @@
 @if (Auth::check())
 <div class="acceso-usuario-container dropdown">
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <figure class="foto-bg foto-usuario sin-foto"></figure>
+        {{-- <figure class="foto-bg foto-usuario sin-foto"></figure> --}}
         <h5 class="nombre-usuario {{ $home ? 'texto-blanco' : ''}}">
-            {{-- if escuela --}}
-            {{-- <strong>
-                <strong class="nombre-docente">Juana Ana Triana</strong>
-                <span class="nombre-entidad">Escuela de Educación Técnica N°1</span>
-            </strong> --}}
-            {{-- else --}}
+        @if (Auth::user()->esEscuela())
+            <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
+            <span class="nombre-entidad">{{ Auth::user()->escuela->name }}</span>
+        @else
             <strong>{{ Auth::user()->name }}</strong>
+        @endif
         </h5>
         <button class="btn-menu-usuario">
             <span class="sr-only">Menú usuario</span>
@@ -18,7 +17,7 @@
         </button>
     </a>
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
-        @if (isset($home) && $home)
+        @if ($home)
         <li><a href="{{ url('/acceso') }}" class="acceder-plataforma">Acceder a la Plataforma
                 <span class="glyphicon glyphicon-arrow-right"></span></a>
         </li>

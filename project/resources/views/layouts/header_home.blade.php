@@ -1,4 +1,5 @@
-<header class="header-home acceso-entidad-educativa">
+{{-- Header incluido en home --}}
+<header class="header-home">
 
     <div class="header-bg">
         <div class="carousel slide carousel-fade" id="carouselBg" data-ride="carousel">
@@ -28,7 +29,7 @@
     <div class="login-nav-home">
         <div class="fila-flex contenedor-acceso container">
             {{-- SI NO HAY USUARIO LOGEADO, EL CONTENDOR QUEDARÍA VACIO --}}
-            @include('auth.menu_user')
+            @include('auth.menu_user', ['home' => true])
         </div> {{-- /.fila-flex contenedor-acceso --}}
 
     </div> {{-- /.login-nav-home --}}

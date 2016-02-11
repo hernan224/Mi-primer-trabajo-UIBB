@@ -210,12 +210,17 @@ figure.foto-bg {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 1em 0;
-  margin: 1em auto; }
-  .header-acceso .logo-mpt {
-    max-width: 165px; }
+  margin: 0 auto; }
+  .header-acceso .marca-container {
+    padding-right: 20px;
+    text-align: left; }
+    .header-acceso .marca-container a {
+      display: block; }
+      .header-acceso .marca-container a .logo-mpt {
+        width: 165px; }
 
-.acceso-entidad-educativa .nombre-docente,
-.acceso-entidad-educativa .nombre-entidad {
+.acceso-usuario-container .nombre-docente,
+.acceso-usuario-container .nombre-entidad {
   display: block; }
 
 .header-home {
