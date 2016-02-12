@@ -40,13 +40,13 @@ class AlumnosController extends Controller
     /**
      * Muestra pantalla creación de Alumno / Curriculum
      *
-     * URL: /alumnos/nuevo [GET]
+     * URL: /alumnos/nuevo [GET] - Solo para rol escuela (middleware agregado en routes)
      *
      * @return \Illuminate\Http\Response
      */
     public function nuevo()
     {
-        return response()->json(['status' => 'ok','accion'=> 'get nuevo']);
+        return view('alumnos.form',['nuevo' => true]);
     }
 
     /**
@@ -72,7 +72,10 @@ class AlumnosController extends Controller
      */
     public function show($id)
     {
-        return response()->json(['status' => 'ok','accion'=> 'show alumno']);
+        $view_data = [
+            'id' => $id
+        ];
+        return view('alumnos.show',$view_data);
     }
 
     /**
@@ -85,7 +88,11 @@ class AlumnosController extends Controller
      */
     public function edit($id)
     {
-        return response()->json(['status' => 'ok','accion'=> 'get edit alumno']);
+        $view_data = [
+            'nuevo' => false,
+            'id' => $id
+        ];
+        return view('alumnos.form',$view_data);
     }
 
     /**

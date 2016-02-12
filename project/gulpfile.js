@@ -23,8 +23,13 @@ elixir(function(mix) {
     mix.sass('estilos.scss');
     //  concatenacion y copia js
     mix.scripts(['main.js','app.js'], dest+'/js/main.js');
+    mix.scripts(
+        ['vendor/moment.min.js','vendor/moment.locale.es.js','vendor/bootstrap-datetimepicker.min.js',
+        'vendor/jquery.bootstrap-touchspin.min.js','form_alumno.js'],
+        dest+'/js/form_alumno.js'
+    );
     // copio css sueltos
-    mix.copy(src+'/css/normalize.css', dest+'/css/normalize.css');
+    mix.copy(src+'/css/vendor', dest+'/css/vendor');
     // copio js sueltos
     // copio img
     mix.copy(src+'/img', dest+'/img');

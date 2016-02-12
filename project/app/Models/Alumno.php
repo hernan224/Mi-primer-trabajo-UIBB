@@ -12,6 +12,6 @@ class Alumno extends Model
         'facebook','twitter','linkedin'
     ];
 
-    public static $image_path = 'img/alumnos';
+    public static $image_path = 'media/img/alumnos';
     // Si sube imagen, esta va a ser guardada en esa carpeta con nombre <id_alumno>.<tipo_img>
 }

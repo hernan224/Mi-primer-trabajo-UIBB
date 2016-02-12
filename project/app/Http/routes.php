@@ -51,32 +51,30 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 // Routes con autenticacion
-Route::group(['middleware' => ['web','auth']], function () {
+Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
     // Listado de alumnos (sólo renderiza pantalla)
     Route::get('/listado-alumnos',function () {
         return view('alumnos.listado');
-    });
-
-    // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
-    Route::group(['middleware' => ['role:escuela']], function () {
-
-        Route::get('/alumno/nuevo','AlumnosController@nuevo');
-        Route::post('/alumno/nuevo','AlumnosController@store');
-        Route::get('/alumno/{id}/edit','AlumnosController@edit');
-        Route::put('/alumno/{id}','AlumnosController@update');
-        Route::delete('/alumno/{id}','AlumnosController@destroy');
-
-    });
-
-    // Routes para ambos tipos de usuario (lista de alumnos y vista de uno solo)
+    })->name('listado');
 
     // GET lista alumnos (resp JSON)
     // Si es escuela devuelve alumnos de la escuela, si no todos
     // Puede incluir filtros como parametros get, y numero pagina
-    Route::get('/alumnos','AlumnosController@lista');
+    Route::get('/alumnos','AlumnosController@lista')->name('lista');
+
+    // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
+    Route::group(['middleware' => 'role:escuela'], function () {
+
+        Route::get('/alumno/nuevo','AlumnosController@nuevo')->name('nuevo');
+        Route::post('/alumno/nuevo','AlumnosController@store')->name('nuevo_post');
+        Route::get('/alumno/{id}/edit','AlumnosController@edit')->name('edit');
+        Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
+        Route::delete('/alumno/{id}','AlumnosController@destroy')->name('delete');
+
+    });
 
     // GET pantalla alumno
-    Route::get('/alumno/{id}','AlumnosController@show');
+    Route::get('/alumno/{id}','AlumnosController@show')->name('show');
 
 });

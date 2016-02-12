@@ -19,7 +19,7 @@
     <script type="text/javascript">
         $(function () {
             //Inicializar slider filtro promedio
-                $("#filtroPromedio").slider({
+            $("#filtroPromedio").slider({
                 handle: 'triangle',
                 tooltip_position: 'bottom',
                 tooltip: 'always',
@@ -39,7 +39,7 @@
                 @if (Auth::user()->puedeEditar())
                 {{-- Boton nuevo (eliminar no lo incluyo) --}}
                     <div class="col-md-2 col-sm-3 col-xs-3">
-                        <a id="crearNuevo" href="#" class="link-nav-listado">
+                        <a id="crearNuevo" href="{{ route('alumnos.nuevo')}}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-file"></span>
                             <span class="texto-nav">Nuevo</span>
                         </a>
@@ -237,7 +237,7 @@
             <div class="modal-dialog">
                 <div class="modal-content estilo-modal-container">
                     <div class="modal-header">
-                        <a href="#" class="btn-cerrar close" data-dismiss="modal" aria-label="Close">Cerrar</a>
+                        <a href="#ToDo" class="btn-cerrar close" data-dismiss="modal" aria-label="Close">Cerrar</a>
                         <h4 class="modal-title texto-azul">Confirmar eliminación</h4>
                     </div>
                     <div class="modal-body">

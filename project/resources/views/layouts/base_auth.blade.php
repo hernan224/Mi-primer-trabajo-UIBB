@@ -4,6 +4,6 @@
 
 @section('header')
     <div class="container">
-        @include('layouts.header_auth')        
+        @include('layouts.header_auth')
     </div>
 @endsection
