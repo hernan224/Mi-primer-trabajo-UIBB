@@ -46,7 +46,7 @@ $(document).ready(function(){
     });
 
     //Mostrar label en carga de datos
-    var inputAlumno = $('.form-mpt input.form-control');
+    var inputAlumno = $('.form-mpt .form-control');
 
     inputAlumno.on('change', function(){
         var este = $(this);

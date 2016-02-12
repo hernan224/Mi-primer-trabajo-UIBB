@@ -193,7 +193,7 @@ figure.foto-bg{
   display: block;
   align-self: center;
   font-size: 18px;
-  //font-weight: 700;
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
   padding: 0.75em 2em;
@@ -202,7 +202,8 @@ figure.foto-bg{
 
   .glyphicon{
     //font-size: 14px;
-    margin: 0.25em 0 0 0.75em;
+    margin:0 0 0 0.75em;
+    vertical-align: -8%;
   }
 
   &.btn-linea-blanco{
@@ -226,7 +227,9 @@ figure.foto-bg{
     margin-right: auto;
   }
 
-  &:hover{
+  &:hover,
+  &:active,
+  &:focus{
     background-color: $gris-claro;
     color: $azul;
     border-color: $gris-claro;
@@ -403,6 +406,10 @@ figure.foto-bg{
       }
     }
   }
+}
+
+main.gap-header-acceso{
+  margin-top: 1.5em;
 }
 
 //Contenido Home
@@ -744,6 +751,15 @@ button[type="submit"].btn-primary{
   padding: 1em 2em;
 }
 
+.soporte-form{
+  padding: 2em 3em;
+  margin: 1.5em auto;
+}
+.contacto-form{
+  padding: 2em 3em;
+  margin: 1.5em auto 3em;
+}
+
 //Form Tabs
 .form-tabs{
   margin-top: 1.5em;
@@ -782,6 +798,9 @@ button[type="submit"].btn-primary{
   }
 }
 
+.form-tab-content{
+  margin-bottom: 1.5em;
+}
 
 //Elementos Alumnos
 .foto-alumno{
