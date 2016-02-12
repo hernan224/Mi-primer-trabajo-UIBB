@@ -4,7 +4,7 @@
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         {{-- <figure class="foto-bg foto-usuario sin-foto"></figure> --}}
         <h5 class="nombre-usuario {{ $home ? 'texto-blanco' : ''}}">
-        @if (Auth::user()->esEscuela())
+        @if (Auth::user()->hasRole('escuela'))
             <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
             <span class="nombre-entidad">{{ Auth::user()->escuela->name }}</span>
         @else

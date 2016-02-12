@@ -29,19 +29,11 @@ class User extends Authenticatable
     }
 
     public function puedeEditar() {
-        return $this->esEscuela() || $this->esAdmin();
+        return $this->hasRole('escuela') || $this->hasRole('admin');
     }
 
-    public function esEscuela() {
-        return $this->role == 'escuela';
-    }
-
-    public function esEmpresa() {
-        return $this->role == 'empresa';
-    }
-
-    public function esAdmin() {
-        return $this->role == 'admin';
+    public function hasRole($rol) {
+        return $this->role == $rol;
     }
 
 }

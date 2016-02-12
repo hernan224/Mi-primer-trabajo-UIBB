@@ -220,7 +220,7 @@
                             <input type="checkbox" name="filtro[actitudes][objetivos]"> Enfocado en objetivos
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][habitos]"> Hábitos saludables
+                            <input type="checkbox" name="filtro[actitudes][saludable]"> Hábitos saludables
                         </label>
 
                     </div>

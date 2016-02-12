@@ -156,6 +156,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Laravel Debugbar https://github.com/barryvdh/laravel-debugbar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
