@@ -441,6 +441,12 @@ button[type="submit"].btn-primary {
     background-color: #F1F7F8;
     transition: background 0.2s ease; }
 
+.form-mpt .has-error .form-control {
+  border: 1px solid #FF0000; }
+
+.form-mpt .has-error .radio {
+  color: #FF0000; }
+
 .form-mpt .input-group-btn-vertical .btn-promedio {
   border-radius: 0 !important;
   background-color: #fff; }

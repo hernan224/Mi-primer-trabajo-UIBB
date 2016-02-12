@@ -35,7 +35,7 @@
                 @if (!$nuevo)
                 {{-- Si esta editando: boton eliminar --}}
                     <div class="col-xs-3 col-sm-2 col-md-offset-7 col-sm-offset-5 col-xs-offset-3">
-                        <a id="eliminar" href="{{ route('alumnos.delete',['id'=>$id]) }}" class="link-nav-listado">
+                        <a id="eliminar" href="{{ route('alumnos.delete_get',['id'=>$id]) }}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-trash"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Eliminar</span>
                         </a>
@@ -47,107 +47,111 @@
 
     <div class="container">
         <article class="cargar-alumno">
-            <form method="POST"
-                action="{{ ($nuevo) ? route('alumnos.nuevo_post') : route('alumnos.edit_put',['id' => $id]) }}"
-                role="form" class="fila-flex form-mpt">
-                @if (!$nuevo)
-                    {!! method_field('put') !!}
-                @endif
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ ucfirst($error) }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{ Form::model($alumno, [
+                'route' => ($nuevo) ? 'alumnos.nuevo_post' : ['alumnos.edit_put',$id],
+                'method' => ($nuevo) ? 'POST' : 'PUT', 'files' => true,
+                'role'=>"form", 'class'=>"fila-flex form-mpt" ] ) }}
 
                 <main class="cargar-datos">
                     <h3 class="titulo-seccion">Cargar nuevo alumno</h3>
 
                     <fieldset class="row carga-datos-personales">
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="nombre">Nombres</label>
-                            <input type="text" class="form-control" name="nomnre" id="nombre" placeholder="Nombres">
-                        </div><!--/input Nombre-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="apellido">Apellidos</label>
-                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellidos">
-                        </div><!--/input Apellido-->
+                        <div class="form-group col-sm-6{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                            {{ Form::label('nombre', 'Nombres', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombres','required'=>'required']) }}
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('apellido') ? ' has-error' : '' }}">
+                            {{ Form::label('apellido', 'Apellidos', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Apellido','required'=>'required']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="dni">DNI</label>
-                            <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI N°">
-                        </div> <!--/input DNI-->
-                        <div class="form-group col-sm-6 cargar-sexo">
+                        <div class="form-group col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
+                            {{ Form::label('dni', 'DNI', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('dni',null,['class'=>'form-control','placeholder'=>'DNI nº','required'=>'required']) }}
+                        </div>
+
+                        <div class="form-group col-sm-6 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
                             <div class="radio">
                                 <strong>Sexo:</strong>
-                                <label for="sexoMasculino">
-                                    <input type="radio" name="sexo" id="sexoMasculino" value="masculino" >
+                                <label>
+                                    {{ Form::radio('sexo', 'm') }}
                                     Masculino
                                 </label>
-                                <label for="sexoFemenino">
-                                    <input type="radio" name="sexo" id="sexoFemenino" value="femenino" >
+                                <label>
+                                    {{ Form::radio('sexo', 'f') }}
                                     Femenino
                                 </label>
                             </div>
-                        </div> <!--/radio seleccion sexo-->
+                        </div>
 
-
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="nacimiento">Fecha de Nacimiento</label>
-                            <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento">
-                            <!--<div class='input-group date' id='datetimepicker1'>-->
-                                <!--<input type='text' class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento"/>-->
-                                <!--<span class="input-group-addon">-->
-                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        </div><!--/input Fecha de nacimiento /**FUNCIONA CON PLUGIN DATEPICKER**/-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="nacionalidad">Nacionalidad</label>
-                            <input type="text" class="form-control" name="nacionalidad" id="nacionalidad" placeholder="Nacionalidad">
-                        </div><!--/input Nacionalidad-->
-                    </fieldset> <!--/fieldset datos personales-->
+                        <div class="form-group col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
+                            {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('nacimiento',null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento','required'=>'required']) }}
+                            <!-- FUNCIONA CON PLUGIN DATEPICKER -->
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
+                            {{ Form::label('nacionalidad', 'Nacionalidad', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Nacionalidad','required'=>'required']) }}
+                        </div>
+                    </fieldset>
 
                     <fieldset class="carga-datos-contacto row">
 
                         <legend class="subtitulo h5 texto-azul">Datos de contacto</legend>
 
-                        <div class="form-group col-xs-12">
-                            <label class="sr-only input-label small" for="domicilio">Domicilio</label>
-                            <input type="text" class="form-control" name="domicilio" id="domicilio" placeholder="Domicilio">
-                        </div><!--/input domicilio-->
+                        <div class="form-group col-xs-12{{ $errors->has('domicilio') ? ' has-error' : '' }}">
+                            {{ Form::label('domicilio', 'Domicilio', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="localidad">Loclidad</label>
-                            <input type="text" class="form-control" name="localidad" id="localidad" placeholder="Localidad">
-                        </div><!--/input localidad-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="barrio">Barrio</label>
-                            <input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio">
-                        </div><!--/input barrio-->
+                        <div class="form-group col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
+                            {{ Form::label('localidad', 'Localidad', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad']) }}
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('barrio') ? ' has-error' : '' }}">
+                            {{ Form::label('barrio', 'Barrio', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('barrio',null,['class'=>'form-control','placeholder'=>'Barrio']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="telFijo">Teléfono fijo</label>
-                            <input type="text" class="form-control" name="tel-fijo" id="telFijo" placeholder="Teléfono fijo">
-                        </div><!--/input tel fijo-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="telMovil">Teléfono movil</label>
-                            <input type="text" class="form-control" name="tel-movil" id="telMovil" placeholder="Teléfono movil">
-                        </div><!--/input Tel movil-->
+                        <div class="form-group col-sm-6{{ $errors->has('tel_fijo') ? ' has-error' : '' }}">
+                            {{ Form::label('tel_fijo', 'Teléfono fijo', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('tel_fijo',null,['class'=>'form-control','placeholder'=>'Teléfono fijo']) }}
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('celular') ? ' has-error' : '' }}">
+                            {{ Form::label('celular', 'Teléfono móvil', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="email">E-mail</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
-                        </div><!--/input email-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="facebook">Facebook</label>
-                            <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook">
-                        </div><!--/input facebook-->
+                        <div class="form-group col-sm-12{{ $errors->has('email') ? ' has-error' : '' }}">
+                            {{ Form::label('email', 'E-mail', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="twitter">Twitter</label>
-                            <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter">
-                        </div><!--/input twitter-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="linkedin">LinkedIn</label>
-                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="LinkedIn">
-                        </div> <!--/input linkedin-->
+                        {{-- Facebook, Twitter y Linkedin: deshabilitado
+                        <div class="form-group col-sm-6{{ $errors->has('facebook') ? ' has-error' : '' }}">
+                            {{ Form::label('facebook', 'Facebook ', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook']) }}
+                        </div>
 
-                    </fieldset> <!--/fieldset datos contacto-->
+                        <div class="form-group col-sm-6{{ $errors->has('twitter') ? ' has-error' : '' }}">
+                            {{ Form::label('twitter', 'Twitter', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter']) }}
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('linkedin') ? ' has-error' : '' }}">
+                            {{ Form::label('linkedin', 'LinkedIn', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('linkedin',null,['class'=>'form-control','placeholder'=>'LinkedIn']) }}
+                        </div>
+                         --}}
+                    </fieldset>
 
                     <fieldset class="carga-datos-curriculares row">
                         <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
@@ -308,8 +312,8 @@
 
                 </aside> <!--/.datos-fijos-->
 
-            </form> <!--.fila-flex-->
-        </article> <!--./cargar-alumno-->
-    </div>
+            {{ Form::close() }} {{-- .fila-flex --}}
+        </article> {{-- ./cargar-alumno --}}
+    </div> {{-- ./container --}}
 
 @endsection

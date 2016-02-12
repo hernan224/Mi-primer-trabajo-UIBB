@@ -14,8 +14,8 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('escuela_id')->unsigned();
-            $table->integer('docente_id')->unsigned();
+            $table->integer('escuela_id')->unsigned()->nullable();
+            $table->integer('docente_id')->unsigned()->nullable();
             $table->integer('dni')->unsigned()->unique();
             $table->string('nombre',50);
             $table->string('apellido',50)->index();
@@ -29,9 +29,9 @@ class CreateAlumnosTable extends Migration
             $table->string('tel_fijo',20)->nullable();
             $table->string('celular',20)->nullable();
             $table->string('email')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('linkedin')->nullable();
+            // $table->string('facebook')->nullable();
+            // $table->string('twitter')->nullable();
+            // $table->string('linkedin')->nullable();
 
             $table->timestamps();
 

@@ -46,7 +46,7 @@
                         </a>
                     </div> {{-- btn editar --}}
                     <div class="col-xs-2 col-sm-2">
-                        <a id="eliminar" href="{{ route('alumnos.delete',['id'=>$id]) }}" class="link-nav-listado">
+                        <a id="eliminar" href="{{ route('alumnos.delete_get',['id'=>$id]) }}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-trash"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Eliminar</span>
                         </a>

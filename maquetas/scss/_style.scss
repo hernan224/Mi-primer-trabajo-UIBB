@@ -499,12 +499,12 @@ figure.foto-bg{
 // .btn-cambiar-vista.activo{
 //   background-color: #595959;
 //   color: #959595;
-  
+
 //   &:hover,
 //   &:active,
 //   &:focus{
 //     background-color: #595959;
-//     color: #959595;  
+//     color: #959595;
 //   }
 // }
 
@@ -607,6 +607,14 @@ button[type="submit"].btn-primary{
       background-color: $gris-claro;
       //border-color: $celeste;
       transition: background 0.2s ease;
+    }
+  }
+  .has-error {
+    .form-control {
+      border: 1px solid $color-error;
+    }
+    .radio {
+      color: $color-error;
     }
   }
 
@@ -839,7 +847,7 @@ button[type="submit"].btn-primary{
   padding: 1.5em 0;
   width: 100%;
   //background-color: red;
- 
+
   ul.lista-alumnos{
     display: flex;
     flex-flow: row wrap;
@@ -847,9 +855,9 @@ button[type="submit"].btn-primary{
     //justify-content: space-between;
     width: 100%;
   }
-  
+
   li.item-alumno{
-    width: 32%;   
+    width: 32%;
     margin: 1em (2/3 * 1%);
     padding: 1.25em 0.75em 0;
     position: relative;
@@ -868,15 +876,15 @@ button[type="submit"].btn-primary{
       bottom: 0;
       right: 0;
     }
-    
+
     &:hover,
     &.item-marcado{
       background-color: $gris-claro;
       transition: background 0.3s ease;
       // .btn-acciones{
       //   display: block;
-      // } 
-      
+      // }
+
       .nombre-alumno a{
         color: $azul;
       }
@@ -891,18 +899,18 @@ button[type="submit"].btn-primary{
     width: 160px;
     height: 160px;
   }
-  
+
   .nombre-alumno{
     font-size: 1.5em;
     //font-size: 21px;
     //font-weight: 700;
     text-align: center;
-    
+
     a{
       color: #000;
     }
   }
-    
+
   .datos-personales{
     span{
       margin-left: 1.3em;
@@ -913,20 +921,20 @@ button[type="submit"].btn-primary{
     }
   }
 
-  
+
   .ultimo-bloque{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     margin-top: 1em;
   }
-  
+
   .promedio{
     //background-color: $azul;
     //padding: 0.75em 1em;
     margin-left: -0.75em;
     text-align: left;
-    
+
     .promedio-titulo{
       //color: $celeste;
       //text-transform: uppercase;
@@ -968,13 +976,13 @@ button[type="submit"].btn-primary{
       &:hover{
         background-color: $celeste;
         transition: background 0.15s ease;
-      
+
       .glyphicon{
         color: $azul;
         transition: all 0.15s ease;
       }
     }
-   }  
+   }
    // .tooltip-inner{
    //    background-color: #fff;
    //    color: $azul;
@@ -982,30 +990,30 @@ button[type="submit"].btn-primary{
    //  }
    //  .tooltip-arrow{
    //    border-bottom-color: $azul;
-   //  }   
+   //  }
  }
-  
-  
+
+
   &.vista-listado{
-    
+
     li.item-alumno{
-      width: 100%;   
+      width: 100%;
       margin: 1em auto;
       padding: 0;
       border-top-left-radius: 135px;
       border-bottom-left-radius: 135px;
-      
+
       flex-flow: row nowrap;
       justify-content: space-between;
-      align-items: flex-start;     
-      
+      align-items: flex-start;
+
       &:after{
         //display: contents;
         height: 0;
         width: calc(100% - 140px);
       }
     }
-    
+
     .link-foto-alumno{
       align-self: center;
     }
@@ -1014,7 +1022,7 @@ button[type="submit"].btn-primary{
       height: 135px;
       margin-right: 1.5em;
     }
-    
+
     .nombre-alumno{
       text-align: left;
     }
@@ -1025,14 +1033,14 @@ button[type="submit"].btn-primary{
       display: flex;
       flex-flow: row nowrap;
       //justify-content: space-between;
-      
+
       .datos-personales{
         width: 39%;
       }
       .datos-academicos{
         width: 59%;
       }
-      
+
       span{
         display: block;
         margin: 0 0 0.5em;
@@ -1041,24 +1049,24 @@ button[type="submit"].btn-primary{
         display: inline;
       }
     }
-    
+
     .ultimo-bloque{
       align-self: flex-end;
       margin-left: auto;
       margin-top: 0;
       flex-direction: column-reverse;
       //justify-content: space-between;
-    }    
+    }
     .promedio{
       text-align: center;
       padding: 0.5em;
-      
+
       .promedio-titulo{
         display: block;
         margin: 0;
       }
     }
-    
+
     .btn-acciones{
       align-self: center;
     }
@@ -1088,7 +1096,7 @@ ul.pagination{
       padding: 4px 12px;
       margin: 0 2px;
       border-radius: 100%;
-      
+
       &:hover,
       &:focus{
         background-color: $gris-claro;
@@ -1238,40 +1246,40 @@ ul.pagination{
 .nav-listado{
   background-color: $azul;
   padding: 0 0.75em;
-  
+
   .texto-nav{
     color: #fff;
     //font-weight: 700;
   }
-  
+
   .link-nav-listado{
     display: block;
     padding: 1em;
     text-align: center;
-    
+
     .glyphicon{
       font-size: 18px;
       color: #fff;
       vertical-align: -10%;
       margin: 0 0.25em 0 -0.25em;
     }
-    
+
     .texto-nav{
       font-weight: 700;
     }
-    
+
     &:hover{
       background-color: $celeste;
       color: $azul;
       text-decoration: none;
-      
+
       .glyphicon,
       .texto-nav{
         color: $azul;
       }
     }
   }
-  
+
   .btn-cambiar-vista{
     border-radius: 100%;
     font-size: 18px;
@@ -1285,7 +1293,7 @@ ul.pagination{
     background-color: $azul;
     color: #fff;
     margin:0.35em;
-    
+
     &:hover,
     &:active,
     &:focus,
@@ -1390,7 +1398,7 @@ a.btn-cerrar{
   margin: 1.5em 0;
   border-top: 1px solid $azul;
   padding-top: 1em;
-  
+
   &.modulo-promedio{
     margin-bottom: 2.7em;
   }
@@ -1399,32 +1407,32 @@ a.btn-cerrar{
 #rangoPromedio{
   width: 180px;
   margin: 0 10px;
-  
+
   .slider-track{
     border-radius: 0;
     background-color: $gris-claro;
     background-image: none;
   }
-  
+
   .slider-selection{
     background-color: #fff;
     background-image: none;
   }
-  
+
   .slider-handle.triangle{
     border-top-color: $azul;
     border-width: 10px 10px 0;
   }
-  
+
   .tooltip{
     margin-top: 0;
     padding-top: 0;
     font-size: 14px;
-    
+
     .tooltip-arrow{
       display: none;
     }
-    
+
     .tooltip-inner{
       background-color: transparent;
       color: #000;
@@ -1461,7 +1469,7 @@ a.btn-cerrar{
     right: 0;
     display: none;
   }
-  
+
   .filtros-contenedor{
     position: fixed;
     z-index: 1020;
@@ -1475,13 +1483,13 @@ a.btn-cerrar{
     transform: translate(100%, 0);
     transition: transform 0.2s ease-out;
   }
-  
+
   .filtros-contenido{
     overflow-y: visible;
     //padding: 2em;
     //margin: 2em 0;
   }
-  
+
   a.cerrar-filtros{
 
     //font-weight: 700;
@@ -1490,13 +1498,13 @@ a.btn-cerrar{
     right: 1.5em;
     z-index: 1050;
   }
-  
+
   &.mostrar-filtros{
     overflow: hidden;
     .filtros-bg{
-      display: block;  
-    } 
-    
+      display: block;
+    }
+
     .filtros-contenedor{
       transform: translate(0, 0);
       transition: transform 0.3s ease;
@@ -1617,13 +1625,13 @@ a.btn-cerrar{
   }
 }
 
-.modo-orden{  
+.modo-orden{
   label{
     position: relative;
     cursor: pointer;
     padding: 0.25em 0.75em;
   }
-  
+
   .glyphicon{
     font-size: 21px;
     color: $azul;
@@ -1634,11 +1642,11 @@ a.btn-cerrar{
     border-radius: 100%;
     background-color: transparent;
    }
-  
+
   input[type='radio']{
     position: absolute;
     left: -999em;
-    
+
     &:checked ~ .glyphicon{
       background-color: $azul;
       color: #fff;
@@ -1664,7 +1672,7 @@ footer.pie-pagina{
   a{
     color: #fff;
   }
-  
+
 //  .contenido-footer{
 //    margin-bottom: 1.5em;
 //  }

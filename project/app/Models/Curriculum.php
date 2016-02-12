@@ -16,5 +16,12 @@ class Curriculum extends Model
         'extra','participacion','carta_presentacion'
     ];
 
+    /**
+     * Relacion 1:1 con Alumno (inversa)
+     */
+    public function alumno()
+    {
+        return $this->belongsTo(Alumno::class);
+    }
 
 }

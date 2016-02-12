@@ -112,7 +112,7 @@ $(function () {
         viewMode: 'years'
     });
     calendario.on('dp.change', function(e){
-        if(e.date != ''){
+        if(e.date){
             calendario.parent('.form-group').addClass('cargado');
         }else{
             calendario.parent('.form-group').removeClass('cargado');

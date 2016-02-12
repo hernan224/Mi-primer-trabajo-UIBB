@@ -24,10 +24,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function escuela() {
-        return $this->belongsTo(Escuela::class);
-    }
-
     public function puedeEditar() {
         return $this->hasRole('escuela') || $this->hasRole('admin');
     }
@@ -35,5 +31,20 @@ class User extends Authenticatable
     public function hasRole($rol) {
         return $this->role == $rol;
     }
+
+    /**
+     * Relación M:1 con Escuela
+     */
+    public function escuela() {
+        return $this->belongsTo(Escuela::class);
+    }
+
+    /**
+     * Relación 1:M con Alumnos
+     */
+    public function alumnos() {
+        return $this->hasMany(Alumno::class);
+    }
+
 
 }

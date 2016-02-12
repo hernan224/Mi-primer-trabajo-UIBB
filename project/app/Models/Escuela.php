@@ -22,4 +22,11 @@ class Escuela extends Model
         return $this->hasMany(User::class);
     }
 
+    /**
+     * Relación 1:M con Alumnos
+     */
+    public function alumnos() {
+        return $this->hasMany(Alumno::class);
+    }
+
 }
