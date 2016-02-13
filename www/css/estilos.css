@@ -159,13 +159,15 @@ figure.foto-bg {
   -ms-flex-item-align: center;
   align-self: center;
   font-size: 18px;
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
   padding: 0.75em 2em;
   background-color: transparent;
   border: 2px solid; }
   .btn-acceder .glyphicon {
-    margin: 0.25em 0 0 0.75em; }
+    margin: 0 0 0 0.75em;
+    vertical-align: -8%; }
   .btn-acceder.btn-full-azul {
     border-color: #2C72B4;
     background-color: #2C72B4;
@@ -175,7 +177,7 @@ figure.foto-bg {
     max-width: 360px;
     margin-left: auto;
     margin-right: auto; }
-  .btn-acceder:hover {
+  .btn-acceder:hover, .btn-acceder:active, .btn-acceder:focus {
     background-color: #F1F7F8;
     color: #2C72B4;
     border-color: #F1F7F8;
@@ -288,6 +290,9 @@ figure.foto-bg {
     left: 0;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
+
+main.gap-header-acceso {
+  margin-top: 1.5em; }
 
 .contenido-home .foto--seccion-info {
   max-width: 220px;
@@ -441,12 +446,6 @@ button[type="submit"].btn-primary {
     background-color: #F1F7F8;
     transition: background 0.2s ease; }
 
-.form-mpt .has-error .form-control {
-  border: 1px solid #FF0000; }
-
-.form-mpt .has-error .radio {
-  color: #FF0000; }
-
 .form-mpt .input-group-btn-vertical .btn-promedio {
   border-radius: 0 !important;
   background-color: #fff; }
@@ -454,6 +453,12 @@ button[type="submit"].btn-primary {
     border-bottom: 1px solid #C7DEE2; }
   .form-mpt .input-group-btn-vertical .btn-promedio:hover {
     background-color: #C7DEE2; }
+
+.form-mpt:not(.login-form) .has-error .form-control {
+  border: 1px solid #FF0000; }
+
+.form-mpt:not(.login-form) .has-error .radio {
+  color: #FF0000; }
 
 .form-invertido .form-control {
   background-color: #F1F7F8;
@@ -534,6 +539,14 @@ button[type="submit"].btn-primary {
 .recu-form {
   padding: 1em 2em; }
 
+.soporte-form {
+  padding: 2em 3em;
+  margin: 1.5em auto; }
+
+.contacto-form {
+  padding: 2em 3em;
+  margin: 1.5em auto 3em; }
+
 .form-tabs {
   margin-top: 1.5em;
   display: -webkit-flex;
@@ -565,6 +578,9 @@ button[type="submit"].btn-primary {
     .form-tabs li.active a:active {
       background-color: #C7DEE2;
       color: #2C72B4; }
+
+.form-tab-content {
+  margin-bottom: 1.5em; }
 
 .foto-alumno {
   margin: 0 auto; }
@@ -807,67 +823,72 @@ ul.pagination {
   ul.pagination li.disabled a:focus, ul.pagination li.disabled span:focus {
     color: #F1F7F8; }
 
-.alumno-individual {
-  margin-top: 1.5em; }
-  .alumno-individual .alumno-info-principal {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-items: flex-end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    border-bottom: 2px solid #2C72B4; }
-  .alumno-individual .contenedor-foto {
-    width: 30%; }
-  .alumno-individual .foto-alumno {
-    width: 220px;
-    height: 220px;
-    margin: 1.5em auto; }
-  .alumno-individual .info-alumno {
-    width: 55%;
+.alumno-individual .alumno-info-principal {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  border-bottom: 2px solid #2C72B4; }
+
+.alumno-individual .contenedor-foto {
+  width: 30%; }
+
+.alumno-individual .foto-alumno {
+  width: 220px;
+  height: 220px;
+  margin: 1.5em auto; }
+
+.alumno-individual .info-alumno {
+  width: 55%;
+  margin-bottom: 1.5em; }
+
+.alumno-individual .datos-alumno span {
+  margin: 0.5em 1.5em 0.5em 0; }
+
+.alumno-individual .promedio {
+  padding: 1em; }
+
+.alumno-individual .info-contactos {
+  width: 30%;
+  margin-right: 1.5em; }
+  .alumno-individual .info-contactos section {
     margin-bottom: 1.5em; }
-  .alumno-individual .datos-alumno span {
-    margin: 0.5em 1.5em 0.5em 0; }
-  .alumno-individual .promedio {
-    padding: 1em; }
-  .alumno-individual .info-contactos {
-    width: 30%;
-    margin-right: 1.5em; }
-    .alumno-individual .info-contactos section {
-      margin-bottom: 1.5em; }
-      .alumno-individual .info-contactos section.contacto-alumno {
-        border-top: none; }
-      .alumno-individual .info-contactos section.contacto-docente li {
-        padding: 0.1em 0 0.2em; }
-    .alumno-individual .info-contactos .lista-contacto {
-      margin-top: 1em; }
-      .alumno-individual .info-contactos .lista-contacto li {
-        padding: 0.5em 0 0.5em 0.5em; }
-      .alumno-individual .info-contactos .lista-contacto .fa-li {
-        background-color: #2C72B4;
-        color: #fff;
-        border-radius: 100%;
-        width: 2em;
-        height: 2em;
-        font-size: 14px;
-        line-height: 2em;
-        padding: 0; }
-  .alumno-individual .info-detalle {
-    width: 65%;
-    padding: 1.5em 0.5em; }
-    .alumno-individual .info-detalle section {
-      margin-bottom: 1em;
-      padding-bottom: 1em; }
-    .alumno-individual .info-detalle .lista-actitudes li {
-      padding: 0.5em 0;
-      margin-right: 2.5em; }
-    .alumno-individual .info-detalle .lista-actitudes .fa-li {
-      left: -1.75em;
-      width: 1.8em;
-      top: 0.75em; }
+    .alumno-individual .info-contactos section.contacto-alumno {
+      border-top: none; }
+    .alumno-individual .info-contactos section.contacto-docente li {
+      padding: 0.1em 0 0.2em; }
+  .alumno-individual .info-contactos .lista-contacto {
+    margin-top: 1em; }
+    .alumno-individual .info-contactos .lista-contacto li {
+      padding: 0.5em 0 0.5em 0.5em; }
+    .alumno-individual .info-contactos .lista-contacto .fa-li {
+      background-color: #2C72B4;
+      color: #fff;
+      border-radius: 100%;
+      width: 2em;
+      height: 2em;
+      font-size: 14px;
+      line-height: 2em;
+      padding: 0; }
+
+.alumno-individual .info-detalle {
+  width: 65%;
+  padding: 1.5em 0.5em; }
+  .alumno-individual .info-detalle section {
+    margin-bottom: 1em;
+    padding-bottom: 1em; }
+  .alumno-individual .info-detalle .lista-actitudes li {
+    padding: 0.5em 0;
+    margin-right: 2.5em; }
+  .alumno-individual .info-detalle .lista-actitudes .fa-li {
+    left: -1.75em;
+    width: 1.8em;
+    top: 0.75em; }
 
 .nav-listado {
   background-color: #2C72B4;

@@ -29,4 +29,25 @@ class Curriculum extends Model
         return $this->belongsTo(Alumno::class);
     }
 
+    /**
+     * Formatea fecha al obtener fecha de actualizacion
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        $date = new \DateTime($value);
+        return $date->format('d/m/Y');
+    }
+
+    /**
+     * Devuelve array con las actitudes indicadas
+     */
+    public function getActitudes() {
+        $result = [];
+        foreach (self::$actitudes_names as $actitud) {
+            if ($this->$actitud) {
+                $result[] = $actitud;
+            }
+        }
+        return $result;
+    }
 }

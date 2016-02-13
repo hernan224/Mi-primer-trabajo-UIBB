@@ -616,14 +616,6 @@ button[type="submit"].btn-primary{
       transition: background 0.2s ease;
     }
   }
-  .has-error {
-    .form-control {
-      border: 1px solid $color-error;
-    }
-    .radio {
-      color: $color-error;
-    }
-  }
 
   .input-group-btn-vertical{
     .btn-promedio{
@@ -640,6 +632,18 @@ button[type="submit"].btn-primary{
     }
   }
 }
+
+.form-mpt:not(.login-form) {
+  .has-error {
+    .form-control {
+      border: 1px solid $color-error;
+    }
+    .radio {
+      color: $color-error;
+    }
+  }
+}
+
 
 .form-invertido{
   .form-control{
@@ -1171,7 +1175,7 @@ ul.pagination{
 
 // Alumno individual
 .alumno-individual{
-  margin-top: 1.5em;
+  // margin-top: 1.5em;
 
   .alumno-info-principal{
     display: flex;

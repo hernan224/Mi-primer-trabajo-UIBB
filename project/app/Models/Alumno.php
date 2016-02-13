@@ -37,5 +37,30 @@ class Alumno extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getFullName() {
+        return $this->nombre.' '.$this->apellido;
+    }
+
+    /**
+     * Formatea fecha al obtener fecha de nacimiento
+     */
+    public function getNacimientoAttribute($value)
+    {
+        $date = new \DateTime($value);
+        return $date->format('d/m/Y');
+    }
+
+    public function getEdad() {
+        $fecha_nac = \DateTime::createFromFormat('d/m/Y', $this->nacimiento);
+        $hoy = new \DateTime();
+        return $hoy->diff($fecha_nac)->y;
+    }
+
+    public function getUrlFoto() {
+        if ($this->foto) {
+            return asset(self::$image_path.'/'.$this->foto);
+        }
+        else false;
+    }
 
 }

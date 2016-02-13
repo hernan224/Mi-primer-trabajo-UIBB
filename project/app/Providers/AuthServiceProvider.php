@@ -26,6 +26,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('edit-alumno', function ($user, $alumno) {
+            if (!$user->puedeEditar())
+                return false;
+            if ($user->hasRole('admin'))
+                return true;
+            // si no, es docente, verifico que el alumno sea de su escuela
+            return $user->escuela->id == $alumno->escuela_id;
+        });
+
+        $gate->define('show-alumno', function ($user, $alumno) {
+            if ($user->hasRole('admin') || $user->hasRole('empresa'))
+                return true;
+            // si no, es docente, verifico que el alumno sea de su escuela
+            return $user->escuela->id == $alumno->escuela_id;
+        });
     }
 }

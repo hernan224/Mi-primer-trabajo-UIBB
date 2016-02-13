@@ -26,6 +26,12 @@ class PostAlumnoRequest extends Request
      */
     public function rules()
     {
+        // Trim inputs
+        $trim_if_string = function($var) {
+            return is_string($var) ? trim($var) : $var;
+        };
+        $this->merge(array_map($trim_if_string, $this->all()));
+
         $dni_validation = 'required|integer|unique:alumnos,dni';
         // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el alumno actual
         $route = $this->route()->getName();
@@ -49,7 +55,8 @@ class PostAlumnoRequest extends Request
             'foto' => 'image',
             // data curriculum
             'promedio' => 'required|between:0,10',
-            'asignaturas' => 'required|string'
+            'asignaturas' => 'required|string',
+            'practicas_tipo' => 'required_with:practicas_lugar'
         ];
 
     }

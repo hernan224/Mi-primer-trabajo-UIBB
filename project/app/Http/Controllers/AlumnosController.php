@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Gate;
+use Auth;
 use App\Http\Requests;
 use App\Http\Requests\PostAlumnoRequest;
 use App\Http\Controllers\Controller;
@@ -50,10 +51,17 @@ class AlumnosController extends Controller
      */
     public function show($id)
     {
-        // ToDo autorizar: si es escuela y no es alumno de la escuela, lanzar error
+        $alumno = Alumno::find($id);
+        if (!$alumno) {
+            return redirect()->route('alumnos.listado');
+        }
+        // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
+        if (Gate::denies('show-alumno', $alumno)) {
+            return response('No autorizado', 403);
+        }
         $view_data = [
-            'nuevo' => false,
-            'id' => $id
+            'id' => $id,
+            'alumno' => $alumno
         ];
         return view('alumnos.show',$view_data);
     }
@@ -93,8 +101,8 @@ class AlumnosController extends Controller
         $data_alumno = $this->getDataPostAlumno($request);
         $data_curriculum = $this->getDataPostCurriculum($request);
 
-        // obtengo docente y escuela
-        $docente = $request->user();
+        // obtengo docente y escuela (esta accion sólo está autorizada para escuela)
+        $docente = Auth::user();
         $escuela = $docente->escuela;
 
         // creo y guardo alumno, asociado a la escuela
@@ -104,14 +112,8 @@ class AlumnosController extends Controller
         // asocio docente
         $alumno->docente()->associate($docente);
 
-        // guardo imagen en el server, usando el id del alumno creado y un string aleatorio
-        if($request->hasFile('foto') && $request->file('foto')->isValid() ) {
-            $file = $request->file('foto');
-            $foto_name = $alumno->id. '_' . str_random(8) . '.' .
-                $file->getClientOriginalExtension();
-            $file->move(public_path(Alumno::$image_path),$foto_name);
-            $alumno->foto = $foto_name;
-        }
+        // guardo imagen en el server si la envió, usando el id del alumno creado y un string aleatorio
+        $this->saveImage($request,$alumno);
 
         $alumno->save();
 
@@ -129,8 +131,14 @@ class AlumnosController extends Controller
      */
     public function edit($id)
     {
-        $alumno = new Alumno;
-        // ToDo get alumno, si no hay o falla autorizacion, tirar apntalla forbidden: https://laravel.com/docs/5.2/authorization
+        $alumno = Alumno::find($id);
+        if (!$alumno) {
+            return redirect()->route('alumnos.listado');
+        }
+        // autorizo accion (solo para escuela de ese alumno)
+        if (Gate::denies('edit-alumno', $alumno)) {
+            return response('No autorizado', 403);
+        }
         $view_data = [
             'nuevo' => false,
             'id' => $id,
@@ -150,16 +158,31 @@ class AlumnosController extends Controller
      */
     public function update(PostAlumnoRequest $request, $id)
     {
-        $alumno = new Alumno;
-        // ToDo get alumno, si no hay o falla autorizacion, tirar pantalla forbidden: https://laravel.com/docs/5.2/authorization
+        // el request hace la validación primero.
+        // Si falla se redirige nuevamente a la pantalla que envió el post (action edit())
+
+        $alumno = Alumno::find($id);
+        if (!$alumno) {
+            return redirect()->route('alumnos.listado');
+        }
+        // autorizo accion (solo para escuela de ese alumno)
+        if (Gate::denies('edit-alumno', $alumno)) {
+            return response('No autorizado', 403);
+        }
+
+        $data_alumno = $this->getDataPostAlumno($request);
+        $data_curriculum = $this->getDataPostCurriculum($request);
+
+        // actualizo data alumno
+        $alumno->update($data_alumno);
+        // actualizo data curriculum
+        $alumno->curriculum->update($data_curriculum);
+        $this->saveImage($request,$alumno); // guarda imagen de perfil si hay
+        $alumno->save();
 
         // redirigir a show
-        $view_data = [
-            'nuevo' => true,
-            'id' => $id,
-            'alumno' => null
-        ];
-        return view('alumnos.form',$view_data);
+        return redirect()->route('alumnos.show',['id'=> $alumno->id]);
+
     }
 
     /**
@@ -174,6 +197,10 @@ class AlumnosController extends Controller
     {
         return response()->json(['status' => 'ok','accion'=> 'delete alumno']);
     }
+
+    /************************************************************************************
+     * METODOS AUXILIARES
+     */
 
     // Convierte date recibida al formato que se guarda en BD
     protected function parseDate(&$data_alumno) {
@@ -202,10 +229,23 @@ class AlumnosController extends Controller
         $data_curriculum = $request->only($atributos_curriculum);
         //agrego actitudes
         $actitudes_check = $request->input('actitudes');
+        if(!$actitudes_check)
+            $actitudes_check = [];
         foreach (Curriculum::$actitudes_names as $actitud) {
             $data_curriculum[$actitud] = (in_array($actitud,$actitudes_check));
         }
         return $data_curriculum;
+    }
+
+    protected function saveImage($request,$alumno) {
+        // guardo imagen en el server, usando el id del alumno creado y un string aleatorio
+        if($request->hasFile('foto') && $request->file('foto')->isValid() ) {
+            $file = $request->file('foto');
+            $foto_name = $alumno->id. '_' . str_random(8) . '.' .
+                $file->getClientOriginalExtension();
+            $file->move(public_path(Alumno::$image_path),$foto_name);
+            $alumno->foto = $foto_name;
+        }
     }
 
 }
