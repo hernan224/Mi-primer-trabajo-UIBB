@@ -2,9 +2,9 @@
 <html>
 <head lang="es">
     <meta charset="UTF-8">
-    <title>Solicitar acceso a la plataforma | Mi Primer Trabajo</title>
+    <title>Contacto | Mi Primer Trabajo</title>
 
-    <link rel="stylesheet" href="css/vendor/normalize.css">
+    <link rel="stylesheet" href="css/normalize.css">
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,600italic,700italic|Montserrat:400,700'>
@@ -25,104 +25,90 @@
 
         <div class="container">
 
-            <header class="header-simple">
-                <div class="center-block">
-                    <div class="marca-container">
-                        <a href="#">
-                            <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
-                                <use xlink:href="#logoMPT"></use>
-                            </svg>
-                        </a>
-                    </div> <!--.marca-container-->
-                    <!--<div class="mpt-by">-->
-                        <!--<span class="texto-servicio">un servicio de:</span>-->
-                        <!--<a class="logo-uibb uibb-negro" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>-->
-                    <!--</div> &lt;!&ndash;.mpt-by&ndash;&gt;-->
-                </div>
-            </header><!--/.header-simple-->
+            <header class="header-acceso acceso-entidad-educativa fila-flex">
+                <div class="marca-container">
+                    <a href="#">
+                        <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
+                            <use xlink:href="#logoMPT"></use>
+                        </svg>
+                    </a>
+                </div> <!--.marca-container-->
 
-            <main class="contenido-registro">
+                <div class="acceso-usuario-container dropdown">
+                    <a id="dropdownUsuario" class="fila-flex" data-target="#" href="http://uibb.org.ar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <figure class="foto-bg foto-usuario sin-foto"></figure>
+                        <h5 class="nombre-usuario"><strong class="nombre-docente">Juana Ana Triana</strong> <span class="nombre-entidad">Escuela de Educación Técnica N°1</span></h5>
+                        <button class="btn-menu-usuario">
+                            <span class="sr-only">Menú usuario</span>
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                    </a>
+                    <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
+                        <li><a href="listado-backend.html" class="acceder-plataforma">Ir al listado de alumnos
+                            <span class="glyphicon glyphicon-arrow-right"></span></a></li>
+                        <li><a href="#" class="cerrar-sesion"><strong>Cerrar sesión</strong></a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <main class="contenido-contacto gap-header-acceso">
                 <div class="row">
 
                     <div class="col-md-8 col-md-offset-2">
-                        <h3 class="texto-azul">Solicitar Acceso</h3>
-                        <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong>
-                            y desea participar de la plataforma
-                            Mi Primer Trabajo, contáctese con nosotros a través del siguiente formulario.
-                            Personal del departamento de <strong>Responsavilidad Social Empresaria de la Unión
-                                Industrial
-                                Bahía Blanca</strong>
-                            se contactará a la brevedad para proporcionarle los datos necesarios.</p>
+                    <!--<div class="col-xs-12">-->
+                        <h3 class="texto-azul">Contacto</h3>
+                        <p>Si desea obtener más información, o hacernos llegar su
+                            comentario, acerca de la plataforma <strong>Mi Primer Trabajo</strong>, contáctenos a través
+                            del siguiente formulario. A la brevedad, un miembro de de la UIBB se pondrá en contacto con
+                            usted.</p>
                     </div>
                     <!--<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">-->
                     <div class="col-md-8 col-md-offset-2">
 
+                        <form action="" role="form"
+                              class="contacto-form form-mpt panel-bg-color form-invertido">
 
-                        <ul id="recuTabs" class="nav nav-tabs form-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#recuAsociados" aria-controls="asociados" role="tab" data-toggle="tab">Asociados</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#recuInstituciones" aria-controls="instituciones" role="tab" data-toggle="tab">Instituciones Educativas</a>
-                            </li>
-                        </ul> <!--.nav-tab-->
+                            <div class="form-group">
+                                <label class="sr-only input-label small" for="nombre">Nombre y Apellido</label>
+                                <input type="text" class="form-control" name="nombre"
+                                       id="nombre" placeholder="Nombre y Apellido" >
+                            </div><!--/input Nombre y Apellido-->
 
-                        <div class="tab-content form-tab-content">
-                            <div role="tabpanel" class="tab-pane panel-bg-color active" id="recuAsociados">
-                                <form action="" role="form" class="recu-form asociados-recu form-mpt form-invertido">
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="razonSocial">Razón soial</label>
-                                        <input type="text" class="form-control" name="razon-social" id="razonSocial"
-                                               placeholder="Razón Social">
-                                    </div><!--/input Nombre-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="cuit">CUIT</label>
-                                        <input type="text" class="form-control" name="cuit" id="cuit"
-                                               placeholder="CUIT">
-                                    </div><!--/input Apellido-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="emailAsociado">Email de
-                                            contacto</label>
-                                        <input type="email" class="form-control" name="email-asociado"
-                                               id="emailAsociado" placeholder="Email de contacto">
-                                    </div><!--/input Nombre-->
+                            <div class="form-group">
+                                <label class="sr-only input-label small" for="email">Email</label>
+                                <input type="email" class="form-control" name="email"
+                                       id="email" placeholder="Email">
+                            </div><!--/input Email de contacto-->
 
-                                    <div class="contenedor-btns">
-                                        <button type="submit" class="btn btn-primary btn-login center-block">Enviar
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> <!--/form tab content #recuAsociados-->
+                            <div class="form-group">
+                                <label class="sr-only input-label small" for="telefono">Teléfono</label>
+                                <input type="text" class="form-control" name="telefono"
+                                       id="telefono" placeholder="Teléfono">
+                            </div><!--/input telefono-->
 
+                            <div class="form-group">
+                                <label class="sr-only input-label small" for="asunto">Asunto</label>
+                                <input type="text" class="form-control" name="asunto"
+                                       id="asunto" placeholder="Asunto">
+                            </div><!--/input Asunto-->
 
-                            <div role="tabpanel" class="tab-pane panel-bg-color" id="recuInstituciones">
-                                <form action="" role="form"
-                                      class="recu-form instituciones-recu form-mpt form-invertido">
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="institucionEducativa">Institución
-                                            Educativa</label>
-                                        <input type="text" class="form-control" name="institucion-educativa"
-                                               id="institucionEducativa" placeholder="Institución Educativa">
-                                    </div><!--/input Nombre-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="docente">Docente a cargo</label>
-                                        <input type="text" class="form-control" name="docente" id="docente"
-                                               placeholder="Docente a cargo">
-                                    </div><!--/input Apellido-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="emailInstitucion">Email de
-                                            contacto</label>
-                                        <input type="email" class="form-control" name="email-institucion"
-                                               id="emailInstitucion" placeholder="Email de contacto">
-                                    </div><!--/input Nombre-->
+                            <div class="form-group">
+                                <label class="sr-only input-label small" for="mensaje">Mensaje</label>
+                                <textarea name="mensaje" class="form-control" id="mensaje" rows="4" placeholder="Mensaje"></textarea>
+                            </div> <!--/textarea Mensaje-->
 
-                                    <div class="contenedor-btns">
-                                        <button type="submit" class="btn btn-primary btn-login center-block">Enviar
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> <!--/form tab content #recuinstituciones-->
-                        </div> <!--.tab-content-->
+                            <div class="contenedor-btns">
+                                <button type="submit" class="btn btn-primary btn-login center-block">Enviar
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <p class="text-center"><em>Si usted es <strong>asociado de la UIBB o es directivo de una institución
+                            educativa</strong> y
+                            desea participar de la plataforma <strong>Mi Primer Trabajo</strong>, contáctese desde aquí:</em></p>
+
+                        <a class="btn btn-registro" href="solicitar-acceso.html">Solicitar acceso a la plataforma</a>
 
                     </div>
 
