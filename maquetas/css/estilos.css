@@ -626,6 +626,14 @@ button[type="submit"].btn-primary:hover {
   transition: background 0.2s ease;
 }
 
+.form-mpt .has-error .form-control {
+  border: 1px solid #FF0000;
+}
+
+.form-mpt .has-error .radio {
+  color: #FF0000;
+}
+
 .form-mpt .input-group-btn-vertical .btn-promedio {
   border-radius: 0 !important;
   background-color: #fff;
@@ -704,6 +712,15 @@ button[type="submit"].btn-primary:hover {
 
 .datos-fijos .cargar-foto {
   padding: 0 1.5em;
+}
+
+.datos-fijos .cargar-foto .error {
+  color: #FF0000;
+  display: none;
+}
+
+.datos-fijos .cargar-foto.has-error .error {
+  display: block;
 }
 
 .datos-fijos .guardar-datos {
@@ -1736,4 +1753,162 @@ footer.pie-pagina .nav-list li:first-child::before {
 
 footer.pie-pagina .nav-list.menu-principal {
   margin-top: 4.5em;
+}
+
+.spinner-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(241, 247, 248, 0.75);
+  z-index: 1200;
+  display: none;
+}
+
+body.esperando {
+  overflow: hidden;
+}
+
+body.esperando .spinner-container {
+  display: block;
+}
+
+.spinner {
+  background-color: #2C72B4;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+  padding: 2em 0;
+}
+
+.spinner .logo-spinner {
+  fill: #fff;
+  width: 150px;
+}
+
+.spinner .ball {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #F1F7F8;
+  -webkit-animation: motion 3s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+          animation: motion 3s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+  margin: 10px auto;
+}
+
+.spinner .loading {
+  margin: 10px auto;
+}
+
+.spinner .loading .bullet {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: #F1F7F8;
+  -webkit-animation: animIn 1.1s ease-in-out 0s infinite;
+          animation: animIn 1.1s ease-in-out 0s infinite;
+}
+
+.spinner .loading .bullet:nth-child(1) {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.spinner .loading .bullet:nth-child(2) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.spinner .loading .bullet:nth-child(3) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+.spinner .loading .bullet:nth-child(4) {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+
+@-webkit-keyframes motion {
+  0% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  25% {
+    -webkit-transform: translateX(-100px) scale(0.3);
+            transform: translateX(-100px) scale(0.3);
+  }
+  50% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  75% {
+    -webkit-transform: translateX(100px) scale(0.3);
+            transform: translateX(100px) scale(0.3);
+  }
+  100% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes motion {
+  0% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  25% {
+    -webkit-transform: translateX(-100px) scale(0.3);
+            transform: translateX(-100px) scale(0.3);
+  }
+  50% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  75% {
+    -webkit-transform: translateX(100px) scale(0.3);
+            transform: translateX(100px) scale(0.3);
+  }
+  100% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+}
+
+@-webkit-keyframes animIn {
+  0% {
+    -webkit-transform: translateX(-80px);
+            transform: translateX(-80px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(80px);
+            transform: translateX(80px);
+    opacity: 0;
+  }
+}
+
+@keyframes animIn {
+  0% {
+    -webkit-transform: translateX(-80px);
+            transform: translateX(-80px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(80px);
+            transform: translateX(80px);
+    opacity: 0;
+  }
 }
