@@ -22,7 +22,7 @@ return [
     'array'                => 'The :attribute must be an array.',
     'before'               => 'The :attribute must be a date before :date.',
     'between'              => [
-        'numeric' => 'The :attribute must be between :min and :max.',
+        'numeric' => ':attribute debe ser entre :min y :max.',
         'file'    => 'The :attribute must be between :min and :max kilobytes.',
         'string'  => 'The :attribute must be between :min and :max characters.',
         'array'   => 'The :attribute must have between :min and :max items.',
@@ -37,7 +37,7 @@ return [
     'email'                => ':attribute debe ser una dirección de e-mail válida.',
     'exists'               => 'The selected :attribute is invalid.',
     'filled'               => 'The :attribute field is required.',
-    'image'                => 'The :attribute must be an image.',
+    'image'                => ':attribute no es una imagen.',
     'in'                   => ':attribute seleccionado es inválido.',
     'integer'              => ':attribute debe ser un número, sin puntos ni espacios.',
     'ip'                   => 'The :attribute must be a valid IP address.',

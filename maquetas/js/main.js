@@ -45,28 +45,6 @@ $(document).ready(function(){
         }
     });
 
-    //Mostrar label en carga de datos
-    var $inputsAlumno = $('.form-mpt input.form-control');
-
-    $inputsAlumno.on('change', function(){
-        var este = $(this);
-        var estePadre = este.parents('.form-group');
-
-        if(este.val()){
-            estePadre.addClass('cargado');
-        }
-        else {
-            estePadre.removeClass('cargado');
-        }
-        estePadre.removeClass('has-error');
-    });
-
-    // si tiene texto al cargar la pagina, agregar clase cargado (formulario con la data cargada)
-    $inputsAlumno.each(function(index, el) {
-        if ($(this).val()) {
-            $(this).closest('.form-group').addClass('cargado');
-        }
-    });
 
 
     //Lanzar modal para confirmar eliminación de alumno

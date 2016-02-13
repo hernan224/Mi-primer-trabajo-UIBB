@@ -499,6 +499,11 @@ button[type="submit"].btn-primary {
       color: #2C72B4; }
   .datos-fijos .cargar-foto {
     padding: 0 1.5em; }
+    .datos-fijos .cargar-foto .error {
+      color: #FF0000;
+      display: none; }
+    .datos-fijos .cargar-foto.has-error .error {
+      display: block; }
   .datos-fijos .guardar-datos {
     margin-top: 3em; }
   .datos-fijos .btn-guardar {

@@ -704,6 +704,15 @@ button[type="submit"].btn-primary{
 
   .cargar-foto{
     padding: 0 1.5em;
+    .error {
+      color: $color-error;
+      display: none;
+    }
+    &.has-error {
+      .error {
+        display: block;
+      }
+    }
   }
 
   .guardar-datos{

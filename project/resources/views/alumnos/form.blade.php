@@ -156,161 +156,171 @@
                     <fieldset class="carga-datos-curriculares row">
                         <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
-                        <div class="form-group col-xs-12">
-                            <label class="sr-only input-label small" for="especialidad">Especialidad cursada</label>
-                            <input type="text" class="form-control" name="especialidad" id="especialidad" placeholder="Especialidad cursada">
-                        </div> <!--/input especialidad cursada-->
+                        <div class="form-group col-xs-12{{ $errors->has('especialidad') ? ' has-error' : '' }}">
+                            {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('especialidad',null,['class'=>'form-control','placeholder'=>'Especialidad cursada']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="promedioGeneral">Promedio general</label>
-                            <input type="text" class="form-control" name="promedio" id="promedioGeneral" placeholder="Promedio general">
-                        </div><!--/input promedio general /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="asignaturas">Asignaturas destacadas</label>
-                            <input type="text" class="form-control" name="asignaturas" id="asignaturas" placeholder="Asignaturas destacadas">
-                        </div> <!--/input Asignatura destacada-->
+                        <div class="form-group col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">
+                            {{ Form::label('promedio', 'Promedio general', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('promedio',null,['id'=>'promedio','class'=>'form-control','placeholder'=>'Promedio general','required' => 'required']) }}
+                            <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('asignaturas') ? ' has-error' : '' }}">
+                            {{ Form::label('asignaturas', 'Asignaturas destacadas', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('asignaturas',null,['class'=>'form-control','placeholder'=>'Asignaturas destacadas','required' => 'required']) }}
+                        </div>
 
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="practicasProfesionales">Practicas profesionales</label>
-                            <input type="text" class="form-control" name="practicas" id="practicasProfesionales" placeholder="Prácticas Profesionales">
-                        </div><!--/input nombre practica profesional-->
-                        <div class="form-group col-sm-6">
-                            <label class="sr-only input-label small" for="lugarDesarrollo">¿Dónde se desarrollaron?</label>
-                            <input type="text" class="form-control" name="lugar-desarrollo" id="lugarDesarrollo" placeholder="¿Dónde se desarrollaron?">
-                        </div> <!--/input lugar desarrollo practica profesional-->
-                    </fieldset> <!--/fieldset datos curriculares-->
+                        <div class="form-group col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
+                            {{ Form::label('practicas_tipo', 'Prácticas profesionales', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('practicas_tipo',null,['class'=>'form-control','placeholder'=>'Prácticas profesionales']) }}
+                        </div>
+                        <div class="form-group col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
+                            {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('practicas_lugar',null,['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?']) }}
+                        </div>
+                    </fieldset> {{-- /fieldset datos curriculares --}}
 
                     <fieldset class="carga-info-adicional row">
                         <legend class="subtitulo h5 texto-azul">Información adicional</legend>
 
-                        <div class="form-group col-xs-12">
+                        <div class="form-group col-xs-12{{ $errors->has('actitudes') ? ' has-error' : '' }}">
                             <p><strong>Actitudes que se destacan:</strong></p>
                             <ul class="list-inline">
 
                                 <li><div class="checkbox">
-                                    <label for="responsabilidad">
-                                        <input type="checkbox" value="responsabilidad" id="responsabilidad">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','responsabilidad') }}
                                         Responsabilidad
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="puntualidad">
-                                        <input type="checkbox" value="puntualidad" id="puntualidad">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','puntualidad') }}
                                         Puntualidad
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="proactivo">
-                                        <input type="checkbox" value="Actitud Proactiva" id="proactivo">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','proactividad') }}
                                         Actitud Proactiva
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="trabajoEquipo">
-                                        <input type="checkbox" value="Trabajo en equipo" id="trabajoEquipo">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','equipo') }}
                                         Trabajo en equipo
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="creatividad">
-                                        <input type="checkbox" value="Creatividad" id="creatividad">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','creatividad') }}
                                         Creatividad
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="liderazgo">
-                                        <input type="checkbox" value="Liderazgo positivo" id="liderazgo">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','liderazgo') }}
                                         Liderazgo positivo
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="conciliador">
-                                        <input type="checkbox" value="Capacidad conciliadora" id="conciliador">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','conciliador') }}
                                         Capacidad conciliadora
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="perseverancia">
-                                        <input type="checkbox" value="Perseverancia" id="perseverancia">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','perserverancia') }}
                                         Perseverancia
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="asertividad">
-                                        <input type="checkbox" value="Asertividad" id="asertividad">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','asertividad') }}
                                         Asertividad
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="relacionesInter">
-                                        <input type="checkbox" value="Buenas relaciones interpersonales" id="relacionesInter">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','relaciones') }}
                                         Buenas relaciones interpersonales
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="objetivos">
-                                        <input type="checkbox" value="Enfocado en objetivos" id="objetivos">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','objetivos') }}
                                         Enfocado en objetivos
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
-                                    <label for="habitosSaludables">
-                                        <input type="checkbox" value="Hábitos saludables" id="habitosSaludables">
+                                    <label>
+                                        {{ Form::checkbox('actitudes[]','saludable') }}
                                         Hábitos saludables
                                     </label>
                                 </div></li>
                             </ul>
-                        </div> <!--/checkboxes actitudes destacables-->
+                        </div>
 
-                        <div class="form-group col-xs-12">
-                            <label class="sr-only input-label small" for="hobbies">Hobbies, pasatiempos y aptitudes extra educacionales</label>
-                            <input type="text" class="form-control" name="hobbies" id="hobbies" placeholder="Hobbies, pasatiempos y aptitudes extra educacionales">
-                        </div> <!--/input Hobbies-->
-                        <div class="form-group col-xs-12">
-                            <label class="sr-only input-label small" for="participacioInst">Participación institucional, social y deportiva</label>
-                            <input type="text" class="form-control" name="participacion-inst" id="participacioInst" placeholder="Participación institucional, social y deportiva">
-                        </div> <!--/input participacion isntitucional-->
+                        <div class="form-group col-xs-12{{ $errors->has('extras') ? ' has-error' : '' }}">
+                            {{ Form::label('extras', 'Hobbies, pasatiempos y aptitudes extra educacionales', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('extras',null,['class'=>'form-control','placeholder'=>'Hobbies, pasatiempos y aptitudes extra educacionales']) }}
+                        </div>
+                        <div class="form-group col-xs-12{{ $errors->has('participacion') ? ' has-error' : '' }}">
+                            {{ Form::label('participacion', 'Participación institucional, social y deportiva', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('participacion',null,['class'=>'form-control','placeholder'=>'Participación institucional, social y deportiva']) }}
+                        </div>
 
-                    </fieldset> <!--/fieldset info-adicional-->
+                    </fieldset> {{-- /fieldset info-adicional --}}
 
                     <fieldset class="carga-carta row">
                         <legend class="subtitulo h5 texto-azul">Carta de presentación</legend>
-                        <div class="form-group col-xs-12">
-                            <label class="sr-only" for="cartaPresentacion">Carta de presentación</label>
-                            <textarea name="carta" class="form-control" id="cartaPresentacion" rows="6" placeholder="Carta de presentación"></textarea>
-                        </div> <!--/textarea carta-->
-                    </fieldset> <!--/.fieldset carta de presentacion-->
-                </main> <!--.cargar-datos-->
+                        <div class="form-group col-xs-12{{ $errors->has('carta') ? ' has-error' : '' }}">
+                            {{ Form::label('carta', 'Carta de presentación', ["class"=>"sr-only"]) }}
+                            {{ Form::textarea('carta',null,['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6]) }}
+                        </div>
+                    </fieldset>
 
+                </main> {{-- .cargar-datos --}}
 
 
                 <aside class="datos-fijos">
                     <section class="cargar-foto">
 
-                        <label for="cargarFoto" class="cargar-foto-btn text-center">
-
-                            <figure class="foto-bg foto-alumno foto-placeholder"></figure> <!--/.foto-alumno-->
+                        <label class="cargar-foto-btn text-center">
+                            <figure id='foto-preview' class="foto-bg foto-alumno foto-placeholder"></figure>
 
                             <strong>Cargar una foto del alumno</strong>
-                            <input type="file" name="cargarFoto" id="cargarFoto" accept=".jpeg, .jpg, .png"> <!--/infput file-->
-                        </label> <!--/.cargar-foto-btn-->
+                            {{ Form::file('foto',['id'=>"cargarFoto", 'accept'=>".jpeg, .jpg, .png"]) }}
+                        </label>
 
+                        <span class="error small"></span>
                         <span class="small">Tamaño mínimo: 360px x 360px. Formato: JPG, JPEG o PNG. Peso máximo: 1Mb. </span>
-                    </section> <!--/.cargar-foto-->
+                    </section>
                     <section class="guardar-datos panel-bg-color">
                         <div class="contenedor-datos-fijos">
-                            <p><strong>Creado / Editado: </strong>25/10/2015</p>
-                            <p><strong>Docente a cargo: </strong>Juana Ana Triana</p>
-                            <p><strong>Servicio Educativo: </strong>Escuela de Educación Técnica N° 1</p>
-                        </div> <!--/.contenedor-datos-fijos-->
+                        @if ($nuevo)
+                            <p><strong>Docente a cargo: </strong>{{ Auth::user()->name }}</p>
+                            <p><strong>Servicio Educativo: </strong><br>{{ Auth::user()->escuela->name }}</p>
+                        @else
+                            <p><strong>Creado / Editado: </strong>{{ $user->updated_at->format('d/m/Y') }}</p>
+                            <p><strong>Docente a cargo: </strong>{{ $alumno->docente->name }}</p>
+                            <p><strong>Servicio Educativo: </strong><br>{{ $alumno->escuela->name }}</p>
+                        @endif
+                        </div>
 
                         <div class="contenedor-btns">
-                            <button type="submit" class="btn btn-primary btn-guardar">Guardar cambios</button>
-                            <button type="button" class="btn btn-link btn-descartar">Descartar / Eliminar</button>
-                        </div> <!--/.contenedor-botones-->
-                    </section> <!--/.guardar-datos-->
+                            {{ Form::button( ($nuevo) ? 'Cargar alumno' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
+                            @if ($nuevo)
+                                <button type="reset" class="btn btn-link btn-descartar">Descartar</button>
+                            @else
+                                <a href="{{ route('alumnos.show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar</a>
+                            @endif
+                        </div>
+                    </section>
 
-                </aside> <!--/.datos-fijos-->
+                </aside> {{-- /.datos-fijos --}}
 
             {{ Form::close() }} {{-- .fila-flex --}}
         </article> {{-- ./cargar-alumno --}}

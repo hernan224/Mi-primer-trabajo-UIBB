@@ -35,13 +35,13 @@ class CreateCurriculumsTable extends Migration
             $table->boolean('objetivos')->default(false);
             $table->boolean('saludable')->default(false);
 
-            $table->string('extra')->nullable();
+            $table->string('extras')->nullable();
             $table->string('participacion')->nullable();
-            $table->text('carta_presentacion')->nullable();
+            $table->text('carta')->nullable();
 
             $table->timestamps();
 
-            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
         });
     }
 

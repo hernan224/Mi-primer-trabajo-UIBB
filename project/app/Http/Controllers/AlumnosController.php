@@ -90,22 +90,29 @@ class AlumnosController extends Controller
         // el request hace la validación primero.
         // Si falla se redirige nuevamente a la pantalla que envió el post (action nuevo())
 
-        // Obtengo nombres de atributo de alumno
-        $alumno_temp = new Alumno;
-        $atributos_alumno = $alumno_temp->getFillable();
-        // data recibida del post, correspondiente al modelo alumno
-        $data_alumno = $request->only($atributos_alumno);
-        // convierto fecha de nacimiento al formato a guardar
-        $this->parseDate($data_alumno);
+        $data_alumno = $this->getDataPostAlumno($request);
+        $data_curriculum = $this->getDataPostCurriculum($request);
 
-        // asocio docente y escuela
+        // obtengo docente y escuela
         $docente = $request->user();
         $escuela = $docente->escuela;
 
-        // creo alumno, asociado a la escuela
+        // creo y guardo alumno, asociado a la escuela
         $alumno = $escuela->alumnos()->create($data_alumno);
+        // creo y guardo curriculum, asociado al alumno
+        $alumno->curriculum()->create($data_curriculum);
         // asocio docente
         $alumno->docente()->associate($docente);
+
+        // guardo imagen en el server, usando el id del alumno creado y un string aleatorio
+        if($request->hasFile('foto') && $request->file('foto')->isValid() ) {
+            $file = $request->file('foto');
+            $foto_name = $alumno->id. '_' . str_random(8) . '.' .
+                $file->getClientOriginalExtension();
+            $file->move(base_path(Alumno::$image_path),$foto_name);
+            $alumno->foto = $foto_name;
+        }
+
         $alumno->save();
 
         // redirigir a show
@@ -173,6 +180,32 @@ class AlumnosController extends Controller
         $date_input = $data_alumno['nacimiento'];
         // Transformo date
         $data_alumno['nacimiento'] = \DateTime::createFromFormat('d/m/Y',$date_input)->format('Y-m-d');
+    }
+
+    protected function getDataPostAlumno($request) {
+        // Obtengo nombres de atributo de alumno
+        $alumno_temp = new Alumno;
+        $atributos_alumno = $alumno_temp->getFillable();
+        // data recibida del post, correspondiente al modelo alumno
+        $data_alumno = $request->only($atributos_alumno);
+        // convierto fecha de nacimiento al formato a guardar
+        $this->parseDate($data_alumno);
+
+        return $data_alumno;
+    }
+
+    protected function getDataPostCurriculum($request) {
+        // Obtengo nombres de atributo de alumno
+        $curriculum_temp = new Curriculum;
+        $atributos_curriculum = $curriculum_temp->getFillable();
+        // data recibida del post, correspondiente al modelo alumno
+        $data_curriculum = $request->only($atributos_curriculum);
+        //agrego actitudes
+        $actitudes_check = $request->input('actitudes');
+        foreach (Curriculum::$actitudes_names as $actitud) {
+            $data_curriculum[$actitud] = (in_array($actitud,$actitudes_check));
+        }
+        return $data_curriculum;
     }
 
 }

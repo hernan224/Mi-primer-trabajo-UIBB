@@ -34,6 +34,7 @@ class PostAlumnoRequest extends Request
             $dni_validation .= ','.$id_alumno;
         }
         return [
+            // data alumno
             'nombre' => 'required|max:50',
             'apellido' => 'required|max:50',
             'dni' => $dni_validation,
@@ -44,7 +45,11 @@ class PostAlumnoRequest extends Request
             'barrio' => 'string|max:50',
             'tel_fijo' => 'string|max:20',
             'celular' => 'string|max:20',
-            'email' => 'email'
+            'email' => 'email',
+            'foto' => 'image',
+            // data curriculum
+            'promedio' => 'required|between:0,10',
+            'asignaturas' => 'required|string'
         ];
 
     }
