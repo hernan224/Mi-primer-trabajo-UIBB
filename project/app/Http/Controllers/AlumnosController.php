@@ -109,7 +109,7 @@ class AlumnosController extends Controller
             $file = $request->file('foto');
             $foto_name = $alumno->id. '_' . str_random(8) . '.' .
                 $file->getClientOriginalExtension();
-            $file->move(base_path(Alumno::$image_path),$foto_name);
+            $file->move(public_path(Alumno::$image_path),$foto_name);
             $alumno->foto = $foto_name;
         }
 
