@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Gate;
 use Auth;
-use App\Http\Requests;
+use DB;
+use Illuminate\Http\Request;
 use App\Http\Requests\PostAlumnoRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
@@ -31,14 +31,146 @@ class AlumnosController extends Controller
      *
      * URL: /alumnos [GET]
      *
-     * Puede incluir los siguientes filtros o num pag (parametros en request)
+     * Puede incluir los siguientes filtros, ordenamiento o num pag (parametros en request):
+     *
+     *
+     * page=<number> : es interpretada automaticamente al invcar paginate() en la query
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function lista(Request $request)
     {
-        return response()->json(['status' => 'ok','accion'=> 'lista']);
+        $select_array = [
+            'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento','alumnos.localidad','alumnos.barrio',
+            'escuelas.name as escuela',
+            'users.name as docente',
+            'curriculums.especialidad','curriculums.promedio','curriculums.updated_at',
+        ];
+        if(trim($request->query('actit'))) { // si quiere filtrar por actitudes, debo seleccionarlas
+            $select_array = array_merge($select_array,[
+                'curriculums.responsabilidad','curriculums.puntualidad','curriculums.proactividad',
+                'curriculums.equipo','curriculums.creatividad','curriculums.liderazgo',
+                'curriculums.conciliador','curriculums.perseverancia','curriculums.asertividad',
+                'curriculums.relaciones','curriculums.objetivos','curriculums.saludable'
+            ]);
+        }
+
+        $query = DB::table('alumnos')
+            ->leftJoin('curriculums','alumnos.id','=','curriculums.alumno_id')
+            ->leftJoin('escuelas','alumnos.escuela_id','=','escuelas.id')
+            ->leftJoin('users','alumnos.docente_id','=','users.id')
+            ->select($select_array);
+
+        $where_array = [];
+        // Si usuario es docente, sólo busca los alumnos de su escuela.
+        if (Auth::user()->hasRole('escuela')) {
+            $escuela_id = Auth::user()->escuela_id;
+            $where_array[] = ['alumnos.escuela_id',$escuela_id];
+        }
+        // filtros
+        $this->lista_filtros($request,$where_array);
+
+        if(count($where_array)) {
+            $query->where($where_array);
+        }
+
+        // Ordenamiento
+        $this->lista_ordenamiento($request,$query);
+
+        return $query->paginate(5); // retorna JSON automáticamente, paginando el resultado
+    }
+
+    private function lista_filtros($request,&$where_array) {
+        $promedio_min = $request->query('prom_min');
+        if ($promedio_min && is_numeric($promedio_min)) {
+            $where_array[] = ['curriculums.promedio','>=',$promedio_min];
+        }
+
+        $promedio_max = $request->query('prom_max');
+        if ($promedio_max && is_numeric($promedio_max)) {
+            $where_array[] = ['curriculums.promedio','<=',$promedio_max];
+        }
+
+        $especialidad = trim(filter_var($request->query('esp'),FILTER_SANITIZE_STRING));
+        if ($especialidad) {
+            $where_array[] = ['curriculums.especialidad','LIKE','%'.$especialidad.'%'];
+        }
+
+        $escuela = trim(filter_var($request->query('esc'),FILTER_SANITIZE_STRING));
+        if ($escuela) {
+            $where_array[] = ['escuelas.name','LIKE','%'.$escuela.'%'];
+        }
+
+        $localidad = trim(filter_var($request->query('loc'),FILTER_SANITIZE_STRING));
+        if ($localidad) {
+            $where_array[] = ['alumnos.localidad','LIKE','%'.$localidad.'%'];
+        }
+
+        $barrio = trim(filter_var($request->query('bar'),FILTER_SANITIZE_STRING));
+        if ($barrio) {
+            $where_array[] = ['alumnos.barrio','LIKE','%'.$barrio.'%'];
+        }
+
+        $actitudes = trim(filter_var($request->query('actit'),FILTER_SANITIZE_STRING));
+        if ($actitudes) {
+            $array_actitudes = explode(',',$actitudes);
+            foreach (Curriculum::$actitudes_names as $actitud) {
+                if (in_array($actitud,$array_actitudes)) {
+                    $where_array[] = ['curriculums.'.$actitud,true];
+                }
+            }
+        }
+    }
+
+    private function lista_ordenamiento($request,$query) {
+        $ordenamiento = $request->query('order');
+
+        if ($ordenamiento == 'fecha')
+            $query->orderBy('curriculums.updated_at','ASC');
+        else if ($ordenamiento == 'fecha_desc')
+            $query->orderBy('curriculums.updated_at','DESC');
+
+        else if ($ordenamiento == 'prom')
+            $query->orderBy('curriculums.promedio','ASC');
+        else if ($ordenamiento == 'prom_desc')
+            $query->orderBy('curriculums.promedio','DESC');
+
+        else if ($ordenamiento == 'esp')
+            $query->orderBy('curriculums.especialidad','ASC');
+        else if ($ordenamiento == 'esp_desc')
+            $query->orderBy('curriculums.especialidad','DESC');
+
+        else if ($ordenamiento == 'esc')
+            $query->orderBy('escuela','ASC');
+        else if ($ordenamiento == 'esc_desc')
+            $query->orderBy('escuela','DESC');
+
+        else if ($ordenamiento == 'doc')
+            $query->orderBy('docente','ASC');
+        else if ($ordenamiento == 'doc_desc')
+            $query->orderBy('docente','DESC');
+
+        else if ($ordenamiento == 'nac')
+            $query->orderBy('alumnos.nacimiento','ASC');
+        else if ($ordenamiento == 'nac_desc')
+            $query->orderBy('alumnos.nacimiento','DESC');
+
+        else if ($ordenamiento == 'loc')
+            $query->orderBy('alumnos.localidad','ASC');
+        else if ($ordenamiento == 'loc_desc')
+            $query->orderBy('alumnos.localidad','DESC');
+
+        else if ($ordenamiento == 'bar')
+            $query->orderBy('alumnos.barrio','ASC');
+        else if ($ordenamiento == 'bar_desc')
+            $query->orderBy('alumnos.barrio','DESC');
+
+        else if ($ordenamiento == 'ape_desc')
+            $query->orderBy('alumnos.apellido','DESC');
+
+        // Como segundo ordenamiento siempre elijo el apellido
+        $query->orderBy('alumnos.apellido','ASC');
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateCurriculumsTable extends Migration
         Schema::create('curriculums', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('alumno_id')->unsigned();
-            $table->string('especialidad')->nullable();
+            $table->string('especialidad');
             $table->decimal('promedio',4,2);
             $table->string('asignaturas');
             $table->string('practicas_tipo')->nullable();

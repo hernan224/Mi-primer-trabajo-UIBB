@@ -115,7 +115,7 @@
 
                         <div class="form-group col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
                             {{ Form::label('localidad', 'Localidad', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad']) }}
+                            {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad','required'=>'required']) }}
                         </div>
                         <div class="form-group col-sm-6{{ $errors->has('barrio') ? ' has-error' : '' }}">
                             {{ Form::label('barrio', 'Barrio', ["class"=>"sr-only input-label small"]) }}
@@ -160,7 +160,7 @@
                             {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('especialidad',
                                 (!$nuevo) ? $alumno->curriculum->especialidad : null ,
-                                ['class'=>'form-control','placeholder'=>'Especialidad cursada']) }}
+                                ['class'=>'form-control','placeholder'=>'Especialidad cursada','required' => 'required']) }}
                         </div>
 
                         <div class="form-group col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">

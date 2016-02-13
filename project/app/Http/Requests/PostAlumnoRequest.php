@@ -47,13 +47,14 @@ class PostAlumnoRequest extends Request
             'sexo' => 'required|in:m,f',
             'nacimiento' => 'required|date_format:d/m/Y',
             'nacionalidad' => 'required|string|max:50',
-            'localidad' => 'string|max:50',
+            'localidad' => 'required|string|max:50',
             'barrio' => 'string|max:50',
             'tel_fijo' => 'string|max:20',
             'celular' => 'string|max:20',
             'email' => 'email',
             'foto' => 'image',
             // data curriculum
+            'especialidad' => 'required|string',
             'promedio' => 'required|between:0,10',
             'asignaturas' => 'required|string',
             'practicas_tipo' => 'required_with:practicas_lugar'

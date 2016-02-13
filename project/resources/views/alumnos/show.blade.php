@@ -161,12 +161,10 @@
                             <strong>Servicio Educativo: </strong>
                             {{ $alumno->escuela->name }}
                         </p>
-                        @if ($alumno->curriculum->especialidad)
                         <p>
                             <strong>Especialidad: </strong>
                             {{ $alumno->curriculum->especialidad }}
                         </p>
-                        @endif
                         @if ($alumno->curriculum->practicas_tipo)
                         <p>
                             <strong>Práctica Profesional: </strong>

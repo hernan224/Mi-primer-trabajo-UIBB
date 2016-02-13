@@ -79,3 +79,16 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
     Route::get('/alumno/{id}','AlumnosController@show')->name('show');
 
 });
+
+
+// ROUTE TEMPORAL PARA EJECUTAR COMANDOS EN SERVIDOR
+// Route::get('/artisan', function () {
+
+//     Artisan::call('db:seed', [
+//         '--class' => 'UsuariosPrueba',
+//         '--force' => true
+//     ]);
+
+//     dump(Artisan::output());
+// });
+

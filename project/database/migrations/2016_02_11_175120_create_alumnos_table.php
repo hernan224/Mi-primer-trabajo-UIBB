@@ -24,7 +24,7 @@ class CreateAlumnosTable extends Migration
             $table->string('nacionalidad',50);
 
             $table->string('domicilio')->nullable();
-            $table->string('localidad',50)->nullable();
+            $table->string('localidad',50);
             $table->string('barrio',50)->nullable();
             $table->string('tel_fijo',20)->nullable();
             $table->string('celular',20)->nullable();
