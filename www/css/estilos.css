@@ -1470,6 +1470,10 @@ a.btn-cerrar {
 .buscar-listado {
   border-bottom: 2px solid #C7DEE2;
   margin-top: 7px; }
+  @media (max-width: 767px) {
+    .buscar-listado {
+      max-width: 400px;
+      margin: auto; } }
   .buscar-listado:hover .input-buscar {
     background-color: #C7DEE2;
     color: #2C72B4;
@@ -1489,6 +1493,23 @@ a.btn-cerrar {
     transition: background-color 0.2s ease; }
     .buscar-listado:hover .btn-buscar .glyphicon {
       color: #2C72B4; }
+
+#lista-busqueda {
+  padding: 0;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px; }
+  @media (max-width: 767px) {
+    #lista-busqueda {
+      width: 400px;
+      margin-left: -200px; } }
+  #lista-busqueda .list-group-item {
+    border-radius: 0; }
+    #lista-busqueda .list-group-item h4 {
+      font-size: 14px; }
+    #lista-busqueda .list-group-item span {
+      display: block;
+      font-size: 12px; }
 
 .contenedor-ordenar {
   background-color: #C7DEE2;

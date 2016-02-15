@@ -35,7 +35,8 @@ class AlumnosController extends Controller
                 'get_list' =>  route('alumnos.lista'),
                 'fotos' => asset(Alumno::$image_path),
                 'show' => route('alumnos.show'),
-                'edit' => route('alumnos.edit')
+                'edit' => route('alumnos.edit'),
+                'search' => route('alumnos.search')
             ],
             'escuelas' => $escuelas
         ];
@@ -57,8 +58,7 @@ class AlumnosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function lista(Request $request)
-    {
+    public function lista(Request $request){
         $select_array = [
             'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento',
             'alumnos.localidad','alumnos.barrio','alumnos.foto','alumnos.sexo',
@@ -190,6 +190,51 @@ class AlumnosController extends Controller
 
         // Como segundo ordenamiento siempre elijo el apellido
         $query->orderBy('alumnos.apellido','ASC');
+    }
+
+    public function search(Request $request) {
+        $select_array = [
+            'alumnos.id','alumnos.nombre','alumnos.apellido','curriculums.especialidad',
+            'escuelas.name as escuela',
+        ];
+
+        $query = DB::table('alumnos')
+            ->leftJoin('curriculums','alumnos.id','=','curriculums.alumno_id')
+            ->leftJoin('escuelas','alumnos.escuela_id','=','escuelas.id')
+            ->select($select_array);
+
+        // Si usuario es docente, sólo busca los alumnos de su escuela.
+        if (Auth::user()->hasRole('escuela')) {
+            $escuela_id = Auth::user()->escuela_id;
+            $query->where('alumnos.escuela_id',$escuela_id);
+        }
+
+        $alumnos = $query->get();
+        $busqueda = [];
+        $cant = 0;
+        $max_results = 5;
+
+        $search = $request->query('q');
+
+        if ($search) {
+            $search = strtolower($search);
+            foreach ($alumnos as $alumno) {
+                $nombre_apellido = strtolower($alumno->nombre.' '.$alumno->apellido);
+                $especialidad = strtolower($alumno->especialidad);
+                if(strpos($nombre_apellido, $search) !== false || strpos($especialidad,$search) !== false) {
+                    $busqueda[] = $alumno;
+                    $cant ++;
+                    if ($cant == $max_results) {
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            $busqueda = array_slice($alumnos,0,$max_results);
+        }
+
+        return response()->json($busqueda);
     }
 
     /**

@@ -4919,17 +4919,20 @@ return /******/ (function(modules) { // webpackBootstrap
 /* global moment */
 /* global urls */
 
-var template_alumno, $lista, $paginado,
+var template_alumno, template_busqueda, $lista, $paginado,
     actual_page = 1, ordenamiento = false, filtros = {};
 $(function () {
     $lista = $('#contenedorLista ul.lista-alumnos');
     $paginado =  $('#contenedorLista #paginado');
 
-    // compilo template
+    // compilo templates
     handlebarsHelpers();
     var $templateAlumno = $lista.find('#template-alumno');
     template_alumno = Handlebars.compile($templateAlumno.html());
     $templateAlumno.remove();
+    var $templateBusqueda = $('#template-busqueda');
+    template_busqueda = Handlebars.compile($templateBusqueda.html());
+    $templateBusqueda.remove();
 
     // obtengo del server lista de alumnos y renderizo
     getAlumnos(); // inicialmente setea paginado
@@ -4938,6 +4941,8 @@ $(function () {
     bindOrdenamiento();
 
     bindFiltros();
+
+    bindBusqueda();
 
 });
 
@@ -5119,6 +5124,47 @@ function filtrar(slider_promedio) {
     if(force_get || !$.isEmptyObject(filtros)) {
         getAlumnos(1); //al filtrar siempre elijo la pag 1
     }
+}
 
+function bindBusqueda() {
+    var $listaBusqueda = $('#lista-busqueda'),
+        $inputBusqueda = $('#search-alumnos');
+    $inputBusqueda.keyup(function() {
+        var query = $(this).val();
+        if (query.length >= 3) {
+            $.ajax({
+                url: urls.search,
+                type: 'GET',
+                data: {q: query},
+            })
+            .done(function(data) {
+                var html_busqueda = template_busqueda({alumnos: data});
+                $listaBusqueda.html(html_busqueda);
+                $listaBusqueda.show();
+            })
+            .fail(function() {
+                $listaBusqueda.hide();
+                $listaBusqueda.html('');
+            });
+        }
+        else {
+            $listaBusqueda.hide();
+            $listaBusqueda.html('');
+        }
+    }).click(function() {
+        if($listaBusqueda.children().length) {
+            $listaBusqueda.show();
+        }
+    });
+
+    $(document).mouseup(function (e)
+    {
+        var $busqueda = $('.busqueda');
+        if (!$busqueda.is(e.target) && // if the target of the click isn't the container...
+              $busqueda.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $listaBusqueda.hide();
+        }
+    });
 }
 //# sourceMappingURL=listado_alumnos.js.map

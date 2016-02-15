@@ -22,7 +22,8 @@
             list : "{{$urls['get_list']}}",
             fotos : "{{$urls['fotos']}}",
             show : "{{$urls['show']}}",
-            edit : "{{$urls['edit']}}"
+            edit : "{{$urls['edit']}}",
+            search : "{{$urls['search']}}"
         };
     </script>
 @endsection
@@ -35,7 +36,7 @@
                 <div class="row">
                 @if (Auth::user()->puedeEditar())
                 {{-- Boton nuevo (eliminar no lo incluyo) --}}
-                    <div class="col-md-2 col-sm-3 col-xs-3">
+                    <div class="col-md-2 col-sm-3 col-xs-6">
                         <a id="crearNuevo" href="{{ route('alumnos.nuevo')}}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-file"></span>
                             <span class="texto-nav">Nuevo</span>
@@ -63,7 +64,7 @@
                     </div> {{-- contenedor cambiar vista --}}
                 @endif
 
-                    <div class="col-md-2 col-sm-2 {{ Auth::user()->puedeEditar() ? 'col-md-offset-2 col-xs-2' : 'col-xs-3' }}">
+                    <div class="col-md-2 col-sm-2 {{ Auth::user()->puedeEditar() ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
                         <div class="dropdown">
                             <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" class="link-nav-listado">
@@ -103,16 +104,16 @@
                         </div> {{-- .dropdown --}}
                     </div> {{-- contenedor ordenar --}}
 
-                    <div class="col-md-2 col-sm-2 {{ Auth::user()->puedeEditar() ? 'col-xs-2' : 'col-xs-3' }}">
+                    <div class="col-md-2 col-sm-2 col-xs-3 }}">
                         <a id="mostrarFiltrosBtn" href="#" class="link-nav-listado">
                             <span class="glyphicon glyphicon-filter"></span>
                             <span class="texto-nav texto-filtrar hidden-sm hidden-xs">Filtrar</span>
                         </a>
                     </div> {{-- btn filtro --}}
 
-                    <div class="col-md-4 col-sm-5 {{ Auth::user()->puedeEditar() ? 'col-xs-5' : 'col-xs-6' }}">
+                    <div class="busqueda col-md-4 col-sm-5 {{ Auth::user()->puedeEditar() ? 'col-xs-12' : 'col-xs-6' }}">
                         <div class="input-group buscar-listado">
-                            <input type="text" class="form-control input-buscar" placeholder="Buscar">
+                            <input id="search-alumnos" type="text" class="form-control input-buscar" placeholder="Buscar">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-buscar" type="button">
                                     <span class="sr-only">Buscar</span>
@@ -120,6 +121,20 @@
                                 </button>
                             </span>
                         </div>{{-- /input-group --}}
+                        <div class="dropdown">
+                            <div id="lista-busqueda" class="dropdown-menu list-group">
+                                <script id="template-busqueda" type="text/x-handlebars-template">
+                                    @{{#each alumnos}}
+                                    <a href="{{$urls['show']}}/@{{id}}" class="list-group-item">
+                                        <h4 class="list-group-item-heading">@{{nombre}} @{{apellido}}</h4>
+                                        <span class="list-group-item-text">@{{especialidad}}</span>
+                                        <span class="list-group-item-text">@{{escuela}}</span>
+                                    </a>
+                                    @{{/each}}
+                                </script>
+
+                            </div> {{-- ./dropdown-menu --}}
+                        </div> {{-- .dropdown --}}
                     </div>  {{-- buscador --}}
 
                 </div>

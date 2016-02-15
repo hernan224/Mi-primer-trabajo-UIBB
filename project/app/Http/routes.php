@@ -58,8 +58,11 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
     // GET lista alumnos (resp JSON)
     // Si es escuela devuelve alumnos de la escuela, si no todos
-    // Puede incluir filtros como parametros get, y numero pagina
+    // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
     Route::get('/alumnos','AlumnosController@lista')->name('lista');
+
+    // Busqueda nombre, apellido, especialidad
+    Route::get('/alumnos/search','AlumnosController@search')->name('search');
 
     // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
     Route::group(['middleware' => 'role:escuela'], function () {

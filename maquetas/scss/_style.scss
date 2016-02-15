@@ -1975,6 +1975,10 @@ a.btn-cerrar{
 .buscar-listado{
   border-bottom: 2px solid $celeste;
   margin-top: 7px;
+  @include media('<tablet'){
+    max-width: 400px;
+    margin: auto;
+  }
 
   &:hover{
     .input-buscar{
@@ -1998,6 +2002,28 @@ a.btn-cerrar{
     }
   }
 }
+
+#lista-busqueda {
+  padding: 0;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  @include media('<tablet'){
+    width: 400px;
+    margin-left: -200px;
+  }
+  .list-group-item {
+    border-radius: 0;
+    h4 {
+      font-size: 14px;
+    }
+    span {
+      display: block;
+      font-size: 12px;
+    }
+  }
+}
+
 
 //Dropdown ordenar
 .contenedor-ordenar{
