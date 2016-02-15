@@ -162,12 +162,12 @@ figure.foto-bg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0; }
-  .foto-usuario.sin-foto {
-    background-image: url(../img/login-sin-foto.png); }
-    .foto-usuario.sin-foto.foto-institucion {
-      background-image: url(../img/escuela-sin-foto.png); }
-    .foto-usuario.sin-foto.foto-asociado {
-      background-image: url(../img/asociado-sin-foto.png); }
+
+.foto-item.sin-foto.foto-institucion, .foto-usuario.sin-foto.foto-institucion {
+  background-image: url(../img/escuela-sin-foto.png); }
+
+.foto-item.sin-foto.foto-asociado, .foto-usuario.sin-foto.foto-asociado {
+  background-image: url(../img/asociado-sin-foto.png); }
 
 .nombre-usuario {
   margin-right: 1em; }

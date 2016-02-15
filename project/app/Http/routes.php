@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Escuela;
+use App\Models\Empresa;
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -47,6 +50,13 @@ Route::group(['middleware' => 'web'], function () {
         return redirect('/login');
     })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
 
+    // Pantallas estaticas
+    Route::get('/instituciones', function () {
+        return view('estaticas.instituciones',['escuelas' => Escuela::all()]);
+    });
+    Route::get('/empresas', function () {
+        return view('estaticas.empresas',['empresas' => Empresa::all()]);
+    });
 
 });
 

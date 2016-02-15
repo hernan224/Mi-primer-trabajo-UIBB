@@ -40,6 +40,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Relación M:1 con Empresa
+     */
+    public function empresa() {
+        return $this->belongsTo(Empresa::class);
+    }
+
+    /**
      * Relación 1:M con Alumnos
      */
     public function alumnos() {

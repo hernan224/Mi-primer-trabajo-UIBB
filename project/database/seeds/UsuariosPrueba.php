@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\User;
 use App\Models\Escuela;
+use App\Models\Empresa;
 
 class UsuariosPrueba extends Seeder
 {
@@ -22,7 +23,7 @@ class UsuariosPrueba extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@mail.com',
             'password' => bcrypt('uibb*2016..'),
-            'role' => 'admin'
+            'role' => 'admin',
         ]);
 
         // Data de escuelas y usuarios asociados
@@ -31,7 +32,9 @@ class UsuariosPrueba extends Seeder
                 'escuela' => [
                     'name' => 'Escuela de Educación Técnica Nº1',
                     'direccion' => 'Chiclana 1268',
-                    'telefono' => '0291 456-1235'
+                    'telefono' => '0291 456-1235',
+                    'localidad' => 'Bahía Blanca',
+                    'email' =>  'info@eet1.edu.ar'
                 ],
                 'usuarios' => [
                     [
@@ -52,7 +55,8 @@ class UsuariosPrueba extends Seeder
             [
                 'escuela' => [
                     'name' => 'Escuela de Educación Técnica Nº3',
-                    'direccion' => 'Av.Siempreviva 742'
+                    'direccion' => 'Av.Siempreviva 742',
+                    'localidad' => 'Bahía Blanca'
                 ],
                 'usuarios' => [
                     [
@@ -74,26 +78,65 @@ class UsuariosPrueba extends Seeder
             }
         }
 
-
         // Creo empresas
-        $empresas = [
+        $empresas_users = [
             [
-                'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
-                'email' => 'empresa1@mail.com',
-                'password' => bcrypt('empresa1'),
-                'role' => 'empresa',
-                'telefono' => '0291 450 3268',
-                'direccion' => 'Av. Colón 6546'
+                'empresa' => [
+                    'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
+                    'direccion' => 'Azara 1250',
+                    'telefono' => '0291 456-1235',
+                    'localidad' => 'Bahía Blanca',
+                    'email' =>  'contacto@puertobahia.com.ar',
+                    'foto' => 'logo-cgpbb.png'
+                ],
+                'usuarios' => [
+                    [
+                        'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
+                        'email' => 'empresa1@mail.com',
+                        'password' => bcrypt('empresa1'),
+                        'role' => 'empresa'
+                    ]
+                ]
             ],
             [
-                'name' => 'Central Nuclear Burns',
-                'email' => 'empresa2@mail.com',
-                'password' => bcrypt('empresa2'),
-                'role' => 'empresa'
+                'empresa' => [
+                    'name' => 'Profértil',
+                    'direccion' => 'Chiclana 1223',
+                    'telefono' => '0291 456-0331',
+                    'localidad' => 'Bahía Blanca',
+                    'email' =>  'contacto@profertil.com.ar'
+                ],
+                'usuarios' => [
+                    [
+                        'name' => 'Profértil',
+                        'email' => 'empresa2@mail.com',
+                        'password' => bcrypt('empresa2'),
+                        'role' => 'empresa'
+                    ]
+                ]
             ],
+            [
+                'empresa' => [
+                    'name' => 'Solvay Indupa',
+                    'localidad' => 'Bahía Blanca',
+                    'email' =>  'contacto@indupa.com.ar'
+                ],
+                'usuarios' => [
+                    [
+                        'name' => 'Solvay Indupa',
+                        'email' => 'empresa3@mail.com',
+                        'password' => bcrypt('empresa3'),
+                        'role' => 'empresa'
+                    ]
+                ]
+            ]
         ];
-        foreach ($empresas as $empresa) {
-            User::create($empresa);
+        foreach ($empresas_users as $data_empresa) {
+            $empresa = Empresa::create($data_empresa['empresa']);
+
+            foreach ($data_empresa['usuarios'] as $data_usuario) {
+                $empresa->users()->create($data_usuario); // crea usuario y relaciona con empresa
+            }
         }
     }
 }

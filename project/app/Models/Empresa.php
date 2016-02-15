@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Escuela extends Model
+class Empresa extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -15,22 +15,14 @@ class Escuela extends Model
         'name', 'direccion', 'telefono','localidad','email','foto'
     ];
 
-    public static $image_path = 'media/img/escuelas';
+    public static $image_path = 'media/img/empresas';
     // Si sube imagen, esta va a ser guardada en esa carpeta con nombre <id_alumno>.<tipo_img>
-
 
     /**
      * Relación 1:M con user
      */
     public function users() {
         return $this->hasMany(User::class);
-    }
-
-    /**
-     * Relación 1:M con Alumnos
-     */
-    public function alumnos() {
-        return $this->hasMany(Alumno::class);
     }
 
     public function getUrlFoto() {

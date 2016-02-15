@@ -2,13 +2,27 @@
 @if (Auth::check())
 <div class="acceso-usuario-container dropdown">
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <figure class="foto-bg foto-usuario sin-foto {{Auth::user()->hasRole('escuela') ? 'foto-institucion' : 'foto-asociado'}}"></figure>
+        @if (Auth::user()->hasRole('escuela'))
+            @if (Auth::user()->escuela->foto)
+                <figure class="foto-bg foto-usuario foto-institucion" style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}')"></figure>
+            @else
+                <figure class="foto-bg foto-usuario sin-foto foto-institucion"></figure>
+            @endif
+        @elseif (Auth::user()->hasRole('empresa'))
+            @if (Auth::user()->empresa->foto)
+                <figure class="foto-bg foto-usuario foto-asociado" style="background-image: url('{{Auth::user()->empresa->getUrlFoto()}}')"></figure>
+            @else
+                <figure class="foto-bg foto-usuario sin-foto foto-asociado"></figure>
+            @endif
+        @else
+            <figure class="foto-bg foto-usuario sin-foto foto-asociado"></figure>
+        @endif
         <h5 class="nombre-usuario {{ $home ? 'texto-blanco' : ''}}">
         @if (Auth::user()->hasRole('escuela'))
             <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
             <span class="nombre-entidad">{{ Auth::user()->escuela->name }}</span>
-        @else
-            <strong>{{ Auth::user()->name }}</strong>
+        @elseif (Auth::user()->hasRole('empresa'))
+            <strong>{{ Auth::user()->empresa->name }}</strong>
         @endif
         </h5>
         <button class="btn-menu-usuario">

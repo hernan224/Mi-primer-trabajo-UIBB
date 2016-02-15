@@ -168,8 +168,10 @@ figure.foto-bg{
   margin-right: 1em;
   flex-shrink: 0;
 
+}
+
+.foto-item,.foto-usuario {
   &.sin-foto{
-    background-image: url(../img/login-sin-foto.png);
     &.foto-institucion{
       background-image: url(../img/escuela-sin-foto.png);
     }

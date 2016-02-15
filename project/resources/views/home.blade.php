@@ -85,7 +85,7 @@
                     <h2 class="texto-azul titulo-seccion">¿Quiénes participan de Mi Primer Trabajo?</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a href="#ToDo" class="btn-banner banner-asociados" role="button">
+                    <a href="{{ url('/empresas')}}" class="btn-banner banner-asociados" role="button">
                         <svg viewBox="0 0 100 100" class="banner-icono">
                             <use xlink:href="#iconoAsociados"></use>
                         </svg>
@@ -96,7 +96,7 @@
                     </a> {{-- /.btn-banner --}}
                 </div>
                 <div class="col-sm-6">
-                    <a href="#ToDo" class="btn-banner banner-instituciones" role="button">
+                    <a href="{{ url('/instituciones')}}" class="btn-banner banner-instituciones" role="button">
                         <svg viewBox="0 0 100 100" class="banner-icono">
                             <use xlink:href="#iconoEducacion"></use>
                         </svg>
