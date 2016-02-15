@@ -18,8 +18,40 @@ h6, .h6{
   font-family: 'Montserrat', sans-serif;
 }
 
+h1, .h1 {
+  @include  h-font($font-size-h1);
+  margin-top: pxToEm($line-height-computed, $font-size-h1);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h1);
+}
+h2, .h2 {
+  @include  h-font($font-size-h2);
+  margin-top: pxToEm($line-height-computed, $font-size-h2);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h2);
+}
+h3, .h3 {
+  @include  h-font($font-size-h3);
+  margin-top: pxToEm($line-height-computed, $font-size-h3);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h3);
+}
+h4, .h4 {
+  @include  h-font($font-size-h4);
+  margin-top: pxToEm(($line-height-computed / 2), $font-size-h4);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h4);
+}
+h5, .h5 {
+  font-size: $font-size-h5;
+  margin-top: pxToEm(($line-height-computed / 2), $font-size-h5);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h5);
+}
+h6, .h6 {
+  font-size: $font-size-h6;
+  margin-top: pxToEm(($line-height-computed / 2), $font-size-h6);
+  margin-bottom: pxToEm(($line-height-computed / 2), $font-size-h6);
+}
+
+
 .subtitulo{
-  font-size: (16/14*1em);
+  font-size: pxToEm(16px);
   text-transform: uppercase;
 }
 .texto-azul{
@@ -38,14 +70,19 @@ h6, .h6{
   color: #fff;
 }
 
+p.texto-especial{
+  font-size: pxToEm(18px);
+  margin: 2em 0;
+}
+
 .bg-azul{
   background-color: $azul;
 }
 
 .hide-svg{
   visibility: hidden;
-  width: 0px;
-  height: 0px;
+  width: 0;
+  height: 0;
   position: absolute;
   margin-top: -999em;
 }
@@ -129,9 +166,12 @@ figure.foto-bg{
   width: 50px;
   height: 50px;
   margin-right: 1em;
+  flex-shrink: 0;
+
+
 
   &.sin-foto{
-    background-image: url(../img/foto-alumno-back.png);
+    background-image: url(../img/login-sin-foto.png);
   }
 }
 
@@ -192,13 +232,17 @@ figure.foto-bg{
   //line-height: 50px;
   display: block;
   align-self: center;
-  font-size: 18px;
+  font-size: pxToEm(18px);
   font-weight: 700;
   text-align: center;
   text-decoration: none;
   padding: 0.75em 2em;
   background-color: transparent;
   border: 2px solid;
+
+  @include media('<desktop'){
+    font-size: pxToEm(15px);
+  }
 
   .glyphicon{
     //font-size: 14px;
@@ -255,7 +299,7 @@ figure.foto-bg{
 
   .logo-mpt{
     max-width: 280px;
-    width: 85%;
+    width: 75%;
     //margin: 0 auto;
     text-align: center;
   }
@@ -278,18 +322,36 @@ figure.foto-bg{
 
 //Header usuario logeado
 .header-acceso{
+  display: flex;
   justify-content: space-between;
   padding: 1em 0;
   margin: 0 auto;
 
+  @include media('<tablet'){
+    flex-direction: column;
+  }
+
   .marca-container{
     padding-right: 20px;
     text-align: left;
+
+    @include media('<tablet'){
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
     a{
        display: block;
+
       .logo-mpt{
         width: 165px;
       }
+    }
+  }
+
+  &.sin-acceso{
+    .btn-acceder{
+      font-size: 15px
     }
   }
 }
@@ -314,19 +376,33 @@ figure.foto-bg{
   }
 
   .marca-home {
-    width: 85%;
+    width: 75%;
     max-width: 350px;
     margin: 3em auto;
+
+    @include media('<tablet'){
+      max-width: 280px;
+      margin: 2em auto;
+    }
 
     .logo-mpt {
       width: 100%;
     }
   }
 
+  //h1{
+  //  @include media('<tablet'){
+  //    font-size: 20px;
+  //  }
+  //}
+
   .mpt-by{
     margin: 1em auto 5em;
     text-align: center;
-    //align-self: flex-end;
+
+    @include media('<tablet'){
+      margin-bottom: 3em;
+    }
   }
 
   .texto-servicio{
@@ -343,6 +419,10 @@ figure.foto-bg{
 
   .btn-acceder{
     margin: 2em auto;
+
+    @include media('<tablet'){
+      font-size: 15px;
+    }
   }
 
   .login-nav-home{
@@ -350,11 +430,20 @@ figure.foto-bg{
 
     .contenedor-acceso{
       padding: 2em 1.5em 4em;
+
+      @include media('<tablet'){
+        padding: 1.5em;
+      }
     }
 
     .acceso-usuario-container{
       align-self: flex-end;
       margin-left: auto;
+
+      @include media('<tablet'){
+        align-self: center;
+        margin: auto;
+      }
     }
   }
 }
@@ -417,7 +506,12 @@ main.gap-header-acceso{
 
   .foto--seccion-info{
     max-width: 220px;
+    width: 100%;
     margin: 0 auto;
+
+    @include media('<desktop'){
+      max-width: 180px;
+    }
   }
 
   section.info-home{
@@ -439,6 +533,10 @@ main.gap-header-acceso{
   .info--participantes{
     padding: 1em 0;
     margin: 2em auto 1em;
+
+    @include media('<desktop'){
+      margin: 1em auto;
+    }
   }
 
   .btn-banner{
@@ -450,22 +548,39 @@ main.gap-header-acceso{
     padding: 1.5em;
     margin: 1em auto 2em;
 
+    @include media('<desktop'){
+      max-width: 360px;
+      padding: 1em;
+    }
+
     .banner-icono{
       width: 20%;
       max-width: 100px;
       margin-right: 1.5em;
+
+      @include media('<desktop'){
+        margin-right: 0.75em;
+      }
     }
 
     .banner-texto{
       h4{
-        font-size: 21px;
+        font-size: pxToEm(21px);
         margin: 0 0 0.15em;
         font-weight:700;
+
+        @include media('<desktop'){
+          font-size: pxToEm(18px);
+        }
       }
       p{
-        font-size:16px;
+        font-size: pxToEm(16px);
         font-weight:700;
         margin-bottom: 0;
+
+        @include media('<desktop'){
+          font-size: pxToEm(14px);
+        }
       }
     }
 
@@ -494,9 +609,13 @@ main.gap-header-acceso{
   section.info-contacto{
     padding: 2em 0;
 
-    p.especial{
-      font-size: 24px;
-      margin-bottom: 1.5em;
+    p.texto-especial{
+      font-size: pxToEm(24px);
+      margin: 0 auto 1.5em;
+
+      @include media('<desktop'){
+        font-size: pxToEm(18px);
+      }
     }
   }
 }
@@ -670,12 +789,17 @@ button[type="submit"].btn-primary{
 
   .fila-flex{
     justify-content: space-between;
+    flex-flow: row wrap;
   }
 }
 
 .cargar-datos{
   width: 67%;
   padding: 0 0.5em;
+
+  @include media('<desktop'){
+    width: 100%;
+  }
 }
 
   //.titulo-seccion{
@@ -686,11 +810,29 @@ button[type="submit"].btn-primary{
 .datos-fijos{
   width: 30%;
 
+  @include media('<desktop'){
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5em auto 0;
+  }
+  @include media('<tablet'){
+    max-width: 480px;
+    flex-direction: column;
+  }
+
   .foto-alumno{
     width: 220px;
     height: 220px;
     background-image: url(../img/foto-alumno-back.png);
     margin: 0.5em auto;
+
+    @include media('<desktop'){
+      width: 180px;
+      height: 180px;
+    }
+
   }
 
   label.cargar-foto-btn{
@@ -711,6 +853,16 @@ button[type="submit"].btn-primary{
 
   .cargar-foto{
     padding: 0 1.5em;
+
+    @include media('<desktop'){
+      width: 48%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    @include media('<tablet'){
+      width: 100%;
+    }
+
     .error {
       color: $color-error;
       display: none;
@@ -727,6 +879,14 @@ button[type="submit"].btn-primary{
     //border-top: 2px solid $azul;
     //padding: 1.5em;
     margin-top: 3em;
+
+    @include media('<desktop'){
+      width: 48%;
+      margin-top: 1.5em;
+    }
+    @include media('<tablet'){
+      width: 100%;
+    }
   }
 
   .btn-guardar{
@@ -766,15 +926,27 @@ button[type="submit"].btn-primary{
 
 .recu-form{
   padding: 1em 2em;
+
+  @include media('<tablet'){
+    padding: 0;
+  }
 }
 
 .soporte-form{
   padding: 2em 3em;
   margin: 1.5em auto;
+
+  @include media('<tablet'){
+    padding: 1.5em;
+  }
 }
 .contacto-form{
   padding: 2em 3em;
   margin: 1.5em auto 3em;
+
+  @include media('<tablet'){
+    padding: 1.5em;
+  }
 }
 
 //Form Tabs
@@ -794,6 +966,12 @@ button[type="submit"].btn-primary{
       color: #000;
       border-radius: 0;
       margin: 0;
+      height: 100%;
+
+      @include media('<tablet'){
+        font-size: 1em;
+        padding: 0.75em 0.5em;
+      }
 
       &:hover,
       &:focus,
@@ -837,6 +1015,10 @@ button[type="submit"].btn-primary{
   //margin-left: -0.75em;
   text-align: center;
 
+  @include media('<tablet') {
+    padding: 0.5em;
+  }
+
 
   .promedio-titulo{
     color: $celeste;
@@ -851,6 +1033,10 @@ button[type="submit"].btn-primary{
     font-size: (24/14 * 1em);
     font-weight: 700;
     color: #fff;
+
+    @include media('<tablet') {
+      font-size: (20/14 * 1em);
+    }
   }
 }
 
@@ -876,7 +1062,8 @@ button[type="submit"].btn-primary{
   width: 100%;
   //background-color: red;
 
-  ul.lista-alumnos{
+  ul.lista-alumnos,
+  ul.lista-instituciones{
     display: flex;
     flex-flow: row wrap;
     align-items: stretch;
@@ -884,6 +1071,7 @@ button[type="submit"].btn-primary{
     width: 100%;
   }
 
+  li.item,
   li.item-alumno{
     width: 32%;
     margin: 1em (2/3 * 1%);
@@ -894,6 +1082,16 @@ button[type="submit"].btn-primary{
     //justify-content: center;
     //align-items: center;
     transition: background 0.1s 0.2s ease;
+
+    @include media('<desktop'){
+      width: 46%;
+      margin: 1em 1%;
+    }
+    @include media('<tablet') {
+      width: 96%;
+      max-width: 400px;
+      margin: 0.75em auto;
+    }
 
     &::after{
       display: block;
@@ -923,6 +1121,7 @@ button[type="submit"].btn-primary{
     }
   }
 
+  .foto-item,
   .foto-alumno{
     width: 160px;
     height: 160px;
@@ -933,6 +1132,10 @@ button[type="submit"].btn-primary{
     //font-size: 21px;
     //font-weight: 700;
     text-align: center;
+
+    @include media('<desktop'){
+      font-size: 1.3em;
+    }
 
     a{
       color: #000;
@@ -1024,6 +1227,7 @@ button[type="submit"].btn-primary{
 
   &.vista-listado{
 
+    li.item,
     li.item-alumno{
       width: 100%;
       margin: 1em auto;
@@ -1035,6 +1239,16 @@ button[type="submit"].btn-primary{
       justify-content: space-between;
       align-items: flex-start;
 
+      @include media('<desktop'){
+        width: 100%;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 0;
+      }
+      @include media('<tablet') {
+        max-width: 460px;
+        margin: 1em auto;
+      }
+
       &:after{
         //display: contents;
         height: 0;
@@ -1042,13 +1256,26 @@ button[type="submit"].btn-primary{
       }
     }
 
-    .link-foto-alumno{
+    .link-foto-alumno,
+    .foto-no-link{
       align-self: center;
+      flex-shrink: 0;
+
+      @include media('<desktop'){
+        align-self: flex-start;
+      }
     }
+
     .foto-alumno{
       width: 135px;
       height: 135px;
       margin-right: 1.5em;
+
+      @include media('<desktop'){
+        width: 100px;
+        height: 100px;
+        margin-right: 1em;
+      }
     }
 
     .nombre-alumno{
@@ -1060,13 +1287,24 @@ button[type="submit"].btn-primary{
     .datos-alumno{
       display: flex;
       flex-flow: row nowrap;
-      //justify-content: space-between;
+
+      @include media('<desktop'){
+        flex-direction: column;
+      }
 
       .datos-personales{
         width: 39%;
+
+        @include media('<desktop'){
+          width: 100%;
+        }
       }
       .datos-academicos{
         width: 59%;
+
+        @include media('<desktop'){
+          width: 100%;
+        }
       }
 
       span{
@@ -1083,7 +1321,12 @@ button[type="submit"].btn-primary{
       margin-left: auto;
       margin-top: 0;
       flex-direction: column-reverse;
-      //justify-content: space-between;
+
+      @include media('<tablet'){
+        position: absolute;
+        left: 0;
+        bottom: 5px;
+      }
     }
     .promedio{
       text-align: center;
@@ -1109,7 +1352,59 @@ button[type="submit"].btn-primary{
       }
     }
   }
+
+  .item-datos{
+    p{
+      margin-bottom: 0.3em;
+    }
+  }
+
+  ul.lista-2col{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    li.item{
+      width: 48%;
+      margin-left: 0;
+      margin-right: 0;
+      justify-content: flex-start;
+
+      @include media('<desktop') {
+        //max-width: 98%;
+        width: 98%;
+        margin: 0.5em auto;
+        //justify-content: center;
+      }
+      @include media('<tablet') {
+        max-width: 98%;
+       }
+
+      .foto-item{
+        width: 150px;
+        height: 150px;
+        margin-right: 1.5em;
+
+        @include media('<desktop') {
+          width: 100px;
+          height: 100px;
+          margin-right: 1em;
+        }
+      }
+    }
+  }
 }
+
+.foto-item.sin-foto{
+  &.foto-institucion{
+    background-image: url(../img/escuela-sin-foto.png);
+  }
+  &.foto-asociado{
+    background-image: url(../img/asociado-sin-foto.png);
+  }
+}
+
+
 
 //Pagination
 ul.pagination{
@@ -1178,21 +1473,41 @@ ul.pagination{
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 2px solid $azul;
+
+    @include media('<tablet'){
+      flex-flow: row wrap;
+    }
   }
 
   .contenedor-foto{
-    width: 30%
+    width: 30%;
+
+    @include media('<tablet'){
+      width: 100%
+    }
   }
 
   .foto-alumno{
     width: 220px;
     height: 220px;
     margin: 1.5em auto;
+
+    @include media('<desktop'){
+      width: 180px;
+      height: 180px;
+    }
   }
 
   .info-alumno{
     width: 55%;
     margin-bottom: 1.5em;
+
+    @include media('<tablet'){
+      width: 74%
+    }
+    @include media('<tel-grande'){
+      width: 100%
+    }
   }
 
   .datos-alumno{
@@ -1203,11 +1518,35 @@ ul.pagination{
 
   .promedio{
     padding: 1em;
+
+    @include media('<desktop'){
+      padding: 0.75em 0.5em;
+    }
+    @include media('<tablet'){
+      width: 24%
+    }
+    @include media('<tel-grande'){
+      width: 100%
+    }
+  }
+
+  .fila-flex{
+    @include media('<tablet'){
+      flex-direction: column;
+    }
   }
 
   .info-contactos{
     width: 30%;
     margin-right: 1.5em;
+
+    @include media('<desktop'){
+      width: 40%;
+      margin-right: 0.75em;
+    }
+    @include media('<tablet'){
+      width: 100%;
+    }
 
     section{
       //background-color: $gris-claro;
@@ -1249,6 +1588,13 @@ ul.pagination{
   .info-detalle{
     width: 65%;
     padding: 1.5em 0.5em;
+
+    @include media('<desktop'){
+      width: 60%;
+    }
+    @include media('<tablet'){
+      width: 100%;
+    }
 
     section{
       margin-bottom: 1em;
@@ -1510,6 +1856,13 @@ a.btn-cerrar{
     padding: 2em;
     transform: translate(100%, 0);
     transition: transform 0.2s ease-out;
+
+    @include media('<desktop'){
+      width: 50%;
+    }
+    @include media('<tablet'){
+      width: 80%;
+    }
   }
 
   .filtros-contenido{
@@ -1712,8 +2065,14 @@ footer.pie-pagina{
 
   .logo-mpt{
     max-width: 195px;
-    //fill: #fff;
   }
+
+  .marca-container{
+    @include media('<tablet'){
+      text-align: center;
+    }
+  }
+
   .mpt-by{
     .texto-servicio{
       font-size: 0.85em;
@@ -1727,14 +2086,25 @@ footer.pie-pagina{
       //display: inline-block;
       //background: transparent url(../img/logo-uibb-blanco.png) no-repeat center right /cover;
     }
+
+    @include media('<tablet'){
+      text-align: center;
+    }
   }
 
+
+
   .nav-list{
+
     li{
       padding: 0;
       &::before{
         content: "|";
         padding: 0 0.5em;
+
+        @include media('<tablet'){
+          padding: 0 0.2em;
+        }
       }
 
       &:first-child{
@@ -1746,6 +2116,17 @@ footer.pie-pagina{
 
     &.menu-principal{
       margin-top: 4.5em;
+
+      @include media('<tablet'){
+        margin-top: 2em;
+      }
+    }
+  }
+
+  .text-right,
+  .text-left{
+    @include media('<tablet'){
+      text-align: center;
     }
   }
 }
