@@ -35,7 +35,7 @@
                 @if (!$nuevo)
                 {{-- Si esta editando: boton eliminar --}}
                     <div class="col-xs-3 col-sm-2 col-md-offset-7 col-sm-offset-5 col-xs-offset-3">
-                        <a id="eliminar" href="{{ route('alumnos.delete_get',['id'=>$id]) }}" class="link-nav-listado">
+                        <a id="eliminar" href="#" class="link-nav-listado" data-toggle="modal" data-target="#confirmarEliminar">
                             <span class="glyphicon glyphicon-trash"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Eliminar</span>
                         </a>
@@ -355,4 +355,7 @@
         </article> {{-- ./cargar-alumno --}}
     </div> {{-- ./container --}}
     @include('layouts.spinner')
+
+    @include('alumnos.modal_eliminar',['alumno'=>$alumno])
+
 @endsection

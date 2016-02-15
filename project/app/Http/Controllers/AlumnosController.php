@@ -36,7 +36,8 @@ class AlumnosController extends Controller
                 'fotos' => asset(Alumno::$image_path),
                 'show' => route('alumnos.show'),
                 'edit' => route('alumnos.edit'),
-                'search' => route('alumnos.search')
+                'search' => route('alumnos.search'),
+                'delete' => route('alumnos.delete')
             ],
             'escuelas' => $escuelas
         ];
@@ -97,7 +98,7 @@ class AlumnosController extends Controller
         // Ordenamiento
         $this->lista_ordenamiento($request,$query);
 
-        return $query->paginate(5); // retorna JSON automáticamente, paginando el resultado
+        return $query->paginate(21); // retorna JSON automáticamente, paginando el resultado
     }
 
     private function lista_filtros($request,&$where_array) {
@@ -395,12 +396,27 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id = null)
+    public function destroy(Request $request, $id = null)
     {
         if (!$id) {
             return redirect()->route('alumnos.listado');
         }
-        return response()->json(['status' => 'ok','accion'=> 'delete alumno']);
+        $alumno = Alumno::find($id);
+        if (!$alumno) {
+            return redirect()->route('alumnos.listado');
+        }
+        // autorizo accion (solo para escuela de ese alumno)
+        if (Gate::denies('edit-alumno', $alumno)) {
+            return response('No autorizado', 403);
+        }
+        $alumno->delete();
+
+        if ($request->ajax()) {
+            return response()->json(['status' => 'ok']);
+        }
+        else {
+            return redirect()->route('alumnos.listado');
+        }
     }
 
     /************************************************************************************

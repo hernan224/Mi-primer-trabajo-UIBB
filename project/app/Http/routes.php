@@ -71,8 +71,7 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
         Route::post('/alumno/nuevo','AlumnosController@store')->name('nuevo_post');
         Route::get('/alumno/edit/{id?}','AlumnosController@edit')->name('edit');
         Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
-        Route::delete('/alumno/{id}','AlumnosController@destroy')->name('delete');
-        Route::get('/alumno/delete/{id?}','AlumnosController@destroy')->name('delete_get');
+        Route::get('/alumno/delete/{id?}','AlumnosController@destroy')->name('delete');
 
     });
 

@@ -23,7 +23,8 @@
             fotos : "{{$urls['fotos']}}",
             show : "{{$urls['show']}}",
             edit : "{{$urls['edit']}}",
-            search : "{{$urls['search']}}"
+            search : "{{$urls['search']}}",
+            delete: "{{$urls['delete']}}"
         };
     </script>
 @endsection
@@ -152,7 +153,7 @@
                 {{-- Template handlebars: elemento de la lista (alumno). Por JS se procesa este script y se renderiza con los datos --}}
                 <script id="template-alumno" type="text/x-handlebars-template">
                     @{{#each alumnos}}
-                    <li class="item-alumno">
+                    <li class="item-alumno" data-id="@{{id}}">
                         <a class="link-foto-alumno" href="{{$urls['show']}}/@{{id}}">
                             @{{#if foto}}
                                 {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
@@ -211,8 +212,8 @@
                                    data-placement="bottom" title="Editar alumno">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip"
-                                   data-placement="bottom" title="Eliminar alumno" data-target="#confirmarEliminar">
+                                <a href="#" class="btn btn-default btn-eliminar eliminar-alumno" data-toggle="tooltip"
+                                   data-placement="bottom" title="Eliminar alumno" data-id="@{{id}}">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
                             @else
@@ -326,28 +327,8 @@
         </div> {{-- .filtros-contendor --}}
     </div>
 
-    {{-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE ALUMNO --}}
     @if (Auth::user()->puedeEditar())
-        <div class="modal estilo-modal-bg fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminación">
-            <div class="modal-dialog">
-                <div class="modal-content estilo-modal-container">
-                    <div class="modal-header">
-                        <a href="#ToDo" class="btn-cerrar close" data-dismiss="modal" aria-label="Close">Cerrar</a>
-                        <h4 class="modal-title texto-azul">Confirmar eliminación</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Está seguro que quiere eliminar el siguiente alumno?</p>
-                        <ul class="alumnos-eliminados">
-                            <li>Nombre alumno</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
-                        <button type="button" class="btn btn-primary">SI</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('alumnos.modal_eliminar');
     @endif
 
 @endsection

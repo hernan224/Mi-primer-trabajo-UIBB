@@ -46,7 +46,7 @@
                         </a>
                     </div> {{-- btn editar --}}
                     <div class="col-xs-2 col-sm-2">
-                        <a id="eliminar" href="{{ route('alumnos.delete_get',['id'=>$id]) }}" class="link-nav-listado">
+                        <a id="eliminar" href="#" class="link-nav-listado" data-toggle="modal" data-target="#confirmarEliminar">
                             <span class="glyphicon glyphicon-trash"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Eliminar</span>
                         </a>
@@ -221,4 +221,7 @@
         </article> {{-- /.alumno-individual --}}
     </div>
 
+    @if (Auth::user()->puedeEditar())
+        @include('alumnos.modal_eliminar',['alumno'=>$alumno])
+    @endif
 @endsection

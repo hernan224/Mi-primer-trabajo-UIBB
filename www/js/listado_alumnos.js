@@ -4944,6 +4944,7 @@ $(function () {
 
     bindBusqueda();
 
+    bindEliminar();
 });
 
 function handlebarsHelpers() {
@@ -5165,6 +5166,31 @@ function bindBusqueda() {
         {
             $listaBusqueda.hide();
         }
+    });
+}
+
+function bindEliminar() {
+    var $modal = $('#confirmarEliminar.modal');
+
+    $lista.on('click', '.eliminar-alumno', function() {
+        var id = $(this).data('id');
+        $modal.modal('show');
+
+        $modal.find('#confirmar-eliminar').data('id',id);
+    });
+
+    $modal.find('#confirmar-eliminar').click(function() {
+        var id = $(this).data('id');
+        $.ajax({
+            url: urls.delete +'/'+id,
+            type: 'GET',
+        })
+        .done(function() {
+            $lista.find('.item-alumno[data-id="'+id+'"]').remove();
+        })
+        .always(function() {
+            $modal.modal('hide');
+        });
     });
 }
 //# sourceMappingURL=listado_alumnos.js.map
