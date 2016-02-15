@@ -866,6 +866,9 @@ button[type="submit"].btn-primary{
   span{
     margin: 0.5em 0;
     display: inline-block;
+    &.escuela,&.especialidad {
+      display: block;
+    }
   }
   strong{
     display: block;
@@ -877,8 +880,28 @@ button[type="submit"].btn-primary{
 .contenedor-lista{
   margin: 1.5em auto 0;
   padding: 1.5em 0;
-  width: 100%;
-  //background-color: red;
+  // width: 100%;
+
+  div.spinner,div.error {
+    display: none;
+  }
+
+  &.loading {
+    div.spinner {
+      display: block;
+    }
+    ul.lista-alumnos {
+      display: none;
+    }
+    ul.pagination {
+      display: none;
+    }
+  }
+  &.error-get {
+    div.error {
+      display: block;
+    }
+  }
 
   ul.lista-alumnos{
     display: flex;
@@ -1083,7 +1106,7 @@ button[type="submit"].btn-primary{
     }
 
     .ultimo-bloque{
-      align-self: flex-end;
+      align-self: center;
       margin-left: auto;
       margin-top: 0;
       flex-direction: column-reverse;
@@ -1102,16 +1125,20 @@ button[type="submit"].btn-primary{
     .btn-acciones{
       align-self: center;
     }
+  }
 
-    &.backend{
-      .ultimo-bloque{
-        align-self: center;
-      }
+  &.vista-empresa{
 
-      .checkbox{
-        padding: 0 1em;
-      }
-    }
+    // .ultimo-bloque{
+    //   align-self: center;
+    // }
+
+    // .checkbox{
+    //   padding: 0 1em;
+    // }
+  }
+  &.vista-escuela {
+
   }
 }
 

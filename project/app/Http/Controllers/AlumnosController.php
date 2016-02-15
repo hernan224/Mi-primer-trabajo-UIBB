@@ -25,6 +25,21 @@ class AlumnosController extends Controller
     }
 
     /**
+     * Muestra pantalla listado de alumnos (sin data)
+     */
+    public function showListado() {
+        $view_data = [
+            'urls' => [
+                'get_list' =>  route('alumnos.lista'),
+                'fotos' => asset(Alumno::$image_path),
+                'show' => route('alumnos.show'),
+                'edit' => route('alumnos.edit')
+            ]
+        ];
+        return view('alumnos.listado',$view_data);
+    }
+
+    /**
      * Lista de alumnos [JSON]
      * Si usuario es empresa o admin, se listan todos
      * Si usuario es escuela se listan sólo los de la escuela
@@ -42,8 +57,9 @@ class AlumnosController extends Controller
     public function lista(Request $request)
     {
         $select_array = [
-            'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento','alumnos.localidad','alumnos.barrio',
-            'escuelas.name as escuela',
+            'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento',
+            'alumnos.localidad','alumnos.barrio','alumnos.foto','alumnos.sexo',
+            'escuelas.id as escuela_id', 'escuelas.name as escuela',
             'users.name as docente',
             'curriculums.especialidad','curriculums.promedio','curriculums.updated_at',
         ];
@@ -97,9 +113,9 @@ class AlumnosController extends Controller
             $where_array[] = ['curriculums.especialidad','LIKE','%'.$especialidad.'%'];
         }
 
-        $escuela = trim(filter_var($request->query('esc'),FILTER_SANITIZE_STRING));
-        if ($escuela) {
-            $where_array[] = ['escuelas.name','LIKE','%'.$escuela.'%'];
+        $escuela_id = $request->query('esc');
+        if ($escuela_id && is_numeric($escuela_id)) {
+            $where_array[] = ['escuelas.id',$escuela_id];
         }
 
         $localidad = trim(filter_var($request->query('loc'),FILTER_SANITIZE_STRING));
@@ -181,8 +197,11 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = null)
     {
+        if (!$id) {
+            return redirect()->route('alumnos.listado');
+        }
         $alumno = Alumno::find($id);
         if (!$alumno) {
             return redirect()->route('alumnos.listado');
@@ -261,8 +280,11 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = null)
     {
+        if (!$id) {
+            return redirect()->route('alumnos.listado');
+        }
         $alumno = Alumno::find($id);
         if (!$alumno) {
             return redirect()->route('alumnos.listado');
@@ -325,8 +347,11 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id = null)
     {
+        if (!$id) {
+            return redirect()->route('alumnos.listado');
+        }
         return response()->json(['status' => 'ok','accion'=> 'delete alumno']);
     }
 

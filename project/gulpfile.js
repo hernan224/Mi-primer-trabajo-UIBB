@@ -20,16 +20,23 @@ elixir.config.assetsPath = src;
 elixir.config.css.sass.folder = 'scss';
 
 elixir(function(mix) {
-    // compilacion scss
-    mix.sass('estilos.scss')
     //  validacion js
-    .jshint( [src+'/js/*.js'] )
+    mix.jshint( [src+'/js/*.js'] )
+    // compilacion scss
+    .sass('estilos.scss')
     //  concatenacion y copia js
-    .scripts(['main.js','app.js'], dest+'/js/main.js')
+    //  script principal, incluido en la base (es decir, en todas las paginas)
+    .scripts(['main.js'], dest+'/js/main.js')
+    // script formulario creacion/edicion
     .scripts(
         ['vendor/moment.min.js','vendor/moment.locale.es.js','vendor/bootstrap-datetimepicker.min.js',
         'vendor/jquery.bootstrap-touchspin.min.js','form_alumno.js'],
         dest+'/js/form_alumno.js'
+    )
+    // script listado
+    .scripts(
+        ['vendor/moment.min.js','vendor/handlebars-v4.0.5.js','listado_alumnos.js'],
+        dest+'/js/listado_alumnos.js'
     )
     // copio css sueltos
     .copy(src+'/css/vendor', dest+'/css/vendor')

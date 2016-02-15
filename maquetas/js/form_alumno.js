@@ -1,3 +1,4 @@
+// Script para formulario de creación/edición de alumno
 $(function () {
     //Inicializar datepicker
     var calendario = $('#nacimiento');
@@ -47,8 +48,8 @@ $(function () {
 
     // si tiene texto al cargar la pagina, agregar clase cargado (formulario con la data cargada)
     $inputsAlumno.each(function(index, el) {
-        if ($(this).val()) {
-            $(this).closest('.form-group').addClass('cargado');
+        if ($(el).val()) {
+            $(el).closest('.form-group').addClass('cargado');
         }
     });
 

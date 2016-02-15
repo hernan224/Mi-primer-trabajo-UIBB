@@ -54,9 +54,7 @@ Route::group(['middleware' => 'web'], function () {
 Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
     // Listado de alumnos (sólo renderiza pantalla)
-    Route::get('/listado-alumnos',function () {
-        return view('alumnos.listado');
-    })->name('listado');
+    Route::get('/listado-alumnos','AlumnosController@showListado')->name('listado');
 
     // GET lista alumnos (resp JSON)
     // Si es escuela devuelve alumnos de la escuela, si no todos
@@ -68,15 +66,15 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
         Route::get('/alumno/nuevo','AlumnosController@nuevo')->name('nuevo');
         Route::post('/alumno/nuevo','AlumnosController@store')->name('nuevo_post');
-        Route::get('/alumno/{id}/edit','AlumnosController@edit')->name('edit');
+        Route::get('/alumno/edit/{id?}','AlumnosController@edit')->name('edit');
         Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
         Route::delete('/alumno/{id}','AlumnosController@destroy')->name('delete');
-        Route::get('/alumno/{id}/delete','AlumnosController@destroy')->name('delete_get');
+        Route::get('/alumno/delete/{id?}','AlumnosController@destroy')->name('delete_get');
 
     });
 
     // GET pantalla alumno
-    Route::get('/alumno/{id}','AlumnosController@show')->name('show');
+    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
 
 });
 

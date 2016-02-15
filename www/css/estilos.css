@@ -609,14 +609,25 @@ button[type="submit"].btn-primary {
 .datos-alumno span {
   margin: 0.5em 0;
   display: inline-block; }
+  .datos-alumno span.escuela, .datos-alumno span.especialidad {
+    display: block; }
 
 .datos-alumno strong {
   display: block; }
 
 .contenedor-lista {
   margin: 1.5em auto 0;
-  padding: 1.5em 0;
-  width: 100%; }
+  padding: 1.5em 0; }
+  .contenedor-lista div.spinner, .contenedor-lista div.error {
+    display: none; }
+  .contenedor-lista.loading div.spinner {
+    display: block; }
+  .contenedor-lista.loading ul.lista-alumnos {
+    display: none; }
+  .contenedor-lista.loading ul.pagination {
+    display: none; }
+  .contenedor-lista.error-get div.error {
+    display: block; }
   .contenedor-lista ul.lista-alumnos {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -761,9 +772,9 @@ button[type="submit"].btn-primary {
     .contenedor-lista.vista-listado .datos-alumno strong {
       display: inline; }
   .contenedor-lista.vista-listado .ultimo-bloque {
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
     margin-left: auto;
     margin-top: 0;
     -webkit-flex-direction: column-reverse;
@@ -779,12 +790,6 @@ button[type="submit"].btn-primary {
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center; }
-  .contenedor-lista.vista-listado.backend .ultimo-bloque {
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center; }
-  .contenedor-lista.vista-listado.backend .checkbox {
-    padding: 0 1em; }
 
 ul.pagination {
   border-radius: 0; }

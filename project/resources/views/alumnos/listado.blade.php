@@ -16,17 +16,14 @@
 @section('scripts')
     @parent
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.5/bootstrap-slider.min.js'></script>
-    <script type="text/javascript">
-        $(function () {
-            //Inicializar slider filtro promedio
-            $("#filtroPromedio").slider({
-                handle: 'triangle',
-                tooltip_position: 'bottom',
-                tooltip: 'always',
-                tooltip_split: true,
-                id: 'rangoPromedio'
-            });
-        });
+    <script src="{{ url('js/listado_alumnos.js') }}"></script>
+    <script>
+        var urls = {
+            list : "{{$urls['get_list']}}",
+            fotos : "{{$urls['fotos']}}",
+            show : "{{$urls['show']}}",
+            edit : "{{$urls['edit']}}"
+        };
     </script>
 @endsection
 
@@ -123,6 +120,123 @@
                 </div>
             </div>
         </nav>
+        {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
+            Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
+        <div id="contenedorLista" class="container contenedor-lista loading vista-listado {{ (Auth::user()->puedeEditar()) ? 'vista-escuela' : 'vista-empresa' }}">
+            <div class="spinner text-center">
+                <strong>Cargando...</strong>
+            </div>
+            <div class="error text-center">
+                <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o intente de nuevo más tarde.</strong>
+            </div>
+
+            <ul class="list-unstyled lista-alumnos">
+                {{-- Template handlebars: elemento de la lista (alumno). Por JS se procesa este script y se renderiza con los datos --}}
+                <script id="template-alumno" type="text/x-handlebars-template">
+                    @{{#each alumnos}}
+                    <li class="item-alumno">
+                        <a class="link-foto-alumno" href="{{$urls['show']}}/@{{id}}">
+                            @{{#if foto}}
+                                {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
+                                <figure class="foto-bg foto-alumno" style="background-image: url('{{$urls['fotos']}}/@{{foto}}');"></figure>
+                            @{{else}}
+                                {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
+                                <figure class="foto-bg foto-alumno sin-foto @{{#if_eq sexo 'm'}}masculino@{{else}}femenino@{{/if_eq}}"></figure>
+                            @{{/if}}
+                        </a>
+
+                        <div class="info-alumno">
+                            <h4 class="nombre-alumno">
+                                <a href="{{$urls['show']}}/@{{id}}">@{{nombre}} @{{apellido}}</a>
+                            </h4>
+
+                            <div class="datos-alumno">
+                                <div class="datos-personales">
+                                @if (Auth::user()->hasRole('escuela'))
+                                    <span class="fec-nac">
+                                        <strong>Creado/Editado:</strong> @{{format_date updated_at}}
+                                    </span>
+                                    <span class="edad">
+                                        <strong>Docente:</strong> @{{docente}}
+                                    </span>
+                                @else
+                                    <span class="fec-nac">
+                                        <strong>Fecha de Nac.:</strong> @{{format_date nacimiento}}
+                                    </span>
+                                    <span class="edad">
+                                        <strong>Edad:</strong> @{{edad nacimiento}} años
+                                    </span>
+                                    <span class="localidad">
+                                        <strong>Localidad:</strong> @{{localidad}}
+                                    </span>
+                                @endif
+                                </div>
+                                <div class="datos-academicos">
+                                    <span class="escuela">
+                                        <strong>Servicio Educativo:</strong> @{{escuela}}
+                                    </span>
+                                    <span class="especialidad">
+                                        <strong>Especialidad:</strong> @{{especialidad}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ultimo-bloque">
+                            <div class="promedio">
+                                <strong class="promedio-titulo">Promedio </strong>
+                                <span class="promedio-valor">@{{format_decimal promedio}}</span>
+                            </div>
+                            <div class="btn-acciones">
+                            @if (Auth::user()->hasRole('escuela'))
+                                <a href="{{$urls['edit']}}/@{{id}}" class="btn btn-default btn-editar" data-toggle="tooltip"
+                                   data-placement="bottom" title="Editar alumno">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                                <a href="#" class="btn btn-default btn-eliminar" data-toggle="tooltip"
+                                   data-placement="bottom" title="Eliminar alumno" data-target="#confirmarEliminar">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </a>
+                            @else
+                                <a href="#ToDo" class="btn btn-default btn-descargar" data-toggle="tooltip"
+                                   data-placement="bottom" title="Descargar CV como PDF">
+                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                </a>
+                                <a href="#ToDo" class="btn btn-default btn-imprimir" data-toggle="tooltip"
+                                   data-placement="bottom" title="Imprimir CV">
+                                   <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                                </a>
+                            @endif
+                            </div>
+                        </div>
+
+                    </li>
+                    @{{/each}}
+                </script>
+
+            </ul>
+
+            <nav class="center-flex">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true"><span class="glyphicon glyphicon-menu-left"></span></span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true"><span class="glyphicon glyphicon-menu-right"></span></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div> {{-- #contenedorLista --}}
+
 
 
         {{-- MODAL FILTROS --}}
@@ -144,13 +258,7 @@
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Especialidad</h5>
-                    <select class="form-control select-filtro" name="filtro[especialidad]">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                    <input type='text' class="form-control select-filtro" name="filtro[especialidad]"/>
                 </div>
 
                 <div class="modulo-filtro">
@@ -166,20 +274,9 @@
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Localidad</h5>
-                    <select class="form-control select-filtro filtro-localidad" name="filtro[localidad]">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <select class="form-control select-filtro filtro-barrio" name="filtro[barrio]">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                    <input type='text' class="form-control select-filtro filtro-localidad" name="filtro[localidad]"/>
+                    <h5 class="text-uppercase texto-azul">Barrio</h5>
+                    <input type='text' class="form-control select-filtro filtro-barrio" name="filtro[barrio]"/>
                 </div>
 
                 <div class="modulo-filtro">
@@ -227,8 +324,7 @@
                 </div> <!--.modulo-filtro-->
 
             </div> <!--.filtros-contenido-->
-
-        </div> <!--.filtros-contendor-->
+        </div> {{-- .filtros-contendor --}}
     </div>
 
     {{-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE ALUMNO --}}
