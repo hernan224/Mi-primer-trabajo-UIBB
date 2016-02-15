@@ -35,7 +35,8 @@ elixir(function(mix) {
     )
     // script listado
     .scripts(
-        ['vendor/moment.min.js','vendor/handlebars-v4.0.5.js','listado_alumnos.js'],
+        ['vendor/moment.min.js','vendor/handlebars-v4.0.5.js','vendor/jquery.twbsPagination.js',
+        'listado_alumnos.js'],
         dest+'/js/listado_alumnos.js'
     )
     // copio css sueltos

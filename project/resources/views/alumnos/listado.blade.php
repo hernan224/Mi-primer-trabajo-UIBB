@@ -123,9 +123,7 @@
         {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
             Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
         <div id="contenedorLista" class="container contenedor-lista loading vista-listado {{ (Auth::user()->puedeEditar()) ? 'vista-escuela' : 'vista-empresa' }}">
-            <div class="spinner text-center">
-                <strong>Cargando...</strong>
-            </div>
+            @include('layouts.spinner')
             <div class="error text-center">
                 <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o intente de nuevo más tarde.</strong>
             </div>
@@ -217,27 +215,9 @@
             </ul>
 
             <nav class="center-flex">
-                <ul class="pagination">
-                    <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true"><span class="glyphicon glyphicon-menu-left"></span></span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true"><span class="glyphicon glyphicon-menu-right"></span></span>
-                        </a>
-                    </li>
-                </ul>
+                <ul id="paginado" class="pagination"></ul>
             </nav>
         </div> {{-- #contenedorLista --}}
-
-
 
         {{-- MODAL FILTROS --}}
         <div class="filtros-bg estilo-modal-bg cerrar-filtros">

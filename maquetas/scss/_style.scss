@@ -168,10 +168,14 @@ figure.foto-bg{
   margin-right: 1em;
   flex-shrink: 0;
 
-
-
   &.sin-foto{
     background-image: url(../img/login-sin-foto.png);
+    &.foto-institucion{
+      background-image: url(../img/escuela-sin-foto.png);
+    }
+    &.foto-asociado{
+      background-image: url(../img/asociado-sin-foto.png);
+    }
   }
 }
 
@@ -1068,12 +1072,12 @@ button[type="submit"].btn-primary{
   padding: 1.5em 0;
   // width: 100%;
 
-  div.spinner,div.error {
+  div.error {
     display: none;
   }
 
   &.loading {
-    div.spinner {
+    .spinner-container {
       display: block;
     }
     ul.lista-alumnos {
@@ -1425,16 +1429,6 @@ button[type="submit"].btn-primary{
     }
   }
 }
-
-.foto-item.sin-foto{
-  &.foto-institucion{
-    background-image: url(../img/escuela-sin-foto.png);
-  }
-  &.foto-asociado{
-    background-image: url(../img/asociado-sin-foto.png);
-  }
-}
-
 
 
 //Pagination

@@ -53,7 +53,7 @@
         @else
             @include('layouts.footer', ['home' => false ])
         @endif
-        </div>  {{-- /container --}}
+    </div>  {{-- /container --}}
 
     {{-- Incluyo scripts --}}
     @yield('scripts')

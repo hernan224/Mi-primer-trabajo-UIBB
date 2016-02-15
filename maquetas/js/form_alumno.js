@@ -59,6 +59,11 @@ $(function () {
 
     // Vista previa imagen de perfil
     imgPreview("input#cargarFoto","figure#foto-preview");
+
+    // mostrar spinner
+    $('form').submit(function() {
+        $('.spinner-container').show();
+    });
 });
 
 function imgPreview(input_selector,preview_selector) {

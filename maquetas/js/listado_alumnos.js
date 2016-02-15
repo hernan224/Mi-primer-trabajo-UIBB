@@ -6,9 +6,10 @@
 /* global Handlebars */
 /* global moment */
 /* global urls */
-var template_alumno, $lista;
+var template_alumno, $lista, $paginado, actual_page = 1;
 $(function () {
     $lista = $('#contenedorLista ul.lista-alumnos');
+    $paginado =  $('#contenedorLista #paginado');
     // compilo template
     handlebarsHelpers();
     var $templateAlumno = $lista.find('#template-alumno');
@@ -16,7 +17,7 @@ $(function () {
     $templateAlumno.remove();
 
     // obtengo del server llista de alumnos y renderizo
-    cargarAlumnos();
+    getAlumnos(); // inicialmente setea paginado
 
     /* Bindeo de eventos */
 
@@ -57,9 +58,9 @@ $(function () {
     });
 });
 
-// en html se setea url_list: url para hacer get
+// en html se setea urls[lists]: url para hacer get
 // params: filtros u ordenamiento
-function cargarAlumnos(pag,order,filtros) {
+function getAlumnos(pag,order,filtros) {
     var $container = $('#contenedorLista');
     $container.addClass('loading');
     $container.removeClass('error-get');
@@ -82,6 +83,7 @@ function cargarAlumnos(pag,order,filtros) {
     })
     .done(function(resp) {
         renderLista(resp);
+        actual_page = resp.current_page;
         $container.removeClass('loading');
     })
     .fail(function() {
@@ -95,8 +97,19 @@ function renderLista(resp) {
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
 
-
-    console.log(resp);
+    $paginado.twbsPagination({
+        totalPages: resp.last_page,
+        visiblePages: 5,
+        start_page: resp.current_page,
+        first: false,
+        last: false,
+        prev: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-left"></span></span>',
+        next: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-right"></span></span>',
+        onPageClick: function (event, page) {
+            // consultar si hay filtros u ordenamiento actual
+            getAlumnos(page);
+        }
+    });
 }
 
 function handlebarsHelpers() {

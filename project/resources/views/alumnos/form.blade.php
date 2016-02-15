@@ -354,5 +354,5 @@
             {{ Form::close() }} {{-- .fila-flex --}}
         </article> {{-- ./cargar-alumno --}}
     </div> {{-- ./container --}}
-
+    @include('layouts.spinner')
 @endsection

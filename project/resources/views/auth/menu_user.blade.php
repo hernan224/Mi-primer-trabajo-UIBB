@@ -2,7 +2,7 @@
 @if (Auth::check())
 <div class="acceso-usuario-container dropdown">
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        {{-- <figure class="foto-bg foto-usuario sin-foto"></figure> --}}
+        <figure class="foto-bg foto-usuario sin-foto {{Auth::user()->hasRole('escuela') ? 'foto-institucion' : 'foto-asociado'}}"></figure>
         <h5 class="nombre-usuario {{ $home ? 'texto-blanco' : ''}}">
         @if (Auth::user()->hasRole('escuela'))
             <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
