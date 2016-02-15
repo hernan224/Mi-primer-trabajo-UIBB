@@ -5,3 +5,10 @@
   &:-ms-input-placeholder { @content; }
   &::-webkit-input-placeholder { @content; }
 }
+
+@mixin h-font($f-size){
+  font-size: pxToEm($f-size);
+  @include media('<desktop'){
+    font-size: pxToEm($f-size * 0.8);
+  }
+}
