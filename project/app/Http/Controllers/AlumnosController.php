@@ -10,6 +10,7 @@ use App\Http\Requests\PostAlumnoRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Curriculum;
+use App\Models\Escuela;
 
 // Actions para listado, carga, edicion y eliminación de CVs de alumnos.
 class AlumnosController extends Controller
@@ -28,13 +29,15 @@ class AlumnosController extends Controller
      * Muestra pantalla listado de alumnos (sin data)
      */
     public function showListado() {
+        $escuelas = Escuela::all();
         $view_data = [
             'urls' => [
                 'get_list' =>  route('alumnos.lista'),
                 'fotos' => asset(Alumno::$image_path),
                 'show' => route('alumnos.show'),
                 'edit' => route('alumnos.edit')
-            ]
+            ],
+            'escuelas' => $escuelas
         ];
         return view('alumnos.listado',$view_data);
     }
@@ -142,42 +145,42 @@ class AlumnosController extends Controller
     private function lista_ordenamiento($request,$query) {
         $ordenamiento = $request->query('order');
 
-        if ($ordenamiento == 'fecha')
+        if ($ordenamiento == 'fecha_asc')
             $query->orderBy('curriculums.updated_at','ASC');
         else if ($ordenamiento == 'fecha_desc')
             $query->orderBy('curriculums.updated_at','DESC');
 
-        else if ($ordenamiento == 'prom')
+        else if ($ordenamiento == 'prom_asc')
             $query->orderBy('curriculums.promedio','ASC');
         else if ($ordenamiento == 'prom_desc')
             $query->orderBy('curriculums.promedio','DESC');
 
-        else if ($ordenamiento == 'esp')
+        else if ($ordenamiento == 'esp_asc')
             $query->orderBy('curriculums.especialidad','ASC');
         else if ($ordenamiento == 'esp_desc')
             $query->orderBy('curriculums.especialidad','DESC');
 
-        else if ($ordenamiento == 'esc')
+        else if ($ordenamiento == 'esc_asc')
             $query->orderBy('escuela','ASC');
         else if ($ordenamiento == 'esc_desc')
             $query->orderBy('escuela','DESC');
 
-        else if ($ordenamiento == 'doc')
+        else if ($ordenamiento == 'doc_asc')
             $query->orderBy('docente','ASC');
         else if ($ordenamiento == 'doc_desc')
             $query->orderBy('docente','DESC');
 
-        else if ($ordenamiento == 'nac')
+        else if ($ordenamiento == 'nac_asc')
             $query->orderBy('alumnos.nacimiento','ASC');
         else if ($ordenamiento == 'nac_desc')
             $query->orderBy('alumnos.nacimiento','DESC');
 
-        else if ($ordenamiento == 'loc')
+        else if ($ordenamiento == 'loc_asc')
             $query->orderBy('alumnos.localidad','ASC');
         else if ($ordenamiento == 'loc_desc')
             $query->orderBy('alumnos.localidad','DESC');
 
-        else if ($ordenamiento == 'bar')
+        else if ($ordenamiento == 'bar_asc')
             $query->orderBy('alumnos.barrio','ASC');
         else if ($ordenamiento == 'bar_desc')
             $query->orderBy('alumnos.barrio','DESC');

@@ -73,26 +73,31 @@
 
                             <div id="contenedorOrdenar" class="contenedor-ordenar dropdown-menu"
                                  aria-labelledby="dropOrdenar">
-                                <form action="#" class="form-ordenar">
-                                    <select class="form-control select-ordenar" name="ordenar">
-                                        <option>Fecha</option>
-                                        <option>Promedio</option>
-                                        <option>Nombre</option>
-                                        <option>Especialidad</option>
-                                        <option>Docente</option>
-                                    </select>
+                                <select class="form-control select-ordenar">
+                                    <option value="ape">Apellido</option>
+                                    <option value="fecha">Fecha</option>
+                                    <option value="prom">Promedio</option>
+                                    <option value="esp">Especialidad</option>
+                                    <option value="nac">Edad</option>
+                                    <option value="loc">Localidad</option>
+                                    <option value="bar">Barrio</option>
+                                @if (Auth::user()->hasRole('escuela'))
+                                    <option value="doc">Docente</option>
+                                @else
+                                    <option value="esc">Escuela</option>
+                                @endif
+                                </select>
 
-                                    <div class="modo-orden text-center">
-                                        <label class="radio-inline ordenar-asc">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                            <span class="sr-only">ASC</span><span class="glyphicon glyphicon-sort-by-alphabet"></span>
-                                        </label>
-                                        <label class="radio-inline ordenar-dsc">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <span class="sr-only">DSC</span><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
-                                        </label>
-                                    </div>
-                                </form> {{-- form.form-ordenar --}}
+                                <div class="modo-orden text-center">
+                                    <label class="radio-inline ordenar-asc">
+                                        <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="asc" checked>
+                                        <span class="sr-only">ASC</span><span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                                    </label>
+                                    <label class="radio-inline ordenar-dsc">
+                                        <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="desc">
+                                        <span class="sr-only">DESC</span><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                                    </label>
+                                </div>
 
                             </div> {{-- ./dropdown-menu --}}
                         </div> {{-- .dropdown --}}
@@ -122,7 +127,7 @@
         </nav>
         {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
             Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
-        <div id="contenedorLista" class="container contenedor-lista loading vista-listado {{ (Auth::user()->puedeEditar()) ? 'vista-escuela' : 'vista-empresa' }}">
+        <div id="contenedorLista" class="container contenedor-lista loading {{ (Auth::user()->puedeEditar()) ? 'vista-escuela vista-listado' : 'vista-empresa' }}">
             @include('layouts.spinner')
             <div class="error text-center">
                 <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o intente de nuevo más tarde.</strong>
@@ -214,7 +219,7 @@
 
             </ul>
 
-            <nav class="center-flex">
+            <nav class="center-flex pagination-wrapper">
                 <ul id="paginado" class="pagination"></ul>
             </nav>
         </div> {{-- #contenedorLista --}}
@@ -230,7 +235,7 @@
                 <div class="modulo-filtro modulo-promedio">
                     <h5 class="text-uppercase texto-azul">Promedio General</h5>
                     <b>1</b>
-                    <input id="filtroPromedio" name="filtro-promedio" type="text" class="span2 filtro-promedio"
+                    <input id="filtro-promedio" type="text" class="span2 filtro-promedio"
                                     value="" data-slider-min="1" data-slider-max="10" data-slider-step="0.1"
                                     data-slider-value="[1,10]"/>
                     <b>10</b>
@@ -238,25 +243,24 @@
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Especialidad</h5>
-                    <input type='text' class="form-control select-filtro" name="filtro[especialidad]"/>
+                    <input type='text' class="form-control select-filtro filtro-simple" data-filtro='esp'/>
                 </div>
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Servicio educativo</h5>
-                    <select class="form-control select-filtro" name="filtro[escuela]">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select class="form-control select-filtro filtro-simple" data-filtro='esc'>
+                        <option value=""></option>
+                    @foreach ($escuelas as $escuela)
+                        <option value="{{$escuela->id}}">{{$escuela->name}}</option>
+                    @endforeach
                     </select>
                 </div>
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Localidad</h5>
-                    <input type='text' class="form-control select-filtro filtro-localidad" name="filtro[localidad]"/>
+                    <input type='text' class="form-control select-filtro filtro-localidad filtro-simple" data-filtro='loc'/>
                     <h5 class="text-uppercase texto-azul">Barrio</h5>
-                    <input type='text' class="form-control select-filtro filtro-barrio" name="filtro[barrio]"/>
+                    <input type='text' class="form-control select-filtro filtro-barrio filtro-simple" data-filtro='bar'/>
                 </div>
 
                 <div class="modulo-filtro">
@@ -264,40 +268,40 @@
 
                     <div class="checkbox-container">
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][responsabilidad]"> Responsabilidad
+                            <input type="checkbox" class="filtro-actitudes" value="responsabilidad"> Responsabilidad
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][puntualidad]"> Puntualidad
+                            <input type="checkbox" class="filtro-actitudes" value="puntualidad"> Puntualidad
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][proactividad]"> Proactivo
+                            <input type="checkbox" class="filtro-actitudes" value="proactividad"> Proactivo
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][equipo]"> Trabajo en equipo
+                            <input type="checkbox" class="filtro-actitudes" value="equipo"> Trabajo en equipo
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][creatividad]"> Creatividad
+                            <input type="checkbox" class="filtro-actitudes" value="creatividad"> Creatividad
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][liderazgo]"> Liderazgo
+                            <input type="checkbox" class="filtro-actitudes" value="liderazgo"> Liderazgo
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][conciliador]"> Conciliador
+                            <input type="checkbox" class="filtro-actitudes" value="conciliador"> Conciliador
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][perseverancia]"> Perseverancia
+                            <input type="checkbox" class="filtro-actitudes" value="perseverancia"> Perseverancia
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][asertividad]"> Asertividad
+                            <input type="checkbox" class="filtro-actitudes" value="asertividad"> Asertividad
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][relaciones]"> Buenas relaciones interpersonales
+                            <input type="checkbox" class="filtro-actitudes" value="relaciones"> Buenas relaciones interpersonales
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][objetivos]"> Enfocado en objetivos
+                            <input type="checkbox" class="filtro-actitudes" value="objetivos"> Enfocado en objetivos
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="filtro[actitudes][saludable]"> Hábitos saludables
+                            <input type="checkbox" class="filtro-actitudes" value="saludable"> Hábitos saludables
                         </label>
 
                     </div>
