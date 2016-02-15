@@ -110,15 +110,25 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 // ROUTE TEMPORAL PARA EJECUTAR COMANDOS EN SERVIDOR
 // Route::get('/artisan', function () {
 
-//     // Artisan::call('migrate', [
-//     //     '--force' => true
-//     // ]);
+    // Artisan::call('migrate', [
+    //     '--force' => true
+    // ]);
 
-//     Artisan::call('db:seed', [
-//         '--class' => 'UsuariosPrueba',
-//         '--force' => true
-//     ]);
+    // Artisan::call('db:seed', [
+    //     '--class' => 'UsuariosPrueba',
+    //     '--force' => true
+    // ]);
 
-//     dump(Artisan::output());
+
+    // Artisan::call('cache:clear', [
+    // ]);
+
+    // dump(Artisan::output());
+
+    // Artisan::call('optimize', [
+    //     '--force' => true
+    // ]);
+
+    // dump(Artisan::output());
 // });
 
