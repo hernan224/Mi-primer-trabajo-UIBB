@@ -176,9 +176,9 @@ function bindFiltros() {
 
 function filtrar(slider_promedio) {
     // reseteo filtros
-    var force_promedios = false;
-    if (filtros.prom_min || filtros.prom_max) {
-        force_promedios = true;
+    var force_get = false;
+    if (!$.isEmptyObject(filtros)) {
+        force_get = true;
     }
     filtros = {};
     var $filtro, actitud;
@@ -198,14 +198,13 @@ function filtrar(slider_promedio) {
         }
     });
     var promedio = slider_promedio.slider('getValue');
-    if (force_promedios || promedio[0] > 1) {
+    if (promedio[0] > 1) {
         filtros.prom_min = promedio[0];
     }
-    if (force_promedios || 
-        promedio[1] < 10) {
+    if (promedio[1] < 10) {
         filtros.prom_max = promedio[1];
     }
-    if(!$.isEmptyObject(filtros)) {
+    if(force_get || !$.isEmptyObject(filtros)) {
         getAlumnos(1); //al filtrar siempre elijo la pag 1
     }
 
