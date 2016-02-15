@@ -104,7 +104,7 @@ function renderLista(resp) {
     // renderizo paginado si no fue renderizado aún
     // inicialmente va a mostrar la cantidad total de paginas...
     // al hacer filtro la cantidad de paginas se va a achicar, pero en el paginado no se va a actualizar
-    if (!$paginado.children().length) {
+    if (resp.data.length && !$paginado.children().length) {
         $paginado.twbsPagination({
             totalPages: resp.last_page,
             visiblePages: 5,

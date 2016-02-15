@@ -30,7 +30,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // Home
     Route::get('/', function () {
-        return view('home');
+        return view('estaticas.home');
     });
 
     // Route::auth(); // no incluyo routes de registro
@@ -93,6 +93,10 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
 // ROUTE TEMPORAL PARA EJECUTAR COMANDOS EN SERVIDOR
 // Route::get('/artisan', function () {
+
+//     // Artisan::call('migrate', [
+//     //     '--force' => true
+//     // ]);
 
 //     Artisan::call('db:seed', [
 //         '--class' => 'UsuariosPrueba',
