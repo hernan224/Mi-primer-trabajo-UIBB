@@ -18,15 +18,15 @@
             <div class="col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
                     <li><strong><a href="{{ url('/')}}">Inicio</a></strong></li>
-                    <li><strong><a href="#ToDo">Empresas</a></strong></li>
-                    <li><strong><a href="#ToDo">Instituciones Educativas</a></strong></li>
-                    <li><strong><a href="#ToDo">Contacto</a></strong></li>
+                    <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li>
+                    <li><strong><a href="{{ url('/instituciones')}}">Instituciones Educativas</a></strong></li>
+                    <li><strong><a href="{{ url('/contacto')}}">Contacto</a></strong></li>
                     <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>
                 </ul> {{-- .menu-principal --}}
-                <ul class="list-inline nav-list menu-tc-pp text-right">
+                {{-- <ul class="list-inline nav-list menu-tc-pp text-right">
                     <li><a href="#ToDo">Términos y condiciones</a></li>
                     <li><a href="#ToDo">Políticas de privacidad</a></li>
-                </ul> {{-- .menu-tc-pp --}}
+                </ul> --}} {{-- .menu-tc-pp --}}
             </div>
         </div> {{-- .contenido-footer --}}
 

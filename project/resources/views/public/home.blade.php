@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-sm-4">
                             <a href="#ToDo" class="link-organizador">
-                                <img src="img/logo-rse.png" alt="Responsabilidad Social Emrpesaria - UIBB" class="img-responsive logo-img">
+                                <img src="img/logo-rse.png" alt="Responsabilidad Social Empresaria - UIBB" class="img-responsive logo-img">
                             </a>
                         </div>
                         <div class="col-sm-4">
@@ -109,7 +109,7 @@
                 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 sub-sec-acceso">
                     <p class="text-center">Si usted es asociado de la UIBB o es directivo de una institución
                         educativa y desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros</p>
-                    <a href="#ToDo" class="btn-acceder btn-full-azul btn-max-360 btn-h-celeste" role="button">
+                    <a href="{{url('/solicitar-acceso')}}" class="btn-acceder btn-full-azul btn-max-360 btn-h-celeste" role="button">
                         Solicitar Acceso
                     </a>
                 </div>
@@ -124,7 +124,7 @@
                             <p class="texto-especial text-center">
                                 <em>Si desea obtener más información, o hacernos llegar su comentario, acerca de la plataforma <strong>Mi Primer Trabajo</strong>:</em>
                             </p>
-                            <a href="#ToDo" class="btn-acceder btn-linea-azul btn-contacto btn-max-360 btn-h-celeste text-uppercase" role="button">
+                            <a href="{{url('/contacto')}}" class="btn-acceder btn-linea-azul btn-contacto btn-max-360 btn-h-celeste text-uppercase" role="button">
                                 Contáctese con nosotros
                             </a>
                         </div>

@@ -36,7 +36,7 @@
                 <span class="glyphicon glyphicon-arrow-right"></span></a>
         </li>
         @endif
-        <li><a href="#ToDo">Ayuda y Soporte</a></li>
+        {{-- <li><a href="{{url('/ayuda')}}">Ayuda y Soporte</a></li> No está en los req. --}}
         <li><a href="{{ url('/logout') }}" class="cerrar-sesion"><strong>Cerrar sesión</strong></a></li>
     </ul>
 </div>

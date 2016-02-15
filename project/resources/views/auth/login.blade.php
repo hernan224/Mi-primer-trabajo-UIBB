@@ -47,7 +47,7 @@
                         <button type="submit" class="btn btn-primary btn-login center-block">
                             Iniciar Sesión
                         </button>
-                        {{-- ToDo: implementar recuperación de contraseña?? 
+                        {{-- ToDo: implementar recuperación de contraseña??
                         <a class="btn btn-link center-block recuperar-pass" href="{{ url('/password/reset') }}">
                             Recuperar contraseña
                         </a>
@@ -58,7 +58,7 @@
                 <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong> y
                     desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros:</p>
 
-                <a class="btn btn-registro" href="#ToDo">Solicitar acceso a la plataforma</a>
+                <a class="btn btn-registro" href="{{url('/solicitar-acceso')}}">Solicitar acceso a la plataforma</a>
             </div>
 
         </div>

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'info@primer-trabajo.com.ar', 'name' => 'Primer Trabajo - UIBB'],
 
     /*
     |--------------------------------------------------------------------------

@@ -28,9 +28,16 @@ use App\Models\Empresa;
 // Routes sin autenticacion
 Route::group(['middleware' => 'web'], function () {
 
+    // Pantallas publicas
     // Home
     Route::get('/', function () {
-        return view('estaticas.home');
+        return view('public.home');
+    });
+    Route::get('/instituciones', function () {
+        return view('public.instituciones',['escuelas' => Escuela::all()]);
+    });
+    Route::get('/empresas', function () {
+        return view('public.empresas',['empresas' => Empresa::all()]);
     });
 
     // Route::auth(); // no incluyo routes de registro
@@ -50,13 +57,16 @@ Route::group(['middleware' => 'web'], function () {
         return redirect('/login');
     })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
 
-    // Pantallas estaticas
-    Route::get('/instituciones', function () {
-        return view('estaticas.instituciones',['escuelas' => Escuela::all()]);
+    // Pantallas publicas con formularios de email
+    // Solicitar acceso
+    Route::get('/solicitar-acceso', function () {
+        return view('public.solicitar_acceso');
     });
-    Route::get('/empresas', function () {
-        return view('estaticas.empresas',['empresas' => Empresa::all()]);
+    Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
+    Route::get('/contacto', function () {
+        return view('public.contacto');
     });
+    Route::post('/contacto','MailsController@contacto');
 
 });
 
@@ -71,8 +81,11 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
     Route::get('/alumnos','AlumnosController@lista')->name('lista');
 
-    // Busqueda nombre, apellido, especialidad
+    // Busqueda nombre, apellido, especialidad (resp JSON)
     Route::get('/alumnos/search','AlumnosController@search')->name('search');
+
+    // GET pantalla alumno
+    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
 
     // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
     Route::group(['middleware' => 'role:escuela'], function () {
@@ -85,8 +98,11 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 
     });
 
-    // GET pantalla alumno
-    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
+    // Formulario ayuda (no estaba en requerimientos)
+    // Route::get('/ayuda', function () {
+    //     return view('auth.ayuda');
+    // });
+    // Route::post('/ayuda','MailsController@ayuda');
 
 });
 
