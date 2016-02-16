@@ -54,10 +54,6 @@
                     <p>A su vez, serán las encargadas de retroalimentar la plataforma, asegurando su mantenimiento y
                         actualización de las bases de datos.</p>
                 </div>
-                <div class="col-sm-4 col-md-3">
-                    <img src="img/foto-home-quienes.png" alt="¿Quienes desarrollan Mi Primer Trabajo"
-                         class="img-responsive foto--seccion-info">
-                </div>
 
                 <div class="col-xs-12">
                     <div class="row logos-organizadores">

@@ -84,19 +84,19 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
     // Busqueda nombre, apellido, especialidad (resp JSON)
     Route::get('/alumnos/search','AlumnosController@search')->name('search');
 
-    // GET pantalla alumno
-    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
-
     // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
     Route::group(['middleware' => 'role:escuela'], function () {
 
         Route::get('/alumno/nuevo','AlumnosController@nuevo')->name('nuevo');
         Route::post('/alumno/nuevo','AlumnosController@store')->name('nuevo_post');
         Route::get('/alumno/edit/{id?}','AlumnosController@edit')->name('edit');
-        Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
         Route::get('/alumno/delete/{id?}','AlumnosController@destroy')->name('delete');
+        Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
 
     });
+
+    // GET pantalla alumno
+    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
 
     // Formulario ayuda (no estaba en requerimientos)
     // Route::get('/ayuda', function () {

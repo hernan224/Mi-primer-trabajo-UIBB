@@ -101,10 +101,14 @@ function renderLista(resp) {
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
 
+    if (!resp.data.length) {
+        // ToDo: mostrar mensaje de no hay elementos
+    }
+
     // renderizo paginado si no fue renderizado aún
     // inicialmente va a mostrar la cantidad total de paginas...
     // al hacer filtro la cantidad de paginas se va a achicar, pero en el paginado no se va a actualizar
-    if (resp.data.length && !$paginado.children().length) {
+    if (resp.data.length && !$paginado.children().length && resp.last_page > 1) {
         $paginado.twbsPagination({
             totalPages: resp.last_page,
             visiblePages: 5,
@@ -119,6 +123,7 @@ function renderLista(resp) {
             }
         });
     }
+
 }
 
 function bindOrdenamiento() {

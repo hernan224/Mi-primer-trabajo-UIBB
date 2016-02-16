@@ -67,6 +67,7 @@
 
                     <div class="col-md-2 col-sm-2 {{ Auth::user()->puedeEditar() ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
                         <div class="dropdown">
+                        <form>
                             <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" class="link-nav-listado">
                                <span class="glyphicon glyphicon-sort"></span>
@@ -102,6 +103,7 @@
                                 </div>
 
                             </div> {{-- ./dropdown-menu --}}
+                        </form>
                         </div> {{-- .dropdown --}}
                     </div> {{-- contenedor ordenar --}}
 
