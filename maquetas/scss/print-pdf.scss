@@ -1,0 +1,189 @@
+@import 'variables';
+@import "functions";
+//@import "include-media";
+//@import "bootstrap/mixins/clearfix";
+@import 'mixins';
+
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 1.25cm;
+    }
+
+  body{
+    font-size: 9.5pt;
+  }
+
+    h2,.h2,
+    h3,.h3,
+    h4,.h4{
+        page-break-after: avoid;
+    }
+
+    .nav-listado,
+    .acceso-usuario-container,
+    .pie-pagina{
+        display: none;
+    }
+
+  .container-general-flex{
+    min-height: 0;
+  }
+
+  .header-acceso{
+    padding: 0;
+    margin-top: 0.5cm;
+
+    .marca-container{
+      margin: 0 auto;
+    }
+  }
+
+  .alumno-individual{
+    margin-top: 0.5cm;
+
+    .fa-li::before,
+    .texto-azul{
+      color: $azul !important;
+    }
+
+    .alumno-info-principal{
+      //display: flex;
+      //justify-content: space-between;
+      //align-items: flex-end;
+      display: block;
+      border-bottom: 2px solid $azul;
+      @include clearfix();
+
+      .contenedor-foto,
+      .info-alumno{
+        float: left;
+      }
+      .promedio{
+        float: right;
+      }
+    }
+
+    .contenedor-foto{
+      width: auto;
+      margin: 0 0.5cm 0.5cm 0.25cm;
+    }
+
+    .foto-alumno{
+      width: 2cm;
+      height: 2cm;
+      margin: 0;
+
+      &.sin-foto{
+        display: none;
+      }
+    }
+
+    .info-alumno{
+      width: 13cm;
+      //margin-bottom: 0.5cm;
+    }
+
+    .nombre-alumno{
+      font-size: 1.8em;
+      margin: 0 0 0.25em;
+    }
+
+    .datos-alumno{
+      span{
+        margin: 0.5em 1em 0.5em 0;
+      }
+    }
+
+    .promedio{
+      width: 2.5cm;
+      padding: 1.5em 0.25em 0.5em;
+
+      .promedio-valor{
+        color: $azul !important;
+      }
+    }
+
+    .fila-flex{
+      display: block !important;
+      @include clearfix();
+    }
+
+    .info-contactos{
+      width: 6.5cm;
+      margin-right: 0.5cm;
+      float: left;
+
+      section{
+        //background-color: $gris-claro;
+        //padding: 1.5em;
+        margin-bottom: 1em;
+
+        &.contacto-alumno{
+          border-top: none;
+        }
+
+        &.contacto-docente{
+          //border-top: 2px solid $azul;
+          li{
+            padding: 0.1em 0 0.2em;
+          }
+        }
+      }
+
+      .lista-contacto{
+        margin-top: 1em;
+
+        li{
+          padding: 0.5em 0 0.5em 0.5em;
+        }
+
+        .fa-li{
+          background-color: $azul;
+          color: #fff;
+          border-radius: 100%;
+          width: 2em;
+          height: 2em;
+          font-size: 10pt;
+          line-height: 2em;
+          padding: 0;
+          //margin-right: 0.75em;
+        }
+      }
+    }
+    .info-detalle{
+      width: 11cm;
+      padding: 1em 0.5em 0;
+      float: left;
+
+      section{
+        margin-bottom: 0.5em;
+        padding-bottom: 0.5em;
+
+        &:last-child{
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+
+      .lista-actitudes{
+        li{
+          padding: 0.5em 0;
+          margin-right: 2.5em;
+        }
+
+        .fa-li{
+          left: -1.75em;
+          width: 1.8em;
+          top: 0.75em;
+          //color: $azul !important;
+        }
+      }
+    }
+  }
+
+
+
+}

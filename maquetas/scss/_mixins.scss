@@ -12,3 +12,15 @@
     font-size: pxToEm($f-size * 0.8);
   }
 }
+
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
