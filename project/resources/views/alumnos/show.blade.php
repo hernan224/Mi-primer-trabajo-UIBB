@@ -10,6 +10,19 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('css/print-pdf.css') }}" media="print">
+@endsection
+
+@section('scripts')
+    @parent
+    <script>
+        $(function () {
+            $('a#imprimir').click(function(event) {
+                event.preventDefault();
+                window.print();
+            });
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -31,7 +44,7 @@
                     </a>
                 </div> {{-- btn pdf --}}
                 <div class="col-xs-3 col-sm-2">
-                    <a id="imprimir" href="#ToDo" class="link-nav-listado">
+                    <a id="imprimir" href="#" class="link-nav-listado">
                         <span class="glyphicon glyphicon-print"></span>
                         <span class="texto-nav hidden-sm hidden-xs">Imprimir</span>
                     </a>

@@ -223,10 +223,11 @@
                                    data-placement="bottom" title="Descargar CV como PDF">
                                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                                 </a>
-                                <a href="#ToDo" class="btn btn-default btn-imprimir" data-toggle="tooltip"
+                                {{-- Boton imprimir no se incluye en esta pantalla
+                                 <a href="#ToDo" class="btn btn-default btn-imprimir" data-toggle="tooltip"
                                    data-placement="bottom" title="Imprimir CV">
                                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                                </a>
+                                </a> --}}
                             @endif
                             </div>
                         </div>

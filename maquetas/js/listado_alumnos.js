@@ -101,9 +101,10 @@ function renderLista(resp) {
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
 
-    if (!resp.data.length) {
-        // ToDo: mostrar mensaje de no hay elementos
-    }
+    // ToDo: mostrar mensaje de no hay elementos
+
+    // if (!resp.data.length) {
+    // }
 
     // renderizo paginado si no fue renderizado aún
     // inicialmente va a mostrar la cantidad total de paginas...

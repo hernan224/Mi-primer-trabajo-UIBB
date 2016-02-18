@@ -1,1 +1,23 @@
-$(document).ready(function(){$(document).on("click",'a[href="#ToDo"],a[href="#coming-soon"],a[href=#empty]',function(o){o.preventDefault()}),$('[data-toggle="tooltip"]').tooltip();var o=$(".btn-eliminar"),n=$("#confirmarEliminar");o.on("click",function(o){o.preventDefault(),n.modal()})});
+//Inicialización general (DOM Ready)
+$(document).ready(function(){
+
+    // links disabled
+    $(document).on('click','a[href="#ToDo"],a[href="#coming-soon"],a[href=#empty]',function(event) {
+        event.preventDefault();
+    });
+
+    //Inicializando tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    //Lanzar modal para confirmar eliminación de alumno
+    var btnEliminar = $('.btn-eliminar');
+    var modalEliminar = $('#confirmarEliminar');
+
+    btnEliminar.on('click', function(e){
+        e.preventDefault();
+        modalEliminar.modal();
+    });
+
+});
+//# sourceMappingURL=main.js.map
