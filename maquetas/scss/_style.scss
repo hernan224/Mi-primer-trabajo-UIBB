@@ -1516,8 +1516,8 @@ ul.pagination{
   }
 
   .foto-alumno{
-    width: 220px;
-    height: 220px;
+    max-width: 220px;
+    max-height: 220px;
     margin: 1.5em auto;
 
     @include media('<desktop'){
