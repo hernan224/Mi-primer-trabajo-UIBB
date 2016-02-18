@@ -74,12 +74,13 @@
             <header class="alumno-info-principal">
 
                 <div class="contenedor-foto">
-                    {{-- Si no tiene foto muestra placeholder --}}
+                    <figure class="foto-bg foto-alumno">
                     @if($alumno->foto)
-                        <figure class="foto-bg foto-alumno" style="background-image: url({{$alumno->getUrlFoto()}});"></figure>
-                    @else
-                        <figure class="foto-bg foto-alumno sin-foto {{ ($alumno->sexo == 'm') ? 'masculino' : 'femenino'}}"></figure>
+                        <img src="{{$alumno->getUrlFoto()}}" alt="{{$alumno->getFullName()}}" class="img-responsive alumno-img">
+                    @else  {{-- Si no tiene foto muestra placeholder --}}
+                        <img src="{{ ($alumno->sexo == 'm') ? url('img/alumno-sin-foto-femenino.jpg') : url('img/alumno-sin-foto-femenino.png')}}" alt="" class="img-responsive alumno-img">
                     @endif
+                    </figure>
                 </div>
 
                 <div class="info-alumno">
