@@ -159,6 +159,7 @@ p.texto-especial {
 figure.foto-bg {
   border-radius: 100%;
   background: transparent no-repeat center center /cover;
+  overflow: hidden;
 }
 
 .dropdown-menu {
@@ -210,8 +211,12 @@ figure.foto-bg {
           flex-shrink: 0;
 }
 
-.foto-usuario.sin-foto {
-  background-image: url(../img/login-sin-foto.png);
+.foto-item.sin-foto.foto-institucion, .foto-usuario.sin-foto.foto-institucion {
+  background-image: url(../img/escuela-sin-foto.png);
+}
+
+.foto-item.sin-foto.foto-asociado, .foto-usuario.sin-foto.foto-asociado {
+  background-image: url(../img/asociado-sin-foto.png);
 }
 
 .nombre-usuario {
@@ -800,14 +805,6 @@ button[type="submit"].btn-primary:hover {
   transition: background 0.2s ease;
 }
 
-.form-mpt .has-error .form-control {
-  border: 1px solid #FF0000;
-}
-
-.form-mpt .has-error .radio {
-  color: #FF0000;
-}
-
 .form-mpt .input-group-btn-vertical .btn-promedio {
   border-radius: 0 !important;
   background-color: #fff;
@@ -819,6 +816,14 @@ button[type="submit"].btn-primary:hover {
 
 .form-mpt .input-group-btn-vertical .btn-promedio:hover {
   background-color: #C7DEE2;
+}
+
+.form-mpt:not(.login-form) .has-error .form-control {
+  border: 1px solid #FF0000;
+}
+
+.form-mpt:not(.login-form) .has-error .radio {
+  color: #FF0000;
 }
 
 .form-invertido .form-control {
@@ -1140,6 +1145,10 @@ button[type="submit"].btn-primary:hover {
   display: inline-block;
 }
 
+.datos-alumno span.escuela, .datos-alumno span.especialidad {
+  display: block;
+}
+
 .datos-alumno strong {
   display: block;
 }
@@ -1147,7 +1156,26 @@ button[type="submit"].btn-primary:hover {
 .contenedor-lista {
   margin: 1.5em auto 0;
   padding: 1.5em 0;
-  width: 100%;
+}
+
+.contenedor-lista div.error {
+  display: none;
+}
+
+.contenedor-lista.loading .spinner-container {
+  display: block;
+}
+
+.contenedor-lista.loading ul.lista-alumnos {
+  display: none;
+}
+
+.contenedor-lista.loading ul.pagination {
+  display: none;
+}
+
+.contenedor-lista.error-get div.error {
+  display: block;
 }
 
 .contenedor-lista ul.lista-alumnos,
@@ -1447,9 +1475,9 @@ button[type="submit"].btn-primary:hover {
 }
 
 .contenedor-lista.vista-listado .ultimo-bloque {
-  -webkit-align-self: flex-end;
-      -ms-flex-item-align: end;
-          align-self: flex-end;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
   margin-left: auto;
   margin-top: 0;
   -webkit-flex-direction: column-reverse;
@@ -1479,16 +1507,6 @@ button[type="submit"].btn-primary:hover {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
-}
-
-.contenedor-lista.vista-listado.backend .ultimo-bloque {
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
-}
-
-.contenedor-lista.vista-listado.backend .checkbox {
-  padding: 0 1em;
 }
 
 .contenedor-lista .item-datos p {
@@ -1543,14 +1561,6 @@ button[type="submit"].btn-primary:hover {
   }
 }
 
-.foto-item.sin-foto.foto-institucion {
-  background-image: url(../img/escuela-sin-foto.png);
-}
-
-.foto-item.sin-foto.foto-asociado {
-  background-image: url(../img/asociado-sin-foto.png);
-}
-
 ul.pagination {
   border-radius: 0;
 }
@@ -1599,10 +1609,6 @@ ul.pagination li.disabled a, ul.pagination li.disabled span,
 ul.pagination li.disabled a:hover, ul.pagination li.disabled span:hover,
 ul.pagination li.disabled a:focus, ul.pagination li.disabled span:focus {
   color: #F1F7F8;
-}
-
-.alumno-individual {
-  margin-top: 1.5em;
 }
 
 .alumno-individual .alumno-info-principal {
@@ -2150,6 +2156,13 @@ a.btn-cerrar.close:hover {
   margin-top: 7px;
 }
 
+@media (max-width: 767px) {
+  .buscar-listado {
+    max-width: 400px;
+    margin: auto;
+  }
+}
+
 .buscar-listado:hover .input-buscar {
   background-color: #C7DEE2;
   color: #2C72B4;
@@ -2183,6 +2196,33 @@ a.btn-cerrar.close:hover {
 
 .buscar-listado:hover .btn-buscar .glyphicon {
   color: #2C72B4;
+}
+
+#lista-busqueda {
+  padding: 0;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+}
+
+@media (max-width: 767px) {
+  #lista-busqueda {
+    width: 400px;
+    margin-left: -200px;
+  }
+}
+
+#lista-busqueda .list-group-item {
+  border-radius: 0;
+}
+
+#lista-busqueda .list-group-item h4 {
+  font-size: 14px;
+}
+
+#lista-busqueda .list-group-item span {
+  display: block;
+  font-size: 12px;
 }
 
 .contenedor-ordenar {

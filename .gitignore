@@ -2,4 +2,6 @@
 **/.sass-cache/*
 temp/*
 **/.idea/*
+/maquetas/scss/bootstrap.scss
+/maquetas/scss/bootstrap
 **/prepros.cfg
