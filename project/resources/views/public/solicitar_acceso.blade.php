@@ -31,7 +31,7 @@
                 <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong>
                     y desea participar de la plataforma
                     Mi Primer Trabajo, contáctese con nosotros a través del siguiente formulario.
-                    Personal del departamento de <strong>Responsavilidad Social Empresaria de la Unión
+                    Personal del departamento de <strong>Responsabilidad Social Empresaria de la Unión
                         Industrial
                         Bahía Blanca</strong>
                     se contactará a la brevedad para proporcionarle los datos necesarios.</p>

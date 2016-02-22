@@ -181,7 +181,7 @@
                         </p>
                         @if ($alumno->curriculum->practicas_tipo)
                         <p>
-                            <strong>Práctica Profesional: </strong>
+                            <strong>Prácticas Profesionalizantes: </strong>
                             {{ $alumno->curriculum->practicas_tipo }}
                             @if ($alumno->curriculum->practicas_lugar )
                             <br>

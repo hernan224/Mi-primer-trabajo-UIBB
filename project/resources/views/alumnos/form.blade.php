@@ -178,10 +178,10 @@
                         </div>
 
                         <div class="form-group col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
-                            {{ Form::label('practicas_tipo', 'Prácticas profesionales', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::label('practicas_tipo', 'Prácticas profesionalizantes', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_tipo',
                                 (!$nuevo) ? $alumno->curriculum->practicas_tipo : null,
-                                ['class'=>'form-control','placeholder'=>'Prácticas profesionales']) }}
+                                ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes']) }}
                         </div>
                         <div class="form-group col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
