@@ -2,7 +2,7 @@
 <html>
 <head lang="es">
     <meta charset="UTF-8">
-    <title>Solicitar acceso a la plataforma | Mi Primer Trabajo</title>
+    <title>Acceso no Autorizado | Mi Primer Trabajo</title>
 
     <link rel="stylesheet" href="css/vendor/normalize.css">
 
@@ -19,124 +19,60 @@
     </defs>
 </svg>
 
-
 <div class="container-general-flex">
     <div id="contenedorPrincipal">
 
         <div class="container">
 
-            <header class="header-acceso acceso-entidad-educativa fila-flex">
-                <div class="marca-container">
-                    <a href="#">
-                        <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
-                            <use xlink:href="#logoMPT"></use>
-                        </svg>
-                    </a>
-                </div> <!--.marca-container-->
-
-                <div class="acceso-usuario-container dropdown">
-                    <a id="dropdownUsuario" class="fila-flex" data-target="#" href="http://uibb.org.ar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <figure class="foto-bg foto-usuario sin-foto"></figure>
-                        <h5 class="nombre-usuario"><strong class="nombre-docente">Juana Ana Triana</strong> <span class="nombre-entidad">Escuela de Educación Técnica N°1</span></h5>
-                        <button class="btn-menu-usuario">
-                            <span class="sr-only">Menú usuario</span>
-                            <span class="glyphicon glyphicon-menu-down"></span>
-                        </button>
-                    </a>
-                    <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
-                        <li><a href="listado-backend.html" class="acceder-plataforma">Ir al listado de alumnos
-                            <span class="glyphicon glyphicon-arrow-right"></span></a></li>
-                        <li><a href="#" class="cerrar-sesion"><strong>Cerrar sesión</strong></a></li>
-                    </ul>
+            <header class="header-simple">
+                <div class="center-block">
+                    <div class="marca-container">
+                        <a href="#">
+                            <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
+                                <use xlink:href="#logoMPT"></use>
+                            </svg>
+                        </a>
+                    </div> <!--.marca-container-->
+                    <!--<div class="mpt-by">-->
+                        <!--<span class="texto-servicio">un servicio de:</span>-->
+                        <!--<a class="logo-uibb uibb-negro" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>-->
+                    <!--</div> &lt;!&ndash;.mpt-by&ndash;&gt;-->
                 </div>
-            </header>
+            </header><!--/.header-simple-->
 
-            <main class="contenido-registro">
+            <main class="error-acceso">
                 <div class="row">
 
-                    <div class="col-md-8 col-md-offset-2">
-                        <h3 class="texto-azul">Solicitar Acceso</h3>
-                        <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong>
-                            y desea participar de la plataforma
-                            Mi Primer Trabajo, contáctese con nosotros a través del siguiente formulario.
-                            Personal del departamento de <strong>Responsavilidad Social Empresaria de la Unión
-                                Industrial
-                                Bahía Blanca</strong>
-                            se contactará a la brevedad para proporcionarle los datos necesarios.</p>
-                    </div>
-                    <!--<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">-->
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                        <!--<h3 class="texto-azul">Acceso no-->
+                        <!--autorizado</h3>-->
+                        <!--<div class="panel-bg-color panel-error">-->
+                            <!---->
+                        <!--</div>-->
 
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="text-center">Acceso no autorizado</h3>
+                            </div>
+                            <div class="panel-body bg-danger">
+                                <strong class="text-center">La página a la que desea acceder no existe y no tiene permitido el acceso.</strong>
+                            </div>
+                        </div>
 
-                        <ul id="recuTabs" class="nav nav-tabs form-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#recuAsociados" aria-controls="asociados" role="tab" data-toggle="tab">Asociados</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#recuInstituciones" aria-controls="instituciones" role="tab" data-toggle="tab">Instituciones Educativas</a>
-                            </li>
-                        </ul> <!--.nav-tab-->
+                        <a href="listado-backend.html" class="btn-acceder btn-linea-azul btn-max-360" role="button">Acceder a la
+                            Plataforma <span class="glyphicon glyphicon-arrow-right"></span></a>
 
-                        <div class="tab-content form-tab-content">
-                            <div role="tabpanel" class="tab-pane panel-bg-color active" id="recuAsociados">
-                                <form action="" role="form" class="recu-form asociados-recu form-mpt form-invertido">
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="razonSocial">Razón soial</label>
-                                        <input type="text" class="form-control" name="razon-social" id="razonSocial"
-                                               placeholder="Razón Social">
-                                    </div><!--/input Nombre-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="cuit">CUIT</label>
-                                        <input type="text" class="form-control" name="cuit" id="cuit"
-                                               placeholder="CUIT">
-                                    </div><!--/input Apellido-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="emailAsociado">Email de
-                                            contacto</label>
-                                        <input type="email" class="form-control" name="email-asociado"
-                                               id="emailAsociado" placeholder="Email de contacto">
-                                    </div><!--/input Nombre-->
-
-                                    <div class="contenedor-btns">
-                                        <button type="submit" class="btn btn-primary btn-login center-block">Enviar
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> <!--/form tab content #recuAsociados-->
-
-
-                            <div role="tabpanel" class="tab-pane panel-bg-color" id="recuInstituciones">
-                                <form action="" role="form"
-                                      class="recu-form instituciones-recu form-mpt form-invertido">
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="institucionEducativa">Institución
-                                            Educativa</label>
-                                        <input type="text" class="form-control" name="institucion-educativa"
-                                               id="institucionEducativa" placeholder="Institución Educativa">
-                                    </div><!--/input Nombre-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="docente">Docente a cargo</label>
-                                        <input type="text" class="form-control" name="docente" id="docente"
-                                               placeholder="Docente a cargo">
-                                    </div><!--/input Apellido-->
-                                    <div class="form-group">
-                                        <label class="sr-only input-label small" for="emailInstitucion">Email de
-                                            contacto</label>
-                                        <input type="email" class="form-control" name="email-institucion"
-                                               id="emailInstitucion" placeholder="Email de contacto">
-                                    </div><!--/input Nombre-->
-
-                                    <div class="contenedor-btns">
-                                        <button type="submit" class="btn btn-primary btn-login center-block">Enviar
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> <!--/form tab content #recuinstituciones-->
-                        </div> <!--.tab-content-->
+                            <a href="home.html" class="text-center center-block link-home">Volver a la página de
+                            Inicio</a>
 
                     </div>
 
+                    <!--<div class="col-md-8 col-md-offset-2 col-sm-12">-->
+                        <!--<p>Si uted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong> y-->
+                            <!--desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros:</p>-->
 
+                        <!--<a class="btn btn-registro" href="#">Solicitar acceso a la plataforma</a>-->
+                    <!--</div>-->
                 </div>
             </main><!--/.contenido-login-->
 
@@ -169,8 +105,8 @@
                         <li><strong><a href="#">Acceder a la plataforma</a></strong></li>
                     </ul> <!--.menu-principal-->
                     <ul class="list-inline nav-list menu-tc-pp text-right">
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Políticas de privacidad</a></li>
+                        <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                        <!--<li><a href="#">Políticas de privacidad</a></li>-->
                     </ul> <!--.menu-tc-pp-->
                 </div>
             </div> <!--.contenido-footer-->
@@ -188,22 +124,13 @@
                 </div>
             </div> <!--.subfooter-->
         </div> <!--.container-->
-    </footer> <!--.pie-pagina--></div>
-
+    </footer>
+</div>
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
 <script src="js/main.js"></script>
-
-<script>
-    $(function () {
-        $('#recuTabs a').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
-        });
-    });
-</script>
 </body>
 </html>

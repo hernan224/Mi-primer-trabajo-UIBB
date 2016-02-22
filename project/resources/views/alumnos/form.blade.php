@@ -65,21 +65,21 @@
                     <h3 class="titulo-seccion">Cargar nuevo alumno</h3>
 
                     <fieldset class="row carga-datos-personales">
-                        <div class="form-group col-sm-6{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nombre') ? ' has-error' : '' }}">
                             {{ Form::label('nombre', 'Nombres', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombres','required'=>'required']) }}
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('apellido') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('apellido') ? ' has-error' : '' }}">
                             {{ Form::label('apellido', 'Apellidos', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Apellido','required'=>'required']) }}
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
                             {{ Form::label('dni', 'DNI', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('dni',null,['class'=>'form-control','placeholder'=>'DNI nº','required'=>'required']) }}
                         </div>
 
-                        <div class="form-group col-sm-6 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
                             <div class="radio">
                                 <strong>Sexo:</strong>
                                 <label>
@@ -93,12 +93,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
                             {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('nacimiento',($nuevo) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento','required'=>'required']) }}
                             <!-- FUNCIONA CON PLUGIN DATEPICKER -->
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
                             {{ Form::label('nacionalidad', 'Nacionalidad', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Nacionalidad','required'=>'required']) }}
                         </div>
@@ -108,30 +108,30 @@
 
                         <legend class="subtitulo h5 texto-azul">Datos de contacto</legend>
 
-                        <div class="form-group col-xs-12{{ $errors->has('domicilio') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-xs-12{{ $errors->has('domicilio') ? ' has-error' : '' }}">
                             {{ Form::label('domicilio', 'Domicilio', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio']) }}
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
                             {{ Form::label('localidad', 'Localidad', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad','required'=>'required']) }}
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('barrio') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('barrio') ? ' has-error' : '' }}">
                             {{ Form::label('barrio', 'Barrio', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('barrio',null,['class'=>'form-control','placeholder'=>'Barrio']) }}
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('tel_fijo') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('tel_fijo') ? ' has-error' : '' }}">
                             {{ Form::label('tel_fijo', 'Teléfono fijo', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('tel_fijo',null,['class'=>'form-control','placeholder'=>'Teléfono fijo']) }}
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('celular') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('celular') ? ' has-error' : '' }}">
                             {{ Form::label('celular', 'Teléfono móvil', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil']) }}
                         </div>
 
-                        <div class="form-group col-sm-12{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-12{{ $errors->has('email') ? ' has-error' : '' }}">
                             {{ Form::label('email', 'E-mail', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail']) }}
                         </div>
@@ -156,34 +156,34 @@
                     <fieldset class="carga-datos-curriculares row">
                         <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
-                        <div class="form-group col-xs-12{{ $errors->has('especialidad') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-xs-12{{ $errors->has('especialidad') ? ' has-error' : '' }}">
                             {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('especialidad',
                                 (!$nuevo) ? $alumno->curriculum->especialidad : null ,
                                 ['class'=>'form-control','placeholder'=>'Especialidad cursada','required' => 'required']) }}
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">
                             {{ Form::label('promedio', 'Promedio general', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('promedio',
                                 (!$nuevo) ? $alumno->curriculum->promedio : null ,
                                 ['id'=>'promedio','class'=>'form-control','placeholder'=>'Promedio general','required' => 'required']) }}
                             <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('asignaturas') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('asignaturas') ? ' has-error' : '' }}">
                             {{ Form::label('asignaturas', 'Asignaturas destacadas', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('asignaturas',
                                 (!$nuevo) ? $alumno->curriculum->asignaturas : null,
                                 ['class'=>'form-control','placeholder'=>'Asignaturas destacadas','required' => 'required']) }}
                         </div>
 
-                        <div class="form-group col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_tipo', 'Prácticas profesionales', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_tipo',
                                 (!$nuevo) ? $alumno->curriculum->practicas_tipo : null,
                                 ['class'=>'form-control','placeholder'=>'Prácticas profesionales']) }}
                         </div>
-                        <div class="form-group col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_lugar',
                                 (!$nuevo) ? $alumno->curriculum->practicas_lugar : null,

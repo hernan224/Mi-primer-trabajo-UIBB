@@ -63,7 +63,10 @@
                 <div class="contenedor-foto">
                     {{-- Si no tiene foto muestra placeholder --}}
                     @if($alumno->foto)
-                        <figure class="foto-bg foto-alumno" style="background-image: url({{$alumno->getUrlFoto()}});"></figure>
+                        <figure class="foto-bg foto-alumno" style="background-image: url({{$alumno->getUrlFoto()}});">
+                            <img src="{{$alumno->getUrlFoto()}}" alt="{{ $alumno->getFullName() }}"
+                                 class="img-responsive alumno-img visible-print-block">
+                        </figure>
                     @else
                         <figure class="foto-bg foto-alumno sin-foto {{ ($alumno->sexo == 'm') ? 'masculino' : 'femenino'}}"></figure>
                     @endif
