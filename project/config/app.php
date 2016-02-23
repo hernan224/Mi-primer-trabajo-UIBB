@@ -164,6 +164,10 @@ return [
          * Laravel Debugbar https://github.com/barryvdh/laravel-debugbar
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        /**
+         * DomPDF https://github.com/barryvdh/laravel-dompdf
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -212,6 +216,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'PDF'       => Barryvdh\DomPDF\Facade::class,
 
     ],
 

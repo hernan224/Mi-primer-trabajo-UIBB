@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Gate;
 use Auth;
 use DB;
+use PDF;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostAlumnoRequest;
 use App\Http\Controllers\Controller;
@@ -264,6 +265,37 @@ class AlumnosController extends Controller
             'alumno' => $alumno
         ];
         return view('alumnos.show',$view_data);
+    }
+
+    /**
+     * Genera PDF de alumno
+     *
+     * URL: /alumnos/{id}/pdf [GET]
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pdf($id = null)
+    {
+        if (!$id) {
+            return abort(403);
+        }
+        $alumno = Alumno::find($id);
+        if (!$alumno) {
+            return abort(403);
+        }
+        // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
+        if (Gate::denies('show-alumno', $alumno)) {
+            return abort(403);
+        }
+        $view_data = [
+            'id' => $id,
+            'alumno' => $alumno,
+            'pdf' => true
+        ];
+        $pdf = PDF::loadView('alumnos.show', $view_data);
+        $filename = $alumno->getFullName().'.pdf';
+        return $pdf->download($filename);
     }
 
     /**

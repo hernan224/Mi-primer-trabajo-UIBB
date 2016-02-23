@@ -8,21 +8,32 @@
 
 {{-- Agrego estilos y scripts --}}
 @section('styles')
-    @parent
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    @if (isset($pdf))
+        {{-- Styles --}}
+        <link rel="stylesheet" href="{{ url('css/vendor/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url('css/vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url('css/estilos.css') }}">
+        <link rel="stylesheet" href="{{ url('css/vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}">
+    @else
+        @parent
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    @endif
+
     <link rel="stylesheet" href="{{ url('css/print-pdf.css') }}" media="print">
 @endsection
 
 @section('scripts')
-    @parent
-    <script>
-        $(function () {
-            $('a#imprimir').click(function(event) {
-                event.preventDefault();
-                window.print();
+    @if (!isset($pdf))
+        @parent
+        <script>
+            $(function () {
+                $('a#imprimir').click(function(event) {
+                    event.preventDefault();
+                    window.print();
+                });
             });
-        });
-    </script>
+        </script>
+    @endif
 @endsection
 
 @section('content')
@@ -38,7 +49,7 @@
                 </div>
 
                 <div class="col-xs-3 col-sm-2 col-md-3 {{ (Auth::user()->puedeEditar()) ? 'col-sm-offset-2 col-md-offset-0': 'col-md-offset-3 col-sm-offset-2 col-xs-offset-4' }}">
-                    <a id="descargarPDF" href="#ToDo" class="link-nav-listado">
+                    <a id="descargarPDF" href="{{route('alumnos.pdf',['id'=>$id])}}" class="link-nav-listado">
                         <span class="glyphicon glyphicon-save"></span>
                         <span class="texto-nav hidden-sm hidden-xs">Descargar PDF</span>
                     </a>

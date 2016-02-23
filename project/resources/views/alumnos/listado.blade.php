@@ -165,9 +165,9 @@
             <div class="sin-alumnos panel panel-warning">
                 <div class="panel-body bg-warning text-center">
                     @if (Auth::user()->hasRole('escuela'))
-                    <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más tarde.</strong>
-                    @else
                     <strong>Aún no se han cargado alumnos de esta escuela.</strong>
+                    @else
+                    <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más tarde.</strong>
                     @endif
                 </div>
             </div>
