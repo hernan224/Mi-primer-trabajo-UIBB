@@ -1084,9 +1084,10 @@ button[type="submit"].btn-primary{
   padding: 1.5em 0;
   // width: 100%;
 
-  div.error {
+  .panel-danger.error, .panel-warning.filtro-vacio, .panel-warning.sin-alumnos {
     display: none;
   }
+
 
   &.loading {
     .spinner-container {
@@ -1100,10 +1101,21 @@ button[type="submit"].btn-primary{
     }
   }
   &.error-get {
-    div.error {
+    .panel-danger.error {
       display: block;
     }
   }
+  &.filtro-vacio {
+    .panel-warning.filtro-vacio {
+      display: block;
+    }
+  }
+  &.sin-alumnos {
+    .panel-warning.sin-alumnos {
+      display: block;
+    }
+  }
+
 
   ul.lista-alumnos,
   ul.lista-instituciones{
@@ -1537,8 +1549,8 @@ ul.pagination{
   }
 
   .foto-alumno{
-    max-width: 220px;
-    max-height: 220px;
+    width: 220px;
+    height: 220px;
     margin: 1.5em auto;
 
     @include media('<desktop'){
@@ -1942,10 +1954,9 @@ a.btn-cerrar{
     height:  pxToEm(32px);
     line-height: 2.5em;
     text-align: center;
+    cursor: pointer;
 
-    &:hover,
-    &:active,
-    &:focus{
+    &:hover{
       background-color: $azul;
       color: #fff;
     }

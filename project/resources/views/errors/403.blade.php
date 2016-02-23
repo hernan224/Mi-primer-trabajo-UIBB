@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    Error
+    Acceso no autorizado
 @endsection
 
 @section('header')
@@ -23,7 +23,7 @@
 
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        <h3 class="text-center">Servicio no disponible</h3>
+                        <h3 class="text-center">Acceso no autorizado</h3>
                     </div>
                     <div class="panel-body bg-danger">
                         <strong class="text-center">La página a la que desea acceder no existe y no tiene permitido el acceso.</strong>

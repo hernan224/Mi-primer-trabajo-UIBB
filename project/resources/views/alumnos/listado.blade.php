@@ -147,8 +147,29 @@
             Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
         <div id="contenedorLista" class="container contenedor-lista loading {{ (Auth::user()->puedeEditar()) ? 'vista-escuela vista-listado' : 'vista-empresa' }}">
             @include('layouts.spinner')
-            <div class="error text-center">
-                <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o intente de nuevo más tarde.</strong>
+
+            <!--ERROR-->
+            <div class="error panel panel-danger">
+                <div class="panel-body bg-danger text-center">
+                    <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o
+                        intente de nuevo más tarde.</strong>
+                </div>
+            </div>
+            <!--ADVERTENCIA-->
+            <div class="filtro-vacio panel panel-warning">
+                <div class="panel-body bg-warning text-center">
+                    <strong>No hemos encontrado resultados que se ajusten a su búsqueda. Por favor, modifique los parámetros</strong>
+                </div>
+            </div>
+            <!--ADVERTENCIA-->
+            <div class="sin-alumnos panel panel-warning">
+                <div class="panel-body bg-warning text-center">
+                    @if (Auth::user()->hasRole('escuela'))
+                    <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más tarde.</strong>
+                    @else
+                    <strong>Aún no se han cargado alumnos de esta escuela.</strong>
+                    @endif
+                </div>
             </div>
 
             <ul class="list-unstyled lista-alumnos">
@@ -250,6 +271,10 @@
             <a href="#" class="btn-cerrar cerrar-filtros">Cerrar</a>
             <div class="filtros-contenido">
                 <h3 class="texto-azul">Filtros</h3>
+                <a href="#empty" class="btn-reset reset-filtros" title="Restaurar filtros">
+                    <span class="sr-only">Reset</span>
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </a>
 
                 <div class="modulo-filtro modulo-promedio">
                     <h5 class="text-uppercase texto-azul">Promedio General</h5>

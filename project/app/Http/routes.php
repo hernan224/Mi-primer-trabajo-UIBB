@@ -68,6 +68,10 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::post('/contacto','MailsController@contacto');
 
+    Route::get('/legal', function () {
+        return view('public.aviso_legal');
+    });
+
 });
 
 // Routes con autenticacion

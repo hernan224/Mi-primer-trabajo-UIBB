@@ -6,7 +6,6 @@
 @endsection
 
 @section('header')
-    {{--@include('layouts.header_simple')--}}
     @include('layouts.header_simple_acceso')
 @endsection
 

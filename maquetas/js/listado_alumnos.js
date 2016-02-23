@@ -62,10 +62,10 @@ function handlebarsHelpers() {
 
 // en html se setea urls[lists]: url para hacer get
 // params: filtros u ordenamiento
-function getAlumnos(pag) {
+function getAlumnos(pag,filtro) {
     var $container = $('#contenedorLista');
     $container.addClass('loading');
-    $container.removeClass('error-get');
+    $container.removeClass('error-get sin-alumnos filtro-vacio');
 
     var url_params = {};
     if(pag) {
@@ -89,6 +89,14 @@ function getAlumnos(pag) {
         renderLista(resp);
         actual_page = resp.current_page;
         $container.removeClass('loading');
+        if (!resp.data.length) {
+            if (filtro) {
+                $container.addClass('filtro-vacio');
+            }
+            else {
+                $container.addClass('sin-alumnos');
+            }
+        }
     })
     .fail(function() {
         $container.addClass('error-get');
@@ -100,11 +108,6 @@ function renderLista(resp) {
 
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
-
-    // ToDo: mostrar mensaje de no hay elementos
-
-    // if (!resp.data.length) {
-    // }
 
     // renderizo paginado si no fue renderizado aún
     // inicialmente va a mostrar la cantidad total de paginas...
@@ -176,18 +179,28 @@ function bindFiltros() {
     $btnMostrarFiltros.on('click', function (e) {
        e.preventDefault();
        $contenedorPrincipal.addClass('mostrar-filtros');
+       $('body').addClass('modal-open');
     });
     // al cerrar filtro hago el get
     $ocultarFiltros.on('click', function (e) {
        e.preventDefault();
        $contenedorPrincipal.removeClass('mostrar-filtros');
        filtrar(slider_promedio);
+       $('body').removeClass('modal-open');
+    });
+
+    $('a.reset-filtros').click(function(){
+        $contenedorPrincipal.find('input, select').val('');
+        $contenedorPrincipal.find('input[type="checkbox"]').attr('checked', false);
+        slider_promedio.slider('setValue',[1,10]);
+        filtros = {};
+        getAlumnos(1);
     });
 
 }
 
 function filtrar(slider_promedio) {
-    // reseteo filtros
+    // vacio filtros
     var force_get = false;
     if (!$.isEmptyObject(filtros)) {
         force_get = true;
@@ -217,7 +230,7 @@ function filtrar(slider_promedio) {
         filtros.prom_max = promedio[1];
     }
     if(force_get || !$.isEmptyObject(filtros)) {
-        getAlumnos(1); //al filtrar siempre elijo la pag 1
+        getAlumnos(1,true); //al filtrar siempre elijo la pag 1
     }
 }
 

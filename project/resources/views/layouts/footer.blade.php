@@ -23,10 +23,10 @@
                     <li><strong><a href="{{ url('/contacto')}}">Contacto</a></strong></li>
                     <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>
                 </ul> {{-- .menu-principal --}}
-                {{-- <ul class="list-inline nav-list menu-tc-pp text-right">
-                    <li><a href="#ToDo">Términos y condiciones</a></li>
-                    <li><a href="#ToDo">Políticas de privacidad</a></li>
-                </ul> --}} {{-- .menu-tc-pp --}}
+                <ul class="list-inline nav-list menu-tc-pp text-right">
+                    <li><a href="{{ url('/legal')}}">Aviso legal</a></li>
+                    <!-- <li><a href="#ToDo">Políticas de privacidad</a></li> -->
+                </ul> {{-- .menu-tc-pp --}}
             </div>
         </div> {{-- .contenido-footer --}}
 

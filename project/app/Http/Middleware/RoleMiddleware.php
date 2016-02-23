@@ -20,7 +20,7 @@ class RoleMiddleware
         // Si no es admin y no tiene el rol indicado, no permite el request
         if (!$request->user()->hasRole('admin') &&
                 !$request->user()->hasRole($role) ) {
-            return response('No autorizado', 403);
+            return abort(403);
         }
 
         return $next($request);

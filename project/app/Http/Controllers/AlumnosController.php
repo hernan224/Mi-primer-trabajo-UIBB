@@ -257,7 +257,7 @@ class AlumnosController extends Controller
         }
         // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
         if (Gate::denies('show-alumno', $alumno)) {
-            return response('No autorizado', 403);
+            return abort(403);
         }
         $view_data = [
             'id' => $id,
@@ -340,7 +340,7 @@ class AlumnosController extends Controller
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
-            return response('No autorizado', 403);
+            return abort(403);
         }
         $view_data = [
             'nuevo' => false,
@@ -370,7 +370,7 @@ class AlumnosController extends Controller
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
-            return response('No autorizado', 403);
+            return abort(403);
         }
 
         $data_alumno = $this->getDataPostAlumno($request);
@@ -407,7 +407,7 @@ class AlumnosController extends Controller
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
-            return response('No autorizado', 403);
+            return abort(403);
         }
         $alumno->delete();
 
