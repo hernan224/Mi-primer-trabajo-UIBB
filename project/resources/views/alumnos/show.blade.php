@@ -76,9 +76,9 @@
                 <div class="contenedor-foto">
                     <figure class="foto-bg foto-alumno">
                     @if($alumno->foto)
-                        <img src="{{$alumno->getUrlFoto()}}" alt="{{$alumno->getFullName()}}" class="img-responsive alumno-img">
+                        <img src="{{$alumno->getUrlFoto()}}" alt="{{$alumno->getFullName()}}" class="img-responsive alumno-img visible-print-block">
                     @else  {{-- Si no tiene foto muestra placeholder --}}
-                        <img src="{{ ($alumno->sexo == 'm') ? url('img/alumno-sin-foto-femenino.jpg') : url('img/alumno-sin-foto-femenino.png')}}" alt="" class="img-responsive alumno-img">
+                        <img src="{{ ($alumno->sexo == 'm') ? url('img/alumno-sin-foto-femenino.jpg') : url('img/alumno-sin-foto-femenino.png')}}" alt="" class="img-responsive alumno-img visible-print-block">
                     @endif
                     </figure>
                 </div>

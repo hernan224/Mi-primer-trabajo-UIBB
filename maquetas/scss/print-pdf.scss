@@ -4,52 +4,58 @@
 //@import "bootstrap/mixins/clearfix";
 @import 'mixins';
 
-
 @media print {
 
-    @page {
-        size: A4;
-        margin: 1.25cm;
+  @page {
+    size: A4;
+    margin: 0;
   }
 
-  body{
+  body {
     font-size: 9.5pt;
   }
 
-    h2,.h2,
-    h3,.h3,
-    h4,.h4{
-        page-break-after: avoid;
-    }
-
-    .nav-listado,
-    .acceso-usuario-container,
-    .pie-pagina{
-        display: none;
-    }
-
-  .container-general-flex{
-    min-height: 0;
+  h2, .h2,
+  h3, .h3,
+  h4, .h4 {
+    page-break-after: avoid;
   }
 
-  .header-acceso{
+  a[href]:after {
+    display: none;
+  }
+
+  .nav-listado,
+  .acceso-usuario-container,
+  .pie-pagina {
+    display: none;
+  }
+
+  .container-general-flex {
+    min-height: 0;
+  }
+  .container {
+    padding: 1cm 1cm 0.5cm;
+  }
+
+  .header-acceso {
     padding: 0;
     margin-top: 0.5cm;
 
-    .marca-container{
+    .marca-container {
       margin: 0 auto;
     }
   }
 
-  .alumno-individual{
+  .alumno-individual {
     margin-top: 0.5cm;
 
     .fa-li::before,
-    .texto-azul{
+    .texto-azul {
       color: $azul !important;
     }
 
-    .alumno-info-principal{
+    .alumno-info-principal {
       //display: flex;
       //justify-content: space-between;
       //align-items: flex-end;
@@ -58,89 +64,90 @@
       @include clearfix();
 
       .contenedor-foto,
-      .info-alumno{
+      .info-alumno {
         float: left;
       }
-      .promedio{
+      .promedio {
         float: right;
       }
     }
 
-    .contenedor-foto{
+    .contenedor-foto {
       width: auto;
       margin: 0 0.5cm 0.5cm 0.25cm;
     }
 
-    .foto-alumno{
+    .foto-alumno {
       width: 2cm;
       height: 2cm;
       margin: 0;
+      border-radius: 0;
 
-      &.sin-foto{
+      &.sin-foto {
         display: none;
       }
     }
 
-    .info-alumno{
-      width: 13cm;
+    .info-alumno {
+      width: 12cm;
       //margin-bottom: 0.5cm;
     }
 
-    .nombre-alumno{
+    .nombre-alumno {
       font-size: 1.8em;
       margin: 0 0 0.25em;
     }
 
-    .datos-alumno{
-      span{
+    .datos-alumno {
+      span {
         margin: 0.5em 1em 0.5em 0;
       }
     }
 
-    .promedio{
+    .promedio {
       width: 2.5cm;
       padding: 1.5em 0.25em 0.5em;
 
-      .promedio-valor{
+      .promedio-valor {
         color: $azul !important;
       }
     }
 
-    .fila-flex{
+    .fila-flex {
       display: block !important;
       @include clearfix();
     }
 
-    .info-contactos{
+    .info-contactos {
       width: 6.5cm;
       margin-right: 0.5cm;
       float: left;
 
-      section{
+      section {
         //background-color: $gris-claro;
         //padding: 1.5em;
         margin-bottom: 1em;
 
-        &.contacto-alumno{
+        &.contacto-alumno {
           border-top: none;
         }
 
-        &.contacto-docente{
+        &.contacto-docente {
           //border-top: 2px solid $azul;
-          li{
+          li {
             padding: 0.1em 0 0.2em;
           }
         }
       }
 
-      .lista-contacto{
+      .lista-contacto {
         margin-top: 1em;
 
-        li{
+        li {
           padding: 0.5em 0 0.5em 0.5em;
         }
 
-        .fa-li{
+        .fa-li {
           background-color: $azul;
           color: #fff;
           border-radius: 100%;
@@ -153,28 +160,28 @@
         }
       }
     }
-    .info-detalle{
-      width: 11cm;
+    .info-detalle {
+      width: 10cm;
       padding: 1em 0.5em 0;
       float: left;
 
-      section{
+      section {
         margin-bottom: 0.5em;
         padding-bottom: 0.5em;
 
-        &:last-child{
+        &:last-child {
           margin-bottom: 0;
           padding-bottom: 0;
         }
       }
 
-      .lista-actitudes{
-        li{
+      .lista-actitudes {
+        li {
           padding: 0.5em 0;
           margin-right: 2.5em;
         }
 
-        .fa-li{
+        .fa-li {
           left: -1.75em;
           width: 1.8em;
           top: 0.75em;
@@ -183,7 +190,5 @@
       }
     }
   }
-
-
 
 }
