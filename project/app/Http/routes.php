@@ -100,8 +100,8 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
     });
 
     // GET pantalla y PDF alumno
+    Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('pdf');
     Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
-    Route::get('/alumno/{id}/pdf','AlumnosController@pdf')->name('pdf');
 
     // Formulario ayuda (no estaba en requerimientos)
     // Route::get('/ayuda', function () {

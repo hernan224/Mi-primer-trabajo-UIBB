@@ -240,7 +240,7 @@
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
                             @else
-                                <a href="#ToDo" class="btn btn-default btn-descargar" data-toggle="tooltip"
+                                <a href="{{route('alumnos.pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
                                    data-placement="bottom" title="Descargar CV como PDF">
                                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                                 </a>
