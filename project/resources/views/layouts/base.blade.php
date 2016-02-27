@@ -39,7 +39,7 @@
     @include('layouts.svg_icons')
 
     <div class="container-general-flex">
-        <div id="contenedorPrincipal">
+        <div class="contenedorPrincipal">
 
             @yield('header')
 
