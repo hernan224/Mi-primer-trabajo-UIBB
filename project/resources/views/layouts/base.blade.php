@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url('css/vendor/normalize.css') }}">
     <link rel="stylesheet" href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     {{-- <link rel="stylesheet" href="{{ elixir('css/estilos.css') }}"> --}}
-    <link rel="stylesheet" href="{{ url('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ url('css/estilos.css') }}" media="screen">
 @endsection
 
 @section('scripts')

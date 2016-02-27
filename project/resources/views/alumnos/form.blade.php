@@ -110,7 +110,7 @@
 
                         <div class="form-group col-xs-12 col-xs-12{{ $errors->has('domicilio') ? ' has-error' : '' }}">
                             {{ Form::label('domicilio', 'Domicilio', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio']) }}
+                            {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio','required'=>'required']) }}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
@@ -128,12 +128,12 @@
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('celular') ? ' has-error' : '' }}">
                             {{ Form::label('celular', 'Teléfono móvil', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil']) }}
+                            {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil','required'=>'required']) }}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-12{{ $errors->has('email') ? ' has-error' : '' }}">
                             {{ Form::label('email', 'E-mail', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail']) }}
+                            {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'=>'required']) }}
                         </div>
 
                         {{-- Facebook, Twitter y Linkedin: deshabilitado
@@ -174,20 +174,20 @@
                             {{ Form::label('asignaturas', 'Asignaturas destacadas', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('asignaturas',
                                 (!$nuevo) ? $alumno->curriculum->asignaturas : null,
-                                ['class'=>'form-control','placeholder'=>'Asignaturas destacadas','required' => 'required']) }}
+                                ['class'=>'form-control','placeholder'=>'Asignaturas destacadas']) }}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_tipo', 'Prácticas profesionalizantes', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_tipo',
                                 (!$nuevo) ? $alumno->curriculum->practicas_tipo : null,
-                                ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes']) }}
+                                ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes','required'=>'required']) }}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_lugar',
                                 (!$nuevo) ? $alumno->curriculum->practicas_lugar : null,
-                                ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?']) }}
+                                ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?','required'=>'required']) }}
                         </div>
                     </fieldset> {{-- /fieldset datos curriculares --}}
 
@@ -306,7 +306,7 @@
                             {{ Form::label('carta', 'Carta de presentación', ["class"=>"sr-only"]) }}
                             {{ Form::textarea('carta',
                                 (!$nuevo) ? $alumno->curriculum->carta : null,
-                                ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6]) }}
+                                ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6,'required'=>'required']) }}
                         </div>
                     </fieldset>
 

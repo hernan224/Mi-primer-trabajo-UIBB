@@ -8,17 +8,8 @@
 
 {{-- Agrego estilos y scripts --}}
 @section('styles')
-    @if (isset($pdf))
-        {{-- Styles --}}
-        <link rel="stylesheet" href="{{ url('css/vendor/normalize.css') }}">
-        <link rel="stylesheet" href="{{ url('css/vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url('css/estilos.css') }}">
-        <link rel="stylesheet" href="{{ url('css/vendor/font-awesome-4.5.0/css/font-awesome.min.css')}}">
-    @else
-        @parent
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    @endif
-
+    @parent
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url('css/print-pdf.css') }}" media="print">
 @endsection
 
