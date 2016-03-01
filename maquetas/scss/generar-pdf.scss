@@ -13,7 +13,8 @@
 
   body {
     font-size: 9.5pt;
-    font-family: 'Open Sans', sans-serif;
+    line-height: 1.25;
+    font-family: 'Open Sans', Helvetica, sans-serif;
   }
 
   h1, .h1,
@@ -22,7 +23,7 @@
   h4, .h4,
   h5, .h5,
   h6, .h6{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', DejaVu Sans, sans-serif;
     page-break-after: avoid;
   }
 
@@ -87,6 +88,8 @@
   //  padding: 1cm 1cm 0.5cm;
   //}
 
+
+
   .header-acceso {
     padding: 0;
     //margin-top: 0.5cm;
@@ -109,6 +112,14 @@
     .fa-li::before,
     .texto-azul {
       color: $azul !important;
+    }
+
+    .li-falso {
+      padding: 0.5em 0;
+      //margin-right: 1em;
+      position: relative;
+      display: inline;
+      //list-style: circle;
     }
 
     .alumno-info-principal {
@@ -162,12 +173,14 @@
       font-weight: 700;
     }
 
-    .datos-alumno {
-      span {
-        margin: 0.5em 1em 0.5em 0;
-        line-height: 1.75;
-      }
-    }
+    //.datos-alumno {
+    //  span {
+    //    padding: 0.25em 0 0.5em 0;
+    //    margin-right: 2em;
+    //    position: relative;
+    //    //line-height: 1.75;
+    //  }
+    //}
 
     .promedio {
       width: 2.5cm;
@@ -218,7 +231,7 @@
         &.contacto-docente {
           //border-top: 2px solid $azul;
           li {
-            padding: 0.1em 0 0.2em;
+            //padding: 0.1em 0 0.2em;
           }
         }
       }
@@ -227,20 +240,25 @@
         margin-top: 1em;
 
         li {
-          padding: 0.5em 0 0.5em 0.5em;
+          padding: 0.25em 0;
+          line-height: 1.125;
         }
 
-        .fa-li {
-          background-color: $azul;
-          color: #fff;
-          border-radius: 100%;
-          width: 2em;
-          height: 2em;
-          font-size: 10pt;
-          line-height: 2em;
-          padding: 0;
-          //margin-right: 0.75em;
+        .small{
+          font-size: 0.85em;
         }
+
+        //.fa-li {
+        //  background-color: $azul;
+        //  color: #fff;
+        //  border-radius: 100%;
+        //  width: 2em;
+        //  height: 2em;
+        //  font-size: 10pt;
+        //  line-height: 2em;
+        //  padding: 0;
+        //  //margin-right: 0.75em;
+        //}
       }
     }
     .info-detalle {
@@ -252,8 +270,9 @@
       left: 7cm;
 
       section {
-        margin-bottom: 0.5em;
+        //margin-bottom: 0.5em;
         padding-bottom: 0.5em;
+        //page-break-inside: avoid;
 
         &:last-child {
           margin-bottom: 0;
@@ -261,24 +280,14 @@
         }
       }
 
-      .lista-actitudes {
-        li {
-          padding: 0.5em 0;
-          margin-right: 2.5em;
-        }
-
-        .fa-li {
-          left: -1.75em;
-          width: 1.8em;
-          top: 0.75em;
-          //color: $azul !important;
-        }
-      }
+      //.lista-actitudes {
+      //}
     }
 
     .carta-presentacion{
       padding: 0.25cm 0.5cm 0;
       margin: 0;
+      page-break-before: always;
     }
   }
 

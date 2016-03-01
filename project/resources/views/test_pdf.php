@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Vista Alumno | Mi Primer Trabajo</title>
 
-    <link rel="stylesheet" href="css/vendor/normalize.css" media="print">
+    <!--<link rel="stylesheet" href="css/vendor/normalize.css" media="print">-->
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <!--<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,600italic,700italic|Montserrat:400,700'>-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-    <link rel="stylesheet" href="css/vendor/font-awesome.min.css" media="print">
+    <!--<link rel="stylesheet" href="css/vendor/font-awesome.min.css" media="print">-->
     <!--<link rel="stylesheet" href="css/estilos.css">-->
     <link rel="stylesheet" href="css/generar-pdf.css" media="print">
 
@@ -46,11 +47,14 @@
                         <h2 class="nombre-alumno">Gilberto Manhatan Ruiz</h2>
 
                         <div class="datos-alumno">
-                            <span class="sexo"><strong>Sexo:</strong> Masculino</span>
-                            <span class="fec-nac"><strong>Fecha de Nac.:</strong> 25/10/1996</span>
-                            <span class="edad"><strong>Edad:</strong> 19 años</span>
-                            <span class="nacionalidad"><strong>Nacionalidad:</strong> Argentino</span>
-                            <span class="dni"><strong>DNI:</strong> 40.258.367</span>
+
+                            <span class="li-falso sexo"><strong>Sexo:</strong> Masculino</span> &nbsp;&nbsp;
+                            <span class="li-falso fec-nac"><strong>Fecha de Nac.:</strong> 25/10/1996</span> &nbsp;&nbsp;
+                            <span class="li-falso edad"><strong>Edad:</strong> 19 años</span>
+                            <br>
+                            <span class="li-falso nacionalidad"><strong>Nacionalidad:</strong> Argentino</span> &nbsp;&nbsp;
+                            <span class="li-falso dni"><strong>DNI:</strong> 40.258.367</span>
+
                         </div>
                     </div>
 
@@ -65,15 +69,15 @@
                         <section class="contacto-alumno panel-bg-color">
                             <h5 class="subtitulo texto-azul">Datos de contacto</h5>
 
-                            <ul class="fa-ul lista-contacto">
-                                <li><span class="sr-only">Ciudad / Barrio: </span><i class="fa fa-li fa-home"></i>Mitre 206, piso 3, dpto C</li> <!--ciudad / barrio-->
-                                <li><span class="sr-only">Dirección: </span><i class="fa fa-li fa-map-marker"></i>Bahía Blanca (Barrio Centro)</li> <!--Dirección-->
-                                <li><span class="sr-only">Teléfono: </span><i class="fa fa-li fa-phone"></i>0291 - 454 5072</li> <!--Teléfono-->
-                                <li><span class="sr-only">Celular: </span><i class="fa fa-li fa-mobile"></i>0291 - 505 0862</li> <!--Celular-->
-                                <li><span class="sr-only">E-mail: </span><i class="fa fa-li fa-at"></i><a href="#">hernan224@gmail.com</a></li> <!--E-mail-->
-                                <li><span class="sr-only">Facebook: </span><i class="fa fa-li fa-facebook"></i><a href="#">facebook.com/hernan224</a></li> <!--Facebook-->
-                                <li><span class="sr-only">Twitter: </span><i class="fa fa-li fa-twitter"></i><a href="#">@hernan224</a></li> <!--Twitter-->
-                                <li><span class="sr-only">LinkedIn: </span><i class="fa fa-li fa-linkedin"></i><a href="#">linkedin.com/in/hernan224</a></li> <!--Linkedin-->
+                            <ul class="lista-contacto list-unstyled">
+                                <li><strong class="small">Ciudad: </strong>Mitre 206, piso 3, dpto C</li> <!--ciudad / barrio-->
+                                <li><strong class="small">Dirección: </strong>Bahía Blanca (Barrio Centro)</li> <!--Dirección-->
+                                <li><strong class="small">Teléfono: </strong>0291 - 454 5072</li> <!--Teléfono-->
+                                <li><strong class="small">Celular: </strong>0291 - 505 0862</li> <!--Celular-->
+                                <li><strong class="small">E-mail: </strong>hernan224@gmail.com</li> <!--E-mail-->
+                                <li><strong class="small">Facebook: </strong>facebook.com/hernan224</li> <!--Facebook-->
+                                <li><strong class="small">Twitter: </strong>@hernan224</li> <!--Twitter-->
+                                <li><strong class="small">LinkedIn: </strong>linkedin.com/in/hernan224</li> <!--Linkedin-->
                             </ul>
                         </section> <!--/.contacto-alumno-->
 
@@ -89,7 +93,7 @@
 
                     <main class="info-detalle">
                         <section class="info-curricular">
-                            <h5 class="subtitulo texto-azul">Información curricular educativa</h5>
+                            <h5 class="subtitulo texto-azul">Informacion curricular educativa</h5>
                             <p><strong>Servicio Educativo: </strong>Escuela de Educación Técnica N° 1</p>
                             <p><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</p>
                             <p><strong>Práctica Profecional: </strong>Equipos e Instalaciones Electromecánicas
@@ -102,18 +106,18 @@
                         <section class="actitudes">
                             <h5 class="subtitulo texto-azul">Actitudes destacadas</h5>
 
-                            <ul class="list-inline fa-ul lista-actitudes">
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Responsabilidad</li>
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Puntualidad</li>
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Perseverancia</li>
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Trabajo en equipo</li>
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Liderazgo positivo</li>
-                                <li><i class="fa fa-li fa-check texto-azul"></i>Hábitos saludables</li>
-                            </ul>
+                            <div class="lista-actitudes">
+                                <span class="li-falso">Responsabilidad</span> &nbsp;&nbsp;
+                                <span class="li-falso">Puntualidad</span> &nbsp;&nbsp;
+                                <span class="li-falso">Perseverancia</span> &nbsp;&nbsp;
+                                <span class="li-falso">Trabajo en equipo</span> &nbsp;&nbsp;
+                                <span class="li-falso">Liderazgo positivo</span> &nbsp;&nbsp;
+                                <span class="li-falso">Hábitos saludables</span>
+                            </div>
                         </section> <!--/.actitudes-->
 
                         <section class="info-adicional">
-                            <h5 class="subtitulo texto-azul">Información adicional</h5>
+                            <h5 class="subtitulo texto-azul">Informacion adicional</h5>
                             <div class="datos-alumno">
                                 <p><strong>Hobbies, pasatiempos o actividades extracurriculares: </strong>
                                     Pesca con moscardones. Tirarle la goma al diablo. Fumar abajo del agua ras.</p>
@@ -122,16 +126,23 @@
                             </div>
                         </section> <!--/.info-adicional-->
 
-
                     </main> <!--/.info-detalle-->
 
                 </div> <!--/.fila-flex-->
+
                 <section class="carta-presentacion">
-                    <h5 class="subtitulo texto-azul">Carta de presentación</h5>
+                    <h5 class="subtitulo texto-azul">Carta de presentacion</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam consectetur deleniti doloremque ea ipsum laboriosam magnam nam provident quos, voluptas.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium fugit minus officiis sunt temporibus? Accusantium consequuntur deserunt doloremque facilis fugiat harum libero nam, nihil odit officia repellendus unde velit voluptate.</p>
                 </section> <!--/.carta-presntacion-->
+
             </article> <!--/.alumno-individual-->
+
 
         </div> <!--/.container-->
     </div> <!--/#contenedorPrincipal-->

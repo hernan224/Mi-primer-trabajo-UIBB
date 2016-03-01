@@ -174,9 +174,19 @@
                             <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
                             <div class="form-group col-xs-12">
-                                <label class="sr-only input-label small" for="especialidad">Especialidad cursada</label>
-                                <input type="text" class="form-control" name="especialidad" id="especialidad" placeholder="Especialidad cursada">
-                            </div> <!--/input especialidad cursada-->
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4 col-xs-12"><label class="input-label" for="especialidad">Especialidad cursada:</label></div>
+                                    <div class="col-md-9 col-sm-8 col-xs-12">
+                                        <select class="form-control" name="especialidad" id="especialidad">
+                                            <option>Elegir especialidad</option>
+                                            <option>Tecnicatura 1</option>
+                                            <option>Tecnicatura 2</option>
+                                            <option>Tecnicatura 3</option>
+                                            <option>Tecnicatura 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> <!--/input especialidad cursada (CAMBIAR POR SELECT CON EL LISTADO DE TECNICATURAS)-->
 
                             <div class="form-group col-sm-6">
                                 <label class="sr-only input-label small" for="promedioGeneral">Promedio general</label>
