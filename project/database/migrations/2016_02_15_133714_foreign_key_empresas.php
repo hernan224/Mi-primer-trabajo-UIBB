@@ -25,7 +25,7 @@ class ForeignKeyEmpresas extends Migration
      */
     public function down()
     {
-        Schema::table('empresas', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_empresa_id_foreign');
         });
     }

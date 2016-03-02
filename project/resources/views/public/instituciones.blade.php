@@ -29,7 +29,7 @@
                 <li class="item">
                     @if ($escuela->foto)
                         {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
-                        <figure class="foto-bg foto-item foto-no-link foto-institucion" style="background-image: url('{{$escuela->getUrlFoto()}}');"></figure>
+                        <figure class="foto-bg foto-item foto-no-link foto-institucion" style="background-image: url('{{$escuela->getUrlFoto()}}'); border-radius: 0;"></figure>
                     @else
                         {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
                         <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>

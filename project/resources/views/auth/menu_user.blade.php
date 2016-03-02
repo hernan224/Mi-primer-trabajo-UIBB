@@ -4,7 +4,7 @@
     <a id="dropdownUsuario" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         @if (Auth::user()->hasRole('escuela'))
             @if (Auth::user()->escuela->foto)
-                <figure class="foto-bg foto-usuario foto-institucion" style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}')"></figure>
+                <figure class="foto-bg foto-usuario foto-institucion" style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}');  border-radius: 0;"></figure>
             @else
                 <figure class="foto-bg foto-usuario sin-foto foto-institucion"></figure>
             @endif
