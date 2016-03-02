@@ -20,7 +20,7 @@
                     <p>Funciona como un nexo entre el sector productivo, las instituciones educativas y los alumnos
                         egresados, con aspiraciones de ingresar al mundo laboral.</p>
                 </div>
-            </section>{{-- /.info--que --}}
+            </section>{{-- /.info-que --}}
 
             <section class="row info-home info--por-que">
                 <div class="col-sm-3">
@@ -38,7 +38,7 @@
                     <p>En este contexto, Mi Primer Trabajo busca funcionar como un trampolín que vincule a ambos
                         sectores, ayudando a satisfacer las mutuas necesidades.</p>
                 </div>
-            </section>{{-- /.info--por-que --}}
+            </section>{{-- /.info-por-que --}}
 
             <section class="row info-home info--quienes">
                 <div class="col-sm-3 col-sm-push-9">
@@ -74,7 +74,7 @@
                         </div>
                     </div> {{-- /.logos-organizadores --}}
                 </div>
-            </section>{{-- /.info--quienes --}}
+            </section>{{-- /.info-quienes --}}
 
             <section class="row info--participantes">
                 <div class="col-xs-12">
@@ -109,7 +109,7 @@
                         Solicitar Acceso
                     </a>
                 </div>
-            </section>{{-- /.info--participantes --}}
+            </section>{{-- /.info-participantes --}}
         </div>
 
         <div class="jumbotron panel-bg-color">

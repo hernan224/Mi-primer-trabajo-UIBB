@@ -24,7 +24,8 @@ elixir(function(mix) {
     mix.jshint( [src+'/js/*.js'] )
     // compilacion scss
     .sass('estilos.scss')
-    .sass('print-pdf.scss')
+    .sass('print.scss')
+    .sass('generar-pdf.scss')
     //  concatenacion y copia js
     //  script principal, incluido en la base (es decir, en todas las paginas)
     .scripts(['main.js'], dest+'/js/main.js')

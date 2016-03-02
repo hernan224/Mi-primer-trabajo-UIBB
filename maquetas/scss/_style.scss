@@ -2319,13 +2319,13 @@ body.esperando{
     animation: motion 3s cubic-bezier(0.5, 0, 0.2, 1) infinite;
     margin: 10px auto;
   }
-  
+
   .loading{
     margin: 10px auto;
     //position: relative;
     //left: 50%;
     //transform: translateX(-50%);
-    
+
     .bullet{
       display: inline-block;
       width: 12px;
@@ -2374,8 +2374,14 @@ body.esperando{
     opacity: 1;
   }
   100% {
-   
+
     transform: translateX(80px);
     opacity: 0;
   }
+}
+.label-select-carga-alumno {
+  line-height: 2.5;
+}
+.select-carga-alumno {
+  margin-bottom: 0;
 }

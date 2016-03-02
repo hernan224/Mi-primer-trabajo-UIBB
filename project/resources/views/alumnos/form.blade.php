@@ -156,11 +156,27 @@
                     <fieldset class="carga-datos-curriculares row">
                         <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
-                        <div class="form-group col-xs-12 col-xs-12{{ $errors->has('especialidad') ? ' has-error' : '' }}">
-                            {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('especialidad',
-                                (!$nuevo) ? $alumno->curriculum->especialidad : null ,
-                                ['class'=>'form-control','placeholder'=>'Especialidad cursada','required' => 'required']) }}
+                        <div class="form-group col-xs-12 {{ $errors->has('especialidad') ? ' has-error' : '' }}">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-4 col-xs-12">
+                                    {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"input-label label-select-carga-alumno"]) }}
+                                </div>
+                                <div class="col-md-9 col-sm-8 col-xs-12">
+                                    {{ Form::select('especialidad',
+                                        [
+                                            'Tecnicatura en Aeronáutica' => 'Tecnicatura en Aeronáutica',
+                                            'Tecnicatura en Automotores' => 'Tecnicatura en Automotores',
+                                            'Tecnicatura en Administración y Gestión de las Organizaciones' => 'Tecnicatura en Administración y Gestión de las Organizaciones',
+                                            'Tecnicatura en Electrónica' => 'Tecnicatura en Electrónica',
+                                            'Tecnicatura en Electromecánica' => 'Tecnicatura en Electromecánica',
+                                            'Tecnicatura en Química' => 'Tecnicatura en Química',
+                                            'Tecnicatura en Informática Personal y Profesional' => 'Tecnicatura en Informática Personal y Profesional',
+                                            'Tecnicatura Maestro Mayor de obra' => 'Tecnicatura Maestro Mayor de obra'
+                                        ],
+                                        (!$nuevo) ? $alumno->curriculum->especialidad : null ,
+                                        ['class'=>'form-control select-carga-alumno','placeholder'=>'Elegir especialidad...','required' => 'required']) }}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">

@@ -37,7 +37,7 @@
     <div class="container contenido-header-home">
 
         <div class="marca-container marca-home">
-            <a href="#empty">
+            <a>
                 <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-blanco">
                     <use xlink:href="#logoMPT"></use>
                 </svg>

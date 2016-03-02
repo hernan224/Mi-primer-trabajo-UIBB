@@ -293,7 +293,7 @@ class AlumnosController extends Controller
             'alumno' => $alumno,
             'pdf' => true
         ];
-        $pdf = PDF::loadView('alumnos.show', $view_data);
+        $pdf = PDF::loadView('alumnos.show_pdf', $view_data);
         $filename = $alumno->getFullName().'.pdf';
         return $pdf->download($filename);
     }

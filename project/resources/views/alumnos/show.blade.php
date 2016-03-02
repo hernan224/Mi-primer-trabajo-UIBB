@@ -10,21 +10,19 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url('css/print-pdf.css') }}" media="print">
+    <link rel="stylesheet" href="{{ url('css/print.css') }}" media="print">
 @endsection
 
 @section('scripts')
-    @if (!isset($pdf))
-        @parent
-        <script>
-            $(function () {
-                $('a#imprimir').click(function(event) {
-                    event.preventDefault();
-                    window.print();
-                });
+    @parent
+    <script>
+        $(function () {
+            $('a#imprimir').click(function(event) {
+                event.preventDefault();
+                window.print();
             });
-        </script>
-    @endif
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -93,7 +91,7 @@
                     <div class="datos-alumno">
                         <span class="sexo"><strong>Sexo:</strong> {{ ($alumno->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span>
                         <span class="fec-nac"><strong>Fecha de Nac.:</strong> {{ $alumno->nacimiento }}</span>
-                        <span class="edad"><strong>Edad:</strong> {{ $alumno->getEdad() }}</span>
+                        <span class="edad"><strong>Edad:</strong> {{ $alumno->getEdad() }} años</span>
                         <span class="nacionalidad"><strong>Nacionalidad:</strong> {{ $alumno->nacionalidad }}</span>
                         <span class="dni"><strong>DNI:</strong> {{ $alumno->dni }}</span>
                     </div>
@@ -193,7 +191,12 @@
                             @endif
                         </p>
                         @endif
-                        <p><strong>Asignaturas destacadas: </strong>{{ $alumno->curriculum->asignaturas }}</p>
+                        @if ($alumno->curriculum->asignaturas)
+                        <p>
+                            <strong>Asignaturas destacadas: </strong>
+                            {{ $alumno->curriculum->asignaturas }}
+                        </p>
+                        @endif
                     </section> {{-- /.info-curricular --}}
 
                     <section class="actitudes">

@@ -138,7 +138,7 @@ Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
 // });
 
 // ROUTE TEMPORAL PARA PROBAR PDF
-Route::get('/testpdf', function () {
-    $pdf = PDF::loadView('test_pdf');
-    return $pdf->download('test.pdf');
-});
+// Route::get('/testpdf', function () {
+//     $pdf = PDF::loadView('test_pdf');
+//     return $pdf->download('test.pdf');
+// });
