@@ -16,7 +16,7 @@ class CreateEscuelas extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('direccion')->nullable();
-            $table->string('telefono',20)->nullable();
+            $table->string('telefono',50)->nullable();
             $table->timestamps();
         });
 
