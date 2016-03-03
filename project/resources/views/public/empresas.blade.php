@@ -24,34 +24,23 @@
 
         <div class="contenedor-lista vista-listado listado-instituciones">
             <ul class="list-unstyled lista-2col">
-            @foreach ($empresas as $empresa)
-                <li class="item">
-                    @if ($empresa->foto)
-                        {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
-                        <figure class="foto-bg foto-item foto-no-link foto-asociado" style="background-image: url('{{$empresa->getUrlFoto()}}');"></figure>
-                    @else
-                        {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
-                        <figure class="foto-bg foto-item foto-no-link foto-asociado sin-foto"></figure>
-                    @endif
+                <!-- <li class="item">
+                    {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
+                    <figure class="foto-bg foto-item foto-no-link foto-asociado" style="background-image: url('{{$empresa->getUrlFoto()}}');"></figure>
+                    {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
+                    <figure class="foto-bg foto-item foto-no-link foto-asociado sin-foto"></figure>
 
                     <div class="info-item">
-                        <h4 class="texto-azul">{{$empresa->name}}</h4>
+                        <h4 class="texto-azul"></h4>
 
                         <div class="item-datos">
-                            <p><strong>Ciudad:</strong> {{$empresa->localidad}}</p>
-                            @if($empresa->direccion)
-                            <p><strong>Dirección:</strong> {{$empresa->direccion}}</p>
-                            @endif
-                            @if($empresa->telefono)
-                            <p><strong>Teléfono:</strong> {{$empresa->telefono}}</p>
-                            @endif
-                            @if($empresa->email)
-                            <p><strong>Email:</strong> {{$empresa->email}}</p>
-                            @endif
+                            <p><strong>Ciudad:</strong> </p>
+                            <p><strong>Dirección:</strong> </p>
+                            <p><strong>Teléfono:</strong> </p>
+                            <p><strong>Email:</strong> </p>
                         </div>
                     </div>
-                </li>
-            @endforeach
+                </li> -->
             </ul>
         </div> <!--/.contenedor-lista-->
 
