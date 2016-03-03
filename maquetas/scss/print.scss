@@ -81,6 +81,7 @@
   }
 
   .container-general-flex {
+    display: block;
     min-height: 0;
   }
   .container {
@@ -240,9 +241,16 @@
         margin-bottom: 0.5em;
         padding-bottom: 0.5em;
 
-        &:last-child {
-          margin-bottom: 0;
-          padding-bottom: 0;
+        //&:last-child {
+        //  margin-bottom: 0;
+        //  padding-bottom: 0;
+        //}
+
+        &.carta-presentacion{
+          page-break-inside: avoid;
+          //width: 16cm;
+          //margin: 0 0 0 -6.5cm;
+          padding: 1cm 0;
         }
       }
 

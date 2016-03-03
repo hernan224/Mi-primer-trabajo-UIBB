@@ -129,21 +129,21 @@
                                 <strong>Especialidad: </strong>
                                 {{ $alumno->curriculum->especialidad }}
                             </p>
-                            @if ($alumno->curriculum->practicas_tipo)
-                            <p>
-                                <strong>Prácticas Profesionalizantes: </strong>
-                                {{ $alumno->curriculum->practicas_tipo }}
-                                @if ($alumno->curriculum->practicas_lugar )
-                                <br>
-                                (Realizada en <strong>{{ $alumno->curriculum->practicas_lugar }}</strong>)
-                                @endif
-                            </p>
-                            @endif
                             @if ($alumno->curriculum->asignaturas)
-                            <p>
-                                <strong>Asignaturas destacadas: </strong>
-                                {{ $alumno->curriculum->asignaturas }}
-                            </p>
+                                <p>
+                                    <strong>Asignaturas destacadas: </strong>
+                                    {{ $alumno->curriculum->asignaturas }}
+                                </p>
+                            @endif
+                            @if ($alumno->curriculum->practicas_tipo)
+                                <p>
+                                    <strong>Prácticas Profesionalizantes: </strong>
+                                    {{ $alumno->curriculum->practicas_tipo }}
+                                </p>
+                                @if ($alumno->curriculum->practicas_lugar )
+                                    <p><strong>Prácticas desarrolladas en:</strong>
+                                        {{ $alumno->curriculum->practicas_lugar }}</p>
+                                @endif
                             @endif
                         </section> <!--/.info-curricular-->
 

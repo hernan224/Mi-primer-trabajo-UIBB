@@ -2603,3 +2603,11 @@ body.esperando .spinner-container {
     opacity: 0;
   }
 }
+
+.label-select-carga-alumno {
+  line-height: 2.5;
+}
+
+.select-carga-alumno {
+  margin-bottom: 0;
+}
