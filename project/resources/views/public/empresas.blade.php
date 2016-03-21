@@ -24,10 +24,10 @@
 
         <div class="contenedor-lista vista-listado listado-instituciones">
             <ul class="list-unstyled lista-2col">
-                <!-- <li class="item">
-                    {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
+                {{-- <li class="item">
+                    {{- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto -}}
                     <figure class="foto-bg foto-item foto-no-link foto-asociado" style="background-image: url('{{$empresa->getUrlFoto()}}');"></figure>
-                    {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
+                    {{- Si no hay foto, se muestra foto generica desde CSS. -}}
                     <figure class="foto-bg foto-item foto-no-link foto-asociado sin-foto"></figure>
 
                     <div class="info-item">
@@ -40,7 +40,7 @@
                             <p><strong>Email:</strong> </p>
                         </div>
                     </div>
-                </li> -->
+                </li> --}}
             </ul>
         </div> <!--/.contenedor-lista-->
 
