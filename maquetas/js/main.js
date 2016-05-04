@@ -19,4 +19,13 @@ $(document).ready(function(){
         modalEliminar.modal();
     });
 
+    //Lanzar modal para enviar datos de contacto
+    var btnSolicitar = $('#solicitarBtn');
+    var modalSolicitar = $('#solicitarContacto');
+
+    btnSolicitar.on('click', function(e){
+        e.preventDefault();
+        modalSolicitar.modal();
+    });
+
 });

@@ -232,14 +232,28 @@ figure.foto-bg {
   margin-right: 1em;
 }
 
-#dropdownUsuario {
+#dropdownMenu {
   color: #000;
   text-decoration: none;
 }
 
-#dropdownUsuario:hover,
-.open #dropdownUsuario {
+#dropdownMenu:hover,
+.open #dropdownMenu {
   color: #2C72B4;
+}
+
+.btn-menu-general {
+  font-size: 18px;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid #2C72B4;
+  color: #2C72B4;
+}
+
+a:hover > .btn-menu-general,
+.open .btn-menu-general {
+  background-color: #F1F7F8;
+  color: #000;
 }
 
 .btn-menu-usuario {
@@ -262,7 +276,6 @@ a:hover > .btn-menu-usuario,
   left: auto;
   background-color: #F1F7F8;
   box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.25);
-  text-align: right;
   padding: 1em;
   min-width: 180px;
 }
@@ -276,7 +289,13 @@ a:hover > .btn-menu-usuario,
 }
 
 .submenu-usuario li a:hover {
+  background-color: transparent;
   color: #2C72B4;
+}
+
+.separador-menu {
+  margin: 0.75em auto;
+  color: #C7DEE2;
 }
 
 .btn-acceder {
@@ -856,11 +875,13 @@ button[type="submit"].btn-primary:hover {
   margin-top: 3em;
 }
 
-.cargar-alumno {
+.cargar-alumno,
+.editar-alumno {
   margin: 1.5em auto;
 }
 
-.cargar-alumno .fila-flex {
+.cargar-alumno .fila-flex,
+.editar-alumno .fila-flex {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -983,8 +1004,32 @@ button[type="submit"].btn-primary:hover {
   }
 }
 
+.datos-fijos .contenedor-btns {
+  margin: 2em auto 0;
+}
+
+.datos-fijos .panel-privado {
+  margin: 0 auto 0.75em;
+}
+
+.datos-fijos .panel-privado .panel-body {
+  padding: 0;
+}
+
+.datos-fijos .panel-privado .checkbox {
+  margin: 0;
+}
+
+.datos-fijos .panel-privado .checkbox label {
+  padding: 0.75em 1em;
+}
+
+.datos-fijos .panel-privado .checkbox input[type="checkbox"] {
+  right: 15px;
+}
+
 .datos-fijos .btn-guardar {
-  margin: 2em auto 0.5em;
+  margin: 0.5em auto;
 }
 
 .datos-fijos .btn-descartar {
@@ -1160,6 +1205,11 @@ button[type="submit"].btn-primary:hover {
 
 .datos-alumno strong {
   display: block;
+}
+
+.label-privado {
+  vertical-align: 25%;
+  margin-left: 0.5em;
 }
 
 .contenedor-lista {
@@ -1885,7 +1935,7 @@ ul.pagination li.disabled a:focus, ul.pagination li.disabled span:focus {
 }
 
 .estilo-modal-container {
-  background-color: #C7DEE2;
+  background-color: #F1F7F8;
   box-shadow: -2px 0 2px rgba(0, 0, 0, 0.25);
 }
 

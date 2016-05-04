@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Cargar Alumno | Mi Primer Trabajo</title>
+    <title>Editar alumno: BRUNO BAMBOZZI | Mi Primer Trabajo</title>
 
     <link rel="stylesheet" href="css/vendor/normalize.css">
 
@@ -82,180 +82,125 @@
                 </div> <!--.row-->
             </nav> <!--/.nav-listado-->
 
-            <article class="cargar-alumno">
+            <article class="editar-alumno alumno-privado">
                 <form action="" role="form" class="fila-flex form-mpt">
 
                     <main class="cargar-datos">
-                        <h3 class="titulo-seccion">Cargar nuevo alumno</h3>
+                        <h3 class="titulo-seccion">Editar Alumno
+                            <small>
+                                <span class="label label-warning label-privado">
+                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Alumno Privado
+                                  </span>
+                            </small>
+                        </h3>
 
                         <fieldset class="row carga-datos-personales">
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="nombre">Nombres</label>
-                                <input type="text" class="form-control" name="nomnre" id="nombre" placeholder="Nombres">
-                            </div><!--/input Nombre-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="apellido">Apellidos</label>
-                                <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellidos">
-                            </div><!--/input Apellido-->
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="nombre" class="sr-only input-label small">Nombres</label>
+                                <input class="form-control" placeholder="Nombres" required="required" name="nombre" value="BRUNO" id="nombre" type="text">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="apellido" class="sr-only input-label small">Apellidos</label>
+                                <input class="form-control" placeholder="Apellido" required="required" name="apellido" value="BAMBOZZI" id="apellido" type="text">
+                            </div>
 
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="dni">DNI</label>
-                                <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI N°">
-                            </div> <!--/input DNI-->
-                            <div class="form-group col-sm-6 col-xs-12 cargar-sexo">
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="dni" class="sr-only input-label small">DNI</label>
+                                <input class="form-control" placeholder="DNI nº" required="required" name="dni" value="39710494" id="dni" type="text">
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6 cargar-sexo">
                                 <div class="radio">
                                     <strong>Sexo:</strong>
-                                	<label for="sexoMasculino">
-                                		<input type="radio" name="sexo" id="sexoMasculino" value="masculino" >
-                                		Masculino
-                                	</label>
-                                    <label for="sexoFemenino">
-                                		<input type="radio" name="sexo" id="sexoFemenino" value="femenino" >
-                                		Femenino
-                                	</label>
+                                    <label>
+                                        <input checked="checked" name="sexo" value="m" type="radio">
+                                        Masculino
+                                    </label>
+                                    <label>
+                                        <input name="sexo" value="f" type="radio">
+                                        Femenino
+                                    </label>
                                 </div>
-                            </div> <!--/radio seleccion sexo-->
+                            </div>
 
-
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="nacimiento">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento">
-                                <!--<div class='input-group date' id='datetimepicker1'>-->
-                                    <!--<input type='text' class="form-control" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento"/>-->
-                                    <!--<span class="input-group-addon">-->
-                                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                                    <!--</span>-->
-                                <!--</div>-->
-                            </div><!--/input Fecha de nacimiento /**FUNCIONA CON PLUGIN DATEPICKER**/-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="nacionalidad">Nacionalidad</label>
-                                <input type="text" class="form-control" name="nacionalidad" id="nacionalidad" placeholder="Nacionalidad">
-                            </div><!--/input Nacionalidad-->
-                        </fieldset> <!--/fieldset datos personales-->
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="nacimiento" class="sr-only input-label small">Fecha de nacimiento</label>
+                                <input class="form-control" placeholder="Fecha de nacimiento" required="required" name="nacimiento" value="16/07/1996" id="nacimiento" type="text">
+                                <!-- FUNCIONA CON PLUGIN DATEPICKER -->
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="nacionalidad" class="sr-only input-label small">Nacionalidad</label>
+                                <input class="form-control" placeholder="Nacionalidad" required="required" name="nacionalidad" value="ARGENTINA" id="nacionalidad" type="text">
+                            </div>
+                        </fieldset>
 
                         <fieldset class="carga-datos-contacto row">
 
                             <legend class="subtitulo h5 texto-azul">Datos de contacto</legend>
 
-                            <div class="form-group col-xs-12">
-                                <label class="sr-only input-label small" for="domicilio">Domicilio</label>
-                                <input type="text" class="form-control" name="domicilio" id="domicilio" placeholder="Domicilio">
-                            </div><!--/input domicilio-->
+                            <div class="form-group col-xs-12 col-xs-12 cargado">
+                                <label for="domicilio" class="sr-only input-label small">Domicilio</label>
+                                <input class="form-control" placeholder="Domicilio" required="required" name="domicilio" value="CHACO 2126" id="domicilio" type="text">
+                            </div>
 
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="localidad">Loclidad</label>
-                                <input type="text" class="form-control" name="localidad" id="localidad" placeholder="Localidad">
-                            </div><!--/input localidad-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="barrio">Barrio</label>
-                                <input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio">
-                            </div><!--/input barrio-->
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="localidad" class="sr-only input-label small">Localidad</label>
+                                <input class="form-control" placeholder="Localidad" required="required" name="localidad" value="BAHIA BLANCA" id="localidad" type="text">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="barrio" class="sr-only input-label small">Barrio</label>
+                                <input class="form-control" placeholder="Barrio" name="barrio" value="BAHIA BLANCA" id="barrio" type="text">
+                            </div>
 
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="telFijo">Teléfono fijo</label>
-                                <input type="text" class="form-control" name="tel-fijo" id="telFijo" placeholder="Teléfono fijo">
-                            </div><!--/input tel fijo-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="telMovil">Teléfono movil</label>
-                                <input type="text" class="form-control" name="tel-movil" id="telMovil" placeholder="Teléfono movil">
-                            </div><!--/input Tel movil-->
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="tel_fijo" class="sr-only input-label small">Teléfono fijo</label>
+                                <input class="form-control" placeholder="Teléfono fijo" name="tel_fijo" value="4563309" id="tel_fijo" type="text">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="celular" class="sr-only input-label small">Teléfono móvil</label>
+                                <input class="form-control" placeholder="Teléfono móvil" required="required" name="celular" value="4563309" id="celular" type="text">
+                            </div>
 
-                           <!-- <div class="col-sm-6 col-xs-12">
-                                <strong>Teléfono fijo</strong>
-                                <div class="row">
-                                    <div class="col-xs-4 form-group"><input type="text" class="form-control" name="caracteristica-tel-fijo" title="Característica" value="(0291)"></div>
-                                    <div class="col-xs-8 form-group"><input type="text" class="form-control" name="numero-tel-fijo" title="Teléfono fijo"></div>
-                                </div>
+                            <div class="form-group col-xs-12 col-sm-12 cargado">
+                                <label for="email" class="sr-only input-label small">E-mail</label>
+                                <input class="form-control" placeholder="E-mail" required="required" name="email" value="brunobambozzi96@gmail.com" id="email" type="email">
+                            </div>
 
-                            </div>&lt;!&ndash;/input tel fijo&ndash;&gt;
-                            <div class="col-sm-6 col-xs-12">
-                                <strong>Teléfono movil</strong>
-                                <div class="row">
-                                    <div class="col-xs-4 form-group"><input type="text" class="form-control" name="caracteristica-tel-movil" title="Característica" value="(0291)"></div>
-                                    <div class="col-xs-8 form-group"><input type="text" class="form-control" name="numero-tel-movil" title="Teléfono móvil" value="15-"></div>
-                                </div>
-                            </div>&lt;!&ndash;/input Tel movil&ndash;&gt;-->
-
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="email">E-mail</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
-                            </div><!--/input email-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="facebook">Facebook</label>
-                                <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook">
-                            </div><!--/input facebook-->
-
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="twitter">Twitter</label>
-                                <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter">
-                            </div><!--/input twitter-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="linkedin">LinkedIn</label>
-                                <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="LinkedIn">
-                            </div> <!--/input linkedin-->
-
-                        </fieldset> <!--/fieldset datos contacto-->
+                        </fieldset>
 
                         <fieldset class="carga-datos-curriculares row">
                             <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
-                            <div class="form-group col-xs-12">
+                            <div class="form-group col-xs-12 ">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-12"><label class="input-label" for="especialidad">Especialidad cursada:</label></div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12">
+                                        <label for="especialidad" class="input-label label-select-carga-alumno">Especialidad cursada</label>
+                                    </div>
                                     <div class="col-md-9 col-sm-8 col-xs-12">
-                                        <select class="form-control" name="especialidad" id="especialidad">
-                                            <option>Elegir especialidad</option>
-                                            <option>Tecnicatura 1</option>
-                                            <option>Tecnicatura 2</option>
-                                            <option>Tecnicatura 3</option>
-                                            <option>Tecnicatura 4</option>
-                                        </select>
+                                        <select class="form-control select-carga-alumno" required="required" id="especialidad" name="especialidad"><option value="">Elegir especialidad...</option><option value="Tecnicatura en Aeronáutica">Tecnicatura en Aeronáutica</option><option value="Tecnicatura en Automotores">Tecnicatura en Automotores</option><option value="Tecnicatura en Administración y Gestión de las Organizaciones">Tecnicatura en Administración y Gestión de las Organizaciones</option><option value="Tecnicatura en Electrónica">Tecnicatura en Electrónica</option><option value="Tecnicatura en Electromecánica" selected="selected">Tecnicatura en Electromecánica</option><option value="Tecnicatura en Química">Tecnicatura en Química</option><option value="Tecnicatura en Informática Personal y Profesional">Tecnicatura en Informática Personal y Profesional</option><option value="Tecnicatura Maestro Mayor de obra">Tecnicatura Maestro Mayor de obra</option></select>
                                     </div>
                                 </div>
-                            </div> <!--/input especialidad cursada (CAMBIAR POR SELECT CON EL LISTADO DE TECNICATURAS)-->
+                            </div>
 
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="promedioGeneral">Promedio general</label>
-                                <input type="text" class="form-control" name="promedio" id="promedioGeneral" placeholder="Promedio general">
-                            </div><!--/input promedio general /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="asignaturas">Asignaturas destacadas</label>
-                                <input type="text" class="form-control" name="asignaturas" id="asignaturas" placeholder="Asignaturas destacadas">
-                            </div> <!--/input Asignatura destacada-->
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="promedio" class="sr-only input-label small">Promedio general</label>
+                                <div class="input-group bootstrap-touchspin"><span style="display: none;" class="input-group-addon bootstrap-touchspin-prefix"></span><input style="display: block;" id="promedio" class="form-control" placeholder="Promedio general" required="required" name="promedio" value="8.39" type="text"><span style="display: none;" class="input-group-addon bootstrap-touchspin-postfix"></span><span class="input-group-btn-vertical"><button class="btn btn-promedio bootstrap-touchspin-up" type="button"><i class="glyphicon glyphicon-plus"></i></button><button class="btn btn-promedio bootstrap-touchspin-down" type="button"><i class="glyphicon glyphicon-minus"></i></button></span></div>
+                                <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="asignaturas" class="sr-only input-label small">Asignaturas destacadas</label>
+                                <input class="form-control" placeholder="Asignaturas destacadas" name="asignaturas" value="" id="asignaturas" type="text">
+                            </div>
 
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="practicasProfesionales">Prácticas Profesionalizantes</label>
-                                <input type="text" class="form-control" name="practicas" id="practicasProfesionales" placeholder="Prácticas Profesionalizantes">
-                            </div><!--/input nombre practica profesional-->
-                            <div class="form-group col-sm-6 col-xs-12">
-                                <label class="sr-only input-label small" for="entidadTerciaria">¿Dónde se desarrollaron?</label>
-                                <input type="text" class="form-control" name="lugar-desarrollo" id="entidadTerciaria" placeholder="¿Dónde se desarrollaron?">
-                            </div> <!--/input lugar desarrollo practica profesional-->
-
-                            <div class="form-group col-xs-12 estudios-superiores">
-                                <div class="radio">
-                                    <strong>¿Continúa estudios terciarios o universitarios?</strong>
-                                    <label for="superiorNo">
-                                        <input class="radio-estudio-superior" type="radio" name="estudio-superior" id="superiorNo" value="No" checked >
-                                        No
-                                    </label>
-                                    <label for="superiorSi">
-                                        <input class="radio-estudio-superior" type="radio" name="estudio-superior" id="superiorSi" value="Si" >
-                                        Si
-                                    </label>
-                                </div>
-
-                            </div> <!--/radio estudios terciarios-->
-                            <div class="form-group col-sm-6 col-xs-12 detalle-superior hidden">
-                                <label class="sr-only input-label small" for="carreraSuperior">Carrera</label>
-                                <input type="text" class="form-control" name="carrera-superior" id="carreraSuperior" placeholder="Carrera">
-                            </div><!--/input carrera superior-->
-                            <div class="form-group col-sm-6 col-xs-12 detalle-superior hidden">
-                                <label class="sr-only input-label small" for="entidadSuperior">Entidad Educativa</label>
-                                <input type="text" class="form-control" name="entidad-superior" id="entidadSuperior" placeholder="Entidad Educativa">
-                            </div> <!--/input entidad educativa superior-->
-                        </fieldset> <!--/fieldset datos curriculares-->
-
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="practicas_tipo" class="sr-only input-label small">Prácticas profesionalizantes</label>
+                                <input class="form-control" placeholder="Prácticas profesionalizantes" required="required" name="practicas_tipo" value="INSTITUTO TECNICO LA PIEDAD" id="practicas_tipo" type="text">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 cargado">
+                                <label for="practicas_lugar" class="sr-only input-label small">¿Dónde se desarrollaron?</label>
+                                <input class="form-control" placeholder="¿Dónde se desarrollaron?" required="required" name="practicas_lugar" value="INSTITUTO TECNICO LA PIEDAD" id="practicas_lugar" type="text">
+                            </div>
+                        </fieldset>
                         <fieldset class="carga-info-adicional row">
                             <legend class="subtitulo h5 texto-azul">Información adicional</legend>
 
@@ -264,99 +209,98 @@
                                 <ul class="list-inline">
 
                                     <li><div class="checkbox">
-                                    	<label for="responsabilidad">
-                                    		<input type="checkbox" value="responsabilidad" id="responsabilidad">
-                                    		Responsabilidad
-                                    	</label>
+                                        <label>
+                                            <input checked="checked" name="actitudes[]" value="responsabilidad" type="checkbox">                                         Responsabilidad
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="puntualidad">
-                                    		<input type="checkbox" value="puntualidad" id="puntualidad">
-                                    		Puntualidad
-                                    	</label>
+                                        <label>
+                                            <input checked="checked" name="actitudes[]" value="puntualidad" type="checkbox">
+                                            Puntualidad
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="proactivo">
-                                    		<input type="checkbox" value="Actitud Proactiva" id="proactivo">
-                                    		Actitud Proactiva
-                                    	</label>
+                                        <label>
+                                            <input name="actitudes[]" value="proactividad" type="checkbox">
+                                            Actitud Proactiva
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="trabajoEquipo">
-                                    		<input type="checkbox" value="Trabajo en equipo" id="trabajoEquipo">
-                                    		Trabajo en equipo
-                                    	</label>
+                                        <label>
+                                            <input name="actitudes[]" value="equipo" type="checkbox">
+                                            Trabajo en equipo
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="creatividad">
-                                    		<input type="checkbox" value="Creatividad" id="creatividad">
-                                    		Creatividad
-                                    	</label>
+                                        <label>
+                                            <input name="actitudes[]" value="creatividad" type="checkbox">
+                                            Creatividad
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="liderazgo">
-                                    		<input type="checkbox" value="Liderazgo positivo" id="liderazgo">
+                                        <label>
+                                            <input name="actitudes[]" value="liderazgo" type="checkbox">
                                             Liderazgo positivo
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="conciliador">
-                                    		<input type="checkbox" value="Capacidad conciliadora" id="conciliador">
+                                        <label>
+                                            <input name="actitudes[]" value="conciliador" type="checkbox">
                                             Capacidad conciliadora
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="perseverancia">
-                                    		<input type="checkbox" value="Perseverancia" id="perseverancia">
+                                        <label>
+                                            <input checked="checked" name="actitudes[]" value="perseverancia" type="checkbox">
                                             Perseverancia
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="asertividad">
-                                    		<input type="checkbox" value="Asertividad" id="asertividad">
+                                        <label>
+                                            <input name="actitudes[]" value="asertividad" type="checkbox">
                                             Asertividad
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="relacionesInter">
-                                    		<input type="checkbox" value="Buenas relaciones interpersonales" id="relacionesInter">
+                                        <label>
+                                            <input name="actitudes[]" value="relaciones" type="checkbox">
                                             Buenas relaciones interpersonales
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="objetivos">
-                                    		<input type="checkbox" value="Enfocado en objetivos" id="objetivos">
+                                        <label>
+                                            <input name="actitudes[]" value="objetivos" type="checkbox">
                                             Enfocado en objetivos
-                                    	</label>
+                                        </label>
                                     </div></li>
                                     <li><div class="checkbox">
-                                    	<label for="habitosSaludables">
-                                    		<input type="checkbox" value="Hábitos saludables" id="habitosSaludables">
+                                        <label>
+                                            <input name="actitudes[]" value="saludable" type="checkbox">
                                             Hábitos saludables
-                                    	</label>
+                                        </label>
                                     </div></li>
                                 </ul>
-                            </div> <!--/checkboxes actitudes destacables-->
+                            </div>
 
                             <div class="form-group col-xs-12">
-                                <label class="sr-only input-label small" for="hobbies">Hobbies, pasatiempos y aptitudes extra educacionales</label>
-                                <input type="text" class="form-control" name="hobbies" id="hobbies" placeholder="Hobbies, pasatiempos y aptitudes extra educacionales">
-                            </div> <!--/input Hobbies-->
+                                <label for="extras" class="sr-only input-label small">Hobbies, pasatiempos y aptitudes extra educacionales</label>
+                                <input class="form-control" placeholder="Hobbies, pasatiempos y aptitudes extra educacionales" name="extras" value="" id="extras" type="text">
+                            </div>
                             <div class="form-group col-xs-12">
-                                <label class="sr-only input-label small" for="participacioInst">Participación institucional, social y deportiva</label>
-                                <input type="text" class="form-control" name="participacion-inst" id="participacioInst" placeholder="Participación institucional, social y deportiva">
-                            </div> <!--/input participacion isntitucional-->
+                                <label for="participacion" class="sr-only input-label small">Participación institucional, social y deportiva</label>
+                                <input class="form-control" placeholder="Participación institucional, social y deportiva" name="participacion" value="" id="participacion" type="text">
+                            </div>
 
-                        </fieldset> <!--/fieldset info-adicional-->
-
+                        </fieldset>
                         <fieldset class="carga-carta row">
                             <legend class="subtitulo h5 texto-azul">Carta de presentación</legend>
                             <div class="form-group col-xs-12">
-                                <label class="sr-only" for="cartaPresentacion">Carta de presentación</label>
-                                <textarea name="carta" class="form-control" id="cartaPresentacion" rows="6" placeholder="Carta de presentación"></textarea>
-                            </div> <!--/textarea carta-->
-                        </fieldset> <!--/.fieldset carta de presentacion-->
-                    </main> <!--.cargar-datos-->
+                                <label for="carta" class="sr-only">Carta de presentación</label>
+                                <textarea class="form-control" placeholder="Carta de presentación" rows="6" required="required" name="carta" cols="50" id="carta">INSTITUTO TECNICO LA PIEDAD</textarea>
+                            </div>
+                        </fieldset>
+
+                    </main>
 
 
 
@@ -384,7 +328,7 @@
                                 <div class="panel-privado">
                                     <div class="panel-body bg-warning">
                                         <div class="checkbox"><label class="text-warning" for="alumnoPrivado">
-                                            <input id="alumnoPrivado" type="checkbox" name="alumno-privado">
+                                            <input id="alumnoPrivado" type="checkbox" name="alumno-privado" checked>
                                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> &nbsp; Mantener privado
                                         </label></div>
                                     </div>
@@ -528,17 +472,6 @@
             $body.removeClass('esperando');
         });
 
-       //Mostrar/ocultar opciones de estudio superior
-        var $detalleSuperior = $('.detalle-superior');
-        $('.radio-estudio-superior').on('change', function(){
-           var valor = $(this).val();
-            if (valor === 'Si'){
-                $detalleSuperior.removeClass('hidden');
-            }else{
-                $detalleSuperior.addClass('hidden')
-                        .children('input[type="text"]').val('');
-            }
-        });
     });
 </script>
 </body>

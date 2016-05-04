@@ -195,7 +195,7 @@ figure.foto-bg{
   margin-right: 1em;
 }
 
-#dropdownUsuario{
+#dropdownMenu{
   color: #000;
   text-decoration: none;
 
@@ -205,6 +205,21 @@ figure.foto-bg{
   }
 }
 
+.btn-menu-general{
+  font-size: 18px;
+  //width: 2.5em;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid $azul;
+  color: $azul;
+
+  a:hover > &,
+  .open &{
+    background-color: $gris-claro;
+    color: #000;
+  }
+
+}
 .btn-menu-usuario{
   font-size: 21px;
   width: 2.5em;
@@ -226,21 +241,31 @@ figure.foto-bg{
   left: auto;
   background-color: $gris-claro;
   box-shadow: -2px 2px 2px rgba(#000, 0.25);
-  text-align: right;
+  //text-align: right;
   padding: 1em;
   min-width: 180px;
 
   li{
     padding: 0.5em 0.5em 0.5em 1em;
+    
+    //&:hover{
+    //  background-color: $celeste;
+    //}
 
     a{
       padding: 0;
 
       &:hover{
+        background-color: transparent;
         color: $azul;
       }
     }
   }
+}
+
+.separador-menu{
+  margin: 0.75em auto;
+  color: $celeste;
 }
 
 .btn-acceder{
@@ -804,7 +829,8 @@ button[type="submit"].btn-primary{
 }
 
 //Carga de datos de alumno
-.cargar-alumno{
+.cargar-alumno,
+.editar-alumno{
   margin: 1.5em auto;
 
   .fila-flex{
@@ -909,8 +935,28 @@ button[type="submit"].btn-primary{
     }
   }
 
+  .contenedor-btns{
+    margin: 2em auto 0;
+  }
+  .panel-privado{
+    margin: 0 auto 0.75em;
+
+    .panel-body{
+      padding: 0;
+    }
+    .checkbox{
+      margin: 0;
+
+      label{
+        padding: 0.75em 1em;
+      }
+      input[type="checkbox"]{
+        right: 15px;
+      }
+    }
+  }
   .btn-guardar{
-    margin: 2em auto 0.5em;
+    margin: 0.5em auto;
   }
   .btn-descartar{
     text-align: center;
@@ -1078,6 +1124,11 @@ button[type="submit"].btn-primary{
   }
 }
 
+.label-privado{
+  vertical-align: 25%;
+  margin-left: 0.5em;
+}
+
 //Listado de alumnos
 .contenedor-lista{
   margin: 1.5em auto 0;
@@ -1196,6 +1247,8 @@ button[type="submit"].btn-primary{
       color: #000;
     }
   }
+
+
 
   .datos-personales{
     span{
@@ -1745,7 +1798,8 @@ ul.pagination{
 }
 
 .estilo-modal-container{
-  background-color: $celeste;
+  //background-color: $celeste;
+  background-color: $gris-claro;
   box-shadow: -2px 0 2px rgba(#000, 0.25);
 }
 
