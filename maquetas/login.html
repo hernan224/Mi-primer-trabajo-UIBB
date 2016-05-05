@@ -24,19 +24,40 @@
 
         <div class="container">
 
-            <header class="header-simple">
-                <div class="center-block">
-                    <div class="marca-container">
-                        <a href="#">
-                            <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
-                                <use xlink:href="#logoMPT"></use>
-                            </svg>
-                        </a>
-                    </div> <!--.marca-container-->
-                    <!--<div class="mpt-by">-->
-                        <!--<span class="texto-servicio">un servicio de:</span>-->
-                        <!--<a class="logo-uibb uibb-negro" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>-->
-                    <!--</div> &lt;!&ndash;.mpt-by&ndash;&gt;-->
+            <header class="header-acceso acceso-asociado fila-flex">
+                <div class="marca-container">
+                    <a href="#">
+                        <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
+                            <use xlink:href="#logoMPT"></use>
+                        </svg>
+                    </a>
+                </div> <!--.marca-container-->
+
+                <div class="acceso-usuario-container dropdown">
+                    <a id="dropdownMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
+                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <!--<figure class="foto-bg foto-usuario sin-foto"></figure>-->
+                        <h5 class="nombre-usuario"><strong class="nombre-docente">Menú</strong></h5>
+                        <button class="btn-menu-usuario">
+                            <span class="sr-only">Menú</span>
+                            <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        </button>
+                    </a> <!--//link usuario-->
+                    <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
+                        <!--<li><a href="listado-backend.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel-->
+                        <!--de administración</strong></a></li>-->
+                        <!--<hr class="separador-menu">-->
+                        <li><a href="home.html">Inicio</a></li>
+                        <li><a href="listado-alumnos.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
+                        <li><a href="capacitaciones.html" class="acceder-plataforma">Capacitaciones</a></li>
+                        <li><a href="practicas.html" class="acceder-plataforma">Prácticas Profesionalizantes</a></li>
+                        <li><a href="instituciones.html" class="acceder-plataforma">Instituciones Educativas</a></li>
+                        <li><a href="contacto.html" class="acceder-plataforma">Contacto</a></li>
+                        <hr class="separador-menu">
+                        <li><a href="login.html" class="text-center"><span
+                                class="glyphicon glyphicon glyphicon-user"></span>&nbsp;<strong>Iniciar sesión</strong></a>
+                        </li>
+                    </ul> <!--//dropdown-menu-->
                 </div>
             </header><!--/.header-simple-->
 
@@ -70,10 +91,10 @@
                             </div>
                         </form>
 
-                        <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong> y
-                            desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros:</p>
+                        <!--<p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong> y-->
+                            <!--desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros:</p>-->
 
-                        <a class="btn btn-registro" href="solicitar-acceso.html">Solicitar acceso a la plataforma</a>
+                        <!--<a class="btn btn-registro" href="solicitar-acceso&#45;&#45;NO-VA&#45;&#45;.html">Solicitar acceso a la plataforma</a>-->
                     </div>
 
                     <!--<div class="col-md-8 col-md-offset-2 col-sm-12">-->
@@ -89,7 +110,7 @@
         </div> <!--/.container-->
     </div> <!--/#contendorPrincipal-->
 
-    <footer class="pie-pagina">
+    <footer class="pie-pagina pie-home">
         <div class="container">
             <div class="contenido-footer row">
                 <div class="col-sm-4">
@@ -107,15 +128,20 @@
                 </div>
                 <div class="col-sm-8">
                     <ul class="list-inline nav-list menu-principal text-right">
-                        <li><strong><a href="#">Inicio</a></strong></li>
-                        <li><strong><a href="#">Empresas</a></strong></li>
-                        <li><strong><a href="#">Instituciones Educativas</a></strong></li>
-                        <li><strong><a href="#">Contacto</a></strong></li>
-                        <li><strong><a href="#">Acceder a la plataforma</a></strong></li>
+                        <li><a href="home.html"><strong>Inicio</strong></a></li>
+                        <li><a href="listado-alumnos.html" class="acceder-plataforma"><strong>Acceder a la
+                            Plataforma</strong></a></li>
+                        <li><a href="capacitaciones.html" class="acceder-plataforma"><strong>Capacitaciones</strong></a>
+                        </li>
+                        <li><a href="practicas.html" class="acceder-plataforma"><strong>Prácticas
+                            Profesionalizantes</strong></a></li>
+                        <li><a href="instituciones.html" class="acceder-plataforma"><strong>Instituciones
+                            Educativas</strong></a></li>
+                        <li><a href="contacto.html" class="acceder-plataforma"><strong>Contacto</strong></a></li>
                     </ul> <!--.menu-principal-->
                     <ul class="list-inline nav-list menu-tc-pp text-right">
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Políticas de privacidad</a></li>
+                        <li><a href="#">Panel de administración</a></li>
+                        <li><a href="#">Aviso Legal</a></li>
                     </ul> <!--.menu-tc-pp-->
                 </div>
             </div> <!--.contenido-footer-->

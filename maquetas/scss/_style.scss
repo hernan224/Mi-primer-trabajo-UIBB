@@ -459,11 +459,22 @@ figure.foto-bg{
   }
 
   .btn-acceder{
-    margin: 2em auto;
+    margin: 2em auto 1em;
 
     @include media('<tablet'){
       font-size: 15px;
     }
+  }
+
+  .btn-registro{
+    font-size: 0.9em;
+    background-color: rgba($azul, 0.5);
+    border: 1px solid $azul;
+    color: #fff;
+    width: 90%;
+    max-width: 360px;
+    margin: 0.5em auto 1.5em;
+    padding: 0.8em;
   }
 
   .login-nav-home{
@@ -564,10 +575,26 @@ main.gap-header-acceso{
     margin-bottom: 0.75em;
   }
 
+  .subtitulo-empresas{
+    font-size: 1.333em;
+    margin: 1em auto;
+  }
+
   .logos-organizadores{
     .logo-img{
       max-height: 75px;
       margin: 2em auto 1.5em;
+    }
+    .logo-bsas{
+      margin: 1.5em auto;
+    }
+    .logo-profertil{
+      max-height: 150px;
+      margin: 0 auto;
+    }
+    .logo-dow{
+      max-height: 80px;
+      margin: 1.5em auto;
     }
   }
 

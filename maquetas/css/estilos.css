@@ -479,13 +479,24 @@ a:hover > .btn-menu-usuario,
 }
 
 .header-home .btn-acceder {
-  margin: 2em auto;
+  margin: 2em auto 1em;
 }
 
 @media (max-width: 767px) {
   .header-home .btn-acceder {
     font-size: 15px;
   }
+}
+
+.header-home .btn-registro {
+  font-size: 0.9em;
+  background-color: rgba(44, 114, 180, 0.5);
+  border: 1px solid #2C72B4;
+  color: #fff;
+  width: 90%;
+  max-width: 360px;
+  margin: 0.5em auto 1.5em;
+  padding: 0.8em;
 }
 
 .header-home .login-nav-home {
@@ -589,9 +600,28 @@ main.gap-header-acceso {
   margin-bottom: 0.75em;
 }
 
+.contenido-home .subtitulo-empresas {
+  font-size: 1.333em;
+  margin: 1em auto;
+}
+
 .contenido-home .logos-organizadores .logo-img {
   max-height: 75px;
   margin: 2em auto 1.5em;
+}
+
+.contenido-home .logos-organizadores .logo-bsas {
+  margin: 1.5em auto;
+}
+
+.contenido-home .logos-organizadores .logo-profertil {
+  max-height: 150px;
+  margin: 0 auto;
+}
+
+.contenido-home .logos-organizadores .logo-dow {
+  max-height: 80px;
+  margin: 1.5em auto;
 }
 
 .contenido-home .info--participantes {
