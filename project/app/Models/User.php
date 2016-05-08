@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     public function puedeEditar() {
-        return $this->hasRole('escuela') || $this->hasRole('admin');
+        return $this->hasRole('escuela'); // || $this->hasRole('admin');
     }
 
     public function hasRole($rol) {
@@ -42,9 +42,9 @@ class User extends Authenticatable
     /**
      * Relación M:1 con Empresa
      */
-    public function empresa() {
-        return $this->belongsTo(Empresa::class);
-    }
+    // public function empresa() {
+    //     return $this->belongsTo(Empresa::class);
+    // }
 
     /**
      * Relación 1:M con Alumnos

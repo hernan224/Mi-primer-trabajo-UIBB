@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/* Modelo no usado por el momento */
 class Empresa extends Model
 {
     /**
