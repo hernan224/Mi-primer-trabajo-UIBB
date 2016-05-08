@@ -77,12 +77,13 @@
 
                 </form>
 
+            {{-- Link solicitar acceso: pantalla deshabilitada
                 <p class="text-center texto-especial"><em>Si usted es <strong>asociado de la UIBB o es directivo de una institución
                     educativa</strong> y
                     desea participar de la plataforma <strong>Mi Primer Trabajo</strong>, contáctese desde aquí:</em></p>
 
                 <a class="btn btn-registro" href="{{ url('/solicitar-acceso')}}">Solicitar acceso a la plataforma</a>
-
+            --}}
             </div>
 
         </div>

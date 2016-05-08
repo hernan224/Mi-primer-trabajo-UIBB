@@ -18,7 +18,7 @@
             <div class="col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
                     <li><strong><a href="{{ url('/')}}">Inicio</a></strong></li>
-                    <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li>
+                    {{-- <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li> --}}
                     <li><strong><a href="{{ url('/instituciones')}}">Instituciones Educativas</a></strong></li>
                     <li><strong><a href="{{ url('/contacto')}}">Contacto</a></strong></li>
                     <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>

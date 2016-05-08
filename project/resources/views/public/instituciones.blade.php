@@ -56,6 +56,7 @@
             </ul>
         </div> <!--/.contenedor-lista-->
 
+    {{-- Link solicitar acceso: pantalla deshabilitada
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <p class="text-center texto-especial"><em>Si usted es <strong>directivo de una institución
@@ -66,6 +67,7 @@
                 <a class="btn btn-registro" href="{{url('/solicitar-acceso')}}">Solicitar acceso a la plataforma</a>
             </div>
         </div>
+    --}}
 
     </main> <!--/contenido-instituciones-->
 </div>

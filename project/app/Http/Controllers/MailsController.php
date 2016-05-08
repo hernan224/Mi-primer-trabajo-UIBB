@@ -23,6 +23,8 @@ class MailsController extends Controller
         return redirect('/');
     }
 
+    /** NO USADO */
+    /*
     public function solicitarAcceso(Request $request,$tipo) {
         if ($tipo != 'empresa' && $tipo != 'escuela') {
             return response('No autorizado', 403);
@@ -52,6 +54,7 @@ class MailsController extends Controller
 
         return redirect('/');
     }
+    */
 
     // public function ayuda() {
 

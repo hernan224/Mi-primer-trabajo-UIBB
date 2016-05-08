@@ -80,6 +80,7 @@
                 <div class="col-xs-12">
                     <h2 class="texto-azul titulo-seccion">¿Quiénes participan de Mi Primer Trabajo?</h2>
                 </div>
+            {{-- Link a sección empresas - deshabilitado
                 <div class="col-sm-6">
                     <a href="{{ url('/empresas')}}" class="btn-banner banner-asociados" role="button">
                         <svg viewBox="0 0 100 100" class="banner-icono">
@@ -89,7 +90,8 @@
                             <h4 class="texto-azul">Asociados a la UIBB</h4>
                             <p class="texto-negro">Conozca a las Empresas Asociadas a la UIBB que participan de Mi Primer Empleo </p>
                         </div>
-                    </a> {{-- /.btn-banner --}}
+                    </a>
+            --}}
                 </div>
                 <div class="col-sm-6">
                     <a href="{{ url('/instituciones')}}" class="btn-banner banner-instituciones" role="button">
@@ -102,6 +104,7 @@
                         </div>
                     </a> {{-- /.btn-banner --}}
                 </div>
+            {{-- Link solicitar acceso: pantalla deshabilitada
                 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 sub-sec-acceso">
                     <p class="text-center">Si usted es asociado de la UIBB o es directivo de una institución
                         educativa y desea participar de la plataforma Mi Primer Trabajo, contáctese con nosotros</p>
@@ -109,6 +112,7 @@
                         Solicitar Acceso
                     </a>
                 </div>
+            --}}
             </section>{{-- /.info-participantes --}}
         </div>
 

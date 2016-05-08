@@ -1,4 +1,6 @@
-{{-- Pantalla instituciones. URL: /empresas --}}
+{{-- Pantalla instituciones. URL: /empresas
+        NO UTILIZADA (route deshabilitado)
+ --}}
 @extends('layouts.base')
 
 @section('title')
@@ -44,6 +46,7 @@
             </ul>
         </div> <!--/.contenedor-lista-->
 
+    {{-- Link solicitar acceso: pantalla deshabilitada
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <p class="text-center texto-especial"><em>Si usted es <strong>asociado a la UIBB</strong> y
@@ -53,6 +56,7 @@
                 <a class="btn btn-registro" href="{{url('/solicitar-acceso')}}">Solicitar acceso a la plataforma</a>
             </div>
         </div>
+    --}}
 
     </main>
 </div>

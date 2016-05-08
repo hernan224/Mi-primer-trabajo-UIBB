@@ -1,4 +1,7 @@
-{{-- Pantalla contacto. URL: /contacto --}}
+{{-- Pantalla contacto. URL: /solicitar-acceso
+        NO UTILIZADA (route deshabilitado)
+--}}
+
 @extends('layouts.base')
 
 @section('title')

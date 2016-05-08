@@ -79,64 +79,64 @@ class UsuariosPrueba extends Seeder
         }
 
         // Creo empresas
-        $empresas_users = [
-            [
-                'empresa' => [
-                    'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
-                    'direccion' => 'Azara 1250',
-                    'telefono' => '0291 456-1235',
-                    'localidad' => 'Bahía Blanca',
-                    'email' =>  'contacto@puertobahia.com.ar',
-                    'foto' => 'logo-cgpbb.png'
-                ],
-                'usuarios' => [
-                    [
-                        'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
-                        'email' => 'empresa1@mail.com',
-                        'password' => bcrypt('empresa1'),
-                        'role' => 'empresa'
-                    ]
-                ]
-            ],
-            [
-                'empresa' => [
-                    'name' => 'Profértil',
-                    'direccion' => 'Chiclana 1223',
-                    'telefono' => '0291 456-0331',
-                    'localidad' => 'Bahía Blanca',
-                    'email' =>  'contacto@profertil.com.ar'
-                ],
-                'usuarios' => [
-                    [
-                        'name' => 'Profértil',
-                        'email' => 'empresa2@mail.com',
-                        'password' => bcrypt('empresa2'),
-                        'role' => 'empresa'
-                    ]
-                ]
-            ],
-            [
-                'empresa' => [
-                    'name' => 'Solvay Indupa',
-                    'localidad' => 'Bahía Blanca',
-                    'email' =>  'contacto@indupa.com.ar'
-                ],
-                'usuarios' => [
-                    [
-                        'name' => 'Solvay Indupa',
-                        'email' => 'empresa3@mail.com',
-                        'password' => bcrypt('empresa3'),
-                        'role' => 'empresa'
-                    ]
-                ]
-            ]
-        ];
-        foreach ($empresas_users as $data_empresa) {
-            $empresa = Empresa::create($data_empresa['empresa']);
+        // $empresas_users = [
+        //     [
+        //         'empresa' => [
+        //             'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
+        //             'direccion' => 'Azara 1250',
+        //             'telefono' => '0291 456-1235',
+        //             'localidad' => 'Bahía Blanca',
+        //             'email' =>  'contacto@puertobahia.com.ar',
+        //             'foto' => 'logo-cgpbb.png'
+        //         ],
+        //         'usuarios' => [
+        //             [
+        //                 'name' => 'Consorcio de Gestión del Puerto de Bahía Blanca',
+        //                 'email' => 'empresa1@mail.com',
+        //                 'password' => bcrypt('empresa1'),
+        //                 'role' => 'empresa'
+        //             ]
+        //         ]
+        //     ],
+        //     [
+        //         'empresa' => [
+        //             'name' => 'Profértil',
+        //             'direccion' => 'Chiclana 1223',
+        //             'telefono' => '0291 456-0331',
+        //             'localidad' => 'Bahía Blanca',
+        //             'email' =>  'contacto@profertil.com.ar'
+        //         ],
+        //         'usuarios' => [
+        //             [
+        //                 'name' => 'Profértil',
+        //                 'email' => 'empresa2@mail.com',
+        //                 'password' => bcrypt('empresa2'),
+        //                 'role' => 'empresa'
+        //             ]
+        //         ]
+        //     ],
+        //     [
+        //         'empresa' => [
+        //             'name' => 'Solvay Indupa',
+        //             'localidad' => 'Bahía Blanca',
+        //             'email' =>  'contacto@indupa.com.ar'
+        //         ],
+        //         'usuarios' => [
+        //             [
+        //                 'name' => 'Solvay Indupa',
+        //                 'email' => 'empresa3@mail.com',
+        //                 'password' => bcrypt('empresa3'),
+        //                 'role' => 'empresa'
+        //             ]
+        //         ]
+        //     ]
+        // ];
+        // foreach ($empresas_users as $data_empresa) {
+        //     $empresa = Empresa::create($data_empresa['empresa']);
 
-            foreach ($data_empresa['usuarios'] as $data_usuario) {
-                $empresa->users()->create($data_usuario); // crea usuario y relaciona con empresa
-            }
-        }
+        //     foreach ($data_empresa['usuarios'] as $data_usuario) {
+        //         $empresa->users()->create($data_usuario); // crea usuario y relaciona con empresa
+        //     }
+        // }
     }
 }

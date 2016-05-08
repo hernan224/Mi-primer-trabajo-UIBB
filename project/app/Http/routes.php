@@ -36,9 +36,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/instituciones', function () {
         return view('public.instituciones',['escuelas' => Escuela::all()]);
     });
-    Route::get('/empresas', function () {
-        return view('public.empresas',['empresas' => Empresa::all()]);
-    });
+    // Pantalla empresas - NO USADA
+    // Route::get('/empresas', function () {
+    //     return view('public.empresas',['empresas' => Empresa::all()]);
+    // });
 
     // Route::auth(); // no incluyo routes de registro
     // Login & logut
@@ -57,12 +58,14 @@ Route::group(['middleware' => 'web'], function () {
         return redirect('/login');
     })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
 
-    // Pantallas publicas con formularios de email
-    // Solicitar acceso
-    Route::get('/solicitar-acceso', function () {
-        return view('public.solicitar_acceso');
-    });
-    Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
+    /** Pantallas publicas y POSTs con formularios de email **/
+
+    // Solicitar acceso - NO USADA
+    // Route::get('/solicitar-acceso', function () {
+    //     return view('public.solicitar_acceso');
+    // });
+    // Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
+
     Route::get('/contacto', function () {
         return view('public.contacto');
     });
