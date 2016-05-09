@@ -9,7 +9,7 @@
             </a>
         </div> <!--.marca-container-->
 
-        <a href="{{ url('/acceso') }}" class="btn-acceder btn-linea-azul" role="button">
+        <a href="{{ url('/listado-alumnos') }}" class="btn-acceder btn-linea-azul" role="button">
             Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
     </header>

@@ -12,7 +12,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
                 @if (isset($alumno))
-                    <a href="{{ route('alumnos.delete',['id'=> $alumno->id])}}" class="btn btn-primary">SI</a>
+                    <a href="{{ route('escuela.alumno_delete',['id'=> $alumno->id])}}" class="btn btn-primary">SI</a>
                 @else
                     <button type="button" class="btn btn-primary" id="confirmar-eliminar">SI</button>
                 @endif

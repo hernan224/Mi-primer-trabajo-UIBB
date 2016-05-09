@@ -30,11 +30,14 @@
                     </div>
                 </div>
 
-                <a href="{{url('/acceso')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">Acceder a la
-                    Plataforma <span class="glyphicon glyphicon-arrow-right"></span></a>
+                <a href="{{url('/listado-alumnos')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
+                    Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
+                {{-- si es escuela: URL acceso-escuelas, o poner otro link --}}
 
-                    <a href="{{url('/')}}" class="text-center center-block link-home">Volver a la página de
-                    Inicio</a>
+                <a href="{{url('/')}}" class="text-center center-block link-home">
+                    Volver a la página de Inicio
+                </a>
 
             </div>
 

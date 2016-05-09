@@ -1,4 +1,4 @@
-{{-- Pantalla instituciones. URL: /instituciones --}}
+{{-- Pantalla instituciones. URL: /instituciones-educativas --}}
 @extends('layouts.base')
 
 @section('title')

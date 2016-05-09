@@ -33,13 +33,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
         return view('public.home');
     });
-    Route::get('/instituciones', function () {
+    Route::get('/instituciones-educativas', function () {
         return view('public.instituciones',['escuelas' => Escuela::all()]);
     });
     // Pantalla empresas - NO USADA
     // Route::get('/empresas', function () {
     //     return view('public.empresas',['empresas' => Empresa::all()]);
     // });
+    Route::get('/legal', function () {
+        return view('public.aviso_legal');
+    });
 
     // Route::auth(); // no incluyo routes de registro
     // Login & logut
@@ -52,59 +55,68 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 
-    // Acceso a plataforma:
-    //    redirecciona a login si no está autenticado, o al listado de alumnos si está logueado
-    Route::get('/acceso', function () {
-        return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado (definido en Middleware/RedirectIfAuthenticated)
-
-    /** Pantallas publicas y POSTs con formularios de email **/
+    /** Pantallas publicas con POSTs con formularios de email **/
 
     // Solicitar acceso - NO USADA
     // Route::get('/solicitar-acceso', function () {
     //     return view('public.solicitar_acceso');
     // });
     // Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
-
     Route::get('/contacto', function () {
         return view('public.contacto');
     });
     Route::post('/contacto','MailsController@contacto');
 
-    Route::get('/legal', function () {
-        return view('public.aviso_legal');
-    });
 
-});
+    // Acceso a plataforma para escuelas (panel administracion: listado editable de alumnos):
+    //    redirecciona a login si no está autenticado, o al listado de alumnos propios si está logueado
+    Route::get('/acceso-escuelas', function () {
+        return redirect('/login');
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
+                             //     (definido en Middleware/RedirectIfAuthenticated)
 
-// Routes con autenticacion
-Route::group(['middleware' => ['web','auth'],'as' => 'alumnos.'], function () {
-
-    // Listado de alumnos (sólo renderiza pantalla)
-    Route::get('/listado-alumnos','AlumnosController@showListado')->name('listado');
-
-    // GET lista alumnos (resp JSON)
-    // Si es escuela devuelve alumnos de la escuela, si no todos
+    /** Listado de alumnos público */
+    // GET pantalla
+    Route::get('/listado-alumnos','AlumnosController@showListado')->name('alumnos_public');
+    // GET lista alumnos públicos (resp JSON)
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
-    Route::get('/alumnos','AlumnosController@lista')->name('lista');
-
+    Route::get('/alumnos','AlumnosController@lista')->name('alumnos_public_list');
     // Busqueda nombre, apellido, especialidad (resp JSON)
-    Route::get('/alumnos/search','AlumnosController@search')->name('search');
-
-    // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
-    Route::group(['middleware' => 'role:escuela'], function () {
-
-        Route::get('/alumno/nuevo','AlumnosController@nuevo')->name('nuevo');
-        Route::post('/alumno/nuevo','AlumnosController@store')->name('nuevo_post');
-        Route::get('/alumno/edit/{id?}','AlumnosController@edit')->name('edit');
-        Route::get('/alumno/delete/{id?}','AlumnosController@destroy')->name('delete');
-        Route::put('/alumno/{id}','AlumnosController@update')->name('edit_put');
-
-    });
+    Route::get('/alumnos/search','AlumnosController@search')->name('alumnos_public_search');
 
     // GET pantalla y PDF alumno
-    Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('pdf');
-    Route::get('/alumno/{id?}','AlumnosController@show')->name('show');
+    Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('alumno_pdf');
+    Route::get('/alumno/{id?}','AlumnosController@show')->name('alumno_show');
+});
+
+// Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
+Route::group(['middleware' => ['web','auth','role:escuela'],'as' => 'escuela.'], function () {
+
+    // Listado de alumnos propios (sólo renderiza pantalla)
+    // ToDo controller que chequee alumnos propios y redireccione a action showListado
+    Route::get('/administrar-alumnos','AlumnosController@showListadoEscuela')->name('admin_alumnos');
+
+    // GET AJAX lista alumnos de la escuela (resp JSON)
+    // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
+    // ToDo controller que chequee alumnos propios y redireccione a action lista
+    Route::get('/alumnos-escuela','AlumnosController@listaEscuela')->name('alumnos_list');
+
+    // GET AJAX: Busqueda nombre, apellido, especialidad (resp JSON)
+    // ToDo controller que chequee alumnos propios y redireccione a action lista
+    Route::get('/alumnos-escuela/search','AlumnosController@searchEscuela')->name('alumnos_search');
+
+    /** Creacion, edicion, eliminación **/
+    // GET pantalla formulario nuevo alumno
+    Route::get('/administrar-alumnos/nuevo','AlumnosController@nuevo')->name('alumno_nuevo');
+    // POST formulario nuevo alumno
+    Route::post('/administrar-alumnos/nuevo','AlumnosController@store')->name('alumno_nuevo_post');
+    // GET pantalla formulario editar alumno
+    Route::get('/administrar-alumnos/editar/{id?}','AlumnosController@edit')->name('alumno_edit');
+    // PUT formulario editar alumno
+    Route::put('/administrar-alumnos/edit/{id}','AlumnosController@update')->name('alumno_edit_put');
+    // GET AJAX para eliminar alumno
+    Route::get('/administrar-alumnos/delete/{id?}','AlumnosController@destroy')->name('alumno_delete');
+    // ToDo: set privado desde listado
 
     // Formulario ayuda (no estaba en requerimientos)
     // Route::get('/ayuda', function () {

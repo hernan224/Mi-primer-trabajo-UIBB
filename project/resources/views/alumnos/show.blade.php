@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="col-xs-3 col-sm-2 col-md-3 {{ (Auth::user()->puedeEditar()) ? 'col-sm-offset-2 col-md-offset-0': 'col-md-offset-3 col-sm-offset-2 col-xs-offset-4' }}">
-                    <a id="descargarPDF" href="{{route('alumnos.pdf',['id'=>$id])}}" class="link-nav-listado">
+                    <a id="descargarPDF" href="{{route('alumno_pdf',['id'=>$id])}}" class="link-nav-listado">
                         <span class="glyphicon glyphicon-save"></span>
                         <span class="texto-nav hidden-sm hidden-xs">Descargar PDF</span>
                     </a>
@@ -50,10 +50,10 @@
                     </a>
                 </div> {{-- btn imprimir --}}
 
-                @if (Auth::user()->puedeEditar())
+                @if (Auth::user()->puedeEditar()) {{-- chequear ademas que sea de la escuela --}}
                     {{-- BOTONES PARA MOSTRAR UNICAMENTE PARA ESCUELA --}}
                     <div class="col-xs-2 col-sm-2">
-                        <a id="editar" href="{{ route('alumnos.edit',['id'=>$id]) }}" class="link-nav-listado">
+                        <a id="editar" href="{{ route('escuela.alumno_edit',['id'=>$id]) }}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Editar</span>
                         </a>

@@ -57,7 +57,7 @@
                 </div>
             @endif
             {{ Form::model($alumno, [
-                'route' => ($nuevo) ? 'alumnos.nuevo_post' : ['alumnos.edit_put',$id],
+                'route' => ($nuevo) ? 'escuela.alumno_nuevo_post' : ['escuela.alumno_edit_put',$id],
                 'method' => ($nuevo) ? 'POST' : 'PUT', 'files' => true,
                 'role'=>"form", 'class'=>"fila-flex form-mpt" ] ) }}
 
@@ -360,7 +360,7 @@
                             @if ($nuevo)
                                 <button type="reset" class="btn btn-link btn-descartar">Descartar</button>
                             @else
-                                <a href="{{ route('alumnos.show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
+                                <a href="{{ route('alumno_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
                             @endif
                         </div>
                     </section>

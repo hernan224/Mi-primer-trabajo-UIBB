@@ -33,12 +33,12 @@ class AlumnosController extends Controller
         $escuelas = Escuela::all();
         $view_data = [
             'urls' => [
-                'get_list' =>  route('alumnos.lista'),
+                'get_list' =>  route('alumnos_public_list'), // ToDo si es showListadoEscuela: route('escuela.alumnos_list')
                 'fotos' => asset(Alumno::$image_path),
-                'show' => route('alumnos.show'),
-                'edit' => route('alumnos.edit'),
-                'search' => route('alumnos.search'),
-                'delete' => route('alumnos.delete')
+                'show' => route('alumno_show'),
+                'edit' => route('escuela.alumno_edit'), // ToDo sólo si es showListadoEscuela
+                'search' => route('alumnos_public_search'), // ToDo si es showListadoEscuela: route('escuela.alumnos_search')
+                'delete' => route('escuela.alumno_delete') // ToDo sólo si es showListadoEscuela
             ],
             'escuelas' => $escuelas
         ];
@@ -250,11 +250,11 @@ class AlumnosController extends Controller
     public function show($id = null)
     {
         if (!$id) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('alumnos_public');
         }
         $alumno = Alumno::find($id);
         if (!$alumno) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('alumnos_public');
         }
         // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
         if (Gate::denies('show-alumno', $alumno)) {
@@ -350,7 +350,9 @@ class AlumnosController extends Controller
         $alumno->save();
 
         // redirigir a show
-        return redirect()->route('alumnos.show',['id'=> $alumno->id]);
+        // return redirect()->route('alumno_show',['id'=> $alumno->id]);
+        // redirigir a lista alumnos escuela
+        return redirect()->route('escuela.admin_alumnos');
     }
 
     /**
@@ -364,11 +366,11 @@ class AlumnosController extends Controller
     public function edit($id = null)
     {
         if (!$id) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
         $alumno = Alumno::find($id);
         if (!$alumno) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
@@ -385,7 +387,7 @@ class AlumnosController extends Controller
     /**
      * Procesa POST edicion de Alumno / Curriculum y actualiza en la BD.
      *
-     * URL: /alumnos/edit/{id} [POST]
+     * URL: /administrar-alumnos/edit/{id} [POST]
      *
      * @param  \Illuminate\Http\PostAlumnoRequest  $request
      * @param  int  $id
@@ -398,7 +400,7 @@ class AlumnosController extends Controller
 
         $alumno = Alumno::find($id);
         if (!$alumno) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
@@ -416,7 +418,7 @@ class AlumnosController extends Controller
         $alumno->save();
 
         // redirigir a show
-        return redirect()->route('alumnos.show',['id'=> $alumno->id]);
+        return redirect()->route('alumno_show',['id'=> $alumno->id]);
 
     }
 
@@ -431,11 +433,11 @@ class AlumnosController extends Controller
     public function destroy(Request $request, $id = null)
     {
         if (!$id) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
         $alumno = Alumno::find($id);
         if (!$alumno) {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
         // autorizo accion (solo para escuela de ese alumno)
         if (Gate::denies('edit-alumno', $alumno)) {
@@ -447,7 +449,7 @@ class AlumnosController extends Controller
             return response()->json(['status' => 'ok']);
         }
         else {
-            return redirect()->route('alumnos.listado');
+            return redirect()->route('escuela.admin_alumnos');
         }
     }
 

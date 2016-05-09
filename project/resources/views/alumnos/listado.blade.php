@@ -35,10 +35,10 @@
         <nav class="nav-listado">
             <div class="container">
                 <div class="row">
-                @if (Auth::user()->puedeEditar())
+                @if (Auth::user()->puedeEditar())  {{-- ToDo: sólo si es listado de escuela --}}
                 {{-- Boton nuevo (eliminar no lo incluyo) --}}
                     <div class="col-md-2 col-sm-3 col-xs-6">
-                        <a id="crearNuevo" href="{{ route('alumnos.nuevo')}}" class="link-nav-listado">
+                        <a id="crearNuevo" href="{{ route('escuela.alumno_nuevo')}}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-file"></span>
                             <span class="texto-nav">Nuevo</span>
                         </a>
@@ -240,7 +240,7 @@
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
                             @else
-                                <a href="{{route('alumnos.pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
+                                <a href="{{route('alumno_pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
                                    data-placement="bottom" title="Descargar CV como PDF">
                                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                                 </a>

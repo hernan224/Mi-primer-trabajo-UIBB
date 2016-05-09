@@ -94,7 +94,7 @@
             --}}
                 </div>
                 <div class="col-sm-6">
-                    <a href="{{ url('/instituciones')}}" class="btn-banner banner-instituciones" role="button">
+                    <a href="{{ url('/instituciones-educativas')}}" class="btn-banner banner-instituciones" role="button">
                         <svg viewBox="0 0 100 100" class="banner-icono">
                             <use xlink:href="#iconoEducacion"></use>
                         </svg>

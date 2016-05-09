@@ -17,11 +17,25 @@
             </div>
             <div class="col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
-                    <li><strong><a href="{{ url('/')}}">Inicio</a></strong></li>
+                    <li><a href="{{ url('/')}}">
+                        <strong>Inicio</strong>
+                    </a></li>
+                    <li><a href="{{ url('/listado-alumnos') }}">
+                        <strong>Acceder a la plataforma</strong>
+                    </a></li>
+                    <li><a href="{{ url('/capacitaciones') }}">
+                        <strong>Capacitaciones</strong>
+                    </a></li>
+                    <li><a href="{{ url('/practicas-profesionalizantes') }}">
+                        <strong>Prácticas profesionalizantes</strong>
+                    </a></li>
+                    <li><a href="{{ url('/instituciones-educativas') }}">
+                        <strong>Instituciones Educativas</strong>
+                    </a></li>
                     {{-- <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li> --}}
-                    <li><strong><a href="{{ url('/instituciones')}}">Instituciones Educativas</a></strong></li>
-                    <li><strong><a href="{{ url('/contacto')}}">Contacto</a></strong></li>
-                    <li><strong><a href="{{ url('/acceso') }}">Acceder a la plataforma</a></strong></li>
+                    <li><a href="{{ url('/contacto')}}">
+                        <strong>Contacto</strong>
+                    </a></li>
                 </ul> {{-- .menu-principal --}}
                 <ul class="list-inline nav-list menu-tc-pp text-right">
                     <li><a href="{{ url('/legal')}}">Aviso legal</a></li>

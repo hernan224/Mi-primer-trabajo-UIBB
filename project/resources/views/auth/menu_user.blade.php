@@ -32,9 +32,10 @@
     </a>
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownUsuario">
         @if ($home)
-        <li><a href="{{ url('/acceso') }}" class="acceder-plataforma">Acceder a la Plataforma
-                <span class="glyphicon glyphicon-arrow-right"></span></a>
-        </li>
+        {{-- ToDo: url accesso-escuelas si es escuela logueada --}}
+        <li><a href="{{ url('/listado-alumnos') }}" class="acceder-plataforma">
+            Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
+        </a></li>
         @endif
         {{-- <li><a href="{{url('/ayuda')}}">Ayuda y Soporte</a></li> No está en los req. --}}
         <li><a href="{{ url('/logout') }}" class="cerrar-sesion"><strong>Cerrar sesión</strong></a></li>

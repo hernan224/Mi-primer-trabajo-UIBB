@@ -35,7 +35,7 @@ class PostAlumnoRequest extends Request
         $dni_validation = 'required|integer|unique:alumnos,dni';
         // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el alumno actual
         $route = $this->route()->getName();
-        if ($route == 'alumnos.edit_put') {
+        if ($route == 'escuela.alumno_edit_put') {
             $id_alumno = $this->route('id');
             $dni_validation .= ','.$id_alumno;
         }
