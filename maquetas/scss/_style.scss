@@ -1911,6 +1911,7 @@ a.btn-cerrar{
     width: 5em;
     height: 3em;
     line-height: 3em;
+    margin: 0 20px;
   }
 }
 
@@ -2472,4 +2473,15 @@ body.esperando{
 }
 .select-carga-alumno {
   margin-bottom: 0;
+}
+
+
+.modal#solicitarContacto {
+  .modal-body.post-ok {
+    display:none;
+  }
+  .error {
+    display: none;
+    font-weight: bold;
+  }
 }

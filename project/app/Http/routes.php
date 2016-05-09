@@ -61,17 +61,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 
-    /** Pantallas publicas con POSTs con formularios de email **/
-
-    // Solicitar acceso - NO USADA
-    // Route::get('/solicitar-acceso', function () {
-    //     return view('public.solicitar_acceso');
-    // });
-    // Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
-    Route::get('/contacto', function () {
-        return view('public.contacto');
-    });
-    Route::post('/contacto','MailsController@contacto');
 
     /** Listado de alumnos público */
     // GET pantalla
@@ -93,6 +82,20 @@ Route::group(['middleware' => 'web'], function () {
     })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
                              //     (definido en Middleware/RedirectIfAuthenticated)
 
+    /** Pantallas publicas con POSTs con formularios de email **/
+
+    // Solicitar acceso - NO USADA
+    // Route::get('/solicitar-acceso', function () {
+    //     return view('public.solicitar_acceso');
+    // });
+    // Route::post('/solicitar-acceso/{tipo}','MailsController@solicitarAcceso');
+    Route::get('/contacto', function () {
+        return view('public.contacto');
+    });
+    Route::post('/contacto','MailsController@contacto');
+
+    // Solicitar datos alumnos
+    Route::post('/solicitar-datos-alumno/{id}','MailsController@solicitarDatosAlumno')->name('alumno_solicitar');
 });
 
 // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
