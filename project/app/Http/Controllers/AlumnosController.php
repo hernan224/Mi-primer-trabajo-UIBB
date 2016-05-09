@@ -27,18 +27,18 @@ class AlumnosController extends Controller
     }
 
     /**
-     * Muestra pantalla listado de alumnos (sin data)
+     * Muestra pantalla listado pùblico de alumnos (sin data: la obtiene por AJAX)
+     * URL: /listado-alumnos
      */
     public function showListado() {
         $escuelas = Escuela::all();
         $view_data = [
+            'admin_escuela' => false,
             'urls' => [
-                'get_list' =>  route('alumnos_public_list'), // ToDo si es showListadoEscuela: route('escuela.alumnos_list')
+                'get_list' =>  route('alumnos_public_list'),
+                'search' => route('alumnos_public_search'),
                 'fotos' => asset(Alumno::$image_path),
-                'show' => route('alumno_show'),
-                'edit' => route('escuela.alumno_edit'), // ToDo sólo si es showListadoEscuela
-                'search' => route('alumnos_public_search'), // ToDo si es showListadoEscuela: route('escuela.alumnos_search')
-                'delete' => route('escuela.alumno_delete') // ToDo sólo si es showListadoEscuela
+                'show' => route('alumno_show')
             ],
             'escuelas' => $escuelas
         ];
@@ -46,21 +46,40 @@ class AlumnosController extends Controller
     }
 
     /**
-     * Lista de alumnos [JSON]
+     * Muestra pantalla listado de alumnos de escuela para administrar (sin data: la obtiene por AJAX)
+     * URL: /administrar-alumnos
+     */
+    public function showListadoEscuela() {
+        $escuelas = Escuela::all();
+        $view_data = [
+            'admin_escuela' => true,
+            'urls' => [
+                'get_list' =>  route('escuela.alumnos_list'),
+                'search' => route('escuela.alumnos_search'),
+                'fotos' => asset(Alumno::$image_path),
+                'show' => route('alumno_show'),
+                'edit' => route('escuela.alumno_edit'),
+                'delete' => route('escuela.alumno_delete')
+            ],
+            'escuelas' => $escuelas
+        ];
+        return view('alumnos.listado',$view_data);
+    }
+
+    /**
+     * Lista de alumnos publicos [JSON]
      * Si usuario es empresa o admin, se listan todos
-     * Si usuario es escuela se listan sólo los de la escuela
      *
      * URL: /alumnos [GET]
      *
-     * Puede incluir los siguientes filtros, ordenamiento o num pag (parametros en request):
-     *
-     *
-     * page=<number> : es interpretada automaticamente al invcar paginate() en la query
+     * Puede incluir filtros, ordenamiento o num pag (parametros en request):
+     *     page=<number> : es interpretada automaticamente al invocar paginate() en la query
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  boolean  $admin_escuela si es true, se buscan solo los alumnos de la escuela
      * @return \Illuminate\Http\Response
      */
-    public function lista(Request $request){
+    public function lista(Request $request, $admin_escuela = false){
         $select_array = [
             'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento',
             'alumnos.localidad','alumnos.barrio','alumnos.foto','alumnos.sexo',
@@ -84,11 +103,16 @@ class AlumnosController extends Controller
             ->select($select_array);
 
         $where_array = [];
-        // Si usuario es docente, sólo busca los alumnos de su escuela.
-        if (Auth::user()->hasRole('escuela')) {
+        // Si es request de listado de admin escuela, sólo busca los alumnos de su escuela.
+        if ($admin_escuela) {
             $escuela_id = Auth::user()->escuela_id;
             $where_array[] = ['alumnos.escuela_id',$escuela_id];
         }
+        else {
+            // si no, solo los publicos
+            $query->where('alumnos.privado',false);
+        }
+
         // filtros
         $this->lista_filtros($request,$where_array);
 
@@ -100,6 +124,14 @@ class AlumnosController extends Controller
         $this->lista_ordenamiento($request,$query);
 
         return $query->paginate(21); // retorna JSON automáticamente, paginando el resultado
+    }
+
+    /**
+     * Lista de alumnos de escuela (logueada) [JSON]
+     * URL: /alumnos-escuela
+     */
+    public function listaEscuela(Request $request){
+        return $this->lista($request,true);
     }
 
     private function lista_filtros($request,&$where_array) {
@@ -194,7 +226,16 @@ class AlumnosController extends Controller
         $query->orderBy('alumnos.apellido','ASC');
     }
 
-    public function search(Request $request) {
+    /**
+     * Busqueda dealumnos publicos [JSON]
+     *
+     * URL: /alumnos/search [GET]
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  boolean  $admin_escuela si es true, se buscan solo los alumnos de la escuela
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request,$admin_escuela = false) {
         $select_array = [
             'alumnos.id','alumnos.nombre','alumnos.apellido','curriculums.especialidad',
             'escuelas.name as escuela',
@@ -205,10 +246,14 @@ class AlumnosController extends Controller
             ->leftJoin('escuelas','alumnos.escuela_id','=','escuelas.id')
             ->select($select_array);
 
-        // Si usuario es docente, sólo busca los alumnos de su escuela.
-        if (Auth::user()->hasRole('escuela')) {
+        if ($admin_escuela) {
+            // Sólo busca los alumnos de la escuela.
             $escuela_id = Auth::user()->escuela_id;
             $query->where('alumnos.escuela_id',$escuela_id);
+        }
+        else {
+            // solo los publicos
+            $query->where('alumnos.privado',false);
         }
 
         $alumnos = $query->get();
@@ -240,6 +285,14 @@ class AlumnosController extends Controller
     }
 
     /**
+     * Busqueda de alumnos de escuela (logueada) [JSON]
+     * URL: /alumnos-escuela/search
+     */
+    public function searchEscuela(Request $request){
+        return $this->lista($request,true);
+    }
+
+    /**
      * Muestra pantalla alumno / curriculum creado.
      *
      * URL: /alumnos/{id} [GET]
@@ -256,14 +309,20 @@ class AlumnosController extends Controller
         if (!$alumno) {
             return redirect()->route('alumnos_public');
         }
-        // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
-        if (Gate::denies('show-alumno', $alumno)) {
+        // autorizo accion si alumno no es publico
+        if ($alumno->privado && Gate::denies('show-alumno-privado', $alumno)) {
             return abort(403);
         }
         $view_data = [
             'id' => $id,
-            'alumno' => $alumno
+            'alumno' => $alumno,
+            'editable' => false
         ];
+        // parametro editable: si usuario es escuela del alumno
+        $user = Auth::user();
+        if ($user && $user->hasRole('escuela') && $user->escuela->id == $alumno->escuela_id) {
+            $view_data['editable'] = true;
+        }
         return view('alumnos.show',$view_data);
     }
 

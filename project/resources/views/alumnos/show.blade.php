@@ -30,14 +30,14 @@
     <nav class="nav-listado">
         <div class="container">
             <div class="row">
-                <div class="col-xs-2 {{ (Auth::user()->puedeEditar()) ? 'col-md-3': 'col-md-4' }}">
-                    <a id="volverListado" href="{{ url('/listado-alumnos') }}" class="link-nav-listado texto-blanco text-left">
+                <div class="col-xs-2 {{ ($editable) ? 'col-md-3': 'col-md-4' }}">
+                    <a id="volverListado" href="{{ ($editable) ? route('escuela.admin_alumnos') : url('/listado-alumnos') }}" class="link-nav-listado texto-blanco text-left">
                         <span class="glyphicon glyphicon-arrow-left"></span>
                         <span class="hidden-sm hidden-xs">Volver al listado de alumnos</span>
                     </a>
                 </div>
 
-                <div class="col-xs-3 col-sm-2 col-md-3 {{ (Auth::user()->puedeEditar()) ? 'col-sm-offset-2 col-md-offset-0': 'col-md-offset-3 col-sm-offset-2 col-xs-offset-4' }}">
+                <div class="col-xs-3 col-sm-2 col-md-3 {{ ($editable) ? 'col-sm-offset-2 col-md-offset-0': 'col-md-offset-3 col-sm-offset-2 col-xs-offset-4' }}">
                     <a id="descargarPDF" href="{{route('alumno_pdf',['id'=>$id])}}" class="link-nav-listado">
                         <span class="glyphicon glyphicon-save"></span>
                         <span class="texto-nav hidden-sm hidden-xs">Descargar PDF</span>
@@ -50,7 +50,7 @@
                     </a>
                 </div> {{-- btn imprimir --}}
 
-                @if (Auth::user()->puedeEditar()) {{-- chequear ademas que sea de la escuela --}}
+                @if ($editable) {{-- chequear ademas que sea de la escuela --}}
                     {{-- BOTONES PARA MOSTRAR UNICAMENTE PARA ESCUELA --}}
                     <div class="col-xs-2 col-sm-2">
                         <a id="editar" href="{{ route('escuela.alumno_edit',['id'=>$id]) }}" class="link-nav-listado">
@@ -242,7 +242,7 @@
         </article> {{-- /.alumno-individual --}}
     </div>
 
-    @if (Auth::user()->puedeEditar())
+    @if ($editable)
         @include('alumnos.modal_eliminar',['alumno'=>$alumno])
     @endif
 @endsection

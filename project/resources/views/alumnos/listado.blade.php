@@ -1,5 +1,8 @@
 {{-- Listado de alumnos (sólo vista y template. La data se obtiene via AJAX).
-    Cambia si tipo de usuairo es escuela o empresa. URL: /alumnos --}}
+    Cambia si es listado publico o de escuela
+    URL listado publico: /listado-alumnos  [parametro $admin_escuela: false]
+    URL listado escuela: /administrar-alumnos (route: escuela.admin_alumnos) [parametro $admin_escuela: true]
+--}}
 
 @extends('layouts.base_auth')
 {{-- La base incluye el header y footer --}}
@@ -22,10 +25,12 @@
             list : "{{$urls['get_list']}}",
             fotos : "{{$urls['fotos']}}",
             show : "{{$urls['show']}}",
-            edit : "{{$urls['edit']}}",
-            search : "{{$urls['search']}}",
-            delete: "{{$urls['delete']}}"
-        };
+            search : "{{$urls['search']}}"
+        }
+        @if ($admin_escuela)
+            urls.edit = "{{$urls['edit']}}";
+            urls.delete = "{{$urls['delete']}}";
+        @endif
     </script>
 @endsection
 
@@ -35,7 +40,7 @@
         <nav class="nav-listado">
             <div class="container">
                 <div class="row">
-                @if (Auth::user()->puedeEditar())  {{-- ToDo: sólo si es listado de escuela --}}
+                @if ($admin_escuela)  {{-- sólo si es listado de escuela --}}
                 {{-- Boton nuevo (eliminar no lo incluyo) --}}
                     <div class="col-md-2 col-sm-3 col-xs-6">
                         <a id="crearNuevo" href="{{ route('escuela.alumno_nuevo')}}" class="link-nav-listado">
@@ -65,7 +70,7 @@
                     </div> {{-- contenedor cambiar vista --}}
                 @endif
 
-                    <div class="col-md-2 col-sm-2 {{ Auth::user()->puedeEditar() ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
+                    <div class="col-md-2 col-sm-2 {{ ($admin_escuela) ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
                         <div class="dropdown">
                         <form>
                             <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
@@ -84,7 +89,7 @@
                                     <option value="nac">Edad</option>
                                     <option value="loc">Localidad</option>
                                     <option value="bar">Barrio</option>
-                                @if (Auth::user()->hasRole('escuela'))
+                                @if ($admin_escuela)
                                     <option value="doc">Docente</option>
                                 @else
                                     <option value="esc">Escuela</option>
@@ -114,7 +119,7 @@
                         </a>
                     </div> {{-- btn filtro --}}
 
-                    <div class="busqueda col-md-4 col-sm-5 {{ Auth::user()->puedeEditar() ? 'col-xs-12' : 'col-xs-6' }}">
+                    <div class="busqueda col-md-4 col-sm-5 {{ $admin_escuela ? 'col-xs-12' : 'col-xs-6' }}">
                         <div class="input-group buscar-listado">
                             <input id="search-alumnos" type="text" class="form-control input-buscar" placeholder="Buscar">
                             <span class="input-group-btn">
@@ -145,7 +150,7 @@
         </nav>
         {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
             Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
-        <div id="contenedorLista" class="container contenedor-lista loading {{ (Auth::user()->puedeEditar()) ? 'vista-escuela vista-listado' : 'vista-empresa' }}">
+        <div id="contenedorLista" class="container contenedor-lista loading {{ ($admin_escuela) ? 'vista-escuela vista-listado' : 'vista-empresa' }}">
             @include('layouts.spinner')
 
             <!--ERROR-->
@@ -164,7 +169,7 @@
             <!--ADVERTENCIA-->
             <div class="sin-alumnos panel panel-warning">
                 <div class="panel-body bg-warning text-center">
-                    @if (Auth::user()->hasRole('escuela'))
+                    @if ($admin_escuela)
                     <strong>Aún no se han cargado alumnos de esta escuela.</strong>
                     @else
                     <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más tarde.</strong>
@@ -194,7 +199,7 @@
 
                             <div class="datos-alumno">
                                 <div class="datos-personales">
-                                @if (Auth::user()->hasRole('escuela'))
+                                @if ($admin_escuela)
                                     <span class="fec-nac">
                                         <strong>Creado/Editado:</strong> @{{format_date updated_at}}
                                     </span>
@@ -230,7 +235,7 @@
                                 <span class="promedio-valor">@{{format_decimal promedio}}</span>
                             </div>
                             <div class="btn-acciones">
-                            @if (Auth::user()->hasRole('escuela'))
+                            @if ($admin_escuela)
                                 <a href="{{$urls['edit']}}/@{{id}}" class="btn btn-default btn-editar" data-toggle="tooltip"
                                    data-placement="bottom" title="Editar alumno">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -355,7 +360,7 @@
         </div> {{-- .filtros-contendor --}}
     </div>
 
-    @if (Auth::user()->puedeEditar())
+    @if ($admin_escuela)
         @include('alumnos.modal_eliminar');
     @endif
 

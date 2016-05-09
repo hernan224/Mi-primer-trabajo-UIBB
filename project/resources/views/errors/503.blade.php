@@ -26,7 +26,7 @@
                         <h3 class="text-center">Servicio no disponible</h3>
                     </div>
                     <div class="panel-body bg-danger">
-                        <strong class="text-center">La página a la que desea acceder no existe y no tiene permitido el acceso.</strong>
+                        <strong class="text-center">La página a la que desea acceder no existe o no tiene permitido el acceso.</strong>
                     </div>
                 </div>
 

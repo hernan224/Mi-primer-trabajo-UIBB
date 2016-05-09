@@ -67,14 +67,6 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::post('/contacto','MailsController@contacto');
 
-
-    // Acceso a plataforma para escuelas (panel administracion: listado editable de alumnos):
-    //    redirecciona a login si no está autenticado, o al listado de alumnos propios si está logueado
-    Route::get('/acceso-escuelas', function () {
-        return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
-                             //     (definido en Middleware/RedirectIfAuthenticated)
-
     /** Listado de alumnos público */
     // GET pantalla
     Route::get('/listado-alumnos','AlumnosController@showListado')->name('alumnos_public');
@@ -84,9 +76,17 @@ Route::group(['middleware' => 'web'], function () {
     // Busqueda nombre, apellido, especialidad (resp JSON)
     Route::get('/alumnos/search','AlumnosController@search')->name('alumnos_public_search');
 
-    // GET pantalla y PDF alumno
+    // GET vista y PDF alumno
     Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('alumno_pdf');
     Route::get('/alumno/{id?}','AlumnosController@show')->name('alumno_show');
+
+    /** Acceso a plataforma para escuelas (panel administracion: listado editable de alumnos) **/
+    //    redirecciona a login si no está autenticado, o al listado de alumnos propios si está logueado
+    Route::get('/acceso-escuelas', function () {
+        return redirect('/login');
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
+                             //     (definido en Middleware/RedirectIfAuthenticated)
+
 });
 
 // Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
