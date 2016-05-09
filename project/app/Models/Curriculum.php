@@ -10,7 +10,7 @@ class Curriculum extends Model
 
     protected $fillable = [
         'especialidad','promedio','asignaturas','practicas_tipo','practicas_lugar',
-        'extras','participacion','carta',
+        'estudios', 'estudios_carrera', 'estudios_lugar','extras','participacion','carta',
         // actitudes (booleans)
         'responsabilidad','puntualidad','proactividad','equipo','creatividad','liderazgo',
         'conciliador','perseverancia','asertividad','relaciones','objetivos','saludable'

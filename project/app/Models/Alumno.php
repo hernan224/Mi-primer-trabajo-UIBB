@@ -10,6 +10,7 @@ class Alumno extends Model
         'dni','nombre','apellido','sexo','nacimiento','nacionalidad',
         'domicilio','localidad','barrio','tel_fijo','celular','email',
         //'facebook','twitter','linkedin'
+        'privado'
     ];
 
     public static $image_path = 'media/img/alumnos';

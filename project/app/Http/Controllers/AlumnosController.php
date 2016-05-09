@@ -532,6 +532,9 @@ class AlumnosController extends Controller
         // convierto fecha de nacimiento al formato a guardar
         $this->parseDate($data_alumno);
 
+        $check_privado = isset($data_alumno['privado']) ? $data_alumno['privado'] : false;
+        $data_alumno['privado'] = ($check_privado && $check_privado == 'si');
+
         return $data_alumno;
     }
 
@@ -548,6 +551,10 @@ class AlumnosController extends Controller
         foreach (Curriculum::$actitudes_names as $actitud) {
             $data_curriculum[$actitud] = (in_array($actitud,$actitudes_check));
         }
+
+        $estudios = isset($data_curriculum['estudios']) ? $data_curriculum['estudios'] : false;
+        $data_curriculum['estudios'] = ($estudios && $estudios == 'si');
+
         return $data_curriculum;
     }
 

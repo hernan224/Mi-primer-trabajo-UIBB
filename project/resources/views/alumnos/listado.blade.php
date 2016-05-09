@@ -7,7 +7,11 @@
 @extends('layouts.base')
 
 @section('title')
-    Listado de alumnos
+    @if ($admin_escuela)
+        Panel de administración
+    @else
+        Listado de alumnos
+    @endif
 @endsection
 
 @section('header')

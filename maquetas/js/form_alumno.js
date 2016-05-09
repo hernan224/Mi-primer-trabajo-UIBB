@@ -64,6 +64,18 @@ $(function () {
     $('form').submit(function() {
         $('.spinner-container').show();
     });
+
+    //Mostrar/ocultar opciones de estudio superior
+    var $detalleSuperior = $('.detalle-superior');
+    $('.radio-estudio-superior').on('change', function(){
+       var valor = $(this).val();
+        if (valor === 'si'){
+            $detalleSuperior.removeClass('hidden');
+        }else{
+            $detalleSuperior.addClass('hidden')
+                    .children('input[type="text"]').val('');
+        }
+    });
 });
 
 function imgPreview(input_selector,preview_selector) {

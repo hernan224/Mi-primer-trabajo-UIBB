@@ -208,6 +208,37 @@
                                 (!$nuevo) ? $alumno->curriculum->practicas_lugar : null,
                                 ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?','required'=>'required']) }}
                         </div>
+
+                        <div class="form-group col-xs-12 estudios-superiores{{ $errors->has('estudios') ? ' has-error' : '' }}">
+                            <div class="radio">
+                                <strong>¿Continúa estudios terciarios o universitarios?</strong>
+                                <label>
+                                    <input class="radio-estudio-superior" type="radio" name="estudios"
+                                        value="no" {{ ($nuevo || !$alumno->curriculum->estudios) ? 'checked' : '' }} >
+                                    No
+                                </label>
+                                <label>
+                                    <input class="radio-estudio-superior" type="radio" name="estudios"
+                                        value="si" {{ (!$nuevo && $alumno->curriculum->estudios) ? 'checked' : '' }}>
+                                    Sí
+                                </label>
+                            </div>
+                        </div> {{-- /radio estudios terciarios --}}
+                        <div class="form-group col-sm-6 col-xs-12 detalle-superior
+                                {{ ($nuevo || !$alumno->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_carrera') ? ' has-error' : '' }}">
+                            {{ Form::label('estudios_carrera', 'Carrera', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('estudios_carrera',
+                                (!$nuevo) ? $alumno->curriculum->estudios_carrera : null,
+                                ['class'=>'form-control','placeholder'=>'Carrera']) }}
+                        </div>
+                        <div class="form-group col-sm-6 col-xs-12 detalle-superior
+                                {{ ($nuevo || !$alumno->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_lugar') ? ' has-error' : '' }}">
+                            {{ Form::label('estudios_lugar', 'Entidad educativa', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('estudios_lugar',
+                                (!$nuevo) ? $alumno->curriculum->estudios_lugar : null,
+                                ['class'=>'form-control','placeholder'=>'Entidad educativa']) }}
+                        </div>
+
                     </fieldset> {{-- /fieldset datos curriculares --}}
 
                     <fieldset class="carga-info-adicional row">
@@ -359,6 +390,17 @@
                         </div>
 
                         <div class="contenedor-btns">
+                            <div class="panel-privado">
+                                <div class="panel-body bg-warning">
+                                    <div class="checkbox">
+                                        <label class="text-warning">
+                                            {{ Form::checkbox('privado','si',!$nuevo && $alumno->privado) }}
+                                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                                            &nbsp; Mantener privado
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                             {{ Form::button( ($nuevo) ? 'Cargar alumno' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
                             @if ($nuevo)
                                 <button type="reset" class="btn btn-link btn-descartar">Descartar</button>
