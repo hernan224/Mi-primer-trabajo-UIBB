@@ -7,19 +7,19 @@
             <div class="carousel-inner">
 
                 <div class="item active"
-                     style="background-image: url(img/bg-home-1.jpg);background-position: center right;">
+                     style="background-image: url(img/bg-home-1.jpg);background-position: 65% center;">
                     {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
                 <div class="item"
-                     style="background-image: url(img/bg-home-2.jpg);background-position: top left;">
+                     style="background-image: url(img/bg-home-2.jpg);background-position: left top;">
                     {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
                 <div class="item"
-                     style="background-image: url(img/bg-home-3.jpg);background-position: top center;">
+                     style="background-image: url(img/bg-home-3.jpg);background-position: center top;">
                     {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
                 <div class="item"
-                     style="background-image: url(img/bg-home-4.jpg);background-position: center right;">
+                     style="background-image: url(img/bg-home-4.jpg);background-position: 70% center;">
                     {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
                 <div class="item"
-                     style="background-image: url(img/bg-home-5.jpg);background-position: top right;">
+                     style="background-image: url(img/bg-home-5.jpg);background-position: 75% top;">
                     {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
 
             </div> {{-- /.carousel-inner --}}
@@ -55,5 +55,16 @@
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
 
+        @if (Auth::check())
+            @if (Auth::user()->hasRole('escuela'))
+                <a href="{{ url('/acceso-escuela') }}" class="btn btn-registro">
+                    <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
+                </a>
+            @endif
+        @else
+            <a href="{{ url('/login') }}" class="btn btn-registro">
+                <span class="glyphicon glyphicon-user"></span> &nbsp; Iniciar sesión
+            </a>
+        @endif
     </div> {{-- /.contenido-header-home --}}
 </header> {{-- .header-home --}}

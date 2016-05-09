@@ -41,7 +41,7 @@
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
     @if (Auth::check() && Auth::user()->hasRole('escuela'))
         <li><a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
-            <span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;
+            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
             <strong>Panel de administración</strong>
         </a></li>
         <hr class="separador-menu">

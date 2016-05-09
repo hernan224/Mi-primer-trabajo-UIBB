@@ -36,6 +36,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/instituciones-educativas', function () {
         return view('public.instituciones',['escuelas' => Escuela::all()]);
     });
+    Route::get('/capacitaciones', function () {
+        return view('public.capacitaciones');
+    });
+    Route::get('/practicas-profesionalizantes', function () {
+        return view('public.practicas');
+    });
     // Pantalla empresas - NO USADA
     // Route::get('/empresas', function () {
     //     return view('public.empresas',['empresas' => Empresa::all()]);
