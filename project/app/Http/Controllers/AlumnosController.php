@@ -518,9 +518,14 @@ class AlumnosController extends Controller
 
     // Convierte date recibida al formato que se guarda en BD
     protected function parseDate(&$data_alumno) {
-        $date_input = $data_alumno['nacimiento'];
-        // Transformo date
-        $data_alumno['nacimiento'] = \DateTime::createFromFormat('d/m/Y',$date_input)->format('Y-m-d');
+        $date_input = isset($data_alumno['nacimiento']) ? $data_alumno['nacimiento'] : null;
+        if ($date_input) {
+            // Transformo date
+            $data_alumno['nacimiento'] = \DateTime::createFromFormat('d/m/Y',$date_input)->format('Y-m-d');
+        }
+        else {
+            $data_alumno['nacimiento'] = null;
+        }
     }
 
     protected function getDataPostAlumno($request) {
@@ -534,6 +539,10 @@ class AlumnosController extends Controller
 
         $check_privado = isset($data_alumno['privado']) ? $data_alumno['privado'] : false;
         $data_alumno['privado'] = ($check_privado && $check_privado == 'si');
+
+        if (!isset($data_alumno['dni']) || !$data_alumno['dni']) {
+            $data_alumno['dni'] = null;
+        }
 
         return $data_alumno;
     }

@@ -10,7 +10,7 @@ class Curriculum extends Model
 
     protected $fillable = [
         'especialidad','promedio','asignaturas','practicas_tipo','practicas_lugar',
-        'estudios', 'estudios_carrera', 'estudios_lugar','extras','participacion','carta',
+        'estudios', 'estudios_carrera', 'estudios_lugar','extras','participacion','carta_presentacion',
         // actitudes (booleans)
         'responsabilidad','puntualidad','proactividad','equipo','creatividad','liderazgo',
         'conciliador','perseverancia','asertividad','relaciones','objetivos','saludable'
@@ -50,4 +50,17 @@ class Curriculum extends Model
         }
         return $result;
     }
+
+    /**
+     *  Mutator promedio
+     */
+    public function setPromedioAttribute($value) {
+        if (!$value) {
+            $this->attributes['promedio'] = null;
+        }
+        else {
+            $this->attributes['promedio'] = $value;
+        }
+    }
+
 }

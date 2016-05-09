@@ -20,6 +20,8 @@ class AddAtributosCurriculums extends Migration
             $table->string('asignaturas')->nullable()->change();
             $table->string('especialidad')->nullable()->change();
             $table->decimal('promedio',4,2)->nullable()->change();
+
+            $table->renameColumn('carta', 'carta_presentacion');
         });
     }
 
@@ -34,6 +36,7 @@ class AddAtributosCurriculums extends Migration
             $table->dropColumn('estudios');
             $table->dropColumn('estudios_carrera');
             $table->dropColumn('estudios_lugar');
+            $table->renameColumn('carta_presentacion', 'carta');
         });
     }
 }

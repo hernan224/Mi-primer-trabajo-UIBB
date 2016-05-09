@@ -233,10 +233,10 @@
                     </section> {{-- /.info-adicional --}}
                     @endif
 
-                    @if ($alumno->curriculum->carta)
+                    @if ($alumno->curriculum->carta_presentacion)
                     <section class="carta-presentacion">
                         <h5 class="subtitulo texto-azul">Carta de presentación</h5>
-                        <p>{!! nl2br($alumno->curriculum->carta) !!}</p>
+                        <p>{!! nl2br($alumno->curriculum->carta_presentacion) !!}</p>
                     </section>
                     @endif
                 </main> {{-- /.info-detalle --}}

@@ -47,11 +47,16 @@ class Alumno extends Model
      */
     public function getNacimientoAttribute($value)
     {
+        if (!$value)
+            return null;
         $date = new \DateTime($value);
         return $date->format('d/m/Y');
     }
 
     public function getEdad() {
+        if (!$this->nacimiento) {
+            return null;
+        }
         $fecha_nac = \DateTime::createFromFormat('d/m/Y', $this->nacimiento);
         $hoy = new \DateTime();
         return $hoy->diff($fecha_nac)->y;

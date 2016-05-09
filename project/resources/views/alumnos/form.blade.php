@@ -30,7 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-6 col-sm-5 col-md-3">
-                    <a id="volverListado" href="{{ url('/listado-alumnos') }}" class="link-nav-listado texto-blanco text-left">
+                    <a id="volverListado" href="{{ route('escuela.admin_alumnos') }}" class="link-nav-listado texto-blanco text-left">
                         <span class="glyphicon glyphicon-arrow-left"></span>
                         Volver al listado de alumnos
                     </a>
@@ -79,7 +79,8 @@
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
                             {{ Form::label('dni', 'DNI', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('dni',null,['class'=>'form-control','placeholder'=>'DNI nº','required'=>'required']) }}
+                            {{ Form::text('dni',($nuevo || !$alumno->dni) ? '' : null,['class'=>'form-control','placeholder'=>'DNI nº']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
@@ -97,13 +98,15 @@
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
-                            {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('nacimiento',($nuevo) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento','required'=>'required']) }}
                             <!-- FUNCIONA CON PLUGIN DATEPICKER -->
+                            {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('nacimiento',($nuevo || !$alumno->nacimiento) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
                             {{ Form::label('nacionalidad', 'Nacionalidad', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Nacionalidad','required'=>'required']) }}
+                            {{ Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Nacionalidad']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                     </fieldset>
 
@@ -113,12 +116,14 @@
 
                         <div class="form-group col-xs-12 col-xs-12{{ $errors->has('domicilio') ? ' has-error' : '' }}">
                             {{ Form::label('domicilio', 'Domicilio', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio','required'=>'required']) }}
+                            {{ Form::text('domicilio',null,['class'=>'form-control','placeholder'=>'Domicilio']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('localidad') ? ' has-error' : '' }}">
                             {{ Form::label('localidad', 'Localidad', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad','required'=>'required']) }}
+                            {{ Form::text('localidad',null,['class'=>'form-control','placeholder'=>'Localidad']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('barrio') ? ' has-error' : '' }}">
                             {{ Form::label('barrio', 'Barrio', ["class"=>"sr-only input-label small"]) }}
@@ -131,12 +136,14 @@
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('celular') ? ' has-error' : '' }}">
                             {{ Form::label('celular', 'Teléfono móvil', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil','required'=>'required']) }}
+                            {{ Form::text('celular',null,['class'=>'form-control','placeholder'=>'Teléfono móvil']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-12{{ $errors->has('email') ? ' has-error' : '' }}">
                             {{ Form::label('email', 'E-mail', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail','required'=>'required']) }}
+                            {{ Form::email('email',null,['class'=>'form-control','placeholder'=>'E-mail']) }}
+                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
                         {{-- Facebook, Twitter y Linkedin: deshabilitado
@@ -177,17 +184,19 @@
                                             'Tecnicatura Maestro Mayor de obra' => 'Tecnicatura Maestro Mayor de obra'
                                         ],
                                         (!$nuevo) ? $alumno->curriculum->especialidad : null ,
-                                        ['class'=>'form-control select-carga-alumno','placeholder'=>'Elegir especialidad...','required' => 'required']) }}
+                                        ['class'=>'form-control select-carga-alumno','placeholder'=>'Elegir especialidad...']) }}
+                                            {{-- ToDo: setear atributo required si no es privado --}}
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('promedio') ? ' has-error' : '' }}">
+                            <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
                             {{ Form::label('promedio', 'Promedio general', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('promedio',
-                                (!$nuevo) ? $alumno->curriculum->promedio : null ,
-                                ['id'=>'promedio','class'=>'form-control','placeholder'=>'Promedio general','required' => 'required']) }}
-                            <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
+                                (!$nuevo && $alumno->curriculum->promedio) ? $alumno->curriculum->promedio : null ,
+                                ['id'=>'promedio','class'=>'form-control','placeholder'=>'Promedio general']) }}
+                                    {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('asignaturas') ? ' has-error' : '' }}">
                             {{ Form::label('asignaturas', 'Asignaturas destacadas', ["class"=>"sr-only input-label small"]) }}
@@ -200,13 +209,15 @@
                             {{ Form::label('practicas_tipo', 'Prácticas profesionalizantes', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_tipo',
                                 (!$nuevo) ? $alumno->curriculum->practicas_tipo : null,
-                                ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes','required'=>'required']) }}
+                                ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes']) }}
+                                    {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_lugar',
                                 (!$nuevo) ? $alumno->curriculum->practicas_lugar : null,
-                                ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?','required'=>'required']) }}
+                                ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?']) }}
+                                    {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
                         <div class="form-group col-xs-12 estudios-superiores{{ $errors->has('estudios') ? ' has-error' : '' }}">
@@ -352,11 +363,12 @@
 
                     <fieldset class="carga-carta row">
                         <legend class="subtitulo h5 texto-azul">Carta de presentación</legend>
-                        <div class="form-group col-xs-12{{ $errors->has('carta') ? ' has-error' : '' }}">
-                            {{ Form::label('carta', 'Carta de presentación', ["class"=>"sr-only"]) }}
-                            {{ Form::textarea('carta',
-                                (!$nuevo) ? $alumno->curriculum->carta : null,
-                                ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6,'required'=>'required']) }}
+                        <div class="form-group col-xs-12{{ $errors->has('carta_presentacion') ? ' has-error' : '' }}">
+                            {{ Form::label('carta_presentacion', 'Carta de presentación', ["class"=>"sr-only"]) }}
+                            {{ Form::textarea('carta_presentacion',
+                                (!$nuevo) ? $alumno->curriculum->carta_presentacion : null,
+                                ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6]) }}
+                                    {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                     </fieldset>
 
