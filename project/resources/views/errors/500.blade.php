@@ -25,15 +25,11 @@
                     <div class="panel-heading">
                         <h3 class="text-center">Error en el servidor</h3>
                     </div>
-                    <div class="panel-body bg-danger">
-                        <strong class="text-center">La página a la que desea acceder no existe o no tiene permitido el acceso.</strong>
-                    </div>
                 </div>
 
                 <a href="{{url('/listado-alumnos')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
                     Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
                 </a>
-                {{-- si es escuela: URL acceso-escuelas, o poner otro link --}}
 
                 <a href="{{url('/')}}" class="text-center center-block link-home">
                     Volver a la página de Inicio

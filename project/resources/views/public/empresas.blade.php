@@ -8,7 +8,7 @@
 @endsection
 
 @section('header')
-    @include('layouts.header_simple_acceso')
+    @include('layouts.header_menu')
 @endsection
 
 @section('content')

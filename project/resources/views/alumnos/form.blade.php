@@ -1,6 +1,5 @@
 {{-- Formulario para creación / edición de alumno y curriculum --}}
-@extends('layouts.base_auth')
-{{-- La base incluye el header y footer --}}
+@extends('layouts.base')
 
 @section('title')
     @if ($nuevo)
@@ -8,6 +7,10 @@
     @else
         Editar alumno: {{ $alumno->getFullName() }}
     @endif
+@endsection
+
+@section('header')
+    @include('layouts.header_menu')
 @endsection
 
 {{-- Agrego estilos y scripts --}}

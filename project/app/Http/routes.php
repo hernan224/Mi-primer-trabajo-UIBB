@@ -82,7 +82,7 @@ Route::group(['middleware' => 'web'], function () {
 
     /** Acceso a plataforma para escuelas (panel administracion: listado editable de alumnos) **/
     //    redirecciona a login si no está autenticado, o al listado de alumnos propios si está logueado
-    Route::get('/acceso-escuelas', function () {
+    Route::get('/acceso-escuela', function () {
         return redirect('/login');
     })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
                              //     (definido en Middleware/RedirectIfAuthenticated)

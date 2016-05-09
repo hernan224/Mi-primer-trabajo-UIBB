@@ -28,8 +28,7 @@
 
     <div class="login-nav-home">
         <div class="fila-flex contenedor-acceso container">
-            {{-- SI NO HAY USUARIO LOGEADO, EL CONTENDOR QUEDARÍA VACIO --}}
-            @include('auth.menu_user', ['home' => true])
+            @include('layouts.menu', ['home' => true])
         </div> {{-- /.fila-flex contenedor-acceso --}}
 
     </div> {{-- /.login-nav-home --}}

@@ -2,7 +2,7 @@
 <footer class="pie-pagina {{ $home ? 'pie-home' : ''}}">
     <div class="container">
         <div class="contenido-footer row">
-            <div class="col-sm-4">
+            <div class="col-md-3 col-sm-4">
                 <div class="marca-container">
                     <a href="{{ url('/')}}">
                         <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-blanco">
@@ -15,7 +15,7 @@
                     <a class="logo-uibb uibb-blanco" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>
                 </div> {{-- .mpt-by --}}
             </div>
-            <div class="col-sm-8">
+            <div class="col-md-9 col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
                     <li><a href="{{ url('/')}}">
                         <strong>Inicio</strong>
@@ -33,12 +33,18 @@
                         <strong>Instituciones Educativas</strong>
                     </a></li>
                     {{-- <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li> --}}
-                    <li><a href="{{ url('/contacto')}}">
-                        <strong>Contacto</strong>
-                    </a></li>
                 </ul> {{-- .menu-principal --}}
                 <ul class="list-inline nav-list menu-tc-pp text-right">
-                    <li><a href="{{ url('/legal')}}">Aviso legal</a></li>
+                    <li><a href="{{ url('/acceso-escuela')}}">
+                        Panel de administración de institución educativa
+                    </a></li>
+                    <li><a href="{{ url('/contacto')}}">
+                        Contacto
+                    </a></li>
+                    <li><a href="{{ url('/legal')}}">
+                        Aviso legal
+                    </a></li>
+
                     <!-- <li><a href="#ToDo">Políticas de privacidad</a></li> -->
                 </ul> {{-- .menu-tc-pp --}}
             </div>

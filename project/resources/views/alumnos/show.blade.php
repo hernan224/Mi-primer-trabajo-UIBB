@@ -1,9 +1,13 @@
 {{-- Vista de alumno y curriculum --}}
-@extends('layouts.base_auth')
+@extends('layouts.base')
 {{-- La base incluye el header y footer --}}
 
 @section('title')
     Alumno: {{ $alumno->getFullName() }}
+@endsection
+
+@section('header')
+    @include('layouts.header_menu')
 @endsection
 
 {{-- Agrego estilos y scripts --}}

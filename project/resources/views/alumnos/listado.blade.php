@@ -4,11 +4,14 @@
     URL listado escuela: /administrar-alumnos (route: escuela.admin_alumnos) [parametro $admin_escuela: true]
 --}}
 
-@extends('layouts.base_auth')
-{{-- La base incluye el header y footer --}}
+@extends('layouts.base')
 
 @section('title')
     Listado de alumnos
+@endsection
+
+@section('header')
+    @include('layouts.header_menu')
 @endsection
 
 {{-- Agrego estilos y scripts --}}
@@ -176,6 +179,18 @@
                     @endif
                 </div>
             </div>
+
+            @if (!$admin_escuela && Auth::check())
+                @if (Auth::user()->hasRole('escuela'))
+                    <div class="text-center">
+                        <strong>Este es el listado público de todos los alumnos cargados en la plataforma.</strong><br>
+                        Para ver y administrar los alumnos de su institución educativa:
+                        <a href="{{ url('/acceso-escuela')}}">
+                            Panel de administración <span class="glyphicon glyphicon-arrow-right"></span>
+                        </a>
+                    </div>
+                @endif
+            @endif
 
             <ul class="list-unstyled lista-alumnos">
                 {{-- Template handlebars: elemento de la lista (alumno). Por JS se procesa este script y se renderiza con los datos --}}
