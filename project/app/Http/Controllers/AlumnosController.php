@@ -309,7 +309,7 @@ class AlumnosController extends Controller
         if (!$alumno) {
             return redirect()->route('alumnos_public');
         }
-        // autorizo accion si alumno no es publico
+        // autorizo accion si alumno no es publico: sólo alumno de escuela
         if ($alumno->privado && Gate::denies('show-alumno-privado', $alumno)) {
             return abort(403);
         }
@@ -343,15 +343,21 @@ class AlumnosController extends Controller
         if (!$alumno) {
             return abort(403);
         }
-        // autorizo accion (solo para escuela de ese alumno, o para cualquier empresa)
-        if (Gate::denies('show-alumno', $alumno)) {
+        // autorizo accion si alumno no es publico: sólo alumno de escuela
+        if ($alumno->privado && Gate::denies('show-alumno-privado', $alumno)) {
             return abort(403);
         }
         $view_data = [
             'id' => $id,
             'alumno' => $alumno,
-            'pdf' => true
+            'pdf' => true,
+            'editable' => false
         ];
+        // parametro editable: si usuario es escuela del alumno
+        $user = Auth::user();
+        if ($user && $user->hasRole('escuela') && $user->escuela->id == $alumno->escuela_id) {
+            $view_data['editable'] = true;
+        }
         $pdf = PDF::loadView('alumnos.show_pdf', $view_data);
         $filename = $alumno->getFullName().'.pdf';
         return $pdf->download($filename);

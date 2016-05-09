@@ -5,7 +5,9 @@
 @import 'mixins';
 
 @media print {
-
+  .hide-print {
+    display: none;
+  }
   @page {
     size: A4;
     margin: 0;
@@ -91,6 +93,7 @@
   .header-acceso {
     padding: 0;
     margin-top: 0.5cm;
+    display: block;
 
     .marca-container {
       margin: 0 auto;
@@ -108,7 +111,7 @@
   }
 
   .alumno-individual {
-    margin-top: 0.5cm;
+    margin-top: 1.5cm;
 
     .fa-li::before,
     .texto-azul {
@@ -122,13 +125,26 @@
       display: block;
       border-bottom: 2px solid $azul;
       @include clearfix();
+      position: relative;
+      width: 100%;
 
-      .contenedor-foto,
+      .contenedor-foto {
+        position: absolute;
+        width: 20%;
+        left: 0;
+        bottom: 10px;
+      }
       .info-alumno {
-        float: left;
+        position: absolute;
+        width: 65%;
+        left: 20%;
+        bottom: 10px;
       }
       .promedio {
-        float: right;
+        position: absolute;
+        width: 15%;
+        right: 0;
+        bottom: 0;
       }
     }
 
@@ -149,7 +165,7 @@
     }
 
     .info-alumno {
-      width: 12cm;
+      // width: 12cm;
       //margin-bottom: 0.5cm;
     }
 
@@ -163,13 +179,14 @@
       span {
         margin: 0.5em 1em 0.5em 0;
         line-height: 1.75;
+        white-space: nowrap;
       }
     }
 
     .promedio {
-      width: 2.5cm;
-      padding: 1.5em 0.25em 0.5em;
-      text-align: center;
+      // width: 2.5cm;
+      padding: 1.5em 0em 0.5em;
+      text-align: right;
 
       .promedio-titulo{
         text-transform: uppercase;
@@ -187,12 +204,12 @@
     .fila-flex {
       display: block !important;
       @include clearfix();
+      position: relative;
     }
 
     .info-contactos {
-      width: 6.5cm;
+      width: 6cm;
       margin-right: 0.5cm;
-      float: left;
 
       section {
         //background-color: $gris-claro;
@@ -235,7 +252,9 @@
     .info-detalle {
       width: 10cm;
       padding: 1em 0.5em 0;
-      float: left;
+      position: absolute;
+      left: 6.5cm;
+      top: 0;
 
       section {
         margin-bottom: 0.5em;
@@ -250,7 +269,7 @@
           page-break-inside: avoid;
           //width: 16cm;
           //margin: 0 0 0 -6.5cm;
-          padding: 1cm 0;
+          padding: 0;
         }
       }
 

@@ -114,7 +114,8 @@
                         <h5 class="subtitulo texto-azul">Datos de contacto</h5>
 
                         <ul class="fa-ul lista-contacto">
-                            @if ($alumno->domicilio)
+                            @if ($editable && $alumno->domicilio)
+                            {{-- Sólo se muestra si es de la escuela --}}
                             <li>
                                 <span class="sr-only">Direccion: </span>
                                 <i class="fa fa-li fa-home"></i> {{ $alumno->domicilio }}
@@ -127,19 +128,22 @@
                                 {{ ($alumno->barrio) ? '(Barrio '.$alumno->barrio.')' : ''}}
                             </li>
                             @endif
-                            @if ($alumno->tel_fijo)
+                            @if ($editable && $alumno->tel_fijo)
+                            {{-- Sólo se muestra si es de la escuela --}}
                             <li>
                                 <span class="sr-only">Teléfono: </span>
                                 <i class="fa fa-li fa-phone"></i>{{ $alumno->tel_fijo }}
                             </li>
                             @endif
-                            @if ($alumno->celular)
+                            @if ($editable && $alumno->celular)
+                            {{-- Sólo se muestra si es de la escuela --}}
                             <li>
                                 <span class="sr-only">Celular: </span>
                                 <i class="fa fa-li fa-mobile"></i>{{ $alumno->celular }}
                             </li>
                             @endif
-                            @if ($alumno->email)
+                            @if ($editable && $alumno->email)
+                            {{-- Sólo se muestra si es de la escuela --}}
                             <li>
                                 <span class="sr-only">E-mail: </span>
                                 <i class="fa fa-li fa-at"></i>
@@ -147,10 +151,14 @@
                             </li>
                             @endif
                             {{-- Facebook, Twitter y LinkedIn deshabilitados
-                            <li><span class="sr-only">Facebook: </span><i class="fa fa-li fa-facebook"></i><a href="#">facebook.com/hernan224</a></li> <!--Facebook-->
-                            <li><span class="sr-only">Twitter: </span><i class="fa fa-li fa-twitter"></i><a href="#">@hernan224</a></li> <!--Twitter-->
-                            <li><span class="sr-only">LinkedIn: </span><i class="fa fa-li fa-linkedin"></i><a href="#">linkedin.com/in/hernan224</a></li> <!--Linkedin--> --}}
+                            <li><span class="sr-only">Facebook: </span><i class="fa fa-li fa-facebook"></i><a href="#">facebook.com/hernan224</a></li>
+                            <li><span class="sr-only">Twitter: </span><i class="fa fa-li fa-twitter"></i><a href="#">@hernan224</a></li>
+                            <li><span class="sr-only">LinkedIn: </span><i class="fa fa-li fa-linkedin"></i><a href="#">linkedin.com/in/hernan224</a></li> --}}
                         </ul>
+                        @if (!$editable)
+                            <a href="#solicitarContacto" id="solicitarBtn" class="btn btn-registro hide-print">Solicitar más información</a>
+                            <p class="hide-screen">Por cuestiones de privacidad, los datos de contacto del alumno se proporcionan vía mail, desde la plataforma.</p>
+                        @endif
                     </section> {{-- /.contacto-alumno --}}
 
                     <section class="contacto-docente panel-bg-color">
@@ -201,6 +209,19 @@
                                 {{ $alumno->curriculum->practicas_lugar }}</p>
                             @endif
                         @endif
+                        @if ($alumno->curriculum->estudios)
+                        <p>
+                            <strong>Continúa estudios superiores</strong>
+                        </p>
+                            @if ($alumno->curriculum->estudios_carrera )
+                                <p><strong>Carrera:</strong>
+                                {{ $alumno->curriculum->estudios_carrera }}</p>
+                            @endif
+                            @if ($alumno->curriculum->estudios_lugar )
+                                <p><strong>Entidad educativa:</strong>
+                                {{ $alumno->curriculum->estudios_lugar }}</p>
+                            @endif
+                        @endif
                     </section> {{-- /.info-curricular --}}
 
                     <section class="actitudes">
@@ -249,4 +270,5 @@
     @if ($editable)
         @include('alumnos.modal_eliminar',['alumno'=>$alumno])
     @endif
+    @include('alumnos.modal_solicitar_mail',['alumno_id'=>$alumno->id])
 @endsection

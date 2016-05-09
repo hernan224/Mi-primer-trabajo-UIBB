@@ -10,7 +10,9 @@
     size: A4;
     margin: 1cm 0.75cm;
   }
-
+  .hide-print {
+    display: none;
+  }
   body {
     font-size: 9.5pt;
     line-height: 1.25;

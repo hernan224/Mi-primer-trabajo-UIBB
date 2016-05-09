@@ -63,7 +63,8 @@
                             <h5 class="subtitulo texto-azul">Datos de contacto</h5>
 
                             <ul class="lista-contacto list-unstyled">
-                                @if ($alumno->domicilio)
+                                @if ($editable && $alumno->domicilio)
+                                {{-- Sólo se muestra si es de la escuela --}}
                                 <li>
                                     <strong class="small">Direccion: </strong>
                                     {{ $alumno->domicilio }}
@@ -76,26 +77,32 @@
                                     {{ ($alumno->barrio) ? '(Barrio '.$alumno->barrio.')' : ''}}
                                 </li>
                                 @endif
-                                @if ($alumno->tel_fijo)
+                                @if ($editable && $alumno->tel_fijo)
+                                {{-- Sólo se muestra si es de la escuela --}}
                                 <li>
                                     <strong class="small">Teléfono: </strong>
                                     {{ $alumno->tel_fijo }}
                                 </li>
                                 @endif
-                                @if ($alumno->celular)
+                                @if ($editable && $alumno->celular)
+                                {{-- Sólo se muestra si es de la escuela --}}
                                 <li>
                                     <strong class="small">Celular: </strong>
                                     {{ $alumno->celular }}
                                 </li>
                                 @endif
-                                @if ($alumno->email)
+                                @if ($editable && $alumno->email)
+                                {{-- Sólo se muestra si es de la escuela --}}
                                 <li>
                                     <strong class="small">E-mail: </strong>
                                     {{$alumno->email}}
                                 </li>
                                 @endif
                             </ul>
-                        </section> <!--/.contacto-alumno-->
+                            @if (!$editable)
+                                <p>Por cuestiones de privacidad, los datos de contacto del alumno se proporcionan vía mail, desde la plataforma.</p>
+                            @endif
+                        </section>
 
                         <section class="contacto-docente panel-bg-color">
                             <h5 class="subtitulo texto-azul">Docente de contacto</h5>
@@ -181,10 +188,10 @@
 
                 </div> <!--/.fila-flex-->
 
-                @if ($alumno->curriculum->carta)
+                @if ($alumno->curriculum->carta_presentacion)
                 <section class="carta-presentacion">
                     <h5 class="subtitulo texto-azul">Carta de presentacion</h5>
-                    <p>{!! nl2br($alumno->curriculum->carta) !!}</p>
+                    <p>{!! nl2br($alumno->curriculum->carta_presentacion) !!}</p>
                 </section> <!--/.carta-presntacion-->
                 @endif
 
