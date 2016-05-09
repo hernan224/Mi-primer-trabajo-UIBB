@@ -20,7 +20,7 @@ class MailsController extends Controller
 
         Mail::send('emails.contacto', $view_data, function($message)
         {
-            $message->to($this->email_uibb, 'Primer trabajo')->subject('Formulario de contacto');
+            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Formulario de contacto');
         });
 
         return redirect('/');
@@ -106,7 +106,7 @@ class MailsController extends Controller
         $view_data = ['alumno' => $alumno, 'nombre' => $nombre, 'empresa' => $empresa, 'email' =>$email];
         Mail::send('emails.copia_solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
         {
-            $message->to($this->email_uibb, $nombre)->subject('Solicitud de datos de alumno');
+            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Solicitud de datos de alumno');
         });
 
         return response()->json(['status' => 'ok']);
