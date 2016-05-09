@@ -1139,6 +1139,9 @@ button[type="submit"].btn-primary{
 
 .nombre-alumno{
   font-weight: 700;
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .datos-alumno{

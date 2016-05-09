@@ -200,7 +200,7 @@
                 {{-- Template handlebars: elemento de la lista (alumno). Por JS se procesa este script y se renderiza con los datos --}}
                 <script id="template-alumno" type="text/x-handlebars-template">
                     @{{#each alumnos}}
-                    <li class="item-alumno" data-id="@{{id}}">
+                    <li class="item-alumno @{{#if privado}}alumno-privado bg-warning@{{/if}}" data-id="@{{id}}">
                         <a class="link-foto-alumno" href="{{$urls['show']}}/@{{id}}">
                             @{{#if foto}}
                                 {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
@@ -213,7 +213,15 @@
 
                         <div class="info-alumno">
                             <h4 class="nombre-alumno">
-                                <a href="{{$urls['show']}}/@{{id}}">@{{nombre}} @{{apellido}}</a>
+                                <a href="@{{#if privado}}{{$urls['edit']}}@{{else}}{{$urls['show']}}@{{/if}}/@{{id}}">
+                                    @{{nombre}} @{{apellido}}
+                                    @{{#if privado}}
+                                    <small><span class="label label-warning label-privado">
+                                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                                        Privado
+                                    </span></small>
+                                    @{{/if}}
+                                </a>
                             </h4>
 
                             <div class="datos-alumno">
@@ -251,7 +259,11 @@
                         <div class="ultimo-bloque">
                             <div class="promedio">
                                 <strong class="promedio-titulo">Promedio </strong>
-                                <span class="promedio-valor">@{{format_decimal promedio}}</span>
+                                @{{#if promedio}}
+                                    <span class="promedio-valor">@{{format_decimal promedio}}</span>
+                                @{{else}}
+                                    <span class="promedio-valor">-</span>
+                                @{{/if}}
                             </div>
                             <div class="btn-acciones">
                             @if ($admin_escuela)
@@ -263,6 +275,18 @@
                                    data-placement="bottom" title="Eliminar alumno" data-id="@{{id}}">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
+                                {{-- ToDo: reemplazar boton eliminar por cambiar privado o publico
+                                Si es publico, boton cambiar a privado: [POST AJAX]
+                                    <a href="#" class="btn btn-default btn-privado" data-toggle="tooltip"
+                                       data-placement="bottom" title="Mantener alumno como privado">
+                                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                                    </a>
+                                Si es privado, boton cambiar a publico: [POST AJAX]
+                                    <a href="#" class="btn btn-default btn-publico" data-toggle="tooltip"
+                                       data-placement="bottom" title="Volver público" >
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    </a>
+                                --}}
                             @else
                                 <a href="{{route('alumno_pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
                                    data-placement="bottom" title="Descargar CV como PDF">

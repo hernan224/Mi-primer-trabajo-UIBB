@@ -38,7 +38,9 @@ class AlumnosController extends Controller
                 'get_list' =>  route('alumnos_public_list'),
                 'search' => route('alumnos_public_search'),
                 'fotos' => asset(Alumno::$image_path),
-                'show' => route('alumno_show')
+                'show' => route('alumno_show'),
+                'edit' => false,
+                'delete' => false
             ],
             'escuelas' => $escuelas
         ];
@@ -82,7 +84,7 @@ class AlumnosController extends Controller
     public function lista(Request $request, $admin_escuela = false){
         $select_array = [
             'alumnos.id','alumnos.nombre','alumnos.apellido','alumnos.nacimiento',
-            'alumnos.localidad','alumnos.barrio','alumnos.foto','alumnos.sexo',
+            'alumnos.localidad','alumnos.barrio','alumnos.foto','alumnos.sexo','alumnos.privado',
             'escuelas.id as escuela_id', 'escuelas.name as escuela',
             'users.name as docente',
             'curriculums.especialidad','curriculums.promedio','curriculums.updated_at',

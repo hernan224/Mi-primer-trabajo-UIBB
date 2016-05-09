@@ -1,5 +1,5 @@
 {{-- Footer, incluido en base (se ve en todas las pantallas) --}}
-<footer class="pie-pagina {{ $home ? 'pie-home' : ''}}">
+<footer class="pie-pagina {{ $home ? 'pie-home' : 'pie-home'}}">
     <div class="container">
         <div class="contenido-footer row">
             <div class="col-md-3 col-sm-4">
