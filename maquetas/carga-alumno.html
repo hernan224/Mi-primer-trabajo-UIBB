@@ -35,7 +35,39 @@
                     </a>
                 </div> <!--.marca-container-->
 
-                <div class="acceso-usuario-container dropdown">
+                <nav class="navegacion-principal-pc hidden-sm hidden-xs">
+                    <ul class="list-unstyled fila-flex">
+                        <!--<li><a href="home.html">Inicio</a></li>-->
+                        <li><a href="listado-alumnos.html">Acceder a la Plataforma</a></li>
+                        <li><a href="capacitaciones.html">Capacitaciones</a></li>
+                        <li><a href="practicas.html">Prácticas</a></li>
+                        <li><a href="instituciones.html">Instituciones</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li class="dropdown">
+                            <a id="dropdownLoginMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
+                               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                               title="Acceso Usuarios Registrados">
+                                <button class="btn-menu-usuario">
+                                    <span class="sr-only">Iniciar sesión</span>
+                                    <span class="glyphicon glyphicon glyphicon-user"></span>
+                                </button>
+                            </a> <!--//link usuario-->
+                            <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownLoginMenu">
+                                <li><small>Bienvenido:</small>
+                                    <h5 class="nombre-usuario texto-azul mm0"><strong class="nombre-docente">Juana Ana Triana</strong></h5>
+                                </li>
+                                <hr class="separador-menu">
+                                <li><a href="admin-alumnos.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
+                                    de administración</strong></a></li>
+                                </li>
+                                <li><a href="#" class="cerrar-sesion "><span class="glyphicon glyphicon glyphicon-log-out"></span>&nbsp;<strong>Cerrar sesión</strong></a></li>
+
+                            </ul> <!--//dropdown-menu-->
+                        </li>
+                    </ul>
+                </nav> <!--MENU PC-->
+
+                <div class="acceso-usuario-container dropdown hidden-lg hidden-md">
                     <a id="dropdownMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <figure class="foto-bg foto-usuario sin-foto"></figure>
@@ -58,11 +90,12 @@
                         <hr class="separador-menu">
                         <li><a href="#" class="cerrar-sesion text-center"><span class="glyphicon glyphicon glyphicon-log-out"></span>&nbsp;<strong>Cerrar sesión</strong></a></li>
                     </ul> <!--//dropdown-menu-->
-                </div>
+                </div> <!--MENU MOVIL-->
             </header>
+        </div>
 
-            <nav class="nav-listado">
-
+        <nav class="nav-listado">
+            <div class="container">
                 <div class="row">
                     <div class="col-xs-8 col-md-4">
                         <a id="volverListado" href="#" class="link-nav-listado texto-blanco text-left">
@@ -72,15 +105,16 @@
                     </div><!--btn volver-->
 
 
-
                     <div class="col-xs-4 col-md-2 col-md-offset-6">
                         <a id="eliminar" href="#" class="link-nav-listado">
                             <span class="glyphicon glyphicon-trash"></span>
                             <span class="texto-nav hidden-sm hidden-xs">Eliminar</span>
                         </a>
                     </div> <!--btn eliminar-->
-                </div> <!--.row-->
-            </nav> <!--/.nav-listado-->
+                </div> <!--.row--></div>
+        </nav> <!--/.nav-listado-->
+
+        <div class="container">
 
             <article class="cargar-alumno">
                 <form action="" role="form" class="fila-flex form-mpt">

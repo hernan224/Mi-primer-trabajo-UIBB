@@ -78,11 +78,39 @@
                 <!--SI NO HAY USUARIO LOGEADO, EL CONTENDOR QUEDARÍA VACIO-->
 
                 <div class="fila-flex contenedor-acceso container">
-                    <div class="acceso-usuario-container dropdown">
+                    <nav class="navegacion-principal-pc hidden-sm hidden-xs">
+                        <ul class="list-unstyled fila-flex">
+                            <!--<li><a href="home.html">Inicio</a></li>-->
+                            <li><a href="listado-alumnos.html" >Acceder a la Plataforma</a></li>
+                            <li><a href="capacitaciones.html" >Capacitaciones</a></li>
+                            <li><a href="practicas.html">Prácticas</a></li>
+                            <li><a href="instituciones.html" >Instituciones</a></li>
+                            <li><a href="contacto.html" >Contacto</a></li>
+                            <li class="dropdown">
+                                <a id="dropdownLoginMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
+                                   data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Acceso Usuarios Registrados">
+                                    <button class="btn-menu-usuario">
+                                        <span class="sr-only">Iniciar sesión</span>
+                                        <span class="glyphicon glyphicon glyphicon-user"></span>
+                                    </button>
+                                </a> <!--//link usuario-->
+                                <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownLoginMenu">
+                                    <!--<li><a href="listado-backend.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel-->
+                                    <!--de administración</strong></a></li>-->
+                                    <!--<hr class="separador-menu">-->
+
+                                    <li><a href="login.html" class="text-center">&nbsp;<strong>Iniciar sesión</strong></a>
+                                    </li>
+                                </ul> <!--//dropdown-menu-->
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="acceso-usuario-container dropdown hidden-lg hidden-md">
                         <a id="dropdownMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <!--<figure class="foto-bg foto-usuario sin-foto"></figure>-->
-                            <h5 class="nombre-usuario texto-blanco"><strong class="nombre-docente">Menú</strong></h5>
+                            <h5 class="nombre-usuario"><strong class="nombre-docente texto-blanco">Menú</strong></h5>
                             <button class="btn-menu-usuario">
                                 <span class="sr-only">Menú</span>
                                 <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -93,18 +121,15 @@
                             <!--de administración</strong></a></li>-->
                             <!--<hr class="separador-menu">-->
                             <li><a href="home.html">Inicio</a></li>
-                            <li><a href="listado-alumnos.html" class="acceder-plataforma">Acceder a la Plataforma</a>
-                            </li>
+                            <li><a href="listado-alumnos.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
                             <li><a href="capacitaciones.html" class="acceder-plataforma">Capacitaciones</a></li>
-                            <li><a href="practicas.html" class="acceder-plataforma">Prácticas Profesionalizantes</a>
-                            </li>
-                            <li><a href="instituciones.html" class="acceder-plataforma">Instituciones Educativas</a>
-                            </li>
+                            <li><a href="practicas.html" class="acceder-plataforma">Prácticas Profesionalizantes</a></li>
+                            <li><a href="instituciones.html" class="acceder-plataforma">Instituciones Educativas</a></li>
                             <li><a href="contacto.html" class="acceder-plataforma">Contacto</a></li>
                             <hr class="separador-menu">
                             <li><a href="login.html" class="text-center"><span
-                                    class="glyphicon glyphicon glyphicon-user"></span>&nbsp;<strong>Iniciar
-                                sesión</strong></a></li>
+                                    class="glyphicon glyphicon glyphicon-user"></span>&nbsp;<strong>Iniciar sesión</strong></a>
+                            </li>
                         </ul> <!--//dropdown-menu-->
                     </div>
                 </div> <!--//.fila-flex contenedor-acceso-->
@@ -202,8 +227,8 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="http://uibb.org.ar/departamentos/responsabilidad-social-empresaria/" target="_blank" class="link-organizador">
-                                    <img src="img/logo-rse.png" alt="Responsabilidad Social Emrpesaria - UIBB"
+                                <a href="http://www.bahiablanca.gov.ar/" target="_blank" class="link-organizador">
+                                    <img src="img/logo-municipio-bahia-blanca.png" alt="Municipio de Bahía Blanca"
                                          class="img-responsive logo-img">
                                 </a>
                             </div>
@@ -308,6 +333,174 @@
                     </section><!--/.info-contacto-->
                 </div>
             </div><!--/.jumbotron.panel-bg-color-->
+
+            <div class="container">
+                <section class="row info-home ultimas-novedades">
+                    <div class="col-xs-12"><h2 class="texto-azul titulo-seccion">Últimas Novedades</h2></div>
+
+                    <div class="col-xs-12 col-sm-6 capacitaciones">
+                        <div class="contenedor-lista vista-listado listado-capacitaciones">
+                            <a href="capacitaciones.html"><h4 class="titulo-seccion texto-azul">
+                                <strong>Capacitaciones</strong>
+                            </h4></a>
+                            <ul class="list-unstyled lista-notas">
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <div class="fila-flex nota-container-cuerpo">
+                                            <figure class="nota-img-destacada hidden-xs"
+                                                    style="background-image: url(http://lorempixel.com/900/550/business/1/)"></figure>
+
+                                            <p class="descripcion-nota">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                                consectetur,
+                                                consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum iure
+                                                labore
+                                                mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            </p>
+                                        </div>
+                                        <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                    </div><!--.info-nota-->
+                                </li>
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <p class="descripcion-nota">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                            consectetur,
+                                            consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum
+                                            iure
+                                            labore
+                                            mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                        </p>
+                                    </div><!--.info-nota-->
+                                </li>
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <p class="descripcion-nota">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                            consectetur,
+                                            consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum
+                                            iure
+                                            labore
+                                            mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                        </p>
+                                    </div><!--.info-nota-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 practicas">
+                        <div class="contenedor-lista vista-listado listado-practicas">
+                            <a href="practicas.html"><h4 class="titulo-seccion texto-azul"><strong>Prácticas
+                                Profesionalizantes</strong>
+                            </h4></a>
+                            <ul class="list-unstyled lista-notas">
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <p class="descripcion-nota">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                            consectetur,
+                                            consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum
+                                            iure
+                                            labore
+                                            mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                        </p>
+                                    </div><!--.info-nota-->
+                                </li>
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <p class="descripcion-nota">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                            consectetur,
+                                            consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum
+                                            iure
+                                            labore
+                                            mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                        </p>
+                                    </div><!--.info-nota-->
+                                </li>
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota"><a href="#">
+                                            Lorem ipsum dolor sit.
+                                        </a></h4> <!--h4.nombre-alumno-->
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                            <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                                        </div>
+
+                                        <div class="fila-flex nota-container-cuerpo">
+                                            <figure class="nota-img-destacada hidden-xs"
+                                                    style="background-image: url(http://lorempixel.com/900/550/business/1/)"></figure>
+
+                                            <p class="descripcion-nota">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias
+                                                consectetur,
+                                                consequatur delectus dolor doloremque doloribus ducimus, eveniet ipsum iure
+                                                labore
+                                                mollitia officiis optio provident, quae quia quisquam sit soluta.
+                                            </p>
+                                        </div>
+                                        <a href="#" class="nota-ver-mas">Seguir leyendo &rightarrow;</a>
+                                    </div><!--.info-nota-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
         </main>
 
 

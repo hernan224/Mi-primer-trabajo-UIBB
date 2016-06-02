@@ -38,7 +38,35 @@
                   </a>
               </div> <!--.marca-container-->
 
-              <div class="acceso-usuario-container dropdown">
+              <nav class="navegacion-principal-pc hidden-sm hidden-xs">
+                  <ul class="list-unstyled fila-flex">
+                      <!--<li><a href="home.html">Inicio</a></li>-->
+                      <li><a href="listado-alumnos.html" class="activo">Acceder a la Plataforma</a></li>
+                      <li><a href="capacitaciones.html" >Capacitaciones</a></li>
+                      <li><a href="practicas.html">Prácticas</a></li>
+                      <li><a href="instituciones.html" >Instituciones</a></li>
+                      <li><a href="contacto.html" >Contacto</a></li>
+                      <li class="dropdown">
+                          <a id="dropdownLoginMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
+                             data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Acceso Usuarios Registrados">
+                              <button class="btn-menu-usuario">
+                                  <span class="sr-only">Iniciar sesión</span>
+                                  <span class="glyphicon glyphicon glyphicon-user"></span>
+                              </button>
+                          </a> <!--//link usuario-->
+                          <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownLoginMenu">
+                              <!--<li><a href="listado-backend.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel-->
+                              <!--de administración</strong></a></li>-->
+                              <!--<hr class="separador-menu">-->
+
+                              <li><a href="login.html" class="text-center">&nbsp;<strong>Iniciar sesión</strong></a>
+                              </li>
+                          </ul> <!--//dropdown-menu-->
+                      </li>
+                  </ul>
+              </nav> <!--MENU PC-->
+
+              <div class="acceso-usuario-container dropdown hidden-lg hidden-md">
                   <a id="dropdownMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
                      data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <!--<figure class="foto-bg foto-usuario sin-foto"></figure>-->
@@ -63,20 +91,23 @@
                               class="glyphicon glyphicon glyphicon-user"></span>&nbsp;<strong>Iniciar sesión</strong></a>
                       </li>
                   </ul> <!--//dropdown-menu-->
-              </div>
+              </div> <!--MENU MOVIL-->
           </header>
+      </div>
 
-          <nav class="nav-listado">
+      <nav class="nav-listado">
 
+          <div class="container">
               <div class="row">
                   <div class="col-sm-3 hidden-xs">
                       <span class="texto-nav texto-vista hidden-sm">Cambiar vista </span>
-                      <button type="button" title="Ver como mosaico" class="btn btn-default btn-cambiar-vista activo" disabled>
-                          <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                      </button> <!--btn vista mosaico-->
-                      <button type="button" title="Ver como lista" class="btn btn-default btn-cambiar-vista">
+                      <button type="button" title="Ver como lista" class="btn btn-default btn-cambiar-vista activo"
+                              disabled>
                           <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       </button> <!--btn vista listado-->
+                      <button type="button" title="Ver como mosaico" class="btn btn-default btn-cambiar-vista">
+                          <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                      </button> <!--btn vista mosaico-->
                   </div> <!--cotnendor cambair vista-->
 
                   <div class="col-xs-3 col-sm-3">
@@ -84,7 +115,8 @@
                           <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
                              aria-haspopup="true" aria-expanded="false" class="link-nav-listado"><span
                                   class="glyphicon glyphicon-sort"></span><span
-                                  class="texto-nav texto-ordenar hidden-xs"> Ordenar</span></a> <!--a btn dropdown ordenar-->
+                                  class="texto-nav texto-ordenar hidden-xs"> Ordenar</span></a>
+                          <!--a btn dropdown ordenar-->
 
                           <div id="contenedorOrdenar" class="contenedor-ordenar dropdown-menu"
                                aria-labelledby="dropOrdenar">
@@ -127,18 +159,22 @@
                   <div class="col-xs-6 col-sm-3">
                       <div class="input-group buscar-listado">
                           <input type="text" class="form-control input-buscar" placeholder="Buscar">
-                          <span class="input-group-btn">
-                              <button class="btn btn-default btn-buscar" type="button"><span class="sr-only">Buscar</span>
-                                  <span class="glyphicon glyphicon-search"></span>
-                              </button>
-                          </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-buscar" type="button"><span class="sr-only">Buscar</span>
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
                       </div><!-- /input-group -->
                   </div> <!-- buscador-->
 
-              </div> <!--.row-->
-          </nav> <!--nav.nav-listado-->
+              </div><!--.row-->
+          </div>
+      </nav>
 
-          <div id="contenedorLista" class="contenedor-lista">
+      <div class="container">
+           <!--nav.nav-listado-->
+
+          <div id="contenedorLista" class="contenedor-lista vista-listado">
               <ul class="list-unstyled lista-alumnos">
 
                   <li class="item-alumno">
@@ -161,15 +197,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -204,15 +241,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -247,15 +285,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -289,15 +328,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -332,15 +372,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -375,15 +416,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -417,15 +459,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <<!--div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -460,15 +503,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -505,15 +549,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -548,15 +593,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -590,15 +636,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -633,15 +680,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -676,15 +724,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -719,15 +768,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -762,15 +812,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -805,15 +856,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -848,15 +900,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
@@ -890,15 +943,16 @@
                               <div class="datos-academicos">
                                   <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                   <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
+                                  <span class="dato-promedio"><strong>Promedio: </strong>8,39</span>
                               </div> <!--.datos-academicos-->
                           </div> <!--.datos-alumno-->
                       </div> <!--.info-alumno-->
 
                       <div class="ultimo-bloque">
-                          <div class="promedio">
+                          <!--<div class="promedio">
                               <strong class="promedio-titulo">Promedio </strong>
                               <span class="promedio-valor">8,25</span>
-                          </div> <!--.promedio-->
+                          </div> &lt;!&ndash;.promedio&ndash;&gt;-->
                           <div class="btn-acciones">
                               <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                               <a href="#" class="btn btn-default btn-descargar" data-toggle="tooltip"
