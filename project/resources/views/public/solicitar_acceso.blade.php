@@ -30,7 +30,7 @@
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-                <h3 class="texto-azul">Solicitar Acceso</h3>
+                <h2 class="texto-azul">Solicitar Acceso</h2>
                 <p>Si usted es <strong>asociado de la UIBB o es directivo de una institución educativa</strong>
                     y desea participar de la plataforma
                     Mi Primer Trabajo, contáctese con nosotros a través del siguiente formulario.

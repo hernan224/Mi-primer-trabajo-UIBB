@@ -28,7 +28,7 @@
 
             <div class="col-md-8 col-md-offset-2">
             <!--<div class="col-xs-12">-->
-                <h3 class="texto-azul">Contacto</h3>
+                <h2 class="texto-azul">Contacto</h2>
                 <p>Si desea obtener más información, o hacernos llegar su
                     comentario, acerca de la plataforma <strong>Mi Primer Trabajo</strong>, contáctenos a través
                     del siguiente formulario. A la brevedad, un miembro de de la UIBB se pondrá en contacto con

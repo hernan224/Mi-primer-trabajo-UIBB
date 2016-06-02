@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-10">
                 <!--<div class="col-xs-12">-->
-                <h3 class="texto-azul">Prácticas Profesionalizantes</h3>
+                <h2 class="texto-azul">Prácticas Profesionalizantes</h2>
                 <p>Las Prácticas Profesionalizantes (PP) tienen como propósito articular de modo sustancial la
                     formación académica con los requerimientos y emergentes del sector socio-productivo. Se
                     busca a través de estas prácticas integrar los escenarios teóricos y prácticos, articulando
