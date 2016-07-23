@@ -160,14 +160,21 @@ return [
          * Laravel Collective: para form binding
          */
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * DomPDF https://github.com/barryvdh/laravel-dompdf
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
         /*
          * Laravel Debugbar https://github.com/barryvdh/laravel-debugbar
          */
         Barryvdh\Debugbar\ServiceProvider::class,
-        /**
-         * DomPDF https://github.com/barryvdh/laravel-dompdf
+        /*
+         * Ide Helper
          */
-        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
 
     ],
 
