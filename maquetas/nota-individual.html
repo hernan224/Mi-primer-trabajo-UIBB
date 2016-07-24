@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Instituciones educativas participantes | Mi primer Trabajo</title>
+    <title>Titulo Nota | Mi primer Trabajo</title>
 
 
     <link rel="stylesheet" href="css/vendor/normalize.css">
@@ -40,7 +40,7 @@
 
         <div class="container">
 
-            <header class="header-acceso acceso-asociado">
+            <header class="header-acceso acceso-asociado fila-flex">
                 <div class="marca-container">
                     <a href="#">
                         <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
@@ -52,14 +52,15 @@
                 <nav class="navegacion-principal-pc hidden-sm hidden-xs">
                     <ul class="list-unstyled fila-flex">
                         <!--<li><a href="home.html">Inicio</a></li>-->
-                        <li><a href="listado-alumnos.html" >Acceder a la Plataforma</a></li>
-                        <li><a href="capacitaciones.html" >Capacitaciones</a></li>
+                        <li><a href="listado-alumnos.html">Acceder a la Plataforma</a></li>
+                        <li><a href="capacitaciones.html">Capacitaciones</a></li>
                         <li><a href="practicas.html">Prácticas</a></li>
-                        <li><a href="instituciones.html" class="activo">Instituciones</a></li>
-                        <li><a href="contacto.html" >Contacto</a></li>
+                        <li><a href="instituciones.html">Instituciones</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
                         <li class="dropdown">
                             <a id="dropdownLoginMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
-                               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Acceso Usuarios Registrados">
+                               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                               title="Acceso Usuarios Registrados">
                                 <button class="btn-menu-usuario">
                                     <span class="sr-only">Iniciar sesión</span>
                                     <span class="glyphicon glyphicon glyphicon-user"></span>
@@ -75,7 +76,7 @@
                             </ul> <!--//dropdown-menu-->
                         </li>
                     </ul>
-                </nav> <!--MENU PC-->
+                </nav>
 
                 <div class="acceso-usuario-container dropdown hidden-lg hidden-md">
                     <a id="dropdownMenu" class="fila-flex" data-target="#" href="http://uibb.org.ar"
@@ -102,116 +103,101 @@
                                 class="glyphicon glyphicon glyphicon-user"></span>&nbsp;<strong>Iniciar sesión</strong></a>
                         </li>
                     </ul> <!--//dropdown-menu-->
-                </div> <!--MENU MOVIL-->
-            </header>
-
-
-            <main class="contenido-instituciones gap-header-acceso">
-
-                <div class="row">
-                    <div class="col-md-8 col-sm-10">
-                        <!--<div class="col-xs-12">-->
-                        <h2 class="texto-azul">Instituciones educativas participantes</h2>
-                        <p>Las siguientes instituciones educativas participan activamente en el proyecto, con la
-                            intención de brindarle a sus egresados una mejor posibilidad de insersión en le mercado
-                            laboral:</p>
-                    </div>
                 </div>
+            </header>
+            </div>
 
-                <div class="contenedor-lista vista-listado listado-instituciones">
-                    <ul class="list-unstyled lista-2col">
-                        <li class="item">
-                            <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
-                                <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+            <nav class="nav-listado">
 
-                            <div class="info-item">
-                                <h4 class="texto-azul">Escuela de Eduación Técnica N°2</h4> <!--h4.nombre-alumno-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-8 col-md-4">
+                            <a id="volverListado" href="capacitaciones.html"
+                               class="link-nav-listado texto-blanco text-left">
+                                <span class="glyphicon glyphicon-arrow-left"></span>
+                                Volver a Capacitaciones
+                            </a>
+                        </div><!--btn volver-->
 
-                                <div class="item-datos">
-                                    <p><strong>Ciudad:</strong> Bahía Blanca</p>
-                                    <p><strong>Dirección:</strong> Azara 1250</p>
-                                    <p><strong>Teléfono:</strong> 0291 456-0331</p>
-                                    <p><strong>Email:</strong> info@eet2.edu.ar</p>
-                                </div> <!--.datos-alumno-->
-                            </div> <!--.info-alumno-->
-                        </li>
 
-                        <li class="item">
-                            <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                    </div> <!--.row-->
+                </div>
+            </nav>
 
-                            <div class="info-item">
-                                <h4 class="texto-azul">Escuela de Eduación Técnica N°2</h4> <!--h4.nombre-alumno-->
+        <div class="container">
+            <main class="contenido-nota-individual gap-header-acceso">
 
-                                <div class="item-datos">
-                                    <p><strong>Ciudad:</strong> Bahía Blanca</p>
-                                    <p><strong>Dirección:</strong> Azara 1250</p>
-                                    <p><strong>Teléfono:</strong> 0291 456-0331</p>
-                                    <p><strong>Email:</strong> info@eet2.edu.ar</p>
-                                </div> <!--.datos-alumno-->
-                            </div> <!--.info-alumno-->
-                        </li>
+                <section class="info-general">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-xs-12 clearfix">
+                            <!--<div class="col-xs-12">-->
 
-                        <li class="item">
-                            <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                            <h2>Lorem ipsum dolor sit amet.</h2>
 
-                            <div class="info-item">
-                                <h4 class="texto-azul">Escuela de Eduación Técnica N°2</h4> <!--h4.nombre-alumno-->
+                            <div class="datos-nota">
+                                <span class="dato seccion"><strong>Sección:</strong> <a href="capacitaciones.html">Capacitaciones</a></span>
+                                <span class="dato fec-publicacion"><strong>Publicado:</strong> 25/10/2015</span>
+                                <span class="dato edad"><strong>Autor:</strong> Juana Ana Triana</span>
+                            </div>
 
-                                <div class="item-datos">
-                                    <p><strong>Ciudad:</strong> Bahía Blanca</p>
-                                    <p><strong>Dirección:</strong> Azara 1250</p>
-                                    <p><strong>Teléfono:</strong> 0291 456-0331</p>
-                                    <p><strong>Email:</strong> info@eet2.edu.ar</p>
-                                </div> <!--.datos-alumno-->
-                            </div> <!--.info-alumno-->
-                        </li>
+                            <figure class="container-foto-nota">
+                                <img src="http://lorempixel.com/1200/700/business/1/" alt="Imagen destacada"
+                                     class="img-responsive foto-destacada">
+                            </figure>
 
-                        <li class="item">
-                            <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eaque excepturi magni
+                                officia reprehenderit voluptates. Accusantium alias blanditiis consectetur dicta et ex
+                                illum ipsa labore, minima quaerat sapiente sed sequi sint temporibus vel? Ab animi autem
+                                commodi harum hic illum inventore libero porro quae, quidem reprehenderit tempora totam
+                                ut voluptas?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque deserunt,
+                                doloribus, est eveniet fugit in iure iusto magnam minima neque numquam perferendis
+                                quidem rem reprehenderit rerum sed sint soluta tempora vitae voluptate voluptates,
+                                voluptatum?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, aliquam animi cupiditate
+                                dicta doloremque eligendi esse excepturi fugit id, illo iure laboriosam magnam nobis non
+                                odit suscipit tempore temporibus unde vero voluptate? Adipisci animi at aut, corporis,
+                                cumque dolor doloribus esse eum ex incidunt ipsam iste nulla quibusdam repellendus
+                                sapiente soluta tempore tenetur vel vero voluptas! Ab distinctio quod velit?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eaque excepturi magni
+                                officia reprehenderit voluptates. Accusantium alias blanditiis consectetur dicta et ex
+                                illum ipsa labore, minima quaerat sapiente sed sequi sint temporibus vel? Ab animi autem
+                                commodi harum hic illum inventore libero porro quae, quidem reprehenderit tempora totam
+                                ut voluptas?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque deserunt,
+                                doloribus, est eveniet fugit in iure iusto magnam minima neque numquam perferendis
+                                quidem rem reprehenderit rerum sed sint soluta tempora vitae voluptate voluptates,
+                                voluptatum?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, aliquam animi cupiditate
+                                dicta doloremque eligendi esse excepturi fugit id, illo iure laboriosam magnam nobis non
+                                odit suscipit tempore temporibus unde vero voluptate? Adipisci animi at aut, corporis,
+                                cumque dolor doloribus esse eum ex incidunt ipsam iste nulla quibusdam repellendus
+                                sapiente soluta tempore tenetur vel vero voluptas! Ab distinctio quod velit?</p>
 
-                            <div class="info-item">
-                                <h4 class="texto-azul">Escuela de Eduación Técnica N°2</h4> <!--h4.nombre-alumno-->
-
-                                <div class="item-datos">
-                                    <p><strong>Ciudad:</strong> Bahía Blanca</p>
-                                    <p><strong>Dirección:</strong> Azara 1250</p>
-                                    <p><strong>Teléfono:</strong> 0291 456-0331</p>
-                                    <p><strong>Email:</strong> info@eet2.edu.ar</p>
-                                </div> <!--.datos-alumno-->
-                            </div> <!--.info-alumno-->
-                        </li>
-
-                        <li class="item">
-                            <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
-
-                            <div class="info-item">
-                                <h4 class="texto-azul">Escuela de Eduación Técnica N°2</h4> <!--h4.nombre-alumno-->
-
-                                <div class="item-datos">
-                                    <p><strong>Ciudad:</strong> Bahía Blanca</p>
-                                    <p><strong>Dirección:</strong> Azara 1250</p>
-                                    <p><strong>Teléfono:</strong> 0291 456-0331</p>
-                                    <p><strong>Email:</strong> info@eet2.edu.ar</p>
-                                </div> <!--.datos-alumno-->
-                            </div> <!--.info-alumno-->
-                        </li>
-                    </ul> <!--ul.lista-alumnos-->
-                </div> <!--/.contenedor-lista-->
-<!--
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <p class="text-center texto-especial"><em>Si usted es <strong>directivo de una institución
-                            educativa</strong> y
-                            desea participar de la plataforma <strong>Mi Primer Trabajo</strong>, contáctese desde
-                            aquí:</em></p>
-
-                        <a class="btn btn-registro" href="solicitar-acceso.html">Solicitar acceso a la plataforma</a>
+                            <!--<div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <figure class="container-foto-nota">
+                                        <img src="http://lorempixel.com/400/700/business/2/" alt="Imagen destacada"
+                                             class="img-responsive">
+                                    </figure>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <figure class="container-foto-nota">
+                                        <img src="http://lorempixel.com/600/420/business/3/" alt="Imagen destacada"
+                                             class="img-responsive">
+                                    </figure>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <figure class="container-foto-nota">
+                                        <img src="http://lorempixel.com/1200/700/business/4/" alt="Imagen destacada"
+                                             class="img-responsive">
+                                    </figure>
+                                </div>
+                            </div>-->
+                        </div>
                     </div>
-                </div>-->
+                </section><!--/.info-general-->
+
 
             </main> <!--/contenido-instituciones-->
 

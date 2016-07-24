@@ -68,12 +68,12 @@
                 {{-- Empresa: Cambiar vista (no se permite crear nuevo ni eliminar)  --}}
                     <div class="col-md-4 col-sm-3 hidden-xs">
                         <span class="texto-nav texto-vista hidden-sm">Cambiar vista </span>
-                        <button type="button" title="Ver como mosaico" class="btn btn-default btn-cambiar-vista activo" disabled>
-                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                        </button> {{-- btn vista mosaico --}}
-                        <button type="button" title="Ver como lista" class="btn btn-default btn-cambiar-vista">
+                        <button type="button" title="Ver como lista" class="btn btn-default btn-cambiar-vista activo" disabled>
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         </button> {{-- btn vista listado --}}
+                        <button type="button" title="Ver como mosaico" class="btn btn-default btn-cambiar-vista">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                        </button> {{-- btn vista mosaico --}}
                     </div> {{-- contenedor cambiar vista --}}
                 @endif
 
@@ -157,7 +157,7 @@
         </nav>
         {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
             Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
-        <div id="contenedorLista" class="container contenedor-lista loading {{ ($admin_escuela) ? 'vista-escuela vista-listado' : 'vista-empresa' }}">
+        <div id="contenedorLista" class="container contenedor-lista vista-listado loading {{ ($admin_escuela) ? 'vista-escuela' : 'vista-empresa' }}">
             @include('layouts.spinner')
 
             <!--ERROR-->

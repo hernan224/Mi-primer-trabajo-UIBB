@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-10">
                 <!--<div class="col-xs-12">-->
-                <h3 class="texto-azul">Capacitaciones</h3>
+                <h2 class="texto-azul">Capacitaciones</h2>
                 <p>Uno de los pilares de esta propuesta intersectorial es posibilitar y ofrecer capacitaciones
                     para el desarrollo de competencia y habilidades sociales. Una entrevista laboral o la
                     elaboración de un Curriculum Vitae enfrenta a los flamantes egresados a un escenario que

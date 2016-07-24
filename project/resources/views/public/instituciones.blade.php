@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-10">
                 <!--<div class="col-xs-12">-->
-                <h3 class="texto-azul">Instituciones educativas participantes</h3>
+                <h2 class="texto-azul">Instituciones educativas participantes</h2>
                 <p>Las siguientes instituciones educativas participan activamente en el proyecto, con la
                     intención de brindarle a sus egresados una mejor posibilidad de inserción en le mercado
                     laboral:</p>

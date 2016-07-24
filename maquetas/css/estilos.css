@@ -8,6 +8,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.hide-screen {
+  display: none;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -107,6 +111,26 @@ p.texto-especial {
   margin: 2em 0;
 }
 
+.mt0 {
+  margin-top: 0 !important;
+}
+
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
+.ml0 {
+  margin-top: 0 !important;
+}
+
+.mr0 {
+  margin-right: 0 !important;
+}
+
+.mm0 {
+  margin: 0 !important;
+}
+
 .bg-azul {
   background-color: #2C72B4;
 }
@@ -171,6 +195,75 @@ figure.foto-bg {
   overflow: hidden;
 }
 
+figure.container-foto-seccion {
+  padding: 0.5em 0;
+}
+
+figure.container-foto-seccion.pull-right {
+  padding-left: 1.5em;
+}
+
+@media (max-width: 991px) {
+  figure.container-foto-seccion.pull-right {
+    padding-left: 1em;
+  }
+}
+
+@media (max-width: 767px) {
+  figure.container-foto-seccion.pull-right {
+    padding-left: 0.5em;
+  }
+}
+
+figure.container-foto-seccion.pull-left {
+  padding-right: 1.5em;
+}
+
+@media (max-width: 991px) {
+  figure.container-foto-seccion.pull-left {
+    padding-right: 1em;
+  }
+}
+
+@media (max-width: 767px) {
+  figure.container-foto-seccion.pull-left {
+    padding-right: 0.5em;
+  }
+}
+
+figure.container-foto-seccion img {
+  width: 100%;
+  max-width: 180px;
+}
+
+@media (max-width: 991px) {
+  figure.container-foto-seccion img {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 767px) {
+  figure.container-foto-seccion img {
+    max-width: 80px;
+  }
+}
+
+figure.container-foto-seccion + p:first-of-type {
+  padding-top: 2.5em;
+}
+
+@media (max-width: 991px) {
+  figure.container-foto-seccion + p:first-of-type {
+    padding-top: 1em;
+  }
+}
+
+@media (max-width: 767px) {
+  figure.container-foto-seccion + p:first-of-type {
+    padding-top: 0.5em;
+  }
+}
+
 .dropdown-menu {
   border: none;
   margin: 0;
@@ -226,6 +319,46 @@ figure.foto-bg {
 
 .foto-item.sin-foto.foto-asociado, .foto-usuario.sin-foto.foto-asociado {
   background-image: url(../img/asociado-sin-foto.png);
+}
+
+.navegacion-principal-pc {
+  width: 100%;
+  padding-left: 15%;
+}
+
+@media (max-width: 1199px) {
+  .navegacion-principal-pc {
+    padding-left: 10%;
+  }
+}
+
+.navegacion-principal-pc ul.fila-flex {
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1em;
+}
+
+.navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a {
+  font-weight: 700;
+  color: #333;
+  padding-bottom: 0.5em;
+}
+
+.navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a:hover {
+  color: #2C72B4;
+  text-decoration: none;
+}
+
+.navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a.activo {
+  border-bottom: 2px solid #C7DEE2;
+}
+
+.navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a#dropdownLoginMenu {
+  padding-bottom: 0;
 }
 
 .nombre-usuario {
@@ -529,6 +662,28 @@ a:hover > .btn-menu-usuario,
   }
 }
 
+.header-home .login-nav-home .navegacion-principal-pc {
+  padding-left: 30%;
+}
+
+@media (max-width: 1199px) {
+  .header-home .login-nav-home .navegacion-principal-pc {
+    padding-left: 15%;
+  }
+}
+
+.header-home .login-nav-home .navegacion-principal-pc ul.fila-flex {
+  padding-top: 0;
+}
+
+.header-home .login-nav-home .navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a {
+  color: #fff;
+}
+
+.header-home .login-nav-home .navegacion-principal-pc ul.fila-flex > li:not(.dropdown) a:hover {
+  color: #C7DEE2;
+}
+
 .header-bg {
   position: absolute;
   top: 0;
@@ -713,6 +868,7 @@ main.gap-header-acceso {
 
 .contenido-home .jumbotron {
   margin-bottom: 0;
+  border-bottom: 2px solid #2C72B4;
 }
 
 .contenido-home section.info-contacto {
@@ -906,12 +1062,14 @@ button[type="submit"].btn-primary:hover {
 }
 
 .cargar-alumno,
-.editar-alumno {
+.editar-alumno,
+.cargar-nota {
   margin: 1.5em auto;
 }
 
 .cargar-alumno .fila-flex,
-.editar-alumno .fila-flex {
+.editar-alumno .fila-flex,
+.cargar-nota .fila-flex {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -972,6 +1130,10 @@ button[type="submit"].btn-primary:hover {
     width: 180px;
     height: 180px;
   }
+}
+
+.datos-fijos .foto-destacada {
+  background-image: url(../img/foto-destacada-back.png);
 }
 
 .datos-fijos label.cargar-foto-btn {
@@ -1065,6 +1227,11 @@ button[type="submit"].btn-primary:hover {
 .datos-fijos .btn-descartar {
   text-align: center;
   width: 100%;
+}
+
+input#titulo-info {
+  font-size: 1.5em;
+  height: 2em;
 }
 
 .login-form {
@@ -1220,8 +1387,14 @@ button[type="submit"].btn-primary:hover {
   }
 }
 
-.nombre-alumno {
+.nombre-alumno,
+.titulo-nota {
   font-weight: 700;
+}
+
+.nombre-alumno a:hover,
+.titulo-nota a:hover {
+  text-decoration: none;
 }
 
 .datos-alumno span {
@@ -1244,11 +1417,15 @@ button[type="submit"].btn-primary:hover {
 
 .contenedor-lista {
   margin: 1.5em auto 0;
-  padding: 1.5em 0;
+  padding: 0;
 }
 
 .contenedor-lista .panel-danger.error, .contenedor-lista .panel-warning.filtro-vacio, .contenedor-lista .panel-warning.sin-alumnos {
   display: none;
+}
+
+.contenedor-lista .titulo-seccion {
+  margin-bottom: 0;
 }
 
 .contenedor-lista.loading .spinner-container {
@@ -1276,7 +1453,8 @@ button[type="submit"].btn-primary:hover {
 }
 
 .contenedor-lista ul.lista-alumnos,
-.contenedor-lista ul.lista-instituciones {
+.contenedor-lista ul.lista-instituciones,
+.contenedor-lista ul.lista-notas {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -1339,9 +1517,13 @@ button[type="submit"].btn-primary:hover {
   transition: background 0.3s ease;
 }
 
-.contenedor-lista li.item:hover .nombre-alumno a, .contenedor-lista li.item.item-marcado .nombre-alumno a,
+.contenedor-lista li.item:hover .nombre-alumno a,
+.contenedor-lista li.item:hover .titulo-nota a, .contenedor-lista li.item.item-marcado .nombre-alumno a,
+.contenedor-lista li.item.item-marcado .titulo-nota a,
 .contenedor-lista li.item-alumno:hover .nombre-alumno a,
-.contenedor-lista li.item-alumno.item-marcado .nombre-alumno a {
+.contenedor-lista li.item-alumno:hover .titulo-nota a,
+.contenedor-lista li.item-alumno.item-marcado .nombre-alumno a,
+.contenedor-lista li.item-alumno.item-marcado .titulo-nota a {
   color: #2C72B4;
 }
 
@@ -1357,26 +1539,31 @@ button[type="submit"].btn-primary:hover {
   height: 160px;
 }
 
-.contenedor-lista .nombre-alumno {
+.contenedor-lista .nombre-alumno,
+.contenedor-lista .titulo-nota {
   font-size: 1.5em;
   text-align: center;
 }
 
 @media (max-width: 991px) {
-  .contenedor-lista .nombre-alumno {
+  .contenedor-lista .nombre-alumno,
+  .contenedor-lista .titulo-nota {
     font-size: 1.3em;
   }
 }
 
-.contenedor-lista .nombre-alumno a {
+.contenedor-lista .nombre-alumno a,
+.contenedor-lista .titulo-nota a {
   color: #000;
 }
 
-.contenedor-lista .datos-personales span {
+.contenedor-lista .datos-personales span:not(.glyphicon),
+.contenedor-lista .datos-nota span:not(.glyphicon) {
   margin-left: 1.3em;
 }
 
-.contenedor-lista .datos-personales span:first-child {
+.contenedor-lista .datos-personales span:not(.glyphicon):first-child,
+.contenedor-lista .datos-nota span:not(.glyphicon):first-child {
   margin-left: 0;
 }
 
@@ -1493,6 +1680,15 @@ button[type="submit"].btn-primary:hover {
   }
 }
 
+.contenedor-lista.vista-listado li.item-nota {
+  border-radius: 0;
+  width: 100%;
+}
+
+.contenedor-lista.vista-listado li.item-nota::after {
+  width: 100%;
+}
+
 .contenedor-lista.vista-listado .link-foto-alumno,
 .contenedor-lista.vista-listado .foto-no-link {
   -webkit-align-self: center;
@@ -1526,7 +1722,8 @@ button[type="submit"].btn-primary:hover {
   }
 }
 
-.contenedor-lista.vista-listado .nombre-alumno {
+.contenedor-lista.vista-listado .nombre-alumno,
+.contenedor-lista.vista-listado .titulo-nota {
   text-align: left;
 }
 
@@ -1537,7 +1734,29 @@ button[type="submit"].btn-primary:hover {
   margin-bottom: 0;
 }
 
-.contenedor-lista.vista-listado .datos-alumno {
+.contenedor-lista.vista-listado .nota-container-cuerpo {
+  margin: 0.5em 0 0.75em;
+}
+
+.contenedor-lista.vista-listado .nota-img-destacada {
+  display: block;
+  width: 220px;
+  height: auto;
+  background: transparent no-repeat center center /cover;
+  margin: 0 1.5em 0 0;
+}
+
+.contenedor-lista.vista-listado .info-nota {
+  padding: 0 0 0.5em 1em;
+}
+
+.contenedor-lista.vista-listado .nota-ver-mas {
+  display: block;
+  margin-top: 0.5em;
+}
+
+.contenedor-lista.vista-listado .datos-alumno,
+.contenedor-lista.vista-listado .datos-nota {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -1547,46 +1766,58 @@ button[type="submit"].btn-primary:hover {
 }
 
 @media (max-width: 991px) {
-  .contenedor-lista.vista-listado .datos-alumno {
+  .contenedor-lista.vista-listado .datos-alumno,
+  .contenedor-lista.vista-listado .datos-nota {
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
   }
 }
 
-.contenedor-lista.vista-listado .datos-alumno .datos-personales {
+.contenedor-lista.vista-listado .datos-alumno .datos-personales,
+.contenedor-lista.vista-listado .datos-nota .datos-personales {
   width: 39%;
 }
 
 @media (max-width: 991px) {
-  .contenedor-lista.vista-listado .datos-alumno .datos-personales {
+  .contenedor-lista.vista-listado .datos-alumno .datos-personales,
+  .contenedor-lista.vista-listado .datos-nota .datos-personales {
     width: 100%;
   }
 }
 
-.contenedor-lista.vista-listado .datos-alumno .datos-academicos {
+.contenedor-lista.vista-listado .datos-alumno .datos-academicos,
+.contenedor-lista.vista-listado .datos-nota .datos-academicos {
   width: 59%;
 }
 
 @media (max-width: 991px) {
-  .contenedor-lista.vista-listado .datos-alumno .datos-academicos {
+  .contenedor-lista.vista-listado .datos-alumno .datos-academicos,
+  .contenedor-lista.vista-listado .datos-nota .datos-academicos {
     width: 100%;
   }
 }
 
-.contenedor-lista.vista-listado .datos-alumno span {
+.contenedor-lista.vista-listado .datos-alumno span,
+.contenedor-lista.vista-listado .datos-nota span {
   display: block;
   margin: 0 0 0.5em;
 }
 
-.contenedor-lista.vista-listado .datos-alumno strong {
+.contenedor-lista.vista-listado .datos-alumno span.dato,
+.contenedor-lista.vista-listado .datos-nota span.dato {
+  margin-right: 1.5em;
+}
+
+.contenedor-lista.vista-listado .datos-alumno strong,
+.contenedor-lista.vista-listado .datos-nota strong {
   display: inline;
 }
 
 .contenedor-lista.vista-listado .ultimo-bloque {
-  -webkit-align-self: flex-end;
-      -ms-flex-item-align: end;
-          align-self: flex-end;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
   margin-left: auto;
   margin-top: 0;
   -webkit-flex-direction: column-reverse;
@@ -1724,6 +1955,22 @@ ul.pagination li.disabled a, ul.pagination li.disabled span,
 ul.pagination li.disabled a:hover, ul.pagination li.disabled span:hover,
 ul.pagination li.disabled a:focus, ul.pagination li.disabled span:focus {
   color: #F1F7F8;
+}
+
+main.admin-notas .titulo-seccion {
+  padding: 1em 0.5em 0;
+}
+
+.container-foto-nota {
+  margin: 1.5em auto;
+}
+
+.contenido-nota-individual {
+  margin-bottom: 3em;
+}
+
+.contenido-nota-individual .dato {
+  padding: 0.5em 1.5em 0.5em 0;
 }
 
 .alumno-individual .alumno-info-principal {
@@ -2044,6 +2291,7 @@ a.btn-cerrar.close:hover {
   width: 5em;
   height: 3em;
   line-height: 3em;
+  margin: 0 20px;
 }
 
 .modulo-filtro {
@@ -2690,4 +2938,13 @@ body.esperando .spinner-container {
 
 .select-carga-alumno {
   margin-bottom: 0;
+}
+
+.modal#solicitarContacto .modal-body.post-ok {
+  display: none;
+}
+
+.modal#solicitarContacto .error {
+  display: none;
+  font-weight: bold;
 }

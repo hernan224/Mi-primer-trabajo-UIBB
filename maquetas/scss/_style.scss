@@ -79,6 +79,22 @@ p.texto-especial{
   margin: 2em 0;
 }
 
+.mt0{
+  margin-top: 0 !important;
+}
+.mb0{
+  margin-bottom: 0 !important;
+}
+.ml0{
+  margin-top: 0 !important;
+}
+.mr0{
+  margin-right: 0 !important;
+}
+.mm0{
+  margin: 0 !important;
+}
+
 .bg-azul{
   background-color: $azul;
 }
@@ -136,6 +152,50 @@ figure.foto-bg{
   overflow: hidden;
 }
 
+figure.container-foto-seccion{
+  padding: 0.5em 0;
+
+  &.pull-right{
+    padding-left: 1.5em;
+    @include media('<desktop'){
+      padding-left: 1em;
+    }
+    @include media('<tablet'){
+      padding-left: 0.5em;
+    }
+  }
+  &.pull-left{
+    padding-right: 1.5em;
+    @include media('<desktop'){
+      padding-right: 1em;
+    }
+    @include media('<tablet'){
+      padding-right: 0.5em;
+    }
+  }
+
+  img{
+    width: 100%;
+    max-width: 180px;
+    @include media('<desktop'){
+      max-width: 120px;
+    }
+    @include media('<tablet'){
+      max-width: 80px;
+    }
+  }
+
+  &+p:first-of-type{
+    padding-top: 2.5em;
+    @include media('<desktop'){
+      padding-top: 1em;
+    }
+    @include media('<tablet'){
+      padding-top: 0.5em;
+    }
+  }
+}
+
 .dropdown-menu{
   border: none;
   margin: 0;
@@ -191,6 +251,40 @@ figure.foto-bg{
     }
     &.foto-asociado{
       background-image: url(../img/asociado-sin-foto.png);
+    }
+  }
+}
+
+.navegacion-principal-pc{
+  width: 100%;
+  padding-left: 15%;
+  @include media('<hd'){
+    padding-left: 10%;
+  }
+
+
+  ul.fila-flex{
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1em;
+
+    > li:not(.dropdown) a{
+      font-weight: 700;
+      color: #333;
+      padding-bottom: 0.5em;
+
+      &:hover{
+         color: $azul;
+         text-decoration: none;
+       }
+
+      &.activo{
+        border-bottom: 2px solid $celeste;
+      }
+
+      &#dropdownLoginMenu{
+        padding-bottom: 0;
+      }
     }
   }
 }
@@ -501,6 +595,26 @@ figure.foto-bg{
         margin: auto;
       }
     }
+
+    .navegacion-principal-pc{
+      padding-left: 30%;
+
+      @include media('<hd'){
+        padding-left: 15%;
+      }
+
+      ul.fila-flex{
+        padding-top: 0;
+
+        > li:not(.dropdown) a{
+          color: #fff;
+
+          &:hover{
+            color: $celeste;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -676,6 +790,7 @@ main.gap-header-acceso{
 
   .jumbotron{
     margin-bottom: 0;
+    border-bottom: 2px solid #2C72B4;
   }
 
   section.info-contacto{
@@ -861,7 +976,8 @@ button[type="submit"].btn-primary{
 
 //Carga de datos de alumno
 .cargar-alumno,
-.editar-alumno{
+.editar-alumno,
+.cargar-nota{
   margin: 1.5em auto;
 
   .fila-flex{
@@ -910,6 +1026,10 @@ button[type="submit"].btn-primary{
       height: 180px;
     }
 
+  }
+  
+  .foto-destacada{
+    background-image: url(../img/foto-destacada-back.png);
   }
 
   label.cargar-foto-btn{
@@ -993,6 +1113,11 @@ button[type="submit"].btn-primary{
     text-align: center;
     width: 100%;
   }
+}
+
+input#titulo-info{
+  font-size: 1.5em;
+  height: 2em;
 }
 
 //LOGIN
@@ -1137,7 +1262,8 @@ button[type="submit"].btn-primary{
   }
 }
 
-.nombre-alumno{
+.nombre-alumno,
+.titulo-nota{
   font-weight: 700;
   a:hover {
     text-decoration: none;
@@ -1173,6 +1299,10 @@ button[type="submit"].btn-primary{
     display: none;
   }
 
+  .titulo-seccion{
+    margin-bottom: 0;
+  }
+
 
   &.loading {
     .spinner-container {
@@ -1203,7 +1333,9 @@ button[type="submit"].btn-primary{
 
 
   ul.lista-alumnos,
-  ul.lista-instituciones{
+  ul.lista-instituciones,
+  ul.lista-notas
+  {
     display: flex;
     flex-flow: row wrap;
     align-items: stretch;
@@ -1251,7 +1383,8 @@ button[type="submit"].btn-primary{
       //   display: block;
       // }
 
-      .nombre-alumno a{
+      .nombre-alumno a,
+      .titulo-nota a{
         color: $azul;
       }
 
@@ -1267,7 +1400,8 @@ button[type="submit"].btn-primary{
     height: 160px;
   }
 
-  .nombre-alumno{
+  .nombre-alumno,
+  .titulo-nota{
     font-size: 1.5em;
     //font-size: 21px;
     //font-weight: 700;
@@ -1284,8 +1418,9 @@ button[type="submit"].btn-primary{
 
 
 
-  .datos-personales{
-    span{
+  .datos-personales,
+  .datos-nota{
+    span:not(.glyphicon){
       margin-left: 1.3em;
 
       &:first-child{
@@ -1405,6 +1540,15 @@ button[type="submit"].btn-primary{
       }
     }
 
+    li.item-nota{
+      border-radius: 0;
+      width: 100%;
+
+      &::after{
+        width: 100%;
+      }
+    }
+
     .link-foto-alumno,
     .foto-no-link{
       align-self: center;
@@ -1427,14 +1571,37 @@ button[type="submit"].btn-primary{
       }
     }
 
-    .nombre-alumno{
+    .nombre-alumno,
+    .titulo-nota{
       text-align: left;
     }
     .info-alumno{
       flex: 1;
       margin-bottom: 0;
     }
-    .datos-alumno{
+
+
+    .nota-container-cuerpo{
+      //align-items: center;
+      margin: 0.5em 0 0.75em;
+    }
+    .nota-img-destacada{
+      display: block;
+      width: 220px;
+      height: auto;
+      background: transparent no-repeat center center /cover;
+      margin: 0 1.5em 0 0;
+    }
+    .info-nota{
+      padding: 0 0 0.5em 1em;
+    }
+    .nota-ver-mas{
+      display: block;
+      margin-top: 0.5em;
+    }
+
+    .datos-alumno,
+    .datos-nota{
       display: flex;
       flex-flow: row nowrap;
 
@@ -1460,6 +1627,10 @@ button[type="submit"].btn-primary{
       span{
         display: block;
         margin: 0 0 0.5em;
+
+        &.dato{
+          margin-right: 1.5em;
+        }
       }
       strong{
         display: inline;
@@ -1467,10 +1638,14 @@ button[type="submit"].btn-primary{
     }
 
     .ultimo-bloque{
-      align-self: flex-end;
+      align-self: center;
       margin-left: auto;
       margin-top: 0;
       flex-direction: column-reverse;
+
+      //&.ultimo-bloque-nota{
+      //  align-self: center;
+      //}
 
       @include media('<tablet'){
         position: absolute;
@@ -1611,6 +1786,24 @@ ul.pagination{
   }
 }
 
+//Administrar notas
+main.admin-notas{
+
+  .titulo-seccion{
+    padding: 1em 0.5em 0;
+  }
+}
+
+.container-foto-nota{
+  margin: 1.5em auto;
+}
+
+.contenido-nota-individual{
+  margin-bottom: 3em;
+  .dato{
+    padding: 0.5em 1.5em 0.5em 0;
+  }
+}
 
 // Alumno individual
 .alumno-individual{

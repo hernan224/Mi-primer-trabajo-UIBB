@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-10">
                 <!--<div class="col-xs-12">-->
-                <h3 class="texto-azul">Empresas Asociadas</h3>
+                <h2 class="texto-azul">Empresas Asociadas</h2>
                 <p>Las siguientes empresas asociadas a la UIBB hacen uso de la plataforma <strong>Mi Primer
                     Empleo</strong>, como parte de su estrategia de búsqueda de recursos humanos calificados:</p>
             </div>

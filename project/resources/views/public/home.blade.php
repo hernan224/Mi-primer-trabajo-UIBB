@@ -65,8 +65,8 @@
                             </a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="http://uibb.org.ar/departamentos/responsabilidad-social-empresaria/" target="_blank" class="link-organizador">
-                                <img src="img/logo-rse.png" alt="Responsabilidad Social Emrpesaria - UIBB"
+                            <a href="http://www.bahiablanca.gov.ar/" target="_blank" class="link-organizador">
+                                <img src="img/logo-municipio-bahia-blanca.png" alt="Municipio de Bahía Blanca"
                                      class="img-responsive logo-img">
                             </a>
                         </div>
