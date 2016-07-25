@@ -7,9 +7,18 @@ Sitio web para acceder a los currilums de alumnos egresados de escuelas tecnicas
 * /www: carpeta publica
 * Para instalar:
 ```
-cd /project
+cd project
 composer install
 php artisan migrate
+```
+
+* Update assets (compilar scss, concatenar y minificar js, copiar achrivos de /maquetas a /www)
+```
+cd project
+// Dev
+gulp
+// Producción (minificado)
+gulp --production 
 ```
 
 ### Maquetas  (/maquetas)
