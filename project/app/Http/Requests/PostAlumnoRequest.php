@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 // Reglas de validacion para POST de alumno
 class PostAlumnoRequest extends Request
 {

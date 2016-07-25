@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Mail\Message;
 use Mail;
 use App\Models\Alumno;
 
@@ -20,6 +19,7 @@ class MailsController extends Controller
 
         Mail::send('emails.contacto', $view_data, function($message)
         {
+            /** @var Message $message */
             $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Formulario de contacto');
         });
 
@@ -59,6 +59,11 @@ class MailsController extends Controller
     }
     */
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function solicitarDatosAlumno(Request $request, $id) {
         $data = $request->all();
 
@@ -94,8 +99,10 @@ class MailsController extends Controller
         // envío mail al solicitante
         $view_data = ['alumno' => $alumno];
         try {
+
             Mail::send('emails.solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
             {
+                /** @var Message $message */
                 $message->to($email, $nombre)->subject('Datos del alumno solicitado');
             });
         } catch (\Exception $e) {
@@ -106,6 +113,7 @@ class MailsController extends Controller
         $view_data = ['alumno' => $alumno, 'nombre' => $nombre, 'empresa' => $empresa, 'email' =>$email];
         Mail::send('emails.copia_solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
         {
+            /** @var Message $message */
             $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Solicitud de datos de alumno');
         });
 

@@ -3,7 +3,68 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
+/**
+ * App\Models\Curriculum
+ *
+ * @property integer $id
+ * @property integer $alumno_id
+ * @property string $especialidad
+ * @property float $promedio
+ * @property string $asignaturas
+ * @property string $practicas_tipo
+ * @property string $practicas_lugar
+ * @property boolean $responsabilidad
+ * @property boolean $puntualidad
+ * @property boolean $proactividad
+ * @property boolean $equipo
+ * @property boolean $creatividad
+ * @property boolean $liderazgo
+ * @property boolean $conciliador
+ * @property boolean $perseverancia
+ * @property boolean $asertividad
+ * @property boolean $relaciones
+ * @property boolean $objetivos
+ * @property boolean $saludable
+ * @property string $extras
+ * @property string $participacion
+ * @property string $carta_presentacion
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property boolean $estudios
+ * @property string $estudios_carrera
+ * @property string $estudios_lugar
+ * @property-read \App\Models\Alumno $alumno
+ * @method static Builder|Curriculum whereId($value)
+ * @method static Builder|Curriculum whereAlumnoId($value)
+ * @method static Builder|Curriculum whereEspecialidad($value)
+ * @method static Builder|Curriculum wherePromedio($value)
+ * @method static Builder|Curriculum whereAsignaturas($value)
+ * @method static Builder|Curriculum wherePracticasTipo($value)
+ * @method static Builder|Curriculum wherePracticasLugar($value)
+ * @method static Builder|Curriculum whereResponsabilidad($value)
+ * @method static Builder|Curriculum wherePuntualidad($value)
+ * @method static Builder|Curriculum whereProactividad($value)
+ * @method static Builder|Curriculum whereEquipo($value)
+ * @method static Builder|Curriculum whereCreatividad($value)
+ * @method static Builder|Curriculum whereLiderazgo($value)
+ * @method static Builder|Curriculum whereConciliador($value)
+ * @method static Builder|Curriculum wherePerseverancia($value)
+ * @method static Builder|Curriculum whereAsertividad($value)
+ * @method static Builder|Curriculum whereRelaciones($value)
+ * @method static Builder|Curriculum whereObjetivos($value)
+ * @method static Builder|Curriculum whereSaludable($value)
+ * @method static Builder|Curriculum whereExtras($value)
+ * @method static Builder|Curriculum whereParticipacion($value)
+ * @method static Builder|Curriculum whereCartaPresentacion($value)
+ * @method static Builder|Curriculum whereCreatedAt($value)
+ * @method static Builder|Curriculum whereUpdatedAt($value)
+ * @method static Builder|Curriculum whereEstudios($value)
+ * @method static Builder|Curriculum whereEstudiosCarrera($value)
+ * @method static Builder|Curriculum whereEstudiosLugar($value)
+ * @mixin \Eloquent
+ */
 class Curriculum extends Model
 {
     protected $table = 'curriculums';
@@ -31,6 +92,8 @@ class Curriculum extends Model
 
     /**
      * Formatea fecha al obtener fecha de actualizacion
+     * @param $value
+     * @return string
      */
     public function getUpdatedAtAttribute($value)
     {
@@ -53,6 +116,7 @@ class Curriculum extends Model
 
     /**
      *  Mutator promedio
+     * @param $value
      */
     public function setPromedioAttribute($value) {
         if (!$value) {

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Gate;
 use Auth;
 use DB;
+use Illuminate\Database\Query\Builder;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostAlumnoRequest;
-use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Curriculum;
 use App\Models\Escuela;
@@ -18,8 +19,6 @@ class AlumnosController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -131,12 +130,14 @@ class AlumnosController extends Controller
     /**
      * Lista de alumnos de escuela (logueada) [JSON]
      * URL: /alumnos-escuela
+     * @param Request $request
+     * @return \Illuminate\Http\Response
      */
     public function listaEscuela(Request $request){
         return $this->lista($request,true);
     }
 
-    private function lista_filtros($request,&$where_array) {
+    private function lista_filtros(Request $request,&$where_array) {
         $promedio_min = $request->query('prom_min');
         if ($promedio_min && is_numeric($promedio_min)) {
             $where_array[] = ['curriculums.promedio','>=',$promedio_min];
@@ -178,7 +179,8 @@ class AlumnosController extends Controller
         }
     }
 
-    private function lista_ordenamiento($request,$query) {
+    private function lista_ordenamiento(Request $request,$query) {
+        /** @var Builder $query */
         $ordenamiento = $request->query('order');
 
         if ($ordenamiento == 'fecha_asc')
@@ -289,6 +291,8 @@ class AlumnosController extends Controller
     /**
      * Busqueda de alumnos de escuela (logueada) [JSON]
      * URL: /alumnos-escuela/search
+     * @param Request $request
+     * @return \Illuminate\Http\Response
      */
     public function searchEscuela(Request $request){
         return $this->lista($request,true);
@@ -341,6 +345,7 @@ class AlumnosController extends Controller
         if (!$id) {
             return abort(403);
         }
+        /** @var Alumno $alumno */
         $alumno = Alumno::find($id);
         if (!$alumno) {
             return abort(403);
@@ -375,8 +380,6 @@ class AlumnosController extends Controller
     public function nuevo()
     {
         $alumno = new Alumno;
-        $curriculum = new Curriculum;
-        $alumno->curriculum = $curriculum;
         $view_data = [
             'nuevo' => true,
             'alumno' => $alumno
@@ -389,7 +392,7 @@ class AlumnosController extends Controller
      *
      * URL: /alumnos/nuevo [POST]
      *
-     * @param  \Illuminate\Http\PostAlumnoRequest  $request
+     * @param  PostAlumnoRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostAlumnoRequest $request)
@@ -405,6 +408,7 @@ class AlumnosController extends Controller
         $escuela = $docente->escuela;
 
         // creo y guardo alumno, asociado a la escuela
+        /** @var Alumno $alumno */
         $alumno = $escuela->alumnos()->create($data_alumno);
         // creo y guardo curriculum, asociado al alumno
         $alumno->curriculum()->create($data_curriculum);
@@ -456,7 +460,7 @@ class AlumnosController extends Controller
      *
      * URL: /administrar-alumnos/edit/{id} [POST]
      *
-     * @param  \Illuminate\Http\PostAlumnoRequest  $request
+     * @param  PostAlumnoRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -494,7 +498,8 @@ class AlumnosController extends Controller
      *
      * URL: /alumnos/delete/{id}
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id = null)
@@ -524,7 +529,10 @@ class AlumnosController extends Controller
      * METODOS AUXILIARES
      */
 
-    // Convierte date recibida al formato que se guarda en BD
+    /**
+     * Convierte date recibida al formato que se guarda en BD
+     * @param $data_alumno
+     */
     protected function parseDate(&$data_alumno) {
         $date_input = isset($data_alumno['nacimiento']) ? $data_alumno['nacimiento'] : null;
         if ($date_input) {
@@ -536,7 +544,7 @@ class AlumnosController extends Controller
         }
     }
 
-    protected function getDataPostAlumno($request) {
+    protected function getDataPostAlumno(Request $request) {
         // Obtengo nombres de atributo de alumno
         $alumno_temp = new Alumno;
         $atributos_alumno = $alumno_temp->getFillable();
@@ -555,7 +563,7 @@ class AlumnosController extends Controller
         return $data_alumno;
     }
 
-    protected function getDataPostCurriculum($request) {
+    protected function getDataPostCurriculum(Request $request) {
         // Obtengo nombres de atributo de alumno
         $curriculum_temp = new Curriculum;
         $atributos_curriculum = $curriculum_temp->getFillable();
@@ -575,7 +583,7 @@ class AlumnosController extends Controller
         return $data_curriculum;
     }
 
-    protected function saveImage($request,$alumno) {
+    protected function saveImage(Request $request,$alumno) {
         // guardo imagen en el server, usando el id del alumno creado y un string aleatorio
         if($request->hasFile('foto') && $request->file('foto')->isValid() ) {
             $file = $request->file('foto');

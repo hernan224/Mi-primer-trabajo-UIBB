@@ -3,7 +3,54 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
+/**
+ * App\Models\Alumno
+ *
+ * @property integer $id
+ * @property integer $escuela_id
+ * @property integer $docente_id
+ * @property integer $dni
+ * @property string $nombre
+ * @property string $apellido
+ * @property string $sexo
+ * @property string $nacimiento
+ * @property string $nacionalidad
+ * @property string $domicilio
+ * @property string $localidad
+ * @property string $barrio
+ * @property string $tel_fijo
+ * @property string $celular
+ * @property string $email
+ * @property string $foto
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property boolean $privado
+ * @property-read \App\Models\Curriculum $curriculum
+ * @property-read \App\Models\Escuela $escuela
+ * @property-read \App\Models\User $docente
+ * @method static Builder|Alumno whereId($value)
+ * @method static Builder|Alumno whereEscuelaId($value)
+ * @method static Builder|Alumno whereDocenteId($value)
+ * @method static Builder|Alumno whereDni($value)
+ * @method static Builder|Alumno whereNombre($value)
+ * @method static Builder|Alumno whereApellido($value)
+ * @method static Builder|Alumno whereSexo($value)
+ * @method static Builder|Alumno whereNacimiento($value)
+ * @method static Builder|Alumno whereNacionalidad($value)
+ * @method static Builder|Alumno whereDomicilio($value)
+ * @method static Builder|Alumno whereLocalidad($value)
+ * @method static Builder|Alumno whereBarrio($value)
+ * @method static Builder|Alumno whereTelFijo($value)
+ * @method static Builder|Alumno whereCelular($value)
+ * @method static Builder|Alumno whereEmail($value)
+ * @method static Builder|Alumno whereFoto($value)
+ * @method static Builder|Alumno whereCreatedAt($value)
+ * @method static Builder|Alumno whereUpdatedAt($value)
+ * @method static Builder|Alumno wherePrivado($value)
+ * @mixin \Eloquent
+ */
 class Alumno extends Model
 {
     protected $fillable = [
@@ -44,6 +91,8 @@ class Alumno extends Model
 
     /**
      * Formatea fecha al obtener fecha de nacimiento
+     * @param $value
+     * @return null|string
      */
     public function getNacimientoAttribute($value)
     {
@@ -66,7 +115,7 @@ class Alumno extends Model
         if ($this->foto) {
             return asset(self::$image_path.'/'.$this->foto);
         }
-        else false;
+        else return false;
     }
 
 }
