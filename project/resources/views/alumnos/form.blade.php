@@ -65,7 +65,9 @@
                 'role'=>"form", 'class'=>"fila-flex form-mpt" ] ) }}
 
                 <main class="cargar-datos">
-                    <h3 class="titulo-seccion">Cargar nuevo alumno</h3>
+                    <h3 class="titulo-seccion">
+                        {{ ($nuevo) ? 'Cargar nuevo alumno' : 'Editar alumno' }}
+                    </h3>
 
                     <fieldset class="row carga-datos-personales">
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nombre') ? ' has-error' : '' }}">
