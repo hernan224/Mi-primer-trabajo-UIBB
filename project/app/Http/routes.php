@@ -35,12 +35,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/instituciones-educativas', function () {
         return view('public.instituciones',['escuelas' => Escuela::all()]);
     });
-    Route::get('/capacitaciones', function () {
-        return view('public.capacitaciones');
-    });
-    Route::get('/practicas-profesionalizantes', function () {
-        return view('public.practicas');
-    });
     // Pantalla empresas - NO USADA
     // Route::get('/empresas', function () {
     //     return view('public.empresas',['empresas' => Empresa::all()]);
@@ -61,6 +55,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 
+    /** Acceso a plataforma para escuelas o admin
+     *  (panel administración escuelas: listado editable de alumnos de la escuela)
+     *  (panel administración admin: listado editable de publicaciones)
+     *
+     *  Redirecciona a login si no está autenticado,
+     *      al listado de alumnos propios si está logueado y es escuela
+     *      o al listado de publicaciones para editar si está logueado y es admin
+     */
+    Route::get('/panel-administracion', function () {
+        return redirect('/login');
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos o /admin-publicaciones si está logueado
+    //     (definido en Middleware/RedirectIfAuthenticated)
+
 
     /** Listado de alumnos público */
     // GET pantalla
@@ -75,21 +82,23 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('alumno_pdf');
     Route::get('/alumno/{id?}','AlumnosController@show')->name('alumno_show');
 
-    /** Acceso a plataforma para escuelas o admin
-     *  (panel administración escuelas: listado editable de alumnos de la escuela)
-     *  (panel administración admin: listado editable de publicaciones)
-     *
-     *  Redirecciona a login si no está autenticado,
-     *      al listado de alumnos propios si está logueado y es escuela
-     *      o al listado de publicaciones para editar si está logueado y es admin
-     */
-    Route::get('/panel-administracion', function () {
-        return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos o /admin-publicaciones si está logueado
-                             //     (definido en Middleware/RedirectIfAuthenticated)
 
-    /** Pantallas publicas con POSTs con formularios de email **/
+    /** Listado público de publicaciones: pantallas y lista JSON **/
+    // GET pantalla publicaciones categoría capacitaciones
+    Route::get('/capacitaciones', function () {
+        return view('publicaciones.capacitaciones');
+    });
+    // GET pantalla publicaciones categoría practicas
+    Route::get('/practicas', function () {
+        return view('publicaciones.practicas');
+    });
 
+    // GET lista publicacion (resp JSON). Parámetro get categoria opcional
+    Route::get('/publicaciones/{categoria?}','PublicacionesController@lista')->name('publicaciones_public_list');
+    // GET vista publicación
+    Route::get('/publicacion/{categoria}/{id?}','PublicacionesController@show')->name('publicacion_show');
+
+    /** Pantallas públicas con POSTs con formularios de email **/
     // Solicitar acceso - NO USADA
     // Route::get('/solicitar-acceso', function () {
     //     return view('public.solicitar_acceso');
@@ -140,9 +149,22 @@ Route::group(['middleware' => ['web','auth','role:escuela'],'as' => 'escuela.'],
 
 // Publicaciones: Routes con autenticacion y usuario admin (creacion, edicion y eliminacion de publicaciones)
 Route::group(['middleware' => ['web','auth','role:admin'],'as' => 'publicaciones.'], function () {
-    // Listado de alumnos propios (sólo renderiza pantalla)
-    // ToDo action
-    Route::get('/administrar-publicaciones','AlumnosController@showListadoEscuela')->name('admin_publicaciones');
+
+    // Listado de publicaciones (sólo renderiza pantalla)
+    Route::get('/administrar-publicaciones','PublicacionesController@administrar')->name('admin_publicaciones');
+
+    /** Creacion, edicion, eliminación de publicaciones **/
+    // GET pantalla formulario nueva publicación
+    Route::get('/administrar-publicaciones/nueva','PublicacionesController@nueva')->name('publicacion_nueva');
+    // POST formulario nueva publicación
+    Route::post('/administrar-publicaciones/nueva','PublicacionesController@store')->name('publicacion_nueva_post');
+    // GET pantalla formulario editar publicación
+    Route::get('/administrar-publicaciones/editar/{id?}','PublicacionesController@edit')->name('publicacion_edit');
+    // PUT formulario editar publicación
+    Route::put('/administrar-publicaciones/edit/{id}','PublicacionesController@update')->name('publicacion_edit_put');
+    // GET AJAX para eliminar publicación
+    Route::get('/administrar-publicaciones/delete/{id?}','PublicacionesController@destroy')->name('publicacion_delete');
+
 });
 
 

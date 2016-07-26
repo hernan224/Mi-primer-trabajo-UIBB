@@ -60,6 +60,8 @@ class MailsController extends Controller
     */
 
     /**
+     * Route: alumno_solicitar - /solicitar-datos-alumno/{id} [POST]
+     *
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse

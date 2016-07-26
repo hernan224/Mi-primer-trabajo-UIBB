@@ -1,4 +1,7 @@
-{{-- Pantalla Prácticas profesionalizantes. URL: /practicas-profesionalizantes --}}
+{{-- Pantalla pública: publicaciones categoría Prácticas profesionalizantes.
+        URL: /practicas
+        La lista de publicaciones la obtiene por AJAX a /publicaciones?categoria=capacitaciones
+--}}
 @extends('layouts.base')
 
 @section('title')

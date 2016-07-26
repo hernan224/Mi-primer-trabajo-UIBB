@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\RedirectIfAuthenticated;
 use Gate;
 use Auth;
 use DB;
@@ -17,10 +16,9 @@ use App\Models\Escuela;
 // Actions para listado, carga, edicion y eliminación de CVs de alumnos.
 class AlumnosController extends Controller
 {
-
     /**
-     * Muestra pantalla listado pùblico de alumnos (sin data: la obtiene por AJAX)
-     * URL: /listado-alumnos
+     * Muestra pantalla listado público de alumnos (sin data: la obtiene por AJAX de lista)
+     * Route: alumnos_public - URL: /listado-alumnos [GET]
      */
     public function showListado() {
         $escuelas = Escuela::all();
@@ -40,8 +38,8 @@ class AlumnosController extends Controller
     }
 
     /**
-     * Muestra pantalla listado de alumnos de escuela para administrar (sin data: la obtiene por AJAX)
-     * URL: /administrar-alumnos
+     * Muestra pantalla listado de alumnos de escuela para administrar (sin data: la obtiene por AJAX de listaEscuela)
+     * Route: escuela.admin_alumnos - URL: /administrar-alumnos  [GET, role escuela]
      */
     public function showListadoEscuela() {
         $escuelas = Escuela::all();
@@ -63,11 +61,9 @@ class AlumnosController extends Controller
     /**
      * Lista de alumnos publicos [JSON]
      * Si usuario es empresa o admin, se listan todos
-     *
-     * URL: /alumnos [GET]
-     *
-     * Puede incluir filtros, ordenamiento o num pag (parametros en request):
-     *     page=<number> : es interpretada automaticamente al invocar paginate() en la query
+     * Route: alumnos_public_list - URL: /alumnos [GET]
+     *      Puede incluir filtros, ordenamiento o num pag (parametros en request):
+     *      page=<number> : es interpretada automaticamente al invocar paginate() en la query
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  boolean  $admin_escuela si es true, se buscan solo los alumnos de la escuela
@@ -122,7 +118,8 @@ class AlumnosController extends Controller
 
     /**
      * Lista de alumnos de escuela (logueada) [JSON]
-     * URL: /alumnos-escuela
+     * Route: escuela.alumnos_list - URL: /alumnos-escuela [GET, role escuela]
+     *
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
@@ -225,8 +222,7 @@ class AlumnosController extends Controller
 
     /**
      * Busqueda dealumnos publicos [JSON]
-     *
-     * URL: /alumnos/search [GET]
+     * Route: alumnos_public_search - URL: /alumnos/search [GET]
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  boolean  $admin_escuela si es true, se buscan solo los alumnos de la escuela
@@ -283,7 +279,8 @@ class AlumnosController extends Controller
 
     /**
      * Busqueda de alumnos de escuela (logueada) [JSON]
-     * URL: /alumnos-escuela/search
+     * Route: escuela.alumnos_search - URL: /alumnos-escuela/search [GET, role escuela]
+     *
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
@@ -293,8 +290,7 @@ class AlumnosController extends Controller
 
     /**
      * Muestra pantalla alumno / curriculum creado.
-     *
-     * URL: /alumnos/{id} [GET]
+     * Route: alumno_show - URL: /alumnos/{id} [GET]
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -327,8 +323,7 @@ class AlumnosController extends Controller
 
     /**
      * Genera PDF de alumno
-     *
-     * URL: /alumnos/{id}/pdf [GET]
+     * Route: alumno_pdf - URL: /alumnos/{id}/pdf [GET]
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -365,8 +360,8 @@ class AlumnosController extends Controller
 
     /**
      * Muestra pantalla creación de Alumno / Curriculum
-     *
-     * URL: /alumnos/nuevo [GET] - Solo para rol escuela (middleware agregado en routes)
+     * Solo para rol escuela (middleware agregado en routes)
+     * Route: escuela.alumno_nuevo - URL: /administrar-alumnos/nuevo [GET, role escuela]
      *
      * @return \Illuminate\Http\Response
      */
@@ -382,8 +377,7 @@ class AlumnosController extends Controller
 
     /**
      * Procesa POST nuevo Alumno / Curriculum y guarda en la BD.
-     *
-     * URL: /alumnos/nuevo [POST]
+     * Route: escuela.alumno_nuevo_post - URL: /administrar-alumnos/nuevo [POST, role escuela]
      *
      * @param  PostAlumnoRequest  $request
      * @return \Illuminate\Http\Response
@@ -421,8 +415,7 @@ class AlumnosController extends Controller
 
     /**
      * Muestra pantalla con form para editar alumno / curriculum.
-     *
-     * URL: /alumnos/edit/{id} [GET]
+     * Route: escuela.alumno_edit - URL: /administrar-alumnos/editar/{id} [GET, role escuela]
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -450,8 +443,7 @@ class AlumnosController extends Controller
 
     /**
      * Procesa POST edicion de Alumno / Curriculum y actualiza en la BD.
-     *
-     * URL: /administrar-alumnos/edit/{id} [POST]
+     * Route: escuela.alumno_edit_put - URL: /administrar-alumnos/edit/{id} [PUT, role escuela]
      *
      * @param  PostAlumnoRequest  $request
      * @param  int  $id
@@ -488,8 +480,7 @@ class AlumnosController extends Controller
 
     /**
      * Elimina alumno
-     *
-     * URL: /alumnos/delete/{id}
+     * Route: escuela.alumno_delete - URL: /administrar-alumnos/delete/{id} [GET, role escuela]
      *
      * @param Request $request
      * @param  int $id

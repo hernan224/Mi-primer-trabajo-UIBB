@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Publicacion;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -22,6 +21,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\Escuela $escuela
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Alumno[] $alumnos
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Publicacion[] $publicaciones
  * @method static Builder|User whereId($value)
  * @method static Builder|User whereEscuelaId($value)
  * @method static Builder|User whereName($value)

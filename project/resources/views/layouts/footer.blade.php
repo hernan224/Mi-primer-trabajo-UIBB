@@ -26,7 +26,7 @@
                     <li><a href="{{ url('/capacitaciones') }}">
                         <strong>Capacitaciones</strong>
                     </a></li>
-                    <li><a href="{{ url('/practicas-profesionalizantes') }}">
+                    <li><a href="{{ url('/practicas') }}">
                         <strong>Prácticas profesionalizantes</strong>
                     </a></li>
                     <li><a href="{{ url('/instituciones-educativas') }}">

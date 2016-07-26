@@ -1,4 +1,7 @@
-{{-- Pantalla capactiaciones. URL: /capacitaciones --}}
+{{-- Pantalla pública: publicaciones categoría Capacitaciones.
+        URL: /capacitaciones
+        La lista de publicaciones la obtiene por AJAX a /publicaciones?categoria=capacitaciones
+--}}
 @extends('layouts.base')
 
 @section('title')

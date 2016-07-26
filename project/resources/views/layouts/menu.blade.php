@@ -12,7 +12,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/practicas-profesionalizantes') }}" class="{{ Request::path() == 'practicas-profesionalizantes' ? 'activo' : '' }}">
+            <a href="{{ url('/practicas') }}" class="{{ Request::path() == 'practicas' ? 'activo' : '' }}">
                 Prácticas
             </a>
         </li>
@@ -128,7 +128,7 @@
         <li><a href="{{ url('/capacitaciones') }}" class="acceder-plataforma">
             Capacitaciones
         </a></li>
-        <li><a href="{{ url('/practicas-profesionalizantes') }}" class="acceder-plataforma">
+        <li><a href="{{ url('/practicas') }}" class="acceder-plataforma">
             Prácticas Profesionalizantes
         </a></li>
         <li><a href="{{ url('/instituciones-educativas') }}" class="acceder-plataforma">
