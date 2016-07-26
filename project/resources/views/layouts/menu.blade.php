@@ -1,5 +1,86 @@
-{{-- Dropdown menú, con o sin usuario logueado --}}
-<div class="acceso-usuario-container dropdown">
+{{-- Menú desktop o tablet, con o sin usuario logueado --}}
+<nav class="navegacion-principal-pc hidden-sm hidden-xs">
+    <ul class="list-unstyled fila-flex">
+        <li>
+            <a href="{{ url('/listado-alumnos') }}" class="{{ Request::path() == 'listado-alumnos' ? 'activo' : '' }}">
+                Acceder a la Plataforma
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/capacitaciones') }}" class="{{ Request::path() == 'capacitaciones' ? 'activo' : '' }}">
+                Capacitaciones
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/practicas-profesionalizantes') }}" class="{{ Request::path() == 'practicas-profesionalizantes' ? 'activo' : '' }}">
+                Prácticas
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/instituciones-educativas') }}" class="{{ Request::path() == 'instituciones-educativas' ? 'activo' : '' }}">
+                Instituciones
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/contacto')}}" class="{{ Request::path() == 'contacto' ? 'activo' : '' }}">
+                Contacto
+            </a>
+        </li>
+        <li class="dropdown">
+            <a id="dropdownLoginMenu" class="fila-flex" data-target="#" href="#" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false" title="Acceso Usuarios Registrados">
+                <button class="btn-menu-usuario">
+                    <span class="sr-only">{{ (Auth::check()) ? 'Acceso usuario registrado' : 'Iniciar sesión' }}</span>
+                    <span class="glyphicon glyphicon glyphicon-user"></span>
+                </button>
+            </a>
+            <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownLoginMenu">
+                @if (Auth::check())
+                    <li class="menu-nombre-usuario">
+                        @if(Auth::check() and Auth::user()->hasRole('escuela') and Auth::user()->escuela->foto)
+                            <span class="foto-bg foto-usuario foto-institucion"
+                                  style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}'); border-radius: 0;">
+                            </span>
+                        @endif
+                        <small>Bienvenido:</small>
+                        <h5 class="nombre-usuario texto-azul mm0">
+                            <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
+                        </h5>
+                    </li>
+                    <hr class="separador-menu">
+                    <li>
+                    @if (Auth::user()->hasRole('escuela'))
+                        <a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
+                            <span class="glyphicon glyphicon glyphicon-dashboard"></span>
+                            <strong>Panel de administración</strong>
+                        </a>
+                    @elseif (Auth::user()->hasRole('admin'))
+                        {{-- ToDo link a panel admin  --}}
+                        <a href="#" class="acceder-panel">
+                            <span class="glyphicon glyphicon glyphicon-dashboard"></span>
+                            <strong>ToDo</strong>
+                        </a>
+                    @endif
+                    </li>
+                    <li>
+                        <a href="{{ url('/logout') }}" class="cerrar-sesion ">
+                            <span class="glyphicon glyphicon glyphicon-log-out"></span>
+                            <strong>Cerrar sesión</strong>
+                        </a>
+                    </li>
+                @else
+                    <li><a href="{{ url('/login') }}" class="text-center">&nbsp;<strong>Iniciar sesión</strong></a></li>
+                @endif
+            </ul> <!--//dropdown-menu-->
+
+
+
+        </li>
+    </ul>
+</nav>
+
+{{-- Dropdown menú (mobile), con o sin usuario logueado --}}
+<div class="acceso-usuario-container dropdown  hidden-lg hidden-md">
     <a id="dropdownMenu" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         @if (Auth::check())
             @if (Auth::user()->hasRole('escuela'))
@@ -39,11 +120,21 @@
         </button>
     </a>
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
-    @if (Auth::check() && Auth::user()->hasRole('escuela'))
-        <li><a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
-            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
-            <strong>Panel de administración</strong>
-        </a></li>
+    @if (Auth::check())
+        <li>
+        @if (Auth::user()->hasRole('escuela'))
+            <a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
+                <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
+                <strong>Panel de administración</strong>
+            </a>
+        @elseif (Auth::user()->hasRole('admin'))
+            {{-- ToDo: link panel admin --}}
+            <a href="{{ url('#') }}" class="acceder-panel">
+                <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
+                <strong>ToDo...</strong>
+            </a>
+        @endif
+        </li>
         <hr class="separador-menu">
     @endif
         <li><a href="{{ url('/')}}">Inicio</a></li>

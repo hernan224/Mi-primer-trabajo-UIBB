@@ -6,21 +6,11 @@
             {{-- Wrapper for slides --}}
             <div class="carousel-inner">
 
-                <div class="item active"
-                     style="background-image: url(img/bg-home-1.jpg);background-position: 65% center;">
-                    {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
-                <div class="item"
-                     style="background-image: url(img/bg-home-2.jpg);background-position: left top;">
-                    {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
-                <div class="item"
-                     style="background-image: url(img/bg-home-3.jpg);background-position: center top;">
-                    {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
-                <div class="item"
-                     style="background-image: url(img/bg-home-4.jpg);background-position: 70% center;">
-                    {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
-                <div class="item"
-                     style="background-image: url(img/bg-home-5.jpg);background-position: 75% top;">
-                    {{-- <div class="slide-img"></div> --}} </div>{{-- /.item --}}
+                <div class="item active" style="background: url(img/bg-home-1.jpg) 65% center;"></div>
+                <div class="item" style="background: url(img/bg-home-2.jpg) left top;"></div>
+                <div class="item" style="background: url(img/bg-home-3.jpg) center top;"></div>
+                <div class="item" style="background: url(img/bg-home-4.jpg) 70% center;"></div>
+                <div class="item" style="background: url(img/bg-home-5.jpg) 75% top;"></div>
 
             </div> {{-- /.carousel-inner --}}
         </div> {{-- /#carouselBg --}}

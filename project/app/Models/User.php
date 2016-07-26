@@ -54,10 +54,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Consulta si puede editar alumnos (sólo disponible para escuelas)
+     * @return bool
+     */
     public function puedeEditar() {
         return $this->hasRole('escuela'); // || $this->hasRole('admin');
     }
 
+    /**
+     * Consulta de rol.
+     *      Roles posibles:
+     *          - escuela: puede crear, editar, eliminar alumnos propios
+     *          - admin: puede crear publicaciones
+     * @param $rol
+     * @return bool
+     */
     public function hasRole($rol) {
         return $this->role == $rol;
     }
@@ -70,7 +82,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Relación M:1 con Empresa
+     * Relación M:1 con Empresa - Desactivado (no hay usuarios tipo empresa)
      */
     // public function empresa() {
     //     return $this->belongsTo(Empresa::class);

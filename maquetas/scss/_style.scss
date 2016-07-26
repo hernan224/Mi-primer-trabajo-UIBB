@@ -345,7 +345,7 @@ figure.container-foto-seccion{
 
   li{
     padding: 0.5em 0.5em 0.5em 1em;
-    
+
     //&:hover{
     //  background-color: $celeste;
     //}
@@ -356,6 +356,19 @@ figure.container-foto-seccion{
       &:hover{
         background-color: transparent;
         color: $azul;
+      }
+    }
+    &.menu-nombre-usuario {
+      padding-right: 45px;
+      position: relative;
+      .foto-usuario {
+        display: inline-block;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        top: 5px;
       }
     }
   }
@@ -1027,7 +1040,7 @@ button[type="submit"].btn-primary{
     }
 
   }
-  
+
   .foto-destacada{
     background-image: url(../img/foto-destacada-back.png);
   }
