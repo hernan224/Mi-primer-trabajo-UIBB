@@ -76,6 +76,16 @@ $(function () {
                     .children('input[type="text"]').val('');
         }
     });
+
+
+    // Mask inputs telefonos (usa plugin jquery.mask.js: https://igorescobar.github.io/jQuery-Mask-Plugin/)
+    $('input#tel_fijo, input#celular').mask('(000NN) 000000NNNN', {
+        translation: {
+            'N': {
+                pattern: /[0-9]/, optional: true
+            }
+        }
+    });
 });
 
 function imgPreview(input_selector,preview_selector) {

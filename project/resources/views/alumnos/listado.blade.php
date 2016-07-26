@@ -252,12 +252,14 @@
                                     <span class="especialidad">
                                         <strong>Especialidad:</strong> @{{especialidad}}
                                     </span>
+                                    @if (!$admin_escuela)
                                     <span class="dato-promedio">
                                         <strong>Promedio: </strong>
                                         @{{#if promedio}}
                                             @{{format_decimal promedio}}
                                         @{{else}}-@{{/if}}
                                     </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

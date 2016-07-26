@@ -32,7 +32,7 @@ elixir(function(mix) {
     // script formulario creacion/edicion
     .scripts(
         ['vendor/moment.min.js','vendor/moment.locale.es.js','vendor/bootstrap-datetimepicker.min.js',
-        'vendor/jquery.bootstrap-touchspin.min.js','form_alumno.js'],
+        'vendor/jquery.bootstrap-touchspin.min.js','vendor/jquery.mask.min.js','form_alumno.js'],
         dest+'/js/form_alumno.js'
     )
     // script listado
