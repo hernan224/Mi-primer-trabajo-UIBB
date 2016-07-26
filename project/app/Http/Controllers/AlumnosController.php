@@ -17,13 +17,6 @@ use App\Models\Escuela;
 // Actions para listado, carga, edicion y eliminación de CVs de alumnos.
 class AlumnosController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
-        // $this->middleware('auth'); (definido en routes)
-    }
 
     /**
      * Muestra pantalla listado pùblico de alumnos (sin data: la obtiene por AJAX)

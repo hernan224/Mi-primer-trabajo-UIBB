@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Escuela;
-use App\Models\Empresa;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +52,8 @@ Route::group(['middleware' => 'web'], function () {
     // Route::auth(); // no incluyo routes de registro
     // Login & logut
     Route::get('login', 'Auth\AuthController@showLoginForm');
-    Route::post('login', 'Auth\AuthController@login'); // si es ok redirecciona a /listado-alumnos (seteado en AuthController)
+    // si Login  es ok redirecciona a /panel-administracion (seteado en AuthController)
+    Route::post('login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout');
 
     // Password Reset Routes...
@@ -75,11 +75,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('alumno_pdf');
     Route::get('/alumno/{id?}','AlumnosController@show')->name('alumno_show');
 
-    /** Acceso a plataforma para escuelas (panel administracion: listado editable de alumnos) **/
-    //    redirecciona a login si no está autenticado, o al listado de alumnos propios si está logueado
-    Route::get('/acceso-escuela', function () {
+    /** Acceso a plataforma para escuelas o admin
+     *  (panel administración escuelas: listado editable de alumnos de la escuela)
+     *  (panel administración admin: listado editable de publicaciones)
+     *
+     *  Redirecciona a login si no está autenticado,
+     *      al listado de alumnos propios si está logueado y es escuela
+     *      o al listado de publicaciones para editar si está logueado y es admin
+     */
+    Route::get('/panel-administracion', function () {
         return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos si está logueado
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos o /admin-publicaciones si está logueado
                              //     (definido en Middleware/RedirectIfAuthenticated)
 
     /** Pantallas publicas con POSTs con formularios de email **/
@@ -98,20 +104,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/solicitar-datos-alumno/{id}','MailsController@solicitarDatosAlumno')->name('alumno_solicitar');
 });
 
-// Routes con autenticacion y usuario escuela o admin  (creacion, edicion y eliminacion de alumnos)
+// Escuela: Routes con autenticacion y usuario escuela (creacion, edicion y eliminacion de alumnos)
 Route::group(['middleware' => ['web','auth','role:escuela'],'as' => 'escuela.'], function () {
 
     // Listado de alumnos propios (sólo renderiza pantalla)
-    // ToDo controller que chequee alumnos propios y redireccione a action showListado
     Route::get('/administrar-alumnos','AlumnosController@showListadoEscuela')->name('admin_alumnos');
 
     // GET AJAX lista alumnos de la escuela (resp JSON)
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
-    // ToDo controller que chequee alumnos propios y redireccione a action lista
     Route::get('/alumnos-escuela','AlumnosController@listaEscuela')->name('alumnos_list');
 
     // GET AJAX: Busqueda nombre, apellido, especialidad (resp JSON)
-    // ToDo controller que chequee alumnos propios y redireccione a action lista
     Route::get('/alumnos-escuela/search','AlumnosController@searchEscuela')->name('alumnos_search');
 
     /** Creacion, edicion, eliminación **/
@@ -133,6 +136,13 @@ Route::group(['middleware' => ['web','auth','role:escuela'],'as' => 'escuela.'],
     // });
     // Route::post('/ayuda','MailsController@ayuda');
 
+});
+
+// Publicaciones: Routes con autenticacion y usuario admin (creacion, edicion y eliminacion de publicaciones)
+Route::group(['middleware' => ['web','auth','role:admin'],'as' => 'publicaciones.'], function () {
+    // Listado de alumnos propios (sólo renderiza pantalla)
+    // ToDo action
+    Route::get('/administrar-publicaciones','AlumnosController@showListadoEscuela')->name('admin_publicaciones');
 });
 
 

@@ -49,18 +49,10 @@
                     </li>
                     <hr class="separador-menu">
                     <li>
-                    @if (Auth::user()->hasRole('escuela'))
-                        <a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
+                        <a href="{{ url('/panel-administracion') }}" class="acceder-panel">
                             <span class="glyphicon glyphicon glyphicon-dashboard"></span>
                             <strong>Panel de administración</strong>
                         </a>
-                    @elseif (Auth::user()->hasRole('admin'))
-                        {{-- ToDo link a panel admin  --}}
-                        <a href="#" class="acceder-panel">
-                            <span class="glyphicon glyphicon glyphicon-dashboard"></span>
-                            <strong>ToDo</strong>
-                        </a>
-                    @endif
                     </li>
                     <li>
                         <a href="{{ url('/logout') }}" class="cerrar-sesion ">
@@ -122,18 +114,10 @@
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
     @if (Auth::check())
         <li>
-        @if (Auth::user()->hasRole('escuela'))
-            <a href="{{ url('/acceso-escuela') }}" class="acceder-panel">
+            <a href="{{ url('/panel-administracion') }}" class="acceder-panel">
                 <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
                 <strong>Panel de administración</strong>
             </a>
-        @elseif (Auth::user()->hasRole('admin'))
-            {{-- ToDo: link panel admin --}}
-            <a href="{{ url('#') }}" class="acceder-panel">
-                <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
-                <strong>ToDo...</strong>
-            </a>
-        @endif
         </li>
         <hr class="separador-menu">
     @endif

@@ -35,8 +35,8 @@
                     {{-- <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li> --}}
                 </ul> {{-- .menu-principal --}}
                 <ul class="list-inline nav-list menu-tc-pp text-right">
-                    <li><a href="{{ url('/acceso-escuela')}}">
-                        Panel de administración de institución educativa
+                    <li><a href="{{ url('/panel-administracion')}}">
+                        Panel de administración
                     </a></li>
                     <li><a href="{{ url('/contacto')}}">
                         Contacto

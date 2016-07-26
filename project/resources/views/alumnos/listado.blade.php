@@ -189,7 +189,7 @@
                     <div class="text-center">
                         <strong>Este es el listado público de todos los alumnos cargados en la plataforma.</strong><br>
                         Para ver y administrar los alumnos de su institución educativa:
-                        <a href="{{ url('/acceso-escuela')}}">
+                        <a href="{{ url('/panel-administracion')}}">
                             Panel de administración <span class="glyphicon glyphicon-arrow-right"></span>
                         </a>
                     </div>

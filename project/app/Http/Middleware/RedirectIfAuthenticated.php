@@ -18,7 +18,12 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('escuela.admin_alumnos');
+            if ($request->user()->hasRole('escuela')) {
+                return redirect()->route('escuela.admin_alumnos');
+            }
+            elseif ($request->user()->hasRole('admin')) {
+                return redirect()->route('publicaciones.admin_publicaciones');
+            }
         }
 
         return $next($request);

@@ -8,18 +8,17 @@ class RoleMiddleware
 {
     /**
      * Handle an incoming request.
-     * Chequea si el usuario tiene determinado rol (o es admin)
+     * Chequea si el usuario tiene determinado rol
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param  string|null  $role
      * @return mixed
      */
     public function handle($request, Closure $next,$role = null)
     {
-        // Si no es admin y no tiene el rol indicado, no permite el request
-        if (!$request->user()->hasRole('admin') &&
-                !$request->user()->hasRole($role) ) {
+        // Si no tiene el rol indicado, no permite el request
+        if (!$request->user()->hasRole($role) ) {
             return abort(403);
         }
 

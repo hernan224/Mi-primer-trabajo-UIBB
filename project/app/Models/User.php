@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Publicacion;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -93,6 +94,13 @@ class User extends Authenticatable
      */
     public function alumnos() {
         return $this->hasMany(Alumno::class);
+    }
+
+    /**
+     * Relación 1:M con publicaciones
+     */
+    public function publicaciones() {
+        return $this->hasMany(Publicacion::class);
     }
 
 

@@ -42,7 +42,7 @@ class Escuela extends Model
     ];
 
     public static $image_path = 'media/img/escuelas';
-    // Si sube imagen, esta va a ser guardada en esa carpeta con nombre <id_alumno>.<tipo_img>
+    // Si sube imagen, esta va a ser guardada en esa carpeta con nombre <id_escuela>_randomstring.<tipo_img>
 
 
     /**

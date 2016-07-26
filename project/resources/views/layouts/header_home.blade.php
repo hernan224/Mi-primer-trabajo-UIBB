@@ -46,11 +46,9 @@
         </a>
 
         @if (Auth::check())
-            @if (Auth::user()->hasRole('escuela'))
-                <a href="{{ url('/acceso-escuela') }}" class="btn btn-registro">
-                    <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
-                </a>
-            @endif
+            <a href="{{ url('/panel-administracion') }}" class="btn btn-registro">
+                <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
+            </a>
         @else
             <a href="{{ url('/login') }}" class="btn btn-registro">
                 <span class="glyphicon glyphicon-user"></span> &nbsp; Iniciar sesión
