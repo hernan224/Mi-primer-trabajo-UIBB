@@ -86,7 +86,7 @@ function getAlumnos(pag,filtro) {
         data: url_params,
     })
     .done(function(resp) {
-        renderLista(resp);
+        renderLista(resp,filtro);
         actual_page = resp.current_page;
         $container.removeClass('loading');
         if (!resp.data.length) {
@@ -104,15 +104,17 @@ function getAlumnos(pag,filtro) {
     });
 }
 
-function renderLista(resp) {
+function renderLista(resp, reset_paginado) {
 
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
 
-    // renderizo paginado si no fue renderizado aún
-    // inicialmente va a mostrar la cantidad total de paginas...
-    // al hacer filtro la cantidad de paginas se va a achicar, pero en el paginado no se va a actualizar
-    if (resp.data.length && !$paginado.children().length && resp.last_page > 1) {
+    // si hace un filtro o lo resetea, se deve eliminar el paginado
+    if (reset_paginado) {
+        $paginado.html('').twbsPagination('destroy');
+    }
+    // renderizo paginado si aún no lo hbía hecho, o si se debe resetar. Sólo si hay más de una pagina
+    if (resp.data.length && (!$paginado.children().length || reset_paginado) && resp.last_page > 1) {
         $paginado.twbsPagination({
             totalPages: resp.last_page,
             visiblePages: 5,
@@ -194,7 +196,7 @@ function bindFiltros() {
         $contenedorPrincipal.find('input[type="checkbox"]').attr('checked', false);
         slider_promedio.slider('setValue',[1,10]);
         filtros = {};
-        getAlumnos(1);
+        getAlumnos(1, true); // hay que volver a renderizar la paginación
     });
 
 }
@@ -230,7 +232,7 @@ function filtrar(slider_promedio) {
         filtros.prom_max = promedio[1];
     }
     if(force_get || !$.isEmptyObject(filtros)) {
-        getAlumnos(1,true); //al filtrar siempre elijo la pag 1
+        getAlumnos(1,true); //al filtrar siempre elijo la pag 1 y vuelve a renderizar paginado
     }
 }
 

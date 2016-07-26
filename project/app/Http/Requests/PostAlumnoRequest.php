@@ -30,7 +30,7 @@ class PostAlumnoRequest extends Request
         };
         $this->merge(array_map($trim_if_string, $this->all()));
 
-        $dni_validation = 'required_without:privado|integer|unique:alumnos,dni';
+        $dni_validation = 'required_without:privado|integer|max:99999999|unique:alumnos,dni';
         // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el alumno actual
         $route = $this->route()->getName();
         if ($route == 'escuela.alumno_edit_put') {

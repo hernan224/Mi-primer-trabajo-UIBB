@@ -124,7 +124,7 @@ class AlumnosController extends Controller
         // Ordenamiento
         $this->lista_ordenamiento($request,$query);
 
-        return $query->paginate(21); // retorna JSON automáticamente, paginando el resultado
+        return $query->paginate(18); // retorna JSON automáticamente, paginando el resultado
     }
 
     /**
