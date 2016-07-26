@@ -33,7 +33,7 @@
             fotos : "{{$urls['fotos']}}",
             show : "{{$urls['show']}}",
             search : "{{$urls['search']}}"
-        }
+        };
         @if ($admin_escuela)
             urls.edit = "{{$urls['edit']}}";
             urls.delete = "{{$urls['delete']}}";
@@ -252,11 +252,19 @@
                                     <span class="especialidad">
                                         <strong>Especialidad:</strong> @{{especialidad}}
                                     </span>
+                                    <span class="dato-promedio">
+                                        <strong>Promedio: </strong>
+                                        @{{#if promedio}}
+                                            @{{format_decimal promedio}}
+                                        @{{else}}-@{{/if}}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="ultimo-bloque">
+                            {{-- Promedio no mostrado en administración de alumnos,
+                                y en listado se muestra como una línea de texto
                             <div class="promedio">
                                 <strong class="promedio-titulo">Promedio </strong>
                                 @{{#if promedio}}
@@ -264,7 +272,7 @@
                                 @{{else}}
                                     <span class="promedio-valor">-</span>
                                 @{{/if}}
-                            </div>
+                            </div>--}}
                             <div class="btn-acciones">
                             @if ($admin_escuela)
                                 <a href="{{$urls['edit']}}/@{{id}}" class="btn btn-default btn-editar" data-toggle="tooltip"

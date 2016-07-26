@@ -62,7 +62,7 @@ $(document).ready(function(){
 
     });
     // prevent send form on enter key
-    $(document).on("keypress", ":input:not(textarea)", function(event) {
+    $(document).on("keypress", "form.not(.login-form) :input:not(textarea)", function(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
         }
