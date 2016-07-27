@@ -50,15 +50,6 @@
 
     <div class="container">
         <article class="cargar-alumno">
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ ucfirst($error) }}</li>
-                    @endforeach
-                    </ul>
-                </div>
-            @endif
             {{ Form::model($alumno, [
                 'route' => ($nuevo) ? 'escuela.alumno_nuevo_post' : ['escuela.alumno_edit_put',$id],
                 'method' => ($nuevo) ? 'POST' : 'PUT', 'files' => true,
@@ -68,6 +59,16 @@
                     <h3 class="titulo-seccion">
                         {{ ($nuevo) ? 'Cargar nuevo alumno' : 'Editar alumno' }}
                     </h3>
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ ucfirst($error) }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <fieldset class="row carga-datos-personales">
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nombre') ? ' has-error' : '' }}">

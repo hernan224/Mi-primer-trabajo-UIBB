@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostPublicacionRequest;
 use App\Models\Publicacion;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Auth;
 
 class PublicacionesController extends Controller
 {
@@ -27,6 +27,10 @@ class PublicacionesController extends Controller
      */
     public function lista($categoria = null){
 
+        // ver lista de AlumnosController.
+        // indicar categoria y categoria_text
+        // obtener nombre y apellido de autor
+
         return response()->json(['ToDo']);
     }
 
@@ -36,8 +40,10 @@ class PublicacionesController extends Controller
      * Route: publicaciones.admin_publicaciones - URL: /administrar-publicaciones [GET, role admin]
      */
     public function administrar() {
-        // ToDo
-        $view_data = [];
+
+        $view_data = [
+            'url_images' => asset(Publicacion::$image_path),
+        ];
         return view('publicaciones.administrar',$view_data);
     }
 
@@ -49,11 +55,11 @@ class PublicacionesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($categoria, $id = null)
+    public function show($categoria = null, $id = null)
     {
-        $view_data = [
-            'categoria' => $categoria
-        ];
+        if (!$categoria) {
+            return redirect('/');
+        }
         if (!$id) {
             return redirect('/'.$categoria);
         }
@@ -63,6 +69,7 @@ class PublicacionesController extends Controller
         }
 
         $view_data = [
+            'categoria' => $categoria,
             'id' => $id,
             'publicacion' => $publicacion,
         ];
@@ -100,12 +107,54 @@ class PublicacionesController extends Controller
         // el request hace la validación primero.
         // Si falla se redirige nuevamente a la pantalla que envió el post (action nuevo())
 
-        return redirect()->route('publicaciones.admin_publicaciones');
+        $data_publicacion = $this->getDataPostPublicacion($request);
+        // obtengo autor
+        $autor = Auth::user();
+
+        // creo y guardo publicación, asociada al autor
+        /** @var Publicacion $publicacion */
+        $publicacion = $autor->publicaciones()->create($data_publicacion);
+
+        // guardo imagen en el server si la envió, usando el id de la publicacion creada y un string aleatorio
+        $this->saveImage($request,$publicacion);
+
+        $publicacion->save();
+
+        // redirigir a lista de publicaciones
+        // return redirect()->route('publicaciones.admin_publicaciones');
+        // redirigir a publicación creada
+        return redirect()->route('publicacion_show',[
+            'categoria' => $publicacion->categoria, 'id'=> $publicacion->id
+        ]);
+    }
+
+    protected function getDataPostPublicacion(Request $request) {
+        // Obtengo nombres de atributo de publicacion
+        $publicac_temp = new Publicacion();
+        $atributos_publicacion = $publicac_temp->getFillable();
+        // data recibida del post, correspondiente al modelo publicacion
+        $data_publicacion = $request->only($atributos_publicacion);
+
+        $data_publicacion['borrador'] = (isset($data_publicacion['borrador']) && $data_publicacion['borrador'] == 'si');
+
+        return $data_publicacion;
+    }
+
+    protected function saveImage(Request $request,$publicacion) {
+        /** @var Publicacion $publicacion */
+        // guardo imagen en el server, usando el id de la publicación creada y un string aleatorio
+        if($request->hasFile('imagen') && $request->file('imagen')->isValid() ) {
+            $file = $request->file('imagen');
+            $img_name = $publicacion->id. '_' . str_random(8) . '.' .
+                $file->getClientOriginalExtension();
+            $file->move(public_path(Publicacion::$image_path),$img_name);
+            $publicacion->imagen = $img_name;
+        }
     }
 
     /**
      * Muestra pantalla con form para editar publicación
-     * Route: publicaciones.publicacion_edit - URL: /administrar-publicacion/editar/{id} [GET, role admin]
+     * Route: publicaciones.publicacion_edit - URL: /administrar-publicacion/editar/{id?} [GET, role admin]
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -146,8 +195,17 @@ class PublicacionesController extends Controller
             return redirect()->route('publicaciones.admin_publicaciones');
         }
 
+        $data_publicacion = $this->getDataPostPublicacion($request);
+        // actualizo data alumno
+        $publicacion->update($data_publicacion);
+        // actualizo data curriculum
+        $this->saveImage($request,$publicacion); // guarda imagen de perfil si hay
+        $publicacion->save();
+
         // redirigir a show
-        return redirect()->route('publicacion_show',['id'=> $id]);
+        return redirect()->route('publicacion_show',[
+            'categoria' => $publicacion->categoria, 'id'=> $publicacion->id
+        ]);
     }
 
     /**

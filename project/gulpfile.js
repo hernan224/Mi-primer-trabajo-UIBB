@@ -41,6 +41,10 @@ elixir(function(mix) {
         'listado_alumnos.js'],
         dest+'/js/listado_alumnos.js'
     )
+    .scripts(
+        ['vendor/handlebars-v4.0.5.js','vendor/jquery.twbsPagination.js','listado_publicaciones.js'],
+        dest+'/js/listado_publicaciones.js'
+    )
     // copio css sueltos
     .copy(src+'/css/vendor', dest+'/css/vendor')
     // copio js sueltos

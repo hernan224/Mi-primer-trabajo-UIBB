@@ -93,14 +93,14 @@ class User extends Authenticatable
      * Relación 1:M con Alumnos
      */
     public function alumnos() {
-        return $this->hasMany(Alumno::class);
+        return $this->hasMany(Alumno::class,'docente_id');
     }
 
     /**
      * Relación 1:M con publicaciones
      */
     public function publicaciones() {
-        return $this->hasMany(Publicacion::class);
+        return $this->hasMany(Publicacion::class,'autor_id');
     }
 
 

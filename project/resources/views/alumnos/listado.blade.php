@@ -65,7 +65,7 @@
                         </a>
                     </div> --}}
                 @else
-                {{-- Empresa: Cambiar vista (no se permite crear nuevo ni eliminar)  --}}
+                {{-- Publico: Cambiar vista (no se permite crear nuevo ni eliminar)  --}}
                     <div class="col-md-4 col-sm-3 hidden-xs">
                         <span class="texto-nav texto-vista hidden-sm">Cambiar vista </span>
                         <button type="button" title="Ver como lista" class="btn btn-default btn-cambiar-vista activo" disabled>
