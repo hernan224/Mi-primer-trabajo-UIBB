@@ -56,4 +56,15 @@ class Publicacion extends Model
         else return false;
     }
 
+    /**
+     * Formatea fecha al obtener updated_at
+     * @param $value
+     * @return null|string
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        $date = new \DateTime($value);
+        return $date->format('d/m/Y');
+    }
+
 }

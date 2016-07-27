@@ -268,7 +268,7 @@
     </div>
 
     @if ($editable)
-        @include('alumnos.modal_eliminar',['alumno'=>$alumno])
+        @include('publicaciones.modal_eliminar',['alumno'=>$alumno])
     @endif
     @include('alumnos.modal_solicitar_mail',['alumno_id'=>$alumno->id])
     @include('layouts.spinner')

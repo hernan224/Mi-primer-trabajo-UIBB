@@ -12,8 +12,8 @@ class PublicacionesController extends Controller
 
     /**
      * Pantallas públicas (sin data que obtiene por JSON), definidas en routes:
-     *      - Capacitaciones: URL /capacitaciones - Template publicaciones.capacitaciones
-     *      - Prácticas: URL /practicas - Template publicaciones.practicas
+     *      - Capacitaciones: URL /publicaciones/capacitaciones - Template publicaciones.capacitaciones
+     *      - Prácticas: URL /publicaciones/practicas - Template publicaciones.practicas
      **/
 
     /**
@@ -65,16 +65,10 @@ class PublicacionesController extends Controller
         }
         $publicacion = Publicacion::find($id);
         if (!$publicacion || $publicacion->categoria != $categoria) {
-            return redirect('/'.$categoria);
+            return abort(404);
         }
 
-        $view_data = [
-            'categoria' => $categoria,
-            'id' => $id,
-            'publicacion' => $publicacion,
-        ];
-
-        return view('publicaciones.show',$view_data);
+        return view('publicaciones.show',['publicacion' => $publicacion]);
     }
 
 
@@ -166,7 +160,7 @@ class PublicacionesController extends Controller
         }
         $publicacion = Publicacion::find($id);
         if (!$publicacion) {
-            return redirect()->route('publicaciones.admin_publicaciones');
+            return abort(404);
         }
 
         $view_data = [

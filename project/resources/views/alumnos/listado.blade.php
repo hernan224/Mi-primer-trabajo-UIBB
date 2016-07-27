@@ -414,7 +414,7 @@
     </div>
 
     @if ($admin_escuela)
-        @include('alumnos.modal_eliminar');
+        @include('publicaciones.modal_eliminar');
     @endif
 
 @endsection

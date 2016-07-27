@@ -148,9 +148,10 @@
                         </div>
                         {{ Form::button( ($nuevo) ? 'Crear nota' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
                         @if ($nuevo)
-                            <button type="reset" class="btn btn-link btn-descartar">Descartar</button>
+                            {{--<button type="reset" class="btn btn-link btn-descartar">Descartar</button>--}}
+                            <a href="{{ route('publicaciones.admin_publicaciones') }}" class="btn btn-link btn-descartar">Descartar</a>
                         @else
-                            <a href="{{ route('publicacion_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
+                            <a href="{{ route('publicacion_show',['categoria' => $publicacion->categoria,'id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
                             <a href="#" class="btn btn-link btn-descartar" data-toggle="modal" data-target="#confirmarEliminar">Eliminar nota</a>
                         @endif
                     </div>
@@ -164,6 +165,5 @@
 
     @include('layouts.spinner')
 
-    {{-- ToDo: modal eliminar publicacion --}}
-    @include('alumnos.modal_eliminar',['alumno'=>null])
+    @include('publicaciones.modal_eliminar')
 @endsection

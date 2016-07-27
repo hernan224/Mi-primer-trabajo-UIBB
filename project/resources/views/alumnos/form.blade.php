@@ -418,9 +418,11 @@
                             </div>
                             {{ Form::button( ($nuevo) ? 'Cargar alumno' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
                             @if ($nuevo)
-                                <button type="reset" class="btn btn-link btn-descartar">Descartar</button>
+                                {{--<button type="reset" class="btn btn-link btn-descartar">Descartar</button>--}}
+                                <a href="{{ route('escuela.admin_alumnos') }}" class="btn btn-link btn-descartar">Descartar</a>
                             @else
                                 <a href="{{ route('alumno_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
+                                <a href="#" class="btn btn-link btn-descartar" data-toggle="modal" data-target="#confirmarEliminar">Eliminar nota</a>
                             @endif
                         </div>
                     </section>
@@ -432,6 +434,6 @@
     </div> {{-- ./container --}}
     @include('layouts.spinner')
 
-    @include('alumnos.modal_eliminar',['alumno'=>$alumno])
+    @include('publicaciones.modal_eliminar')
 
 @endsection

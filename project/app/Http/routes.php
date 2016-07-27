@@ -85,18 +85,18 @@ Route::group(['middleware' => 'web'], function () {
 
     /** Listado público de publicaciones: pantallas y lista JSON **/
     // GET pantalla publicaciones categoría capacitaciones
-    Route::get('/capacitaciones', function () {
+    Route::get('/publicaciones/capacitaciones', function () {
         return view('publicaciones.capacitaciones');
-    });
+    })->name('publicaciones_capacitaciones');
     // GET pantalla publicaciones categoría practicas
-    Route::get('/practicas', function () {
+    Route::get('/publicaciones/practicas', function () {
         return view('publicaciones.practicas');
-    });
+    })->name('publicaciones_practicas');
 
     // GET lista publicacion (resp JSON). Parámetro get categoria opcional
-    Route::get('/publicaciones/{categoria?}','PublicacionesController@lista')->name('publicaciones_public_list');
+    Route::get('/publicaciones-list/{categoria?}','PublicacionesController@lista')->name('publicaciones_public_list');
     // GET vista publicación
-    Route::get('/publicacion/{categoria?}/{id?}','PublicacionesController@show')->name('publicacion_show');
+    Route::get('/publicaciones/{categoria?}/{id?}','PublicacionesController@show')->name('publicacion_show');
 
     /** Pantallas públicas con POSTs con formularios de email **/
     // Solicitar acceso - NO USADA

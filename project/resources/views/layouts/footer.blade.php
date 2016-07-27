@@ -23,10 +23,10 @@
                     <li><a href="{{ url('/listado-alumnos') }}">
                         <strong>Acceder a la plataforma</strong>
                     </a></li>
-                    <li><a href="{{ url('/capacitaciones') }}">
+                    <li><a href="{{ route('publicaciones_capacitaciones') }}">
                         <strong>Capacitaciones</strong>
                     </a></li>
-                    <li><a href="{{ url('/practicas') }}">
+                    <li><a href="{{ route('publicaciones_practicas') }}">
                         <strong>Prácticas profesionalizantes</strong>
                     </a></li>
                     <li><a href="{{ url('/instituciones-educativas') }}">

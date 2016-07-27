@@ -13,6 +13,8 @@ return [
     'asertividad' => 'Asertividad',
     'relaciones' => 'Buenas relaciones interpersonales',
     'objetivos' => 'Enfocado en objetivos',
-    'saludable' => 'Hábitos saludables'
+    'saludable' => 'Hábitos saludables',
 
+    'capacitaciones' => 'Capacitaciones',
+    'practicas' => "Prácticas profesionalizantes"
 ];

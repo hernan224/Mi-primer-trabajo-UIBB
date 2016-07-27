@@ -1618,14 +1618,14 @@ input#titulo-info{
       display: flex;
       flex-flow: row nowrap;
 
-      @include media('<desktop'){
+      @include media('<desktop') {
         flex-direction: column;
       }
 
       .datos-personales{
         width: 39%;
 
-        @include media('<desktop'){
+        @include media('<desktop') {
           width: 100%;
         }
       }
@@ -1815,6 +1815,9 @@ main.admin-notas{
   margin-bottom: 3em;
   .dato{
     padding: 0.5em 1.5em 0.5em 0;
+  }
+  .datos-nota {
+    margin: 10px 0 20px;
   }
 }
 

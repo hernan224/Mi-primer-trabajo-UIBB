@@ -7,12 +7,12 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/capacitaciones') }}" class="{{ Request::path() == 'capacitaciones' ? 'activo' : '' }}">
+            <a href="{{ route('publicaciones_capacitaciones') }}" class="{{ Request::path() == 'publicaciones/capacitaciones' ? 'activo' : '' }}">
                 Capacitaciones
             </a>
         </li>
         <li>
-            <a href="{{ url('/practicas') }}" class="{{ Request::path() == 'practicas' ? 'activo' : '' }}">
+            <a href="{{ route('publicaciones_practicas') }}" class="{{ Request::path() == 'publicaciones/practicas' ? 'activo' : '' }}">
                 Prácticas
             </a>
         </li>
@@ -125,10 +125,10 @@
         <li><a href="{{ url('/listado-alumnos') }}" class="acceder-plataforma">
             Acceder a la Plataforma
         </a></li>
-        <li><a href="{{ url('/capacitaciones') }}" class="acceder-plataforma">
+        <li><a href="{{ route('publicaciones_capacitaciones') }}" class="acceder-plataforma">
             Capacitaciones
         </a></li>
-        <li><a href="{{ url('/practicas') }}" class="acceder-plataforma">
+        <li><a href="{{ route('publicaciones_practicas') }}" class="acceder-plataforma">
             Prácticas Profesionalizantes
         </a></li>
         <li><a href="{{ url('/instituciones-educativas') }}" class="acceder-plataforma">

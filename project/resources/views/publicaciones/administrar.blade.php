@@ -152,6 +152,6 @@
     </div> {{-- #contenedorLista --}}
 
     {{-- ToDo modal eliminar publicacion --}}
-    @include('alumnos.modal_eliminar');
+    @include('publicaciones.modal_eliminar');
 
 @endsection
