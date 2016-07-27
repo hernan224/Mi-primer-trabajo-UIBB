@@ -90,7 +90,7 @@ class Publicacion extends Model
      */
     public function getTextoPreviewAttribute() {
         $texto_sin_html = strip_tags($this->texto);
-        return substr($texto_sin_html,0,250);
+        return mb_strimwidth($texto_sin_html,0,250,'...');
     }
 
     /**

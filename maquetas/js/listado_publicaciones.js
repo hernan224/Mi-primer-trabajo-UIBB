@@ -6,16 +6,16 @@
 /* global Handlebars */
 /* global urls */
 
-var template_publicacion, $lista, $paginado,
+var template_publicaciones, $lista, $paginado,
     actual_page = 1, ordenamiento = false;
 
 $(function () {
-    $lista = $('#contenedorLista ul.lista-notas');
-    $paginado =  $('.admin-notas #paginado');
+    $lista = $('.lista-publicaciones');
+    $paginado =  $('#paginado-publicaciones');
 
     // compilo templates
-    var $templatePublicacion = $lista.find('#template-publicacion');
-    template_publicacion = Handlebars.compile($templatePublicacion.html());
+    var $templatePublicacion = $lista.find('#template-publicaciones');
+    template_publicaciones = Handlebars.compile($templatePublicacion.html());
     $templatePublicacion.remove();
 
     // obtengo del server lista de publicacion y renderizo
@@ -24,7 +24,9 @@ $(function () {
     /* Bindeo de eventos */
     bindOrdenamiento();
 
-    bindEliminar();
+    if (urls.destroy) {
+        bindEliminar();
+    }
 });
 
 // en html se setea urls[lists]: url para hacer get
@@ -66,7 +68,7 @@ function getPublicaciones(pag) {
 
 function renderLista(resp) {
 
-    var html_publicaciones = template_publicacion({publicaciones: resp.data});
+    var html_publicaciones = template_publicaciones({publicaciones: resp.data});
     $lista.html(html_publicaciones);
 
     // renderizo paginado si aún no lo había hecho. Sólo si hay más de una pagina
@@ -108,6 +110,9 @@ function bindOrdenamiento() {
 
 function bindEliminar() {
     var $modal = $('#confirmarEliminar.modal');
+
+    if (!$modal.length)
+        return false;
 
     $lista.on('click', '.eliminar-nota', function() {
         var id = $(this).data('id');

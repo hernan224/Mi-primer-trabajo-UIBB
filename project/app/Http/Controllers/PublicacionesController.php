@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostPublicacionRequest;
 use App\Models\Publicacion;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -80,10 +79,7 @@ class PublicacionesController extends Controller
      */
     public function administrar() {
 
-        $view_data = [
-            'url_images' => asset(Publicacion::$image_path),
-        ];
-        return view('publicaciones.administrar',$view_data);
+        return view('publicaciones.administrar');
     }
 
     /**

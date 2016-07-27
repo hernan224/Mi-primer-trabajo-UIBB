@@ -18,7 +18,6 @@
     <script>
         var urls = {
             list: "{{ route('publicaciones_public_list') }}",
-            images: "{{ $url_images }}",
             show: "{{ route('publicacion_show') }}",
             edit: "{{ route('publicaciones.publicacion_edit') }}",
             destroy: "{{ route('publicaciones.publicacion_delete') }}"
@@ -78,7 +77,7 @@
     {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
         Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
     <div class="container">
-    @include('layouts.spinner')
+        @include('layouts.spinner')
         <main class="admin-notas">
             <h3 class="titulo-seccion texto-azul">Administrar notas informativas</h3>
 
@@ -97,9 +96,9 @@
                     </div>
                 </div>
 
-                <ul class="list-unstyled lista-notas">
-                    {{-- Template handlebars: elemento de la lista (publicacion). Por JS se procesa este script y se renderiza con los datos --}}
-                    <script id="template-publicacion" type="text/x-handlebars-template">
+                <ul class="lista-publicaciones list-unstyled lista-notas">
+                    {{-- Template handlebars: elementos de la lista (publicacion). Por JS se procesa este script y se renderiza con los datos --}}
+                    <script id="template-publicaciones" type="text/x-handlebars-template">
                         @{{#each publicaciones}}
                         <li class="item item-nota" data-id="@{{id}}">
                             <div class="info-nota">
@@ -143,11 +142,11 @@
                 </ul>
             </div>
             <nav class="center-flex pagination-wrapper">
-                <ul id="paginado" class="pagination"></ul>
+                <ul id="paginado-publicaciones" class="pagination"></ul>
             </nav>
         </main>
     </div> {{-- #contenedorLista --}}
 
-    @include('publicaciones.modal_eliminar');
+    @include('publicaciones.modal_eliminar')
 
 @endsection
