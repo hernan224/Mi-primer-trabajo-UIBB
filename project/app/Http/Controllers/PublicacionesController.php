@@ -44,7 +44,6 @@ class PublicacionesController extends Controller
         $this->lista_ordenamiento($request,$publicaciones);
 
         return $publicaciones->paginate(10);
-
     }
 
     private function lista_ordenamiento(Request $request,$publicaciones) {
@@ -69,7 +68,40 @@ class PublicacionesController extends Controller
             $publicaciones->orderBy('titulo','ASC');
         else if ($ordenamiento == 'titulo_desc')
             $publicaciones->orderBy('titulo','DESC');
+    }
 
+    /**
+     * Lista de publicaciones para home [JSON público, con preview de texto]
+     * Obtiene las primer 3 publicaciones de cada tipo (capacitaciones y practicas)
+     * Route: publicaciones_home_list - URL: /publicaciones-home [GET]
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listaHome(){
+
+        $capacitaciones = Publicacion::with('autor')
+                            ->where('borrador', false)
+                            ->where('categoria','capacitaciones')
+                            ->orderBy('updated_at','DESC')
+                            ->take(3)->get();
+        $practicas = Publicacion::with('autor')
+                            ->where('borrador', false)
+                            ->where('categoria','practicas')
+                            ->orderBy('updated_at','DESC')
+                            ->take(3)->get();
+
+        $result_array = [
+            'data' => [
+                'capacitaciones' => $capacitaciones,
+                'practicas' => $practicas
+            ]
+        ];
+
+        if (!count($capacitaciones) && !count($practicas)) {
+            $result_array['data']['empty'] = true;
+        }
+
+        return response()->json($result_array);
     }
 
 

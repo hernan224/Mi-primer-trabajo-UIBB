@@ -72,7 +72,7 @@ function renderLista(resp) {
     $lista.html(html_publicaciones);
 
     // renderizo paginado si aún no lo había hecho. Sólo si hay más de una pagina
-    if (resp.data.length && resp.last_page > 1 && !$paginado.children().length) {
+    if ($paginado.length && resp.data.length && resp.last_page > 1 && !$paginado.children().length) {
         $paginado.twbsPagination({
             totalPages: resp.last_page,
             visiblePages: 5,

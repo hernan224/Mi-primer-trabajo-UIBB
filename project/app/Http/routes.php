@@ -95,6 +95,8 @@ Route::group(['middleware' => 'web'], function () {
 
     // GET lista publicacion (resp JSON). Parámetro get categoria opcional
     Route::get('/publicaciones-list/{categoria?}','PublicacionesController@lista')->name('publicaciones_public_list');
+    // GET lista publicaciones para home.
+    Route::get('/publicaciones-home','PublicacionesController@listaHome')->name('publicaciones_home_list');
     // GET vista publicación
     Route::get('/publicaciones/{categoria?}/{id?}','PublicacionesController@show')->name('publicacion_show');
 

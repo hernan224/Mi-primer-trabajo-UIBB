@@ -4,6 +4,18 @@
     @include('layouts.header_home')
 @endsection
 
+{{-- Script para obtener y renderizar ultimas notas informativas --}}
+@section('scripts')
+    @parent
+    <script src="{{ url('js/listado_publicaciones.js') }}"></script>
+    <script>
+        var urls = {
+            list: "{{ route('publicaciones_home_list') }}",
+            show: "{{ route('publicacion_show') }}"
+        };
+    </script>
+@endsection
+
 @section('content')
     <main class="contenido-home">
         <div class="container">
@@ -164,5 +176,108 @@
                 </section>{{-- /.info-contacto --}}
             </div>
         </div>{{-- /.jumbotron.panel-bg-color --}}
+
+        <div class="container">
+            <section class="row info-home ultimas-novedades lista-publicaciones">
+                {{-- Template handlebars. Por JS se procesa este script y se renderiza con los datos obtenidos via AJAX --}}
+                <script id="template-publicaciones" type="text/x-handlebars-template">
+                @{{#unless publicaciones.empty }}
+                    <div class="col-xs-12">
+                        <h2 class="texto-azul titulo-seccion">Últimas Novedades</h2>
+                    </div>
+
+                    @{{#if publicaciones.capacitaciones }}
+                    <div class="col-xs-12 col-sm-6 capacitaciones">
+                        <div class="contenedor-lista vista-listado listado-capacitaciones">
+                            <a href="capacitaciones.html"><h4 class="titulo-seccion texto-azul">
+                                <strong>Capacitaciones</strong>
+                            </h4></a>
+                            <ul class="list-unstyled lista-notas">
+                            @{{#each publicaciones.capacitaciones }}
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota">
+                                            <a href="{{ route('publicacion_show') }}/@{{categoria}}/@{{id}}">
+                                                @{{titulo}}
+                                            </a>
+                                        </h4>
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion">
+                                                <strong>Creado/Editado:</strong> @{{ updated_at }}
+                                            </span>
+                                            <span class="dato autor">
+                                                <strong>Autor:</strong> @{{ autor_nombre }}
+                                            </span>
+                                        </div>
+
+                                        <div class="fila-flex nota-container-cuerpo">
+                                            @{{#if url_imagen}}
+                                            <figure class="nota-img-destacada hidden-xs"
+                                                    style="background-image: url(@{{ url_imagen }})"></figure>
+                                            @{{/if}}
+                                            <p class="descripcion-nota">
+                                                @{{{ texto_preview }}}
+                                            </p>
+                                        </div>
+                                        <a href="{{ route('publicacion_show') }}/@{{categoria}}/@{{id}}" class="nota-ver-mas">
+                                            Seguir leyendo &rightarrow;
+                                        </a>
+                                    </div>
+                                </li>
+                            @{{/each }}
+                            </ul>
+                        </div>
+                    </div>
+                    @{{/if }}
+
+                    @{{#if publicaciones.practicas }}
+                    <div class="col-xs-12 col-sm-6 practicas">
+                        <div class="contenedor-lista vista-listado listado-practicas">
+                            <a href="practicas.html"><h4 class="titulo-seccion texto-azul"><strong>Prácticas
+                                Profesionalizantes</strong>
+                            </h4></a>
+                            <ul class="list-unstyled lista-notas">
+                            @{{#each publicaciones.practicas }}
+                                <li class="item item-nota">
+                                    <div class="info-nota">
+                                        <h4 class="titulo-nota">
+                                            <a href="{{ route('publicacion_show') }}/@{{categoria}}/@{{id}}">
+                                                @{{titulo}}
+                                            </a>
+                                        </h4>
+
+                                        <div class="datos-nota">
+                                            <span class="dato fec-publicacion">
+                                                <strong>Creado/Editado:</strong> @{{ updated_at }}
+                                            </span>
+                                            <span class="dato autor">
+                                                <strong>Autor:</strong> @{{ autor_nombre }}
+                                            </span>
+                                        </div>
+
+                                        <div class="fila-flex nota-container-cuerpo">
+                                            @{{#if url_imagen}}
+                                            <figure class="nota-img-destacada hidden-xs"
+                                                    style="background-image: url(@{{ url_imagen }})"></figure>
+                                            @{{/if}}
+                                            <p class="descripcion-nota">
+                                                @{{{ texto_preview }}}
+                                            </p>
+                                        </div>
+                                        <a href="{{ route('publicacion_show') }}/@{{categoria}}/@{{id}}" class="nota-ver-mas">
+                                            Seguir leyendo &rightarrow;
+                                        </a>
+                                    </div>
+                                </li>
+                            @{{/each }}
+                            </ul>
+                        </div>
+                    </div>
+                    @{{/if }}
+                @{{/unless}}
+                </script>
+            </section>
+        </div>
     </main>
 @endsection
