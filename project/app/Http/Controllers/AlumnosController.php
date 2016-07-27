@@ -62,6 +62,7 @@ class AlumnosController extends Controller
      * Lista de alumnos publicos [JSON]
      * Si usuario es empresa o admin, se listan todos
      * Route: alumnos_public_list - URL: /alumnos [GET]
+     *      Parametros GET:
      *      Puede incluir filtros, ordenamiento o num pag (parametros en request):
      *      page=<number> : es interpretada automaticamente al invocar paginate() en la query
      *

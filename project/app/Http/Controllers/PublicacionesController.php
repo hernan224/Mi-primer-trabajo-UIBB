@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostPublicacionRequest;
 use App\Models\Publicacion;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class PublicacionesController extends Controller
 {
@@ -21,17 +23,54 @@ class PublicacionesController extends Controller
      * Si se indica categoría, se devuelven sólo los de esa categoría
      * Route: publicaciones_public_list - URL: /publicaciones/{categoria?} [GET]
      *      Parametro get categoria opcional
+     *      page=<number> : es interpretada automaticamente al invocar paginate() en la query
      *
+     * @param Request $request
      * @param string $categoria
      * @return \Illuminate\Http\Response
      */
-    public function lista($categoria = null){
+    public function lista(Request $request, $categoria = null){
 
-        // ver lista de AlumnosController.
-        // indicar categoria y categoria_text
-        // obtener nombre y apellido de autor
+        $publicaciones = Publicacion::with('autor');
 
-        return response()->json(['ToDo']);
+        // si usuario no es admin, filtro por atributo borrador
+        if (!Auth::check() || !Auth::user()->hasRole('admin')) {
+            $publicaciones->where('borrador', false);
+        }
+        // Si se define, filtro por categoria
+        if ($categoria) {
+            $publicaciones->where('categoria',$categoria);
+        }
+
+        $this->lista_ordenamiento($request,$publicaciones);
+
+        return $publicaciones->paginate(10);
+
+    }
+
+    private function lista_ordenamiento(Request $request,$publicaciones) {
+        /** @var \Illuminate\Database\Query\Builder $publicaciones */
+        $ordenamiento = $request->query('order');
+
+        if (!$ordenamiento) {
+            // Por defecto, siempre ordeno por fecha desc
+            $publicaciones->orderBy('updated_at','DESC');
+        }
+        else if ($ordenamiento == 'fecha_desc')
+            $publicaciones->orderBy('updated_at','DESC');
+        else if ($ordenamiento == 'fecha_asc')
+            $publicaciones->orderBy('updated_at','ASC');
+
+        else if ($ordenamiento == 'categoria_asc')
+            $publicaciones->orderBy('categoria','ASC');
+        else if ($ordenamiento == 'categoria_desc')
+            $publicaciones->orderBy('categoria','DESC');
+
+        else if ($ordenamiento == 'titulo_asc')
+            $publicaciones->orderBy('titulo','ASC');
+        else if ($ordenamiento == 'titulo_desc')
+            $publicaciones->orderBy('titulo','DESC');
+
     }
 
 

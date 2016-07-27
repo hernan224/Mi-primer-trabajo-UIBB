@@ -39,6 +39,16 @@ class Publicacion extends Model
         'titulo','categoria','texto','borrador'
     ];
 
+    /**
+     * Atributos agregados al serializar
+     */
+    protected $appends = ['autor_nombre','categoria_trans','texto_preview', 'url_imagen'];
+
+    /**
+     * Atributos no incluidos al serializar
+     */
+    protected $hidden = ['texto', 'created_at','imagen','autor'];
+
     public static $image_path = 'media/img/publicaciones';
     // Si sube imagen, esta va a ser guardada en esa carpeta con nombre <id_publicacion>_randomstring.<tipo_img>
 
@@ -67,4 +77,34 @@ class Publicacion extends Model
         return $date->format('d/m/Y');
     }
 
+    /**
+     * Obtener ul imagen: (atributo url_imagen)
+     * @return bool|string
+     */
+    public function getUrlImagenAttribute(){
+        return $this->getUrlImagen();
+    }
+
+    /**
+     * Obtener preview texto (atributo texto_preview)
+     */
+    public function getTextoPreviewAttribute() {
+        $texto_sin_html = strip_tags($this->texto);
+        return substr($texto_sin_html,0,250);
+    }
+
+    /**
+     * Obtener nombre autor (atributo autor_nombre)
+     */
+    public function getAutorNombreAttribute() {
+        return $this->autor->name;
+    }
+
+    /**
+     * Obtener categoría traducida (atributo categoria_trans)
+     * @return string
+     */
+    public function getCategoriaTransAttribute(){
+        return trans('app.'.$this->categoria);
+    }
 }

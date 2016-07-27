@@ -105,16 +105,15 @@ function getAlumnos(pag,filtro) {
 }
 
 function renderLista(resp, reset_paginado) {
-
     var html_alumnos = template_alumno({alumnos: resp.data});
     $lista.html(html_alumnos);
 
-    // si hace un filtro o lo resetea, se deve eliminar el paginado
+    // si hace un filtro o lo resetea, se debe eliminar el paginado
     if (reset_paginado && $paginado.children().length) {
         $paginado.twbsPagination('destroy');
         $paginado.html('');
     }
-    // renderizo paginado si aún no lo hbía hecho, o si se debe resetar. Sólo si hay más de una pagina
+    // renderizo paginado si aún no lo había hecho, o si se debe resetar. Sólo si hay más de una pagina
     if (resp.data.length && resp.last_page > 1 && (!$paginado.children().length || reset_paginado)) {
         $paginado.twbsPagination({
             totalPages: resp.last_page,
@@ -130,7 +129,6 @@ function renderLista(resp, reset_paginado) {
             }
         });
     }
-
 }
 
 function bindOrdenamiento() {

@@ -1308,7 +1308,7 @@ input#titulo-info{
   padding: 0;
   // width: 100%;
 
-  .panel-danger.error, .panel-warning.filtro-vacio, .panel-warning.sin-alumnos {
+  .panel-danger.error, .panel-warning.filtro-vacio, .panel-warning.sin-alumnos, .panel-warning.sin-notas {
     display: none;
   }
 
@@ -1340,6 +1340,11 @@ input#titulo-info{
   }
   &.sin-alumnos {
     .panel-warning.sin-alumnos {
+      display: block;
+    }
+  }
+  &.sin-notas {
+    .panel-warning.sin-notas {
       display: block;
     }
   }
@@ -1804,6 +1809,10 @@ main.admin-notas{
 
   .titulo-seccion{
     padding: 1em 0.5em 0;
+    margin-bottom: 10px;
+  }
+  .panel {
+    margin-top: 30px;
   }
 }
 
