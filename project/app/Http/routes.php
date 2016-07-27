@@ -172,26 +172,26 @@ Route::group(['middleware' => ['web','auth','role:admin'],'as' => 'publicaciones
 
 // ROUTE TEMPORAL PARA EJECUTAR COMANDOS EN SERVIDOR
 // Route::get('/artisan', function () {
-
-    // Artisan::call('cache:clear', [
-    // ]);
-
-    // dump(Artisan::output());
-
-    // Artisan::call('migrate:refresh', [
-    //     '--force' => true
-    // ]);
-    // dump(Artisan::output());
-    // Artisan::call('db:seed', [
-    //     '--force' => true
-    // ]);
-    // dump(Artisan::output());
-
-    // Artisan::call('optimize', [
-    //     '--force' => true
-    // ]);
-
-    // dump(Artisan::output());
+//
+//     Artisan::call('cache:clear', [
+//     ]);
+//
+//     dump(Artisan::output());
+//
+//     Artisan::call('migrate', [
+//         '--force' => true
+//     ]);
+//     dump(Artisan::output());
+//     Artisan::call('db:seed', [
+//         '--force' => true
+//     ]);
+//     dump(Artisan::output());
+//
+//     Artisan::call('optimize', [
+//         '--force' => true
+//     ]);
+//
+//     dump(Artisan::output());
 // });
 
 // ROUTE TEMPORAL PARA PROBAR PDF

@@ -189,7 +189,7 @@
                     @{{#if publicaciones.capacitaciones }}
                     <div class="col-xs-12 col-sm-6 capacitaciones">
                         <div class="contenedor-lista vista-listado listado-capacitaciones">
-                            <a href="capacitaciones.html"><h4 class="titulo-seccion texto-azul">
+                            <a href="{{ route('publicaciones_capacitaciones') }}"><h4 class="titulo-seccion texto-azul">
                                 <strong>Capacitaciones</strong>
                             </h4></a>
                             <ul class="list-unstyled lista-notas">
@@ -234,7 +234,7 @@
                     @{{#if publicaciones.practicas }}
                     <div class="col-xs-12 col-sm-6 practicas">
                         <div class="contenedor-lista vista-listado listado-practicas">
-                            <a href="practicas.html"><h4 class="titulo-seccion texto-azul"><strong>Prácticas
+                            <a href="{{ route('publicaciones_practicas') }}"><h4 class="titulo-seccion texto-azul"><strong>Prácticas
                                 Profesionalizantes</strong>
                             </h4></a>
                             <ul class="list-unstyled lista-notas">

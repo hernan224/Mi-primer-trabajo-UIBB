@@ -20,15 +20,21 @@ class DatabaseSeeder extends Seeder
         // DB::table('escuelas')->delete();
 
         $this->admin_user();
-        $this->escuelas_usuarios();
+//        $this->escuelas_usuarios();
     }
 
     private function admin_user() {
         // Creo admin
         User::create([
-            'name' => 'Administrador',
+            'name' => 'Ramón Administrador',
             'email' => 'admin@mail.com',
             'password' => bcrypt('uibb*2016..'),
+            'role' => 'admin',
+        ]);
+        User::create([
+            'name' => 'Don Admin',
+            'email' => 'admin@uibb.org',
+            'password' => bcrypt('admin'),
             'role' => 'admin',
         ]);
     }
