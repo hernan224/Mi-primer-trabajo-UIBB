@@ -11,16 +11,21 @@ use App\Models\Alumno;
 class MailsController extends Controller
 {
 
-    private $email_uibb = 'info@primer-trabajo.com.ar';
+    // private $email_uibb = 'info@primer-trabajo.com.ar';
+    private $email_uibb = 'mesarseuibb@gmail.com';
 
     public function contacto(Request $request) {
 
         $view_data = $request->all();
+        $email = $view_data['email'];
+        $nombre = $view_data['nombre'];
 
-        Mail::send('emails.contacto', $view_data, function($message)
+        Mail::send('emails.contacto', $view_data, function($message) use ($email,$nombre)
         {
             /** @var Message $message */
-            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Formulario de contacto');
+            $message->to($this->email_uibb, 'UIBB - Primer trabajo')
+                ->replyTo($email, $nombre)
+                ->subject('UIBB Primer trabajo - Formulario de contacto');
         });
 
         return redirect('/');
@@ -105,7 +110,7 @@ class MailsController extends Controller
             Mail::send('emails.solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
             {
                 /** @var Message $message */
-                $message->to($email, $nombre)->subject('Datos del alumno solicitado');
+                $message->to($email, $nombre)->subject('UIBB Primer trabajo - Datos del alumno solicitado');
             });
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'mensaje' =>'No se pudo enviar el email.']);
@@ -116,7 +121,7 @@ class MailsController extends Controller
         Mail::send('emails.copia_solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
         {
             /** @var Message $message */
-            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('Solicitud de datos de alumno');
+            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('UIBB Primer trabajo - Solicitud de datos de alumno');
         });
 
         return response()->json(['status' => 'ok']);
