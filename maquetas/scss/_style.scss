@@ -1686,7 +1686,7 @@ input#titulo-info{
     }
   }
 
-  &.vista-empresa{
+  //&.vista-empresa{
 
     // .ultimo-bloque{
     //   align-self: center;
@@ -1695,7 +1695,7 @@ input#titulo-info{
     // .checkbox{
     //   padding: 0 1em;
     // }
-  }
+  //}
   &.vista-escuela {
     .promedio{
       @include media('<tablet'){
