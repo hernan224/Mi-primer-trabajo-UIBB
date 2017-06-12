@@ -15,7 +15,7 @@
     
   </head>
 
-  <body id="bodyFiltro">
+  <body id="bodyFiltro" class="mostrar-filtros">
   <!--LOGO EN SVG-->
   <svg class="hide-svg">
       <defs>
@@ -993,7 +993,9 @@
           <a href="#" class="btn-cerrar cerrar-filtros">Cerrar</a>
           <div class="filtros-contenido">
               <h3 class="texto-azul">Filtros</h3>
-              <a href="#empty" class="btn-reset reset-filtros disabled" title="Restaurar filtros"><span class="sr-only">Reset</span><span class="glyphicon glyphicon-refresh"></span></a>
+              
+              <a href="#aplicar" class="btn btn-sm btn-filtros aplicar" title="Aplicar Filtros"><span class="sr-only">Aplicar</span><span class="glyphicon glyphicon-ok"></span>&nbsp; <strong>Aplicar</strong></a>
+              <a href="#empty" class="btn btn-sm btn-filtros reset texto-negro" title="Reestablecer filtros"><span class="sr-only">Reset</span><span class="glyphicon glyphicon-refresh"></span>&nbsp; Reestablecer</a>
 
               <div class="modulo-filtro modulo-promedio">
                   <h5 class="text-uppercase texto-azul">Promedio General</h5>
@@ -1004,8 +1006,15 @@
 
               <div class="modulo-filtro">
                   <h5 class="text-uppercase texto-azul">Especialidad</h5>
+                  <select  class="form-control select-filtro" name="filtro-rubro">
+                      <option>Filtrar Rubro</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                  </select>
                   <select  class="form-control select-filtro" name="filtro-especialidad">
-                      <option>1</option>
+                      <option>Filtrar especialidad</option>
                       <option>2</option>
                       <option>3</option>
                       <option>4</option>
