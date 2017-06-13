@@ -416,20 +416,13 @@ figure.container-foto-seccion {
     padding: 1em 0 4em; }
   .header-home .marca-home {
     width: 75%;
-    max-width: 350px;
-    margin: 3em auto; }
-    @media (max-width: 767px) {
-      .header-home .marca-home {
-        max-width: 280px;
-        margin: 2em auto; } }
+    max-width: 280px;
+    margin: 2em auto 1em; }
     .header-home .marca-home .logo-mpt {
       width: 100%; }
   .header-home .mpt-by {
-    margin: 1em auto 5em;
+    margin: 1em auto 3em;
     text-align: center; }
-    @media (max-width: 767px) {
-      .header-home .mpt-by {
-        margin-bottom: 3em; } }
   .header-home .texto-servicio {
     font-size: 16px; }
   .header-home .logo-uibb {
@@ -437,10 +430,11 @@ figure.container-foto-seccion {
     height: 48px;
     vertical-align: 30px; }
   .header-home .btn-acceder {
-    margin: 2em auto 1em; }
+    margin: 1em 0.5em; }
     @media (max-width: 767px) {
       .header-home .btn-acceder {
-        font-size: 15px; } }
+        font-size: 15px;
+        margin: 0.5em; } }
   .header-home .btn-registro {
     font-size: 0.9em;
     background-color: rgba(44, 114, 180, 0.5);
@@ -448,8 +442,28 @@ figure.container-foto-seccion {
     color: #fff;
     width: 90%;
     max-width: 360px;
-    margin: 0.5em auto 1.5em;
-    padding: 0.8em; }
+    margin: 1em 0.5em;
+    padding: 0.8em;
+    -ms-flex-item-align: center;
+    align-self: center; }
+    @media (max-width: 767px) {
+      .header-home .btn-registro {
+        margin: 0.5em; } }
+  .header-home .botones-acceso {
+    width: 90%;
+    max-width: 900px;
+    margin: 1em auto; }
+    .header-home .botones-acceso .fila-flex {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row; }
+      @media (max-width: 767px) {
+        .header-home .botones-acceso .fila-flex {
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+          flex-direction: column; } }
   .header-home .login-nav-home {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #2c72b3), to(rgba(44, 114, 179, 0)));
     background: -webkit-linear-gradient(top, #2c72b3 20%, rgba(44, 114, 179, 0) 100%);
@@ -1682,12 +1696,12 @@ a.btn-cerrar {
     position: fixed;
     z-index: 1020;
     top: 10%;
-    bottom: 10%;
+    bottom: 0;
     right: 0;
     overflow-y: scroll;
     width: 25%;
     max-width: 380px;
-    padding: 2em;
+    padding: 1em 2em 2em;
     -webkit-transform: translate(100%, 0);
     -ms-transform: translate(100%, 0);
     transform: translate(100%, 0);
@@ -1708,7 +1722,7 @@ a.btn-cerrar {
     overflow-y: visible; }
   #bodyFiltro a.cerrar-filtros {
     position: absolute;
-    top: 3em;
+    top: 1.5em;
     right: 1.5em;
     z-index: 1050; }
   #bodyFiltro a.reset-filtros {
