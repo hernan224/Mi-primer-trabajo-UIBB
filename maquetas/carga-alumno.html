@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="css/vendor/normalize.css">
 
-    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,600italic,700italic|Montserrat:400,700'>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
 
@@ -235,18 +235,49 @@
 
                             <div class="form-group col-xs-12">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-12"><label class="input-label" for="especialidad">Especialidad cursada:</label></div>
-                                    <div class="col-md-9 col-sm-8 col-xs-12">
+                                    <div class="col-xs-12"><p><strong>Especialidad cursada:</strong></p></div>
+                                    <div class="col-sm-6 col-xs-12">
+                                       <label class="sr-only input-label" for="especialidad">Rubro:</label> 
+                                        <select class="form-control" name="rubro" id="rubro">
+                                            <option>Elegir Rubro</option>
+                                            <option>Tecnicatura</option>
+                                            <option>Agropecuario</option>
+                                            <option>Industria Pesquera</option>
+                                            <option>Administración</option>
+                                            <option>Gastronomía, Hoteleria y Turismo</option>
+                                            <option>Comunicación e Idiomas</option>
+                                            <option>Construcción, Instalaciones y Servicios</option>
+                                            <option>Cuero y Calzado</option>
+                                            <option>Electrónica y Electricidad</option>
+                                            <option>Industria Gráfica</option>
+                                            <option>Informática</option>
+                                            <option>Carpintería</option>
+                                            <option>Automotores</option>
+                                            <option>Metalmecánica y Metalurgia</option>
+                                            <option>Oficios Artesanales</option>
+                                            <option>Artística</option>
+                                            <option>Industrias Plásticas</option>
+                                            <option>Refrigeración y Climatización</option>
+                                            <option>Salud</option>
+                                            <option>Seguridad  e Higiene y Medioambiente</option>
+                                            <option>Estética</option>
+                                            <option>Textil e Indumentaria</option>                                          
+                                            
+                                        </select>
+                                    </div> <!--/SELECT RUBROS (Estos son todos los rubros enviados)-->
+                                    
+                                    <div class="col-sm-6 col-xs-12">
+                                       <label class="sr-only input-label" for="especialidad">Especialidad:</label> 
                                         <select class="form-control" name="especialidad" id="especialidad">
                                             <option>Elegir especialidad</option>
-                                            <option>Tecnicatura 1</option>
-                                            <option>Tecnicatura 2</option>
-                                            <option>Tecnicatura 3</option>
-                                            <option>Tecnicatura 4</option>
+                                            <option>Especialidad 1</option>
+                                            <option>Especialidad 2</option>
+                                            <option>Especialidad 3</option>
+                                            <option>Especialidad 4</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div> <!--/input especialidad cursada (CAMBIAR POR SELECT CON EL LISTADO DE TECNICATURAS)-->
+                            </div> <!--/select Especialidad (Cambiar de forma dinámica las especialidades, según el rubro elegido. Información enviada en Excel.)-->
 
                             <div class="form-group col-sm-6 col-xs-12">
                                 <label class="sr-only input-label small" for="promedioGeneral">Promedio general</label>
@@ -264,7 +295,8 @@
                             <div class="form-group col-sm-6 col-xs-12">
                                 <label class="sr-only input-label small" for="entidadTerciaria">¿Dónde se desarrollaron?</label>
                                 <input type="text" class="form-control" name="lugar-desarrollo" id="entidadTerciaria" placeholder="¿Dónde se desarrollaron?">
-                            </div> <!--/input lugar desarrollo practica profesional-->
+                            </div> <!--/input lugar desarrollo practica profesional-->                            
+                            
 
                             <div class="form-group col-xs-12 estudios-superiores">
                                 <div class="radio">
@@ -288,6 +320,11 @@
                                 <label class="sr-only input-label small" for="entidadSuperior">Entidad Educativa</label>
                                 <input type="text" class="form-control" name="entidad-superior" id="entidadSuperior" placeholder="Entidad Educativa">
                             </div> <!--/input entidad educativa superior-->
+
+                            <div class="form-group col-xs-12">
+                                <label class="sr-only input-label small" for="formacionComplementaria">Formación Complementaria</label>
+                                <input type="text" class="form-control" name="formacion-complementaria" id="formacionComplementaria" placeholder="Formación Complementaria">
+                            </div> <!--/input formación complementaria-->
                         </fieldset> <!--/fieldset datos curriculares-->
 
                         <fieldset class="carga-info-adicional row">
@@ -505,7 +542,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 
 <script src='js/vendor/moment.min.js'></script>
 <script src='js/vendor/moment.locale.es.js'></script>
