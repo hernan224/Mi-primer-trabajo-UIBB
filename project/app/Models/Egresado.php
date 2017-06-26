@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder;
  * App\Models\Egresado
  *
  * @property integer $id
+ * @property integer $tipo
  * @property integer $institucion_id
  * @property integer $docente_id
  * @property integer $dni
@@ -31,6 +32,7 @@ use Illuminate\Database\Query\Builder;
  * @property-read \App\Models\Institucion $institucion
  * @property-read \App\Models\User $docente
  * @method static Builder|Egresado whereId($value)
+ * @method static Builder|Egresado whereTipo($value)
  * @method static Builder|Egresado whereInstitucionId($value)
  * @method static Builder|Egresado whereDocenteId($value)
  * @method static Builder|Egresado whereDni($value)
@@ -53,8 +55,9 @@ use Illuminate\Database\Query\Builder;
  */
 class Egresado extends Model
 {
-    const TIPO_TECNICO = 'tecnico';
-    const TIPO_OFICIO = 'oficio';
+    // Tipos de egresado
+    const TIPO_TECNICO = 1;
+    const TIPO_OFICIO = 2;
 
     protected $table = 'egresados';
 
@@ -62,7 +65,7 @@ class Egresado extends Model
         'dni','nombre','apellido','sexo','nacimiento','nacionalidad',
         'domicilio','localidad','barrio','tel_fijo','celular','email',
         //'facebook','twitter','linkedin'
-        'privado'
+        'privado', 'tipo'
     ];
 
     public static $image_path = 'media/img/egresados';

@@ -11,6 +11,7 @@ use Illuminate\Database\Query\Builder;
  * Institucion educativa: institucion técnica o centro de formación profesional (según tipo)
  *
  * @property integer $id
+ * @property integer $tipo
  * @property string $name
  * @property string $direccion
  * @property string $telefono
@@ -22,6 +23,7 @@ use Illuminate\Database\Query\Builder;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Egresado[] $egresados
  * @method static Builder|Institucion whereId($value)
+ * @method static Builder|Institucion whereTipo($value)
  * @method static Builder|Institucion whereName($value)
  * @method static Builder|Institucion whereDireccion($value)
  * @method static Builder|Institucion whereTelefono($value)
@@ -34,8 +36,9 @@ use Illuminate\Database\Query\Builder;
  */
 class Institucion extends Model
 {
-    const TIPO_ESCUELA_TECNINCA = 'escuela_tecnica';
-    const TIPO_CENTRO_FORMACION = 'centro_formacion';
+    // Tipos de institución (contienen egresados del mismo tipo)
+    const TIPO_ESCUELA_TECNICA = 1;
+    const TIPO_CENTRO_FORMACION = 2;
 
     protected $table = 'instituciones';
 
@@ -45,7 +48,7 @@ class Institucion extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'direccion', 'telefono','localidad','email','foto'
+        'name', 'direccion', 'telefono','localidad','email','foto', 'tipo'
     ];
 
     public static $image_path = 'media/img/instituciones';

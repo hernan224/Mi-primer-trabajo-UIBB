@@ -52,7 +52,7 @@ class RenameTablesEgresadosInstituciones extends Migration
     public function down()
     {
         // Quito tipo enum para poder hacer cambios
-        DB::statement('ALTER TABLE alumnos CHANGE sexo sexo TINYTEXT CHARACTER SET utf8 NOT NULL');
+        DB::statement('ALTER TABLE egresados CHANGE sexo sexo TINYTEXT CHARACTER SET utf8 NOT NULL');
         // Elimino foreign keys
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_institucion_id_foreign');
@@ -80,6 +80,6 @@ class RenameTablesEgresadosInstituciones extends Migration
             $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
         });
         // Restore tipo enum
-        DB::statement("ALTER TABLE egresados CHANGE sexo sexo ENUM('m','f')");
+        DB::statement("ALTER TABLE alumnos CHANGE sexo sexo ENUM('m','f')");
     }
 }
