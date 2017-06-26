@@ -1006,9 +1006,9 @@ button[type="submit"].btn-primary{
   }
 }
 
-//Carga de datos de alumno
-.cargar-alumno,
-.editar-alumno,
+//Carga de datos de egresado
+.cargar-egresado,
+.editar-egresado,
 .cargar-nota{
   margin: 1.5em auto;
 
@@ -1047,7 +1047,7 @@ button[type="submit"].btn-primary{
     flex-direction: column;
   }
 
-  .foto-alumno{
+  .foto-egresado{
     width: 220px;
     height: 220px;
     background-image: url(../img/foto-alumno-back.png);
@@ -1251,8 +1251,8 @@ input#titulo-info{
   margin-bottom: 1.5em;
 }
 
-//Elementos Alumnos
-.foto-alumno{
+//Elementos egresados
+.foto-egresado{
   margin: 0 auto;
 
   &.sin-foto.masculino{
@@ -1294,7 +1294,7 @@ input#titulo-info{
   }
 }
 
-.nombre-alumno,
+.nombre-egresado,
 .titulo-nota{
   font-weight: 700;
   a:hover {
@@ -1302,11 +1302,11 @@ input#titulo-info{
   }
 }
 
-.datos-alumno{
+.datos-egresado{
   span{
     margin: 0.5em 0;
     display: inline-block;
-    &.escuela,&.especialidad {
+    &.institucion,&.especialidad {
       display: block;
     }
   }
@@ -1321,13 +1321,13 @@ input#titulo-info{
   margin-left: 0.5em;
 }
 
-//Listado de alumnos
+//Listado de egresados
 .contenedor-lista{
   margin: 1.5em auto 0;
   padding: 0;
   // width: 100%;
 
-  .panel-danger.error, .panel-warning.filtro-vacio, .panel-warning.sin-alumnos, .panel-warning.sin-notas {
+  .panel-danger.error, .panel-warning.filtro-vacio, .panel-warning.sin-egresados, .panel-warning.sin-notas {
     display: none;
   }
 
@@ -1340,7 +1340,7 @@ input#titulo-info{
     .spinner-container {
       display: block;
     }
-    ul.lista-alumnos {
+    ul.lista-egresados {
       display: none;
     }
     ul.pagination {
@@ -1357,8 +1357,8 @@ input#titulo-info{
       display: block;
     }
   }
-  &.sin-alumnos {
-    .panel-warning.sin-alumnos {
+  &.sin-egresados {
+    .panel-warning.sin-egresados {
       display: block;
     }
   }
@@ -1369,7 +1369,7 @@ input#titulo-info{
   }
 
 
-  ul.lista-alumnos,
+  ul.lista-egresados,
   ul.lista-instituciones,
   ul.lista-notas
   {
@@ -1381,7 +1381,7 @@ input#titulo-info{
   }
 
   li.item,
-  li.item-alumno{
+  li.item-egresado{
     width: 32%;
     margin: 1em (2/3 * 1%);
     padding: 1.25em 0.75em 0;
@@ -1420,7 +1420,7 @@ input#titulo-info{
       //   display: block;
       // }
 
-      .nombre-alumno a,
+      .nombre-egresado a,
       .titulo-nota a{
         color: $azul;
       }
@@ -1432,12 +1432,12 @@ input#titulo-info{
   }
 
   .foto-item,
-  .foto-alumno{
+  .foto-egresado{
     width: 160px;
     height: 160px;
   }
 
-  .nombre-alumno,
+  .nombre-egresado,
   .titulo-nota{
     font-size: 1.5em;
     //font-size: 21px;
@@ -1466,7 +1466,7 @@ input#titulo-info{
     }
   }
 
-  .info-alumno{
+  .info-egresado{
     margin-bottom: 1em;
   }
 
@@ -1545,7 +1545,7 @@ input#titulo-info{
   &.vista-listado{
 
     li.item,
-    li.item-alumno{
+    li.item-egresado{
       width: 100%;
       margin: 1em auto;
       padding: 0;
@@ -1586,7 +1586,7 @@ input#titulo-info{
       }
     }
 
-    .link-foto-alumno,
+    .link-foto-egresado,
     .foto-no-link{
       align-self: center;
       flex-shrink: 0;
@@ -1596,7 +1596,7 @@ input#titulo-info{
       }
     }
 
-    .foto-alumno{
+    .foto-egresado{
       width: 135px;
       height: 135px;
       margin-right: 1.5em;
@@ -1608,11 +1608,11 @@ input#titulo-info{
       }
     }
 
-    .nombre-alumno,
+    .nombre-egresado,
     .titulo-nota{
       text-align: left;
     }
-    .info-alumno{
+    .info-egresado{
       flex: 1;
       margin-bottom: 0;
     }
@@ -1637,7 +1637,7 @@ input#titulo-info{
       margin-top: 0.5em;
     }
 
-    .datos-alumno,
+    .datos-egresado,
     .datos-nota{
       display: flex;
       flex-flow: row nowrap;
@@ -1715,7 +1715,7 @@ input#titulo-info{
     //   padding: 0 1em;
     // }
   //}
-  &.vista-escuela {
+  &.vista-institucion {
     .promedio{
       @include media('<tablet'){
         display: none;
@@ -1855,11 +1855,11 @@ main.admin-notas{
   }
 }
 
-// Alumno individual
-.alumno-individual{
+// egresado individual
+.egresado-individual{
   // margin-top: 1.5em;
 
-  .alumno-info-principal{
+  .egresado-info-principal{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -1878,7 +1878,7 @@ main.admin-notas{
     }
   }
 
-  .foto-alumno{
+  .foto-egresado{
     width: 220px;
     height: 220px;
     margin: 1.5em auto;
@@ -1889,7 +1889,7 @@ main.admin-notas{
     }
   }
 
-  .info-alumno{
+  .info-egresado{
     width: 68%;
     margin-bottom: 1.5em;
 
@@ -1901,7 +1901,7 @@ main.admin-notas{
     }
   }
 
-  .datos-alumno{
+  .datos-egresado{
     span{
       margin: 0.5em 1.5em 0.5em 0;
     }
@@ -1944,7 +1944,7 @@ main.admin-notas{
       //padding: 1.5em;
       margin-bottom: 1.5em;
 
-      &.contacto-alumno{
+      &.contacto-egresado{
         border-top: none;
       }
 
@@ -2711,10 +2711,10 @@ body.esperando{
     opacity: 0;
   }
 }
-.label-select-carga-alumno {
+.label-select-carga-egresado {
   line-height: 2.5;
 }
-.select-carga-alumno {
+.select-carga-egresado {
   margin-bottom: 0;
 }
 

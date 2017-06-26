@@ -1,16 +1,16 @@
-{{-- Listado de alumnos (sólo vista y template. La data se obtiene via AJAX).
-    Cambia si es listado publico o de escuela
-    URL listado publico: /listado-alumnos  [parametro $admin_escuela: false]
-    URL listado escuela: /administrar-alumnos (route: escuela.admin_alumnos) [parametro $admin_escuela: true]
+{{-- Listado de egresados (sólo vista y template. La data se obtiene via AJAX).
+    Cambia si es listado publico o de institucion
+    URL listado publico: /listado-egresados  [parametro $admin_institucion: false]
+    URL listado institucion: /administrar-egresados (route: institucion.admin_egresados) [parametro $admin_institucion: true]
 --}}
 
 @extends('layouts.base')
 
 @section('title')
-    @if ($admin_escuela)
+    @if ($admin_institucion)
         Panel de administración
     @else
-        Listado de alumnos
+        Listado de egresados
     @endif
 @endsection
 
@@ -26,7 +26,7 @@
 @section('scripts')
     @parent
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.5/bootstrap-slider.min.js'></script>
-    <script src="{{ url('js/listado_alumnos.js') }}"></script>
+    <script src="{{ url('js/listado_egresados.js') }}"></script>
     <script>
         var urls = {
             list : "{{$urls['get_list']}}",
@@ -34,7 +34,7 @@
             show : "{{$urls['show']}}",
             search : "{{$urls['search']}}"
         };
-        @if ($admin_escuela)
+        @if ($admin_institucion)
             urls.edit = "{{$urls['edit']}}";
             urls.delete = "{{$urls['delete']}}";
         @endif
@@ -47,10 +47,10 @@
         <nav class="nav-listado">
             <div class="container">
                 <div class="row">
-                @if ($admin_escuela)  {{-- sólo si es listado de escuela --}}
+                @if ($admin_institucion)  {{-- sólo si es listado de institucion --}}
                 {{-- Boton nuevo (eliminar no lo incluyo) --}}
                     <div class="col-md-2 col-sm-3 col-xs-6">
-                        <a id="crearNuevo" href="{{ route('escuela.alumno_nuevo')}}" class="link-nav-listado">
+                        <a id="crearNuevo" href="{{ route('institucion.egresado_nuevo')}}" class="link-nav-listado">
                             <span class="glyphicon glyphicon-file"></span>
                             <span class="texto-nav">Nuevo</span>
                         </a>
@@ -77,7 +77,7 @@
                     </div> {{-- contenedor cambiar vista --}}
                 @endif
 
-                    <div class="col-md-2 col-sm-2 {{ ($admin_escuela) ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
+                    <div class="col-md-2 col-sm-2 {{ ($admin_institucion) ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
                         <div class="dropdown">
                         <form>
                             <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
@@ -96,10 +96,10 @@
                                     <option value="nac">Edad</option>
                                     <option value="loc">Localidad</option>
                                     <option value="bar">Barrio</option>
-                                @if ($admin_escuela)
+                                @if ($admin_institucion)
                                     <option value="doc">Docente</option>
                                 @else
-                                    <option value="esc">Escuela</option>
+                                    <option value="inst">Escuela</option>
                                 @endif
                                 </select>
 
@@ -126,9 +126,9 @@
                         </a>
                     </div> {{-- btn filtro --}}
 
-                    <div class="busqueda col-md-4 col-sm-5 {{ $admin_escuela ? 'col-xs-12' : 'col-xs-6' }}">
+                    <div class="busqueda col-md-4 col-sm-5 {{ $admin_institucion ? 'col-xs-12' : 'col-xs-6' }}">
                         <div class="input-group buscar-listado">
-                            <input id="search-alumnos" type="text" class="form-control input-buscar" placeholder="Buscar">
+                            <input id="search-egresados" type="text" class="form-control input-buscar" placeholder="Buscar">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-buscar" type="button">
                                     <span class="sr-only">Buscar</span>
@@ -139,11 +139,11 @@
                         <div class="dropdown">
                             <div id="lista-busqueda" class="dropdown-menu list-group">
                                 <script id="template-busqueda" type="text/x-handlebars-template">
-                                    @{{#each alumnos}}
+                                    @{{#each egresados}}
                                     <a href="{{$urls['show']}}/@{{id}}" class="list-group-item">
                                         <h4 class="list-group-item-heading">@{{nombre}} @{{apellido}}</h4>
                                         <span class="list-group-item-text">@{{especialidad}}</span>
-                                        <span class="list-group-item-text">@{{escuela}}</span>
+                                        <span class="list-group-item-text">@{{institucion}}</span>
                                     </a>
                                     @{{/each}}
                                 </script>
@@ -156,14 +156,14 @@
             </div>
         </nav>
         {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
-            Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
-        <div id="contenedorLista" class="container contenedor-lista vista-listado loading {{ ($admin_escuela) ? 'vista-escuela' : 'vista-empresa' }}">
+            Cuando se cargan y renderizan los egresados, se quita la clase. --}}
+        <div id="contenedorLista" class="container contenedor-lista vista-listado loading {{ ($admin_institucion) ? 'vista-institucion' : 'vista-empresa' }}">
             @include('layouts.spinner')
 
             <!--ERROR-->
             <div class="error panel panel-danger">
                 <div class="panel-body bg-danger text-center">
-                    <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o
+                    <strong>Ocurrió un error al obtener el listado de egresados. Por favor, recargue la página o
                         intente de nuevo más tarde.</strong>
                 </div>
             </div>
@@ -174,21 +174,21 @@
                 </div>
             </div>
             <!--ADVERTENCIA-->
-            <div class="sin-alumnos panel panel-warning">
+            <div class="sin-egresados panel panel-warning">
                 <div class="panel-body bg-warning text-center">
-                    @if ($admin_escuela)
-                    <strong>Aún no se han cargado alumnos de esta escuela.</strong>
+                    @if ($admin_institucion)
+                    <strong>Aún no se han cargado egresados de esta institución.</strong>
                     @else
-                    <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más tarde.</strong>
+                    <strong>Por el momento no existen egresados para mostrar. Por favor, intente de nuevo más tarde.</strong>
                     @endif
                 </div>
             </div>
 
-            @if (!$admin_escuela && Auth::check())
-                @if (Auth::user()->hasRole('escuela'))
+            @if (!$admin_institucion && Auth::check())
+                @if (Auth::user()->hasRole('institucion'))
                     <div class="text-center">
-                        <strong>Este es el listado público de todos los alumnos cargados en la plataforma.</strong><br>
-                        Para ver y administrar los alumnos de su institución educativa:
+                        <strong>Este es el listado público de todos los egresados cargados en la plataforma.</strong><br>
+                        Para ver y administrar los egresados de su institución educativa:
                         <a href="{{ url('/panel-administracion')}}">
                             Panel de administración <span class="glyphicon glyphicon-arrow-right"></span>
                         </a>
@@ -196,23 +196,23 @@
                 @endif
             @endif
 
-            <ul class="list-unstyled lista-alumnos">
-                {{-- Template handlebars: elemento de la lista (alumno). Por JS se procesa este script y se renderiza con los datos --}}
-                <script id="template-alumno" type="text/x-handlebars-template">
-                    @{{#each alumnos}}
-                    <li class="item-alumno @{{#if privado}}alumno-privado bg-warning@{{/if}}" data-id="@{{id}}">
-                        <a class="link-foto-alumno" href="{{$urls['show']}}/@{{id}}">
+            <ul class="list-unstyled lista-egresados">
+                {{-- Template handlebars: elemento de la lista (egresado). Por JS se procesa este script y se renderiza con los datos --}}
+                <script id="template-egresado" type="text/x-handlebars-template">
+                    @{{#each egresados}}
+                    <li class="item-egresado @{{#if privado}}egresado-privado bg-warning@{{/if}}" data-id="@{{id}}">
+                        <a class="link-foto-egresado" href="{{$urls['show']}}/@{{id}}">
                             @{{#if foto}}
                                 {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
-                                <figure class="foto-bg foto-alumno" style="background-image: url('{{$urls['fotos']}}/@{{foto}}');"></figure>
+                                <figure class="foto-bg foto-egresado" style="background-image: url('{{$urls['fotos']}}/@{{foto}}');"></figure>
                             @{{else}}
                                 {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
-                                <figure class="foto-bg foto-alumno sin-foto @{{#if_eq sexo 'm'}}masculino@{{else}}femenino@{{/if_eq}}"></figure>
+                                <figure class="foto-bg foto-egresado sin-foto @{{#if_eq sexo 'm'}}masculino@{{else}}femenino@{{/if_eq}}"></figure>
                             @{{/if}}
                         </a>
 
-                        <div class="info-alumno">
-                            <h4 class="nombre-alumno">
+                        <div class="info-egresado">
+                            <h4 class="nombre-egresado">
                                 <a href="@{{#if privado}}{{$urls['edit']}}@{{else}}{{$urls['show']}}@{{/if}}/@{{id}}">
                                     @{{nombre}} @{{apellido}}
                                     @{{#if privado}}
@@ -224,9 +224,9 @@
                                 </a>
                             </h4>
 
-                            <div class="datos-alumno">
+                            <div class="datos-egresado">
                                 <div class="datos-personales">
-                                @if ($admin_escuela)
+                                @if ($admin_institucion)
                                     <span class="fec-nac">
                                         <strong>Creado/Editado:</strong> @{{format_date updated_at}}
                                     </span>
@@ -246,13 +246,13 @@
                                 @endif
                                 </div>
                                 <div class="datos-academicos">
-                                    <span class="escuela">
-                                        <strong>Servicio Educativo:</strong> @{{escuela}}
+                                    <span class="institucion">
+                                        <strong>Servicio Educativo:</strong> @{{institucion}}
                                     </span>
                                     <span class="especialidad">
                                         <strong>Especialidad:</strong> @{{especialidad}}
                                     </span>
-                                    @if (!$admin_escuela)
+                                    @if (!$admin_institucion)
                                     <span class="dato-promedio">
                                         <strong>Promedio: </strong>
                                         @{{#if promedio}}
@@ -265,7 +265,7 @@
                         </div>
 
                         <div class="ultimo-bloque">
-                            {{-- Promedio no mostrado en administración de alumnos,
+                            {{-- Promedio no mostrado en administración de egresados,
                                 y en listado se muestra como una línea de texto
                             <div class="promedio">
                                 <strong class="promedio-titulo">Promedio </strong>
@@ -276,19 +276,19 @@
                                 @{{/if}}
                             </div>--}}
                             <div class="btn-acciones">
-                            @if ($admin_escuela)
+                            @if ($admin_institucion)
                                 <a href="{{$urls['edit']}}/@{{id}}" class="btn btn-default btn-editar" data-toggle="tooltip"
-                                   data-placement="bottom" title="Editar alumno">
+                                   data-placement="bottom" title="Editar egresado">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="#" class="btn btn-default btn-eliminar eliminar-alumno" data-toggle="tooltip"
-                                   data-placement="bottom" title="Eliminar alumno" data-id="@{{id}}">
+                                <a href="#" class="btn btn-default btn-eliminar eliminar-egresado" data-toggle="tooltip"
+                                   data-placement="bottom" title="Eliminar egresado" data-id="@{{id}}">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
                                 {{-- ToDo: reemplazar boton eliminar por cambiar privado o publico
                                 Si es publico, boton cambiar a privado: [POST AJAX]
                                     <a href="#" class="btn btn-default btn-privado" data-toggle="tooltip"
-                                       data-placement="bottom" title="Mantener alumno como privado">
+                                       data-placement="bottom" title="Mantener egresado como privado">
                                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                                     </a>
                                 Si es privado, boton cambiar a publico: [POST AJAX]
@@ -298,7 +298,7 @@
                                     </a>
                                 --}}
                             @else
-                                <a href="{{route('alumno_pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
+                                <a href="{{route('egresado_pdf')}}/@{{id}}" class="btn btn-default btn-descargar" data-toggle="tooltip"
                                    data-placement="bottom" title="Descargar CV como PDF">
                                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                                 </a>
@@ -350,10 +350,10 @@
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Servicio educativo</h5>
-                    <select class="form-control select-filtro filtro-simple" data-filtro='esc'>
+                    <select class="form-control select-filtro filtro-simple" data-filtro='inst'>
                         <option value=""></option>
-                    @foreach ($escuelas as $escuela)
-                        <option value="{{$escuela->id}}">{{$escuela->name}}</option>
+                    @foreach ($instituciones as $institucion)
+                        <option value="{{$institucion->id}}">{{$institucion->name}}</option>
                     @endforeach
                     </select>
                 </div>
@@ -413,7 +413,7 @@
         </div> {{-- .filtros-contendor --}}
     </div>
 
-    @if ($admin_escuela)
+    @if ($admin_institucion)
         @include('publicaciones.modal_eliminar')
     @endif
 

@@ -7,12 +7,12 @@
                 <h4 class="modal-title texto-azul">Confirmar eliminación</h4>
             </div>
             <div class="modal-body">
-                <p>¿Está seguro que quiere eliminar el curriculum del alumno?</p>
+                <p>¿Está seguro que quiere eliminar el currículum del egresado?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
-                @if (isset($alumno))
-                    <a href="{{ route('escuela.alumno_delete',['id'=> $alumno->id])}}" class="btn btn-primary">SI</a>
+                @if (isset($egresado))
+                    <a href="{{ route('institucion.egresado_delete',['id'=> $egresado->id])}}" class="btn btn-primary">SI</a>
                 @else
                     <button type="button" class="btn btn-primary" id="confirmar-eliminar">SI</button>
                 @endif

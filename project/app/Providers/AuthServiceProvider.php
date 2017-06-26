@@ -27,18 +27,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        $gate->define('edit-alumno', function ($user, $alumno) {
+        $gate->define('edit-egresado', function ($user, $egresado) {
             /** @var User $user */
             if (!$user->puedeEditar())
                 return false;
-            // si no, es docente, verifico que el alumno sea de su escuela
-            return $user->escuela->id == $alumno->escuela_id;
+            // si no, es docente, verifico que el egresado sea de su institucion
+            return $user->institucion->id == $egresado->institucion_id;
         });
 
-        $gate->define('show-alumno-privado', function ($user, $alumno) {
-            // chequeo que sea de la escuela del usuario
+        $gate->define('show-egresado-privado', function ($user, $egresado) {
+            // chequeo que sea de la institucion del usuario
             /** @var User $user */
-            return $user->hasRole('escuela') && $user->escuela->id == $alumno->escuela_id;
+            return $user->hasRole('institucion') && $user->institucion->id == $egresado->institucion_id;
         });
     }
 }

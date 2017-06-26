@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                <a href="{{url('/listado-alumnos')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
+                <a href="{{url('/listado-egresados')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
                     Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
                 </a>
 

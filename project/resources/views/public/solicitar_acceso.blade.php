@@ -81,7 +81,7 @@
 
 
                     <div role="tabpanel" class="tab-pane panel-bg-color" id="recuInstituciones">
-                        <form action="{{url('/solicitar-acceso/escuela')}}" method="POST" role="form"
+                        <form action="{{url('/solicitar-acceso/institucion')}}" method="POST" role="form"
                               class="recu-form instituciones-recu form-mpt form-invertido">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

@@ -10,7 +10,7 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
 
-    //Lanzar modal para confirmar eliminación de alumno
+    //Lanzar modal para confirmar eliminación de egresado
     var $modalEliminar = $('#confirmarEliminar');
     $('.btn-eliminar').on('click', function(e){
         e.preventDefault();
@@ -27,7 +27,7 @@ $(document).ready(function(){
         $modalSolicitar.modal();
     });
     // POST AJAX envío de mail
-    $modalSolicitar.find('button#solicitar-datos-alumno').click(function() {
+    $modalSolicitar.find('button#solicitar-datos-egresado').click(function() {
         var url = $formSolicitar.attr('action');
         $('.spinner-container').show();
         $.ajax({

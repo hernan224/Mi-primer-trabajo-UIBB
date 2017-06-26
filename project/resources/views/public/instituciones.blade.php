@@ -25,29 +25,29 @@
 
         <div class="contenedor-lista vista-listado listado-instituciones">
             <ul class="list-unstyled lista-2col">
-            @foreach ($escuelas as $escuela)
+            @foreach ($instituciones as $institucion)
                 <li class="item">
-                    @if ($escuela->foto)
+                    @if ($institucion->foto)
                         {{-- Si hay foto, indico background_image: concateno el url de fotos recibido de parametro, y el nombre de archivo de la foto --}}
-                        <figure class="foto-bg foto-item foto-no-link foto-institucion" style="background-image: url('{{$escuela->getUrlFoto()}}'); border-radius: 0;"></figure>
+                        <figure class="foto-bg foto-item foto-no-link foto-institucion" style="background-image: url('{{$institucion->getUrlFoto()}}'); border-radius: 0;"></figure>
                     @else
                         {{-- Si no hay foto, se muestra foto generica desde CSS. --}}
                         <figure class="foto-bg foto-item foto-no-link foto-institucion sin-foto"></figure>
                     @endif
 
                     <div class="info-item">
-                        <h4 class="texto-azul">{{$escuela->name}}</h4>
+                        <h4 class="texto-azul">{{$institucion->name}}</h4>
 
                         <div class="item-datos">
-                            <p><strong>Ciudad:</strong> {{$escuela->localidad}}</p>
-                            @if($escuela->direccion)
-                            <p><strong>Dirección:</strong> {{$escuela->direccion}}</p>
+                            <p><strong>Ciudad:</strong> {{$institucion->localidad}}</p>
+                            @if($institucion->direccion)
+                            <p><strong>Dirección:</strong> {{$institucion->direccion}}</p>
                             @endif
-                            @if($escuela->telefono)
-                            <p><strong>Teléfono:</strong> {{$escuela->telefono}}</p>
+                            @if($institucion->telefono)
+                            <p><strong>Teléfono:</strong> {{$institucion->telefono}}</p>
                             @endif
-                            @if($escuela->email)
-                            <p><strong>Email:</strong> {{$escuela->email}}</p>
+                            @if($institucion->email)
+                            <p><strong>Email:</strong> {{$institucion->email}}</p>
                             @endif
                         </div>
                     </div>

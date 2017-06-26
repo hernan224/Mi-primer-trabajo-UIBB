@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Editar alumno: BRUNO BAMBOZZI | Mi Primer Trabajo</title>
+    <title>Editar egresado: BRUNO BAMBOZZI | Mi Primer Trabajo</title>
 
     <link rel="stylesheet" href="css/vendor/normalize.css">
 
@@ -46,11 +46,11 @@
                         </button>
                     </a> <!--//link usuario-->
                     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
-                        <li><a href="admin-alumnos.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
+                        <li><a href="admin-egresados.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
                             de administración</strong></a></li>
                         <hr class="separador-menu">
                         <li><a href="home.html">Inicio</a></li>
-                        <li><a href="listado-alumnos.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
+                        <li><a href="listado-egresados.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
                         <li><a href="capacitaciones.html" class="acceder-plataforma">Capacitaciones</a></li>
                         <li><a href="practicas.html" class="acceder-plataforma">Prácticas Profesionalizantes</a></li>
                         <li><a href="instituciones.html" class="acceder-plataforma">Instituciones Educativas</a></li>
@@ -67,7 +67,7 @@
                     <div class="col-xs-8 col-md-4">
                         <a id="volverListado" href="#" class="link-nav-listado texto-blanco text-left">
                             <span class="glyphicon glyphicon-arrow-left"></span>
-                            Volver al listado de alumnos
+                            Volver al listado de egresados
                         </a>
                     </div><!--btn volver-->
 
@@ -82,7 +82,7 @@
                 </div> <!--.row-->
             </nav> <!--/.nav-listado-->
 
-            <article class="editar-alumno alumno-privado">
+            <article class="editar-egresado egresado-privado">
                 <form action="" role="form" class="fila-flex form-mpt">
 
                     <main class="cargar-datos">
@@ -174,10 +174,10 @@
                             <div class="form-group col-xs-12 ">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-4 col-xs-12">
-                                        <label for="especialidad" class="input-label label-select-carga-alumno">Especialidad cursada</label>
+                                        <label for="especialidad" class="input-label label-select-carga-egresado">Especialidad cursada</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8 col-xs-12">
-                                        <select class="form-control select-carga-alumno" required="required" id="especialidad" name="especialidad"><option value="">Elegir especialidad...</option><option value="Tecnicatura en Aeronáutica">Tecnicatura en Aeronáutica</option><option value="Tecnicatura en Automotores">Tecnicatura en Automotores</option><option value="Tecnicatura en Administración y Gestión de las Organizaciones">Tecnicatura en Administración y Gestión de las Organizaciones</option><option value="Tecnicatura en Electrónica">Tecnicatura en Electrónica</option><option value="Tecnicatura en Electromecánica" selected="selected">Tecnicatura en Electromecánica</option><option value="Tecnicatura en Química">Tecnicatura en Química</option><option value="Tecnicatura en Informática Personal y Profesional">Tecnicatura en Informática Personal y Profesional</option><option value="Tecnicatura Maestro Mayor de obra">Tecnicatura Maestro Mayor de obra</option></select>
+                                        <select class="form-control select-carga-egresado" required="required" id="especialidad" name="especialidad"><option value="">Elegir especialidad...</option><option value="Tecnicatura en Aeronáutica">Tecnicatura en Aeronáutica</option><option value="Tecnicatura en Automotores">Tecnicatura en Automotores</option><option value="Tecnicatura en Administración y Gestión de las Organizaciones">Tecnicatura en Administración y Gestión de las Organizaciones</option><option value="Tecnicatura en Electrónica">Tecnicatura en Electrónica</option><option value="Tecnicatura en Electromecánica" selected="selected">Tecnicatura en Electromecánica</option><option value="Tecnicatura en Química">Tecnicatura en Química</option><option value="Tecnicatura en Informática Personal y Profesional">Tecnicatura en Informática Personal y Profesional</option><option value="Tecnicatura Maestro Mayor de obra">Tecnicatura Maestro Mayor de obra</option></select>
                                     </div>
                                 </div>
                             </div>
@@ -309,9 +309,9 @@
 
                             <label for="cargarFoto" class="cargar-foto-btn text-center">
 
-                                <figure class="foto-bg foto-alumno foto-placeholder"></figure> <!--/.foto-alumno-->
+                                <figure class="foto-bg foto-egresado foto-placeholder"></figure> <!--/.foto-egresado-->
 
-                                <strong>Cargar una foto del alumno</strong>
+                                <strong>Cargar una foto del egresado</strong>
                                 <input type="file" name="cargarFoto" id="cargarFoto" accept=".jpeg, .jpg, .png"> <!--/infput file-->
                             </label> <!--/.cargar-foto-btn-->
 
@@ -327,8 +327,8 @@
                             <div class="contenedor-btns">
                                 <div class="panel-privado">
                                     <div class="panel-body bg-warning">
-                                        <div class="checkbox"><label class="text-warning" for="alumnoPrivado">
-                                            <input id="alumnoPrivado" type="checkbox" name="alumno-privado" checked>
+                                        <div class="checkbox"><label class="text-warning" for="egresadoPrivado">
+                                            <input id="egresadoPrivado" type="checkbox" name="egresado-privado" checked>
                                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> &nbsp; Mantener privado
                                         </label></div>
                                     </div>
@@ -341,7 +341,7 @@
                     </aside> <!--/.datos-fijos-->
 
                 </form> <!--.fila-flex-->
-            </article> <!--./cargar-alumno-->
+            </article> <!--./cargar-egresado-->
 
         </div> <!--/.container-->
     </div> <!--/#contenedorPrincipal-->
@@ -365,7 +365,7 @@
                 <div class="col-sm-8">
                     <ul class="list-inline nav-list menu-principal text-right">
                         <li><a href="home.html"><strong>Inicio</strong></a></li>
-                        <li><a href="listado-alumnos.html" class="acceder-plataforma"><strong>Acceder a la
+                        <li><a href="listado-egresados.html" class="acceder-plataforma"><strong>Acceder a la
                             Plataforma</strong></a></li>
                         <li><a href="capacitaciones.html" class="acceder-plataforma"><strong>Capacitaciones</strong></a></li>
                         <li><a href="practicas.html" class="acceder-plataforma"><strong>Prácticas

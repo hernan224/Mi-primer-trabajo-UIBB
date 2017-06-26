@@ -2,7 +2,7 @@
 <nav class="navegacion-principal-pc hidden-sm hidden-xs">
     <ul class="list-unstyled fila-flex">
         <li>
-            <a href="{{ url('/listado-alumnos') }}" class="{{ Request::path() == 'listado-alumnos' ? 'activo' : '' }}">
+            <a href="{{ url('/listado-egresados') }}" class="{{ Request::path() == 'listado-egresados' ? 'activo' : '' }}">
                 Acceder a la Plataforma
             </a>
         </li>
@@ -37,9 +37,9 @@
             <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownLoginMenu">
                 @if (Auth::check())
                     <li class="menu-nombre-usuario">
-                        @if(Auth::check() and Auth::user()->hasRole('escuela') and Auth::user()->escuela->foto)
+                        @if(Auth::check() and Auth::user()->hasRole('institucion') and Auth::user()->institucion->foto)
                             <span class="foto-bg foto-usuario foto-institucion"
-                                  style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}'); border-radius: 0;">
+                                  style="background-image: url('{{Auth::user()->institucion->getUrlFoto()}}'); border-radius: 0;">
                             </span>
                         @endif
                         <small>Bienvenido:</small>
@@ -75,9 +75,9 @@
 <div class="acceso-usuario-container dropdown  hidden-lg hidden-md">
     <a id="dropdownMenu" class="fila-flex" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         @if (Auth::check())
-            @if (Auth::user()->hasRole('escuela'))
-                @if (Auth::user()->escuela->foto)
-                    <figure class="foto-bg foto-usuario foto-institucion" style="background-image: url('{{Auth::user()->escuela->getUrlFoto()}}');  border-radius: 0;"></figure>
+            @if (Auth::user()->hasRole('institucion'))
+                @if (Auth::user()->institucion->foto)
+                    <figure class="foto-bg foto-usuario foto-institucion" style="background-image: url('{{Auth::user()->institucion->getUrlFoto()}}');  border-radius: 0;"></figure>
                 @else
                     <figure class="foto-bg foto-usuario sin-foto foto-institucion"></figure>
                 @endif
@@ -93,9 +93,9 @@
                 <figure class="foto-bg foto-usuario sin-foto foto-asociado"></figure>
             @endif
             <h5 class="nombre-usuario {{ $home ? 'texto-blanco' : ''}}">
-            @if (Auth::user()->hasRole('escuela'))
+            @if (Auth::user()->hasRole('institucion'))
                 <strong class="nombre-docente">{{ Auth::user()->name }}</strong>
-                <span class="nombre-entidad">{{ Auth::user()->escuela->name }}</span>
+                <span class="nombre-entidad">{{ Auth::user()->institucion->name }}</span>
             {{-- @elseif (Auth::user()->hasRole('empresa'))
                 <strong>{{ Auth::user()->empresa->name }}</strong> --}}
             @else
@@ -122,7 +122,7 @@
         <hr class="separador-menu">
     @endif
         <li><a href="{{ url('/')}}">Inicio</a></li>
-        <li><a href="{{ url('/listado-alumnos') }}" class="acceder-plataforma">
+        <li><a href="{{ url('/listado-egresados') }}" class="acceder-plataforma">
             Acceder a la Plataforma
         </a></li>
         <li><a href="{{ route('publicaciones_capacitaciones') }}" class="acceder-plataforma">

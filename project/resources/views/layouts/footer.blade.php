@@ -20,7 +20,7 @@
                     <li><a href="{{ url('/')}}">
                         <strong>Inicio</strong>
                     </a></li>
-                    <li><a href="{{ url('/listado-alumnos') }}">
+                    <li><a href="{{ url('/listado-egresados') }}">
                         <strong>Acceder a la plataforma</strong>
                     </a></li>
                     <li><a href="{{ route('publicaciones_capacitaciones') }}">

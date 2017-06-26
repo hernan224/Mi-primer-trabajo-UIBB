@@ -6,7 +6,6 @@ use App\Http\Requests\PostPublicacionRequest;
 use App\Models\Publicacion;
 use Illuminate\Http\Request;
 use Auth;
-use DB;
 
 class PublicacionesController extends Controller
 {
@@ -106,7 +105,7 @@ class PublicacionesController extends Controller
 
 
     /**
-     * Muestra pantalla listado de alumnos de escuela para administrar (sin data: la obtiene por AJAX de lista)
+     * Muestra pantalla listado de publicaciones para administrar (sin data: la obtiene por AJAX de lista)
      * Route: publicaciones.admin_publicaciones - URL: /administrar-publicaciones [GET, role admin]
      */
     public function administrar() {
@@ -257,7 +256,7 @@ class PublicacionesController extends Controller
         }
 
         $data_publicacion = $this->getDataPostPublicacion($request);
-        // actualizo data alumno
+        // actualizo data egresado
         $publicacion->update($data_publicacion);
         // actualizo data curriculum
         $this->saveImage($request,$publicacion); // guarda imagen de perfil si hay

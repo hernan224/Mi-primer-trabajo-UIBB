@@ -1,4 +1,4 @@
-{{-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE ALUMNO --}}
+{{-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE EGRESADO --}}
 <div class="modal estilo-modal-bg fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminar">
     <div class="modal-dialog">
         <div class="modal-content estilo-modal-container">

@@ -1,5 +1,5 @@
 /**
- * Script para listado de alumno:
+ * Script para listado de egresado:
  * obtiene por AJAX la lista al cargar, cambiar de pagina, filtrar u ordenar,
  *  y renderiza en template handlebars (requiere handlebars.js previamente)
  */
@@ -7,23 +7,23 @@
 /* global moment */
 /* global urls */
 
-var template_alumno, template_busqueda, $lista, $paginado,
+var template_egresado, template_busqueda, $lista, $paginado,
     actual_page = 1, ordenamiento = false, filtros = {};
 $(function () {
-    $lista = $('#contenedorLista ul.lista-alumnos');
+    $lista = $('#contenedorLista ul.lista-egresados');
     $paginado =  $('#contenedorLista #paginado');
 
     // compilo templates
     handlebarsHelpers();
-    var $templateAlumno = $lista.find('#template-alumno');
-    template_alumno = Handlebars.compile($templateAlumno.html());
-    $templateAlumno.remove();
+    var $templateEgresado = $lista.find('#template-egresado');
+    template_egresado = Handlebars.compile($templateEgresado.html());
+    $templateEgresado.remove();
     var $templateBusqueda = $('#template-busqueda');
     template_busqueda = Handlebars.compile($templateBusqueda.html());
     $templateBusqueda.remove();
 
-    // obtengo del server lista de alumnos y renderizo
-    getAlumnos(); // inicialmente setea paginado
+    // obtengo del server lista de egresados y renderizo
+    getEgresados(); // inicialmente setea paginado
 
     /* Bindeo de eventos */
     bindOrdenamiento();
@@ -62,10 +62,10 @@ function handlebarsHelpers() {
 
 // en html se setea urls[lists]: url para hacer get
 // params: filtros u ordenamiento
-function getAlumnos(pag,filtro) {
+function getEgresados(pag,filtro) {
     var $container = $('#contenedorLista');
     $container.addClass('loading');
-    $container.removeClass('error-get sin-alumnos filtro-vacio');
+    $container.removeClass('error-get sin-egresados filtro-vacio');
 
     var url_params = {};
     if(pag) {
@@ -94,7 +94,7 @@ function getAlumnos(pag,filtro) {
                 $container.addClass('filtro-vacio');
             }
             else {
-                $container.addClass('sin-alumnos');
+                $container.addClass('sin-egresados');
             }
         }
     })
@@ -105,8 +105,8 @@ function getAlumnos(pag,filtro) {
 }
 
 function renderLista(resp, reset_paginado) {
-    var html_alumnos = template_alumno({alumnos: resp.data});
-    $lista.html(html_alumnos);
+    var html_egresados = template_egresado({egresados: resp.data});
+    $lista.html(html_egresados);
 
     // si hace un filtro o lo resetea, se debe eliminar el paginado
     if (reset_paginado && $paginado.children().length) {
@@ -125,7 +125,7 @@ function renderLista(resp, reset_paginado) {
             prev: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-left"></span></span>',
             next: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-right"></span></span>',
             onPageClick: function (event, page) {
-                getAlumnos(page);
+                getEgresados(page);
             }
         });
     }
@@ -137,7 +137,7 @@ function bindOrdenamiento() {
         tipo = $('.ordenamiento-tipo:checked').val();
 
         ordenamiento = orden+'_'+tipo;
-        getAlumnos();
+        getEgresados();
     });
 
     $('.ordenamiento-tipo').click (function(){
@@ -145,10 +145,10 @@ function bindOrdenamiento() {
         orden = $('.select-ordenar').val();
 
         ordenamiento = orden+'_'+tipo;
-        getAlumnos();
+        getEgresados();
     });
 
-    //Cambiar forma en que se muestra el listado de alumnos
+    //Cambiar forma en que se muestra el listado de egresados
     var $btnVista = $('.btn-cambiar-vista');
     var $contenedorLista = $('#contenedorLista');
 
@@ -195,7 +195,7 @@ function bindFiltros() {
         $contenedorPrincipal.find('input[type="checkbox"]').attr('checked', false);
         slider_promedio.slider('setValue',[1,10]);
         filtros = {};
-        getAlumnos(1, true); // hay que volver a renderizar la paginación
+        getEgresados(1, true); // hay que volver a renderizar la paginación
     });
 
 }
@@ -231,13 +231,13 @@ function filtrar(slider_promedio) {
         filtros.prom_max = promedio[1];
     }
     if(force_get || !$.isEmptyObject(filtros)) {
-        getAlumnos(1,true); //al filtrar siempre elijo la pag 1 y vuelve a renderizar paginado
+        getEgresados(1,true); //al filtrar siempre elijo la pag 1 y vuelve a renderizar paginado
     }
 }
 
 function bindBusqueda() {
     var $listaBusqueda = $('#lista-busqueda'),
-        $inputBusqueda = $('#search-alumnos');
+        $inputBusqueda = $('#search-egresados');
     $inputBusqueda.keyup(function() {
         var query = $(this).val();
         if (query.length >= 3) {
@@ -247,7 +247,7 @@ function bindBusqueda() {
                 data: {q: query},
             })
             .done(function(data) {
-                var html_busqueda = template_busqueda({alumnos: data});
+                var html_busqueda = template_busqueda({egresados: data});
                 $listaBusqueda.html(html_busqueda);
                 $listaBusqueda.show();
             })
@@ -280,7 +280,7 @@ function bindBusqueda() {
 function bindEliminar() {
     var $modal = $('#confirmarEliminar.modal');
 
-    $lista.on('click', '.eliminar-alumno', function() {
+    $lista.on('click', '.eliminar-egresado', function() {
         var id = $(this).data('id');
         $modal.modal('show');
 
@@ -294,7 +294,7 @@ function bindEliminar() {
             type: 'GET',
         })
         .done(function() {
-            $lista.find('.item-alumno[data-id="'+id+'"]').remove();
+            $lista.find('.item-egresado[data-id="'+id+'"]').remove();
         })
         .always(function() {
             $modal.modal('hide');

@@ -32,14 +32,14 @@ elixir(function(mix) {
     // script formulario creacion/edicion
     .scripts(
         ['vendor/moment.min.js','vendor/moment.locale.es.js','vendor/bootstrap-datetimepicker.min.js',
-        'vendor/jquery.bootstrap-touchspin.min.js','vendor/jquery.mask.min.js','form_alumno.js'],
-        dest+'/js/form_alumno.js'
+        'vendor/jquery.bootstrap-touchspin.min.js','vendor/jquery.mask.min.js','form_egresado.js'],
+        dest+'/js/form_egresado.js'
     )
     // script listado
     .scripts(
         ['vendor/moment.min.js','vendor/handlebars-v4.0.5.js','vendor/jquery.twbsPagination.js',
-        'listado_alumnos.js'],
-        dest+'/js/listado_alumnos.js'
+        'listado_egresados.js'],
+        dest+'/js/listado_egresados.js'
     )
     .scripts(
         ['vendor/handlebars-v4.0.5.js','vendor/jquery.twbsPagination.js','listado_publicaciones.js'],

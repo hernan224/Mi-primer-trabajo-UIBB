@@ -44,8 +44,8 @@
                 <h4 class="modal-title texto-azul">Confirmar eliminación</h4>
             </div>
             <div class="modal-body">
-                <p>¿Está seguro que quiere eliminar el/los siguiente/s alumno/s?</p>
-                <ul class="alumnos-eliminados">
+                <p>¿Está seguro que quiere eliminar el/los siguiente/s egresado/s?</p>
+                <ul class="egresados-eliminados">
                     <li>Alumno 1</li>
                     <li>Alumno 2</li>
                     <li>Alumno 3</li>
@@ -79,7 +79,7 @@
                 <nav class="navegacion-principal-pc hidden-sm hidden-xs">
                     <ul class="list-unstyled fila-flex">
                         <!--<li><a href="home.html">Inicio</a></li>-->
-                        <li><a href="listado-alumnos.html">Acceder a la Plataforma</a></li>
+                        <li><a href="listado-egresados.html">Acceder a la Plataforma</a></li>
                         <li><a href="capacitaciones.html">Capacitaciones</a></li>
                         <li><a href="practicas.html">Prácticas</a></li>
                         <li><a href="instituciones.html">Instituciones</a></li>
@@ -98,7 +98,7 @@
                                     <h5 class="nombre-usuario texto-azul mm0"><strong class="nombre-docente">Juana Ana Triana</strong></h5>
                                 </li>
                                 <hr class="separador-menu">
-                                <li><a href="admin-alumnos.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
+                                <li><a href="admin-egresados.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
                                     de administración</strong></a></li>
                                 </li>
                                 <li><a href="#" class="cerrar-sesion "><span class="glyphicon glyphicon glyphicon-log-out"></span>&nbsp;<strong>Cerrar sesión</strong></a></li>
@@ -119,11 +119,11 @@
                         </button>
                     </a> <!--//link usuario-->
                     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
-                        <li><a href="admin-alumnos.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
+                        <li><a href="admin-egresados.html" class="acceder-panel"><span class="glyphicon glyphicon glyphicon-dashboard"></span>&nbsp;<strong>Panel
                             de administración</strong></a></li>
                         <hr class="separador-menu">
                         <li><a href="home.html">Inicio</a></li>
-                        <li><a href="listado-alumnos.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
+                        <li><a href="listado-egresados.html" class="acceder-plataforma">Acceder a la Plataforma</a></li>
                         <li><a href="capacitaciones.html" class="acceder-plataforma">Capacitaciones</a></li>
                         <li><a href="practicas.html" class="acceder-plataforma">Prácticas Profesionalizantes</a></li>
                         <li><a href="instituciones.html" class="acceder-plataforma">Instituciones Educativas</a></li>
@@ -217,7 +217,7 @@
                 <!--ERROR-->
                 <div class="panel panel-danger">
                     <div class="panel-body bg-danger text-center">
-                        <strong>Ocurrió un error al obtener el listado de alumnos. Por favor, recargue la página o
+                        <strong>Ocurrió un error al obtener el listado de egresados. Por favor, recargue la página o
                             intente de nuevo más tarde.</strong>
                     </div>
                 </div>
@@ -231,37 +231,37 @@
                 <!--ADVERTENCIA-->
                 <div class="panel panel-warning">
                     <div class="panel-body bg-warning text-center">
-                        <strong>Por el momento no existen alumnos para mostrar. Por favor, intente de nuevo más
+                        <strong>Por el momento no existen egresados para mostrar. Por favor, intente de nuevo más
                             tarde.</strong>
                     </div>
                 </div>
 
-                <ul class="list-unstyled lista-alumnos">
+                <ul class="list-unstyled lista-egresados">
 
-                    <li class="item-alumno">
-                        <a class="link-foto-alumno" href="#">
-                            <figure class="foto-bg foto-alumno sin-foto femenino"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
-                        </a> <!--a.link-foto-alumno-->
+                    <li class="item-egresado">
+                        <a class="link-foto-egresado" href="#">
+                            <figure class="foto-bg foto-egresado sin-foto femenino"></figure>
+                            <!--La foto del egresado se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                        </a> <!--a.link-foto-egresado-->
 
-                        <div class="info-alumno">
-                            <h4 class="nombre-alumno"><a href="#">
+                        <div class="info-egresado">
+                            <h4 class="nombre-egresado"><a href="#">
                                 Gilberto Manhatan Ruiz
-                            </a></h4> <!--h4.nombre-alumno-->
+                            </a></h4> <!--h4.nombre-egresado-->
 
-                            <div class="datos-alumno">
+                            <div class="datos-egresado">
                                 <div class="datos-personales">
                                     <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
                                     <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
                                     <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
                                 </div> <!--.datos-personales-->
                                 <div class="datos-academicos">
-                                    <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                    <span class="institucion"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                     <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
                                     <!--<span class="dato-promedio"><strong>Promedio: </strong>8,39</span>-->
                                 </div> <!--.datos-academicos-->
-                            </div> <!--.datos-alumno-->
-                        </div> <!--.info-alumno-->
+                            </div> <!--.datos-egresado-->
+                        </div> <!--.info-egresado-->
 
                         <div class="ultimo-bloque">
                             <!--<div class="promedio">-->
@@ -272,11 +272,11 @@
                             <div class="btn-acciones">
 
                                 <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip"
-                                   data-placement="bottom" title="Editar alumno">
+                                   data-placement="bottom" title="Editar egresado">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-privado" data-toggle="tooltip"
-                                   data-placement="bottom" title="Mantener alumno como privado"
+                                   data-placement="bottom" title="Mantener egresado como privado"
                                    data-target="#confirmarEliminar">
                                     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                                 </a>
@@ -285,35 +285,35 @@
 
                     </li>
 
-                    <li class="item-alumno alumno-privado bg-warning">
-                        <a class="link-foto-alumno" href="#">
-                            <figure class="foto-bg foto-alumno"
+                    <li class="item-egresado egresado-privado bg-warning">
+                        <a class="link-foto-egresado" href="#">
+                            <figure class="foto-bg foto-egresado"
                                     style="background-image: url('http://lorempixel.com/300/300/people/3/');"></figure>
-                            <!--La foto del alumno se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
-                        </a> <!--a.link-foto-alumno-->
+                            <!--La foto del egresado se muestra como backgroun-image desde el attr style. Si no hay foto, se muestra foto generica desde CSS.-->
+                        </a> <!--a.link-foto-egresado-->
 
-                        <div class="info-alumno">
-                            <h4 class="nombre-alumno"><a href="#">
+                        <div class="info-egresado">
+                            <h4 class="nombre-egresado"><a href="#">
                                 Gilberto Manhatan Ruiz
                             </a>
                                 <small><span class="label label-warning label-privado">
                                     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Privado
                                   </span></small>
-                            </h4> <!--h4.nombre-alumno-->
+                            </h4> <!--h4.nombre-egresado-->
 
-                            <div class="datos-alumno">
+                            <div class="datos-egresado">
                                 <div class="datos-personales">
                                     <span class="fec-nac"><strong>Creado/Editado:</strong> 25/10/2015</span>
                                     <span class="edad"><strong>Docente:</strong> Juana Ana Triana</span>
                                     <!--<span class="localidad"><strong>Localidad:</strong> Coronel Pringles</span>-->
                                 </div> <!--.datos-personales-->
                                 <div class="datos-academicos">
-                                    <span class="escuela"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
+                                    <span class="institucion"><strong>Servicio Educativo:</strong> Escuela de Educación Técnica N° 1</span>
                                     <span class="especialidad"><strong>Especialidad: </strong>Bachiller con orientación en Equipos e Instalaciones Electromecánicas</span>
                                     <!--<span class="dato-promedio"><strong>Promedio: </strong>8,39</span>-->
                                 </div> <!--.datos-academicos-->
-                            </div> <!--.datos-alumno-->
-                        </div> <!--.info-alumno-->
+                            </div> <!--.datos-egresado-->
+                        </div> <!--.info-egresado-->
 
                         <div class="ultimo-bloque">
                             <!--<div class="promedio">-->
@@ -323,7 +323,7 @@
                             <div class="btn-acciones">
                                 <!-- <a href="#" class="bt btn-default btn-ver" title="Ver CV completo"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a> -->
                                 <a href="#" class="btn btn-default btn-editar" data-toggle="tooltip"
-                                   data-placement="bottom" title="Editar alumno">
+                                   data-placement="bottom" title="Editar egresado">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
                                 <a href="#" class="btn btn-default btn-publico" data-toggle="tooltip"
@@ -335,7 +335,7 @@
 
                     </li>
 
-                </ul> <!--ul.lista-alumnos-->
+                </ul> <!--ul.lista-egresados-->
             </div> <!--#contenedorLista-->
 
             <nav class="center-flex">
@@ -380,7 +380,7 @@
                 <div class="col-sm-8">
                     <ul class="list-inline nav-list menu-principal text-right">
                         <li><a href="home.html"><strong>Inicio</strong></a></li>
-                        <li><a href="listado-alumnos.html" class="acceder-plataforma"><strong>Acceder a la
+                        <li><a href="listado-egresados.html" class="acceder-plataforma"><strong>Acceder a la
                             Plataforma</strong></a></li>
                         <li><a href="capacitaciones.html" class="acceder-plataforma"><strong>Capacitaciones</strong></a>
                         </li>

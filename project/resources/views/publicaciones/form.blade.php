@@ -16,7 +16,7 @@
 {{-- Agrego estilos y scripts --}}
 @section('scripts')
     @parent
-    <script src="{{ url('js/form_alumno.js') }}"></script> {{-- Para preview foto --}}
+    <script src="{{ url('js/form_egresado.js') }}"></script> {{-- Para preview foto --}}
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
         tinymce.init({
@@ -114,7 +114,7 @@
                 <section class="cargar-foto">
 
                     <label for="cargarFoto" class="cargar-foto-btn text-center">
-                        <figure id='foto-preview' class="foto-bg foto-alumno foto-placeholder foto-destacada"
+                        <figure id='foto-preview' class="foto-bg foto-egresado foto-placeholder foto-destacada"
                                 {!! (!$nuevo && $publicacion->imagen) ? 'style="background-image: url('.$publicacion->getUrlImagen().');"' : '' !!} >
                         </figure>
 

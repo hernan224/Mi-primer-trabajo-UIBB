@@ -34,7 +34,7 @@ class PostPublicacionRequest extends Request
         $categorias = Publicacion::CATEGORIA_CAPACITACIONES.','.Publicacion::CATEGORIA_PRACTICAS;
 
         return [
-            // data alumno
+            // data egresado
             'titulo' => 'required|max:120',
             'texto' => 'required',
             'categoria' => 'required|in:'.$categorias,

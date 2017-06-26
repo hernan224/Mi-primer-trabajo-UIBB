@@ -39,7 +39,7 @@ Pantalla ayuda. URL: /ayuda - no estaba en requerimientos --}}
 
                     <div class="form-group cargado">
                         <label class="sr-only input-label small" for="personaContacto">Persona de contacto</label>
-                        <!--SI ES UNA ESCUELA, SE CARGA POR DEFECTO EL DOCENTE LOGUEADO.
+                        <!--SI ES UNA INSTITUCION, SE CARGA POR DEFECTO EL DOCENTE LOGUEADO.
                         SI ES UN ASOCIADO, SE HABILITA EL CAMPO PARA SER COMPLETADO (QUITAR CLASE "cargado" al form-group)-->
                         <input type="text" class="form-control" name="persona-contacto"
                                id="personaContacto" placeholder="Persona de contacto" value="Juana Ana Triana" disabled>

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{ $alumno->getFullName() }} | Mi Primer Trabajo</title>
+    <title>{{ $egresado->getFullName() }} | Mi Primer Trabajo</title>
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel="stylesheet" href="{{ url('css/generar-pdf.css') }}" media="print">
 
@@ -23,84 +23,84 @@
                 </div> <!--.marca-container-->
             </header>
 
-            <article class="alumno-individual">
-                <header class="alumno-info-principal">
+            <article class="egresado-individual">
+                <header class="egresado-info-principal">
 
                     <div class="contenedor-foto">
-                        <figure class="foto-bg foto-alumno">
-                            @if($alumno->foto)
-                                <img src="{{$alumno->getUrlFoto()}}" alt="{{ $alumno->getFullName() }}"
-                                     class="img-responsive alumno-img">
+                        <figure class="foto-bg foto-egresado">
+                            @if($egresado->foto)
+                                <img src="{{$egresado->getUrlFoto()}}" alt="{{ $egresado->getFullName() }}"
+                                     class="img-responsive egresado-img">
                             @else
-                                <img src="{{ ($alumno->sexo == 'm') ? url('img/alumno-sin-foto-masculino.png') : url('img/alumno-sin-foto-femenino.png')}}"
-                                     class="img-responsive alumno-img">
+                                <img src="{{ ($egresado->sexo == 'm') ? url('img/alumno-sin-foto-masculino.png') : url('img/alumno-sin-foto-femenino.png')}}"
+                                     class="img-responsive egresado-img">
                             @endif
                         </figure>
                     </div>
 
-                    <div class="info-alumno">
-                        <h2 class="nombre-alumno">{{ $alumno->getFullName() }}</h2>
+                    <div class="info-egresado">
+                        <h2 class="nombre-egresado">{{ $egresado->getFullName() }}</h2>
 
-                        <div class="datos-alumno">
-                            <span class="li-falso sexo"><strong>Sexo:</strong> {{ ($alumno->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span> &nbsp;&nbsp;
-                            <span class="li-falso fec-nac"><strong>Fecha de Nac.:</strong> {{ $alumno->nacimiento }}</span> &nbsp;&nbsp;
-                            <span class="li-falso edad"><strong>Edad:</strong> {{ $alumno->getEdad() }} años</span>
+                        <div class="datos-egresado">
+                            <span class="li-falso sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span> &nbsp;&nbsp;
+                            <span class="li-falso fec-nac"><strong>Fecha de Nac.:</strong> {{ $egresado->nacimiento }}</span> &nbsp;&nbsp;
+                            <span class="li-falso edad"><strong>Edad:</strong> {{ $egresado->getEdad() }} años</span>
                             <br>
-                            <span class="li-falso nacionalidad"><strong>Nacionalidad:</strong> {{ $alumno->nacionalidad }}</span> &nbsp;&nbsp;
-                            <span class="li-falso dni"><strong>DNI:</strong> {{ $alumno->dni }}</span>
+                            <span class="li-falso nacionalidad"><strong>Nacionalidad:</strong> {{ $egresado->nacionalidad }}</span> &nbsp;&nbsp;
+                            <span class="li-falso dni"><strong>DNI:</strong> {{ $egresado->dni }}</span>
                         </div>
                     </div>
 
                     <div class="promedio">
                         <strong class="promedio-titulo">Promedio General</strong>
-                        <span class="promedio-valor">{{ number_format($alumno->curriculum->promedio,2,',','') }}</span>
+                        <span class="promedio-valor">{{ number_format($egresado->curriculum->promedio,2,',','') }}</span>
                     </div> <!--.promedio-->
 
                 </header> <!--/header info principal-->
                 <div class="fila-flex">
                     <aside class="info-contactos">
-                        <section class="contacto-alumno panel-bg-color">
+                        <section class="contacto-egresado panel-bg-color">
                             <h5 class="subtitulo texto-azul">Datos de contacto</h5>
 
                             <ul class="lista-contacto list-unstyled">
-                                @if ($editable && $alumno->domicilio)
-                                {{-- Sólo se muestra si es de la escuela --}}
+                                @if ($editable && $egresado->domicilio)
+                                {{-- Sólo se muestra si es de la institucion --}}
                                 <li>
                                     <strong class="small">Direccion: </strong>
-                                    {{ $alumno->domicilio }}
+                                    {{ $egresado->domicilio }}
                                 </li>
                                 @endif
-                                @if ($alumno->localidad || $alumno->barrio)
+                                @if ($egresado->localidad || $egresado->barrio)
                                 <li>
                                     <strong class="small">Localidad / barrio: </strong>
-                                    {{ $alumno->localidad or '' }}
-                                    {{ ($alumno->barrio) ? '(Barrio '.$alumno->barrio.')' : ''}}
+                                    {{ $egresado->localidad or '' }}
+                                    {{ ($egresado->barrio) ? '(Barrio '.$egresado->barrio.')' : ''}}
                                 </li>
                                 @endif
-                                @if ($editable && $alumno->tel_fijo)
-                                {{-- Sólo se muestra si es de la escuela --}}
+                                @if ($editable && $egresado->tel_fijo)
+                                {{-- Sólo se muestra si es de la institucion --}}
                                 <li>
                                     <strong class="small">Teléfono: </strong>
-                                    {{ $alumno->tel_fijo }}
+                                    {{ $egresado->tel_fijo }}
                                 </li>
                                 @endif
-                                @if ($editable && $alumno->celular)
-                                {{-- Sólo se muestra si es de la escuela --}}
+                                @if ($editable && $egresado->celular)
+                                {{-- Sólo se muestra si es de la institucion --}}
                                 <li>
                                     <strong class="small">Celular: </strong>
-                                    {{ $alumno->celular }}
+                                    {{ $egresado->celular }}
                                 </li>
                                 @endif
-                                @if ($editable && $alumno->email)
-                                {{-- Sólo se muestra si es de la escuela --}}
+                                @if ($editable && $egresado->email)
+                                {{-- Sólo se muestra si es de la institucion --}}
                                 <li>
                                     <strong class="small">E-mail: </strong>
-                                    {{$alumno->email}}
+                                    {{$egresado->email}}
                                 </li>
                                 @endif
                             </ul>
                             @if (!$editable)
-                                <p>Por cuestiones de privacidad, los datos de contacto del alumno se proporcionan vía mail, desde la plataforma.</p>
+                                <p>Por cuestiones de privacidad, los datos de contacto del egresado se proporcionan vía mail, desde la plataforma.</p>
                             @endif
                         </section>
 
@@ -109,17 +109,17 @@
                             <ul class="list-unstyled">
                                 <li>
                                     <span class="sr-only">Nombre: </span>
-                                    <strong>{{ $alumno->docente->name }}</strong>
+                                    <strong>{{ $egresado->docente->name }}</strong>
                                 </li>
-                                @if ($alumno->docente->telefono)
+                                @if ($egresado->docente->telefono)
                                 <li>
                                     <span class="sr-only">Teléfono: </span>
-                                    {{ $alumno->docente->telefono }}
+                                    {{ $egresado->docente->telefono }}
                                 </li>
                                 @endif
                                 <li>
                                     <span class="sr-only">E-mail: </span>
-                                    {{ $alumno->docente->email }}
+                                    {{ $egresado->docente->email }}
                                 </li>
                             </ul>
                         </section><!--/.contacto-docente-->
@@ -130,26 +130,26 @@
                             <h5 class="subtitulo texto-azul">Informacion curricular educativa</h5>
                             <p>
                                 <strong>Servicio Educativo: </strong>
-                                {{ $alumno->escuela->name }}
+                                {{ $egresado->institucion->name }}
                             </p>
                             <p>
                                 <strong>Especialidad: </strong>
-                                {{ $alumno->curriculum->especialidad }}
+                                {{ $egresado->curriculum->especialidad }}
                             </p>
-                            @if ($alumno->curriculum->asignaturas)
+                            @if ($egresado->curriculum->asignaturas)
                                 <p>
                                     <strong>Asignaturas destacadas: </strong>
-                                    {{ $alumno->curriculum->asignaturas }}
+                                    {{ $egresado->curriculum->asignaturas }}
                                 </p>
                             @endif
-                            @if ($alumno->curriculum->practicas_tipo)
+                            @if ($egresado->curriculum->practicas_tipo)
                                 <p>
                                     <strong>Prácticas Profesionalizantes: </strong>
-                                    {{ $alumno->curriculum->practicas_tipo }}
+                                    {{ $egresado->curriculum->practicas_tipo }}
                                 </p>
-                                @if ($alumno->curriculum->practicas_lugar )
+                                @if ($egresado->curriculum->practicas_lugar )
                                     <p><strong>Prácticas desarrolladas en:</strong>
-                                        {{ $alumno->curriculum->practicas_lugar }}</p>
+                                        {{ $egresado->curriculum->practicas_lugar }}</p>
                                 @endif
                             @endif
                         </section> <!--/.info-curricular-->
@@ -158,26 +158,26 @@
                             <h5 class="subtitulo texto-azul">Actitudes destacadas</h5>
 
                             <div class="lista-actitudes">
-                                @foreach ($alumno->curriculum->getActitudes() as $actitud)
+                                @foreach ($egresado->curriculum->getActitudes() as $actitud)
                                     <span class="li-falso"><i class="fa fa-li fa-check texto-azul"></i>{{ trans('app.'.$actitud) }}</span> &nbsp;&nbsp;
                                 @endforeach
                             </div>
                         </section> <!--/.actitudes-->
 
-                        @if ($alumno->curriculum->extras || $alumno->curriculum->participacion)
+                        @if ($egresado->curriculum->extras || $egresado->curriculum->participacion)
                         <section class="info-adicional">
                             <h5 class="subtitulo texto-azul">Informacion adicional</h5>
-                            <div class="datos-alumno">
-                                @if ($alumno->curriculum->extras)
+                            <div class="datos-egresado">
+                                @if ($egresado->curriculum->extras)
                                 <p>
                                     <strong>Hobbies, pasatiempos o actividades extracurriculares: </strong>
-                                    {{ $alumno->curriculum->extras }}
+                                    {{ $egresado->curriculum->extras }}
                                 </p>
                                 @endif
-                                @if ($alumno->curriculum->participacion)
+                                @if ($egresado->curriculum->participacion)
                                 <p>
                                     <strong>Participación institucional, social o deportiva: </strong>
-                                    {{ $alumno->curriculum->participacion }}
+                                    {{ $egresado->curriculum->participacion }}
                                 </p>
                                 @endif
                             </div>
@@ -188,14 +188,14 @@
 
                 </div> <!--/.fila-flex-->
 
-                @if ($alumno->curriculum->carta_presentacion)
+                @if ($egresado->curriculum->carta_presentacion)
                 <section class="carta-presentacion">
                     <h5 class="subtitulo texto-azul">Carta de presentacion</h5>
-                    <p>{!! nl2br($alumno->curriculum->carta_presentacion) !!}</p>
+                    <p>{!! nl2br($egresado->curriculum->carta_presentacion) !!}</p>
                 </section> <!--/.carta-presntacion-->
                 @endif
 
-            </article> <!--/.alumno-individual-->
+            </article> <!--/.egresado-individual-->
 
 
         </div> <!--/.container-->

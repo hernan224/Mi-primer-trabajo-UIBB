@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Mail\Message;
 use Mail;
-use App\Models\Alumno;
+use App\Models\Egresado;
 
 class MailsController extends Controller
 {
@@ -34,7 +34,7 @@ class MailsController extends Controller
     /** NO USADO */
     /*
     public function solicitarAcceso(Request $request,$tipo) {
-        if ($tipo != 'empresa' && $tipo != 'escuela') {
+        if ($tipo != 'empresa' && $tipo != 'institucion') {
             return response('No autorizado', 403);
         }
 
@@ -48,7 +48,7 @@ class MailsController extends Controller
         }
         else {
             $view_data = [
-                'tipo' => 'escuela',
+                'tipo' => 'institucion',
                 'nombre' => $request->input('nombre'),
                 'docente' => $request->input('docente'),
                 'email' => $request->input('email')
@@ -65,19 +65,19 @@ class MailsController extends Controller
     */
 
     /**
-     * Route: alumno_solicitar - /solicitar-datos-alumno/{id} [POST]
+     * Route: egresado_solicitar - /solicitar-datos-egresado/{id} [POST]
      *
      * @param Request $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function solicitarDatosAlumno(Request $request, $id) {
+    public function solicitarDatosEgresado(Request $request, $id) {
         $data = $request->all();
 
         $email = $data['email'];
         $nombre = $data['nombre'];
         $empresa = $data['empresa'];
-        $alumno = null;
+        $egresado = null;
 
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -94,34 +94,34 @@ class MailsController extends Controller
         }
 
         if ($id) {
-            $alumno = Alumno::find($id);
+            $egresado = Egresado::find($id);
         }
-        if (!$alumno || $alumno->privado) {
+        if (!$egresado || $egresado->privado) {
             return response()->json([
                 'status' => 'error',
-                'mensaje' => 'Se solicitaron datos de alumno inválido.'
+                'mensaje' => 'Se solicitaron datos de egresado inválido.'
             ]);
         }
 
         // envío mail al solicitante
-        $view_data = ['alumno' => $alumno];
+        $view_data = ['egresado' => $egresado];
         try {
 
-            Mail::send('emails.solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
+            Mail::send('emails.solicitud_datos_egresado', $view_data, function($message) use($email,$nombre)
             {
                 /** @var Message $message */
-                $message->to($email, $nombre)->subject('UIBB Primer trabajo - Datos del alumno solicitado');
+                $message->to($email, $nombre)->subject('UIBB Primer trabajo - Datos del egresado solicitado');
             });
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'mensaje' =>'No se pudo enviar el email.']);
         }
 
         // envío copia
-        $view_data = ['alumno' => $alumno, 'nombre' => $nombre, 'empresa' => $empresa, 'email' =>$email];
-        Mail::send('emails.copia_solicitud_datos_alumno', $view_data, function($message) use($email,$nombre)
+        $view_data = ['egresado' => $egresado, 'nombre' => $nombre, 'empresa' => $empresa, 'email' =>$email];
+        Mail::send('emails.copia_solicitud_datos_egresado', $view_data, function($message) use($email,$nombre)
         {
             /** @var Message $message */
-            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('UIBB Primer trabajo - Solicitud de datos de alumno');
+            $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('UIBB Primer trabajo - Solicitud de datos de egresado');
         });
 
         return response()->json(['status' => 'ok']);

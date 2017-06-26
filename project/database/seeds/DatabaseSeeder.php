@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
-use App\Models\Escuela;
+use App\Models\Institucion;
 use App\Models\Empresa;
 
 class DatabaseSeeder extends Seeder
@@ -39,97 +39,102 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 
-    private function escuelas_usuarios() {
-        // Data de escuelas y usuarios asociados
-        $escuelas_users = [
+    private function instituciones_usuarios() {
+        // Data de instituciones y usuarios asociados
+        $instituciones_users = [
             [
-                'escuela' => [
+                'institucion' => [
                     'name' => 'Instituto técnico La Piedad',
                     'direccion' => 'Avellaneda 324',
                     'telefono' => '0291 4537537',
                     'localidad' => 'Bahía Blanca',
-                    'email' =>  'rector@obralapiedad.com.ar'
+                    'email' =>  'rector@obralapiedad.com.ar',
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
                 ],
                 'usuarios' => [
                     [
                         'name' => 'Luis Geil',
                         'email' => 'rector@obralapiedad.com.ar',
                         'password' => bcrypt('mpt-lapiedad01'),
-                        'role' => 'escuela',
+                        'role' => 'institucion',
                     ],
                 ]
             ],
             [
-                'escuela' => [
+                'institucion' => [
                     'name' => 'E.E.S.T. N°1 ARA “Crucero General Belgrano”',
                     'direccion' => 'Tarija y Cabra',
                     'localidad' => 'Ingeniero White',
                     'telefono' => '4570685 / 4572690',
                     'email' =>  'mt008001@yahoo.com.ar',
-                    'foto' => 'eetn1.png'
+                    'foto' => 'eetn1.png',
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
                 ],
                 'usuarios' => [
                     [
                         'name' => 'Mauro Campos',
                         'email' => 'mt008001@yahoo.com.ar',
                         'password' => bcrypt('tecnica12345'),
-                        'role' => 'escuela',
+                        'role' => 'institucion',
                         'direccion' => 'Santiago del estero 183',
                         'telefono' => '291 4166235'
                     ]
                 ]
             ],
             [
-                'escuela' => [
+                'institucion' => [
                     'name' => 'E.E.S.T N°2 “Ing. César Cipolletti”',
                     'direccion' => 'Azara 1250',
                     'localidad' => 'Bahía Blanca',
                     'telefono' => '0291 4560331 / 4522687',
                     'email' =>  'eestn2bbca@gmail.com',
-                    'foto' => 'eetn2.png'
+                    'foto' => 'eetn2.png',
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
                 ],
                 'usuarios' => [
                     [
                         'name' => 'Federico Martín Pérez',
                         'email' => 'eestn2bbca@gmail.com',
                         'password' => bcrypt('industrial2016'),
-                        'role' => 'escuela'
+                        'role' => 'institucion'
                     ]
                 ]
             ],
             [
-                'escuela' => [
+                'institucion' => [
                     'name' => 'E.E.S.T. Nº3 “Dr. Rene Favaloro”',
                     'direccion' => 'Líbano 670',
                     'localidad' => 'Bahía Blanca',
                     'telefono' => '0291 4522548 / 4521464',
                     'email' =>  'mt008003@bvconline.com.ar',
-                    'foto' => 'eetn3.png'
+                    'foto' => 'eetn3.png',
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
                 ],
                 'usuarios' => [
                     [
                         'name' => 'Silvia Betancur',
                         'email' => 'silvibetan@hotmail.com',
                         'password' => bcrypt('eest3-mpt'),
-                        'role' => 'escuela'
+                        'role' => 'institucion'
                     ]
                 ]
             ],
             [
-                'escuela' => [
+                'institucion' => [
                     'name' => 'E.E.S.T. Nº4 “Antártida”',
                     'direccion' => 'Florida 633',
                     'localidad' => 'Bahía Blanca',
                     'telefono' => '0291 4882616',
                     'email' =>  'eet4antartida@yahoo.com.ar',
-                    'foto' => 'eetn4.png'
+                    'foto' => 'eetn4.png',
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
                 ],
                 'usuarios' => [
                     [
                         'name' => 'Fernando David Campelo',
                         'email' => 'fcampelo2@gmail.com',
                         'password' => bcrypt('mpt-eest4'),
-                        'role' => 'escuela',
+                        'role' => 'institucion',
                         'direccion' => 'Tucumán 458',
                         'telefono' => '0291 154443338'
                     ]
@@ -138,12 +143,12 @@ class DatabaseSeeder extends Seeder
 
         ];
 
-        // Creo escuelas y usuarios
-        foreach ($escuelas_users as $data_escuela) {
-            $escuela = Escuela::create($data_escuela['escuela']);
+        // Creo instituciones y usuarios
+        foreach ($instituciones_users as $data_institucion) {
+            $institucion = Institucion::create($data_institucion['institucion']);
 
-            foreach ($data_escuela['usuarios'] as $data_usuario) {
-                $escuela->users()->create($data_usuario); // crea usuario y relaciona con escuela
+            foreach ($data_institucion['usuarios'] as $data_usuario) {
+                $institucion->users()->create($data_usuario); // crea usuario y relaciona con institucion
             }
         }
     }

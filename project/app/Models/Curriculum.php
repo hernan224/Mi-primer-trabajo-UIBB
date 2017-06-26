@@ -9,7 +9,7 @@ use Illuminate\Database\Query\Builder;
  * App\Models\Curriculum
  *
  * @property integer $id
- * @property integer $alumno_id
+ * @property integer $egresado_id
  * @property string $especialidad
  * @property float $promedio
  * @property string $asignaturas
@@ -35,9 +35,9 @@ use Illuminate\Database\Query\Builder;
  * @property boolean $estudios
  * @property string $estudios_carrera
  * @property string $estudios_lugar
- * @property-read \App\Models\Alumno $alumno
+ * @property-read \App\Models\Egresado $egresado
  * @method static Builder|Curriculum whereId($value)
- * @method static Builder|Curriculum whereAlumnoId($value)
+ * @method static Builder|Curriculum whereEgresadoId($value)
  * @method static Builder|Curriculum whereEspecialidad($value)
  * @method static Builder|Curriculum wherePromedio($value)
  * @method static Builder|Curriculum whereAsignaturas($value)
@@ -83,11 +83,11 @@ class Curriculum extends Model
     ];
 
     /**
-     * Relacion 1:1 con Alumno (inversa)
+     * Relacion 1:1 con Egresado (inversa)
      */
-    public function alumno()
+    public function egresado()
     {
-        return $this->belongsTo(Alumno::class);
+        return $this->belongsTo(Egresado::class);
     }
 
     /**

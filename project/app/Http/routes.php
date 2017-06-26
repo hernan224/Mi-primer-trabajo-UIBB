@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Escuela;
+use App\Models\Institucion;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'web'], function () {
         return view('public.home');
     });
     Route::get('/instituciones-educativas', function () {
-        return view('public.instituciones',['escuelas' => Escuela::all()]);
+        return view('public.instituciones',['instituciones' => Institucion::all()]);
     });
     // Pantalla empresas - NO USADA
     // Route::get('/empresas', function () {
@@ -55,32 +55,32 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 
-    /** Acceso a plataforma para escuelas o admin
-     *  (panel administración escuelas: listado editable de alumnos de la escuela)
+    /** Acceso a plataforma para instituciones o admin
+     *  (panel administración instituciones: listado editable de egresados de la institucion)
      *  (panel administración admin: listado editable de publicaciones)
      *
      *  Redirecciona a login si no está autenticado,
-     *      al listado de alumnos propios si está logueado y es escuela
+     *      al listado de egresados propios si está logueado y es institucion
      *      o al listado de publicaciones para editar si está logueado y es admin
      */
     Route::get('/panel-administracion', function () {
         return redirect('/login');
-    })->middleware('guest'); // el middleware guest hace redireccion a /listado-alumnos o /admin-publicaciones si está logueado
+    })->middleware('guest'); // el middleware guest hace redireccion a /listado-egresados o /admin-publicaciones si está logueado
     //     (definido en Middleware/RedirectIfAuthenticated)
 
 
-    /** Listado de alumnos público */
+    /** Listado de egresados público */
     // GET pantalla
-    Route::get('/listado-alumnos','AlumnosController@showListado')->name('alumnos_public');
-    // GET lista alumnos públicos (resp JSON)
+    Route::get('/listado-egresados','EgresadosController@showListado')->name('egresados_public');
+    // GET lista egresados públicos (resp JSON)
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
-    Route::get('/alumnos','AlumnosController@lista')->name('alumnos_public_list');
+    Route::get('/egresados','EgresadosController@lista')->name('egresados_public_list');
     // Busqueda nombre, apellido, especialidad (resp JSON)
-    Route::get('/alumnos/search','AlumnosController@search')->name('alumnos_public_search');
+    Route::get('/egresados/search','EgresadosController@search')->name('egresados_public_search');
 
-    // GET vista y PDF alumno
-    Route::get('/alumno/pdf/{id?}','AlumnosController@pdf')->name('alumno_pdf');
-    Route::get('/alumno/{id?}','AlumnosController@show')->name('alumno_show');
+    // GET vista y PDF egresado
+    Route::get('/egresado/pdf/{id?}','EgresadosController@pdf')->name('egresado_pdf');
+    Route::get('/egresado/{id?}','EgresadosController@show')->name('egresado_show');
 
 
     /** Listado público de publicaciones: pantallas y lista JSON **/
@@ -111,34 +111,34 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::post('/contacto','MailsController@contacto');
 
-    // Solicitar datos alumnos
-    Route::post('/solicitar-datos-alumno/{id}','MailsController@solicitarDatosAlumno')->name('alumno_solicitar');
+    // Solicitar datos egresados
+    Route::post('/solicitar-datos-egresado/{id}','MailsController@solicitarDatosEgresado')->name('egresado_solicitar');
 });
 
-// Escuela: Routes con autenticacion y usuario escuela (creacion, edicion y eliminacion de alumnos)
-Route::group(['middleware' => ['web','auth','role:escuela'],'as' => 'escuela.'], function () {
+// Institución: Routes con autenticación y usuario institucion (creación, edición y eliminación de egresados)
+Route::group(['middleware' => ['web','auth','role:institucion'],'as' => 'institucion.'], function () {
 
-    // Listado de alumnos propios (sólo renderiza pantalla)
-    Route::get('/administrar-alumnos','AlumnosController@showListadoEscuela')->name('admin_alumnos');
+    // Listado de egresados propios de la institución (sólo renderiza pantalla)
+    Route::get('/administrar-egresados','EgresadosController@showListadoInstitucion')->name('admin_egresados');
 
-    // GET AJAX lista alumnos de la escuela (resp JSON)
+    // GET AJAX lista egresados de la institucion (resp JSON)
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
-    Route::get('/alumnos-escuela','AlumnosController@listaEscuela')->name('alumnos_list');
+    Route::get('/egresados-institucion','EgresadosController@listaInstitucion')->name('egresados_list');
 
     // GET AJAX: Busqueda nombre, apellido, especialidad (resp JSON)
-    Route::get('/alumnos-escuela/search','AlumnosController@searchEscuela')->name('alumnos_search');
+    Route::get('/egresados-institucion/search','EgresadosController@searchInstitucion')->name('egresados_search');
 
     /** Creacion, edicion, eliminación **/
-    // GET pantalla formulario nuevo alumno
-    Route::get('/administrar-alumnos/nuevo','AlumnosController@nuevo')->name('alumno_nuevo');
-    // POST formulario nuevo alumno
-    Route::post('/administrar-alumnos/nuevo','AlumnosController@store')->name('alumno_nuevo_post');
-    // GET pantalla formulario editar alumno
-    Route::get('/administrar-alumnos/editar/{id?}','AlumnosController@edit')->name('alumno_edit');
-    // PUT formulario editar alumno
-    Route::put('/administrar-alumnos/edit/{id}','AlumnosController@update')->name('alumno_edit_put');
-    // GET AJAX para eliminar alumno
-    Route::get('/administrar-alumnos/delete/{id?}','AlumnosController@destroy')->name('alumno_delete');
+    // GET pantalla formulario nuevo egresado
+    Route::get('/administrar-egresados/nuevo','EgresadosController@nuevo')->name('egresado_nuevo');
+    // POST formulario nuevo egresado
+    Route::post('/administrar-egresados/nuevo','EgresadosController@store')->name('egresado_nuevo_post');
+    // GET pantalla formulario editar egresado
+    Route::get('/administrar-egresados/editar/{id?}','EgresadosController@edit')->name('egresado_edit');
+    // PUT formulario editar egresado
+    Route::put('/administrar-egresados/edit/{id}','EgresadosController@update')->name('egresado_edit_put');
+    // GET AJAX para eliminar egresado
+    Route::get('/administrar-egresados/delete/{id?}','EgresadosController@destroy')->name('egresado_delete');
     // ToDo: set privado desde listado
 
     // Formulario ayuda (no estaba en requerimientos)

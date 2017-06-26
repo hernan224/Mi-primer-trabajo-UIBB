@@ -1,11 +1,11 @@
-{{-- Formulario para creación / edición de alumno y curriculum --}}
+{{-- Formulario para creación / edición de egresado y curriculum --}}
 @extends('layouts.base')
 
 @section('title')
     @if ($nuevo)
-        Cargar alumno
+        Cargar egresado
     @else
-        Editar alumno: {{ $alumno->getFullName() }}
+        Editar egresado: {{ $egresado->getFullName() }}
     @endif
 @endsection
 
@@ -21,7 +21,7 @@
 @endsection
 @section('scripts')
     @parent
-    <script src="{{ url('js/form_alumno.js') }}"></script>
+    <script src="{{ url('js/form_egresado.js') }}"></script>
 @endsection
 
 @section('content')
@@ -30,9 +30,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-6 col-sm-5 col-md-3">
-                    <a id="volverListado" href="{{ route('escuela.admin_alumnos') }}" class="link-nav-listado texto-blanco text-left">
+                    <a id="volverListado" href="{{ route('institucion.admin_egresados') }}" class="link-nav-listado texto-blanco text-left">
                         <span class="glyphicon glyphicon-arrow-left"></span>
-                        Volver al listado de alumnos
+                        Volver al listado de egresados
                     </a>
                 </div>
                 @if (!$nuevo)
@@ -49,15 +49,15 @@
     </nav> {{-- /.nav-listado --}}
 
     <div class="container">
-        <article class="cargar-alumno">
-            {{ Form::model($alumno, [
-                'route' => ($nuevo) ? 'escuela.alumno_nuevo_post' : ['escuela.alumno_edit_put',$id],
+        <article class="cargar-egresado">
+            {{ Form::model($egresado, [
+                'route' => ($nuevo) ? 'institucion.egresado_nuevo_post' : ['institucion.egresado_edit_put',$id],
                 'method' => ($nuevo) ? 'POST' : 'PUT', 'files' => true,
                 'role'=>"form", 'class'=>"fila-flex form-mpt" ] ) }}
 
                 <main class="cargar-datos">
                     <h3 class="titulo-seccion">
-                        {{ ($nuevo) ? 'Cargar nuevo alumno' : 'Editar alumno' }}
+                        {{ ($nuevo) ? 'Cargar nuevo egresado' : 'Editar egresado' }}
                     </h3>
 
                     @if (count($errors) > 0)
@@ -82,7 +82,7 @@
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
                             {{ Form::label('dni', 'DNI', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('dni',($nuevo || !$alumno->dni) ? '' : null,['class'=>'form-control','placeholder'=>'DNI nº']) }}
+                            {{ Form::text('dni',($nuevo || !$egresado->dni) ? '' : null,['class'=>'form-control','placeholder'=>'DNI nº']) }}
                                 {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
 
@@ -103,7 +103,7 @@
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
                             <!-- FUNCIONA CON PLUGIN DATEPICKER -->
                             {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
-                            {{ Form::text('nacimiento',($nuevo || !$alumno->nacimiento) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento']) }}
+                            {{ Form::text('nacimiento',($nuevo || !$egresado->nacimiento) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento']) }}
                                 {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
@@ -172,7 +172,7 @@
                         <div class="form-group col-xs-12 {{ $errors->has('especialidad') ? ' has-error' : '' }}">
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-xs-12">
-                                    {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"input-label label-select-carga-alumno"]) }}
+                                    {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"input-label label-select-carga-egresado"]) }}
                                 </div>
                                 <div class="col-md-9 col-sm-8 col-xs-12">
                                     {{ Form::select('especialidad',
@@ -186,8 +186,8 @@
                                             'Tecnicatura en Informática Personal y Profesional' => 'Tecnicatura en Informática Personal y Profesional',
                                             'Tecnicatura Maestro Mayor de obra' => 'Tecnicatura Maestro Mayor de obra'
                                         ],
-                                        (!$nuevo) ? $alumno->curriculum->especialidad : null ,
-                                        ['class'=>'form-control select-carga-alumno','placeholder'=>'Elegir especialidad...']) }}
+                                        (!$nuevo) ? $egresado->curriculum->especialidad : null ,
+                                        ['class'=>'form-control select-carga-egresado','placeholder'=>'Elegir especialidad...']) }}
                                             {{-- ToDo: setear atributo required si no es privado --}}
                                 </div>
                             </div>
@@ -197,28 +197,28 @@
                             <!-- /*FUNCIONA CON PLUGIN TOUCHSPIN*/-->
                             {{ Form::label('promedio', 'Promedio general', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('promedio',
-                                (!$nuevo && $alumno->curriculum->promedio) ? $alumno->curriculum->promedio : null ,
+                                (!$nuevo && $egresado->curriculum->promedio) ? $egresado->curriculum->promedio : null ,
                                 ['id'=>'promedio','class'=>'form-control','placeholder'=>'Promedio general']) }}
                                     {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('asignaturas') ? ' has-error' : '' }}">
                             {{ Form::label('asignaturas', 'Asignaturas destacadas', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('asignaturas',
-                                (!$nuevo) ? $alumno->curriculum->asignaturas : null,
+                                (!$nuevo) ? $egresado->curriculum->asignaturas : null,
                                 ['class'=>'form-control','placeholder'=>'Asignaturas destacadas']) }}
                         </div>
 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_tipo') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_tipo', 'Prácticas profesionalizantes', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_tipo',
-                                (!$nuevo) ? $alumno->curriculum->practicas_tipo : null,
+                                (!$nuevo) ? $egresado->curriculum->practicas_tipo : null,
                                 ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes']) }}
                                     {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_lugar',
-                                (!$nuevo) ? $alumno->curriculum->practicas_lugar : null,
+                                (!$nuevo) ? $egresado->curriculum->practicas_lugar : null,
                                 ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?']) }}
                                     {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
@@ -228,28 +228,28 @@
                                 <strong>¿Continúa estudios terciarios o universitarios?</strong>
                                 <label>
                                     <input class="radio-estudio-superior" type="radio" name="estudios"
-                                        value="no" {{ ($nuevo || !$alumno->curriculum->estudios) ? 'checked' : '' }} >
+                                        value="no" {{ ($nuevo || !$egresado->curriculum->estudios) ? 'checked' : '' }} >
                                     No
                                 </label>
                                 <label>
                                     <input class="radio-estudio-superior" type="radio" name="estudios"
-                                        value="si" {{ (!$nuevo && $alumno->curriculum->estudios) ? 'checked' : '' }}>
+                                        value="si" {{ (!$nuevo && $egresado->curriculum->estudios) ? 'checked' : '' }}>
                                     Sí
                                 </label>
                             </div>
                         </div> {{-- /radio estudios terciarios --}}
                         <div class="form-group col-sm-6 col-xs-12 detalle-superior
-                                {{ ($nuevo || !$alumno->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_carrera') ? ' has-error' : '' }}">
+                                {{ ($nuevo || !$egresado->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_carrera') ? ' has-error' : '' }}">
                             {{ Form::label('estudios_carrera', 'Carrera', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('estudios_carrera',
-                                (!$nuevo) ? $alumno->curriculum->estudios_carrera : null,
+                                (!$nuevo) ? $egresado->curriculum->estudios_carrera : null,
                                 ['class'=>'form-control','placeholder'=>'Carrera']) }}
                         </div>
                         <div class="form-group col-sm-6 col-xs-12 detalle-superior
-                                {{ ($nuevo || !$alumno->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_lugar') ? ' has-error' : '' }}">
+                                {{ ($nuevo || !$egresado->curriculum->estudios) ? ' hidden' : '' }} {{ $errors->has('estudios_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('estudios_lugar', 'Entidad educativa', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('estudios_lugar',
-                                (!$nuevo) ? $alumno->curriculum->estudios_lugar : null,
+                                (!$nuevo) ? $egresado->curriculum->estudios_lugar : null,
                                 ['class'=>'form-control','placeholder'=>'Entidad educativa']) }}
                         </div>
 
@@ -265,84 +265,84 @@
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','responsabilidad',
-                                            !$nuevo && $alumno->curriculum->responsabilidad) }} {{-- Si es true, lo chequea --}}
+                                            !$nuevo && $egresado->curriculum->responsabilidad) }} {{-- Si es true, lo chequea --}}
                                         {{ trans('app.responsabilidad') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','puntualidad',
-                                            !$nuevo && $alumno->curriculum->puntualidad) }}
+                                            !$nuevo && $egresado->curriculum->puntualidad) }}
                                         {{ trans('app.puntualidad') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','proactividad',
-                                            !$nuevo && $alumno->curriculum->proactividad) }}
+                                            !$nuevo && $egresado->curriculum->proactividad) }}
                                         {{ trans('app.proactividad') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','equipo',
-                                            !$nuevo && $alumno->curriculum->equipo) }}
+                                            !$nuevo && $egresado->curriculum->equipo) }}
                                         {{ trans('app.equipo') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','creatividad',
-                                            !$nuevo && $alumno->curriculum->creatividad) }}
+                                            !$nuevo && $egresado->curriculum->creatividad) }}
                                         {{ trans('app.creatividad') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','liderazgo',
-                                            !$nuevo && $alumno->curriculum->liderazgo) }}
+                                            !$nuevo && $egresado->curriculum->liderazgo) }}
                                         {{ trans('app.liderazgo') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','conciliador',
-                                            !$nuevo && $alumno->curriculum->conciliador) }}
+                                            !$nuevo && $egresado->curriculum->conciliador) }}
                                         {{ trans('app.conciliador') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','perseverancia',
-                                            !$nuevo && $alumno->curriculum->perseverancia) }}
+                                            !$nuevo && $egresado->curriculum->perseverancia) }}
                                         {{ trans('app.perseverancia') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','asertividad',
-                                            !$nuevo && $alumno->curriculum->asertividad) }}
+                                            !$nuevo && $egresado->curriculum->asertividad) }}
                                         {{ trans('app.asertividad') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','relaciones',
-                                            !$nuevo && $alumno->curriculum->relaciones) }}
+                                            !$nuevo && $egresado->curriculum->relaciones) }}
                                         {{ trans('app.relaciones') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','objetivos',
-                                            !$nuevo && $alumno->curriculum->objetivos) }}
+                                            !$nuevo && $egresado->curriculum->objetivos) }}
                                         {{ trans('app.objetivos') }}
                                     </label>
                                 </div></li>
                                 <li><div class="checkbox">
                                     <label>
                                         {{ Form::checkbox('actitudes[]','saludable',
-                                            !$nuevo && $alumno->curriculum->saludable) }}
+                                            !$nuevo && $egresado->curriculum->saludable) }}
                                         {{ trans('app.saludable') }}
                                     </label>
                                 </div></li>
@@ -352,13 +352,13 @@
                         <div class="form-group col-xs-12{{ $errors->has('extras') ? ' has-error' : '' }}">
                             {{ Form::label('extras', 'Hobbies, pasatiempos y aptitudes extra educacionales', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('extras',
-                                (!$nuevo) ? $alumno->curriculum->extras : null,
+                                (!$nuevo) ? $egresado->curriculum->extras : null,
                                 ['class'=>'form-control','placeholder'=>'Hobbies, pasatiempos y aptitudes extra educacionales']) }}
                         </div>
                         <div class="form-group col-xs-12{{ $errors->has('participacion') ? ' has-error' : '' }}">
                             {{ Form::label('participacion', 'Participación institucional, social y deportiva', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('participacion',
-                                (!$nuevo) ? $alumno->curriculum->participacion : null,
+                                (!$nuevo) ? $egresado->curriculum->participacion : null,
                                 ['class'=>'form-control','placeholder'=>'Participación institucional, social y deportiva']) }}
                         </div>
 
@@ -369,7 +369,7 @@
                         <div class="form-group col-xs-12{{ $errors->has('carta_presentacion') ? ' has-error' : '' }}">
                             {{ Form::label('carta_presentacion', 'Carta de presentación', ["class"=>"sr-only"]) }}
                             {{ Form::textarea('carta_presentacion',
-                                (!$nuevo) ? $alumno->curriculum->carta_presentacion : null,
+                                (!$nuevo) ? $egresado->curriculum->carta_presentacion : null,
                                 ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6]) }}
                                     {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
@@ -381,11 +381,11 @@
                     <section class="cargar-foto">
 
                         <label class="cargar-foto-btn text-center">
-                            <figure id='foto-preview' class="foto-bg foto-alumno foto-placeholder"
-                            {!! (!$nuevo && $alumno->foto) ? 'style="background-image: url('.$alumno->getUrlFoto().');"' : '' !!} >
+                            <figure id='foto-preview' class="foto-bg foto-egresado foto-placeholder"
+                            {!! (!$nuevo && $egresado->foto) ? 'style="background-image: url('.$egresado->getUrlFoto().');"' : '' !!} >
                             </figure>
 
-                            <strong>{{ (!$nuevo && $alumno->foto) ? 'Cambiar la ' : 'Cargar una ' }}foto del alumno</strong>
+                            <strong>{{ (!$nuevo && $egresado->foto) ? 'Cambiar la ' : 'Cargar una ' }}foto del egresado</strong>
                             {{ Form::file('foto',['id'=>"cargarFoto", 'accept'=>".jpeg, .jpg, .png"]) }}
                         </label>
 
@@ -396,11 +396,11 @@
                         <div class="contenedor-datos-fijos">
                         @if ($nuevo)
                             <p><strong>Docente a cargo: </strong>{{ Auth::user()->name }}</p>
-                            <p><strong>Servicio Educativo: </strong><br>{{ Auth::user()->escuela->name }}</p>
+                            <p><strong>Servicio Educativo: </strong><br>{{ Auth::user()->institucion->name }}</p>
                         @else
-                            <p><strong>Creado / Editado: </strong>{{ $alumno->curriculum->updated_at }}</p>
-                            <p><strong>Docente a cargo: </strong>{{ $alumno->docente->name }}</p>
-                            <p><strong>Servicio Educativo: </strong><br>{{ $alumno->escuela->name }}</p>
+                            <p><strong>Creado / Editado: </strong>{{ $egresado->curriculum->updated_at }}</p>
+                            <p><strong>Docente a cargo: </strong>{{ $egresado->docente->name }}</p>
+                            <p><strong>Servicio Educativo: </strong><br>{{ $egresado->institucion->name }}</p>
                         @endif
                         </div>
 
@@ -409,19 +409,19 @@
                                 <div class="panel-body bg-warning">
                                     <div class="checkbox">
                                         <label class="text-warning">
-                                            {{ Form::checkbox('privado','si',!$nuevo && $alumno->privado) }}
+                                            {{ Form::checkbox('privado','si',!$nuevo && $egresado->privado) }}
                                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                                             &nbsp; Mantener privado
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            {{ Form::button( ($nuevo) ? 'Cargar alumno' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
+                            {{ Form::button( ($nuevo) ? 'Cargar egresado' : 'Guardar cambios', ['type' => 'submit','class' => 'btn btn-primary btn-guardar']) }}
                             @if ($nuevo)
                                 {{--<button type="reset" class="btn btn-link btn-descartar">Descartar</button>--}}
-                                <a href="{{ route('escuela.admin_alumnos') }}" class="btn btn-link btn-descartar">Descartar</a>
+                                <a href="{{ route('institucion.admin_egresados') }}" class="btn btn-link btn-descartar">Descartar</a>
                             @else
-                                <a href="{{ route('alumno_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
+                                <a href="{{ route('egresado_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
                                 <a href="#" class="btn btn-link btn-descartar" data-toggle="modal" data-target="#confirmarEliminar">Eliminar nota</a>
                             @endif
                         </div>
@@ -430,7 +430,7 @@
                 </aside> {{-- /.datos-fijos --}}
 
             {{ Form::close() }} {{-- .fila-flex --}}
-        </article> {{-- ./cargar-alumno --}}
+        </article> {{-- ./cargar-egresado --}}
     </div> {{-- ./container --}}
     @include('layouts.spinner')
 

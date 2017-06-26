@@ -75,7 +75,7 @@
     </nav>
 
     {{-- Contenedor inicialmente con clase loading: muestra spinner, oculta lista y paginacion.
-        Cuando se cargan y renderizan los alumnos, se quita la clase. --}}
+        Cuando se cargan y renderizan los egresados, se quita la clase. --}}
     <div class="container">
         @include('layouts.spinner')
         <main class="admin-notas">

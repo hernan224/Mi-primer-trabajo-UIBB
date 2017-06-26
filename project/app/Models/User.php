@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * App\Models\User
  *
  * @property integer $id
- * @property integer $escuela_id
+ * @property integer $institucion_id
  * @property string $name
  * @property string $email
  * @property string $password
@@ -19,11 +19,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Escuela $escuela
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Alumno[] $alumnos
+ * @property-read \App\Models\Institucion $institucion
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Egresado[] $egresados
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Publicacion[] $publicaciones
  * @method static Builder|User whereId($value)
- * @method static Builder|User whereEscuelaId($value)
+ * @method static Builder|User whereInstitucionId($value)
  * @method static Builder|User whereName($value)
  * @method static Builder|User whereEmail($value)
  * @method static Builder|User wherePassword($value)
@@ -56,17 +56,17 @@ class User extends Authenticatable
     ];
 
     /**
-     * Consulta si puede editar alumnos (sólo disponible para escuelas)
+     * Consulta si puede editar egresados (sólo disponible para instituciones)
      * @return bool
      */
     public function puedeEditar() {
-        return $this->hasRole('escuela'); // || $this->hasRole('admin');
+        return $this->hasRole('institucion'); // || $this->hasRole('admin');
     }
 
     /**
      * Consulta de rol.
      *      Roles posibles:
-     *          - escuela: puede crear, editar, eliminar alumnos propios
+     *          - institucion: puede crear, editar, eliminar egresados propios
      *          - admin: puede crear publicaciones
      * @param $rol
      * @return bool
@@ -76,10 +76,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Relación M:1 con Escuela
+     * Relación M:1 con Institucion
      */
-    public function escuela() {
-        return $this->belongsTo(Escuela::class);
+    public function institucion() {
+        return $this->belongsTo(Institucion::class);
     }
 
     /**
@@ -90,10 +90,10 @@ class User extends Authenticatable
     // }
 
     /**
-     * Relación 1:M con Alumnos
+     * Relación 1:M con Egresados
      */
-    public function alumnos() {
-        return $this->hasMany(Alumno::class,'docente_id');
+    public function egresados() {
+        return $this->hasMany(Egresado::class,'docente_id');
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-// Reglas de validacion para POST de alumno
-class PostAlumnoRequest extends Request
+// Reglas de validacion para POST de egresado
+class PostEgresadoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,7 +12,7 @@ class PostAlumnoRequest extends Request
      */
     public function authorize()
     {
-        // La verificacion de si el id del alumno corresponde al usuario
+        // La verificacion de si el id del egresado corresponde al usuario
         // cuando se edita, se invoca desde el controller
         return true;
     }
@@ -30,15 +30,15 @@ class PostAlumnoRequest extends Request
         };
         $this->merge(array_map($trim_if_string, $this->all()));
 
-        $dni_validation = 'required_without:privado|integer|max:99999999|unique:alumnos,dni';
-        // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el alumno actual
+        $dni_validation = 'required_without:privado|integer|max:99999999|unique:egresados,dni';
+        // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el egresado actual
         $route = $this->route()->getName();
-        if ($route == 'escuela.alumno_edit_put') {
-            $id_alumno = $this->route('id');
-            $dni_validation .= ','.$id_alumno;
+        if ($route == 'institucion.egresado_edit_put') {
+            $id_egresado = $this->route('id');
+            $dni_validation .= ','.$id_egresado;
         }
         return [
-            // data alumno
+            // data egresado
             'nombre' => 'required|max:50',
             'apellido' => 'required|max:50',
             'dni' => $dni_validation,

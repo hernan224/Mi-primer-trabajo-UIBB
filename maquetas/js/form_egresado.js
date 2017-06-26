@@ -1,4 +1,4 @@
-// Script para formulario de creación/edición de alumno
+// Script para formulario de creación/edición de egresado
 $(function () {
     //Inicializar datepicker
     var calendario = $('#nacimiento');
@@ -31,9 +31,9 @@ $(function () {
     });
 
     //Mostrar label en carga de datos
-    var $inputsAlumno = $('.form-mpt input.form-control');
+    var $inputsEgresado = $('.form-mpt input.form-control');
 
-    $inputsAlumno.on('change', function(){
+    $inputsEgresado.on('change', function(){
         var este = $(this);
         var estePadre = este.parents('.form-group');
 
@@ -47,7 +47,7 @@ $(function () {
     });
 
     // si tiene texto al cargar la pagina, agregar clase cargado (formulario con la data cargada)
-    $inputsAlumno.each(function(index, el) {
+    $inputsEgresado.each(function(index, el) {
         if ($(el).val()) {
             $(el).closest('.form-group').addClass('cargado');
         }
