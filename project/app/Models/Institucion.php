@@ -40,7 +40,7 @@ class Institucion extends Model
     const TIPO_ESCUELA_TECNICA = 1;
     const TIPO_CENTRO_FORMACION = 2;
 
-    private $tipos_text = [
+    CONST TIPOS_LABELS = [
         self::TIPO_ESCUELA_TECNICA => 'Escuela Técnica',
         self::TIPO_CENTRO_FORMACION => 'Centro de Formación Profesional'
     ];
@@ -81,9 +81,9 @@ class Institucion extends Model
         else return false;
     }
 
-    public function getTipoText() {
-        return (isset($this->tipos_text[$this->tipo])) ?
-            $this->tipos_text[$this->tipo] : '';
+    public function getTipoLabel() {
+        return (isset(self::TIPOS_LABELS[$this->tipo])) ?
+            self::TIPOS_LABELS[$this->tipo] : '';
     }
 
 }

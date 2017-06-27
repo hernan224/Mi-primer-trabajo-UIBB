@@ -20,9 +20,14 @@
                     <li><a href="{{ route('home') }}">
                         <strong>Inicio</strong>
                     </a></li>
-                    <li><a href="{{ route('egresados_public') }}">
-                        <strong>Acceder a la plataforma</strong>
+                    <li><a href="{{ route('egresados', ['tipo'=>'tecnicos']) }}">
+                        <strong>Egresados Técnicos</strong>
                     </a></li>
+                    <li><a href="{{ route('egresados', ['tipo'=>'oficios']) }}">
+                        <strong>Egresados de Oficios</strong>
+                    </a></li>
+                </ul>
+                <ul class="list-inline nav-list menu-principal text-right">
                     <li><a href="{{ route('publicaciones_capacitaciones') }}">
                         <strong>Capacitaciones</strong>
                     </a></li>

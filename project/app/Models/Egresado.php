@@ -58,6 +58,17 @@ class Egresado extends Model
     // Tipos de egresado
     const TIPO_TECNICO = 1;
     const TIPO_OFICIO = 2;
+    const TIPO_TECNICOS_LABEL = 'tecnicos';
+    const TIPO_OFICIOS_LABEL = 'oficios';
+    const TIPOS_LABELS = [
+        self::TIPO_TECNICO => self::TIPO_TECNICOS_LABEL,
+        self::TIPO_OFICIO => self::TIPO_OFICIOS_LABEL
+    ];
+    const TIPOS_MAP = [
+        self::TIPO_TECNICOS_LABEL => self::TIPO_TECNICO,
+        self::TIPO_OFICIOS_LABEL => self::TIPO_OFICIO
+    ];
+
 
     protected $table = 'egresados';
 
@@ -124,6 +135,11 @@ class Egresado extends Model
             return asset(self::$image_path.'/'.$this->foto);
         }
         else return false;
+    }
+
+    public function getTipoLabel() {
+        return (isset(self::TIPOS_LABELS[$this->tipo])) ?
+            self::TIPOS_LABELS[$this->tipo] : '';
     }
 
 }

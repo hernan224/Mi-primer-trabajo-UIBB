@@ -37,7 +37,7 @@
 
                     <div class="info-item">
                         <h4 class="texto-azul">{{$institucion->name}}</h4>
-                        <p class="subtitulo">{{$institucion->getTipoText()}}</p>
+                        <p class="subtitulo">{{$institucion->getTipoLabel()}}</p>
 
                         <div class="item-datos">
                             <p><strong>Ciudad:</strong> {{$institucion->localidad}}</p>

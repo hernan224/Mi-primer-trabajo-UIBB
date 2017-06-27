@@ -28,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
         $gate->define('edit-egresado', function ($user, $egresado) {
+            // chequeo que el usuario pueda editar
             /** @var User $user */
             if (!$user->puedeEditar())
                 return false;
@@ -36,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('show-egresado-privado', function ($user, $egresado) {
-            // chequeo que sea de la institucion del usuario
+            // chequeo que el egresado sea de la institucion del usuario
             /** @var User $user */
             return $user->hasRole('institucion') && $user->institucion->id == $egresado->institucion_id;
         });

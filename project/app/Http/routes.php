@@ -76,18 +76,18 @@ Route::group(['middleware' => 'web'], function () {
 
 
     /** Listado de egresados público */
-    // GET pantalla
-    Route::get('/listado-egresados','EgresadosController@showListado')
-        ->name('egresados_public');
-    // GET lista egresados públicos (resp JSON)
+    // GET pantalla - egresados del tipo indicado (tecnicos u oficios)
+    Route::get('/egresados/{tipo}','EgresadosController@showListado')
+        ->name('egresados');
+    // GET lista egresados públicos de cada tipo (resp JSON)
     // Puede incluir filtros y ordenamiento como parametros get, y numero pagina
-    Route::get('/egresados','EgresadosController@lista')
-        ->name('egresados_public_list');
+    Route::get('/egresados/list/{tipo}','EgresadosController@lista')
+        ->name('egresados_list');
     // Busqueda nombre, apellido, especialidad (resp JSON)
-    Route::get('/egresados/search','EgresadosController@search')
-        ->name('egresados_public_search');
+    Route::get('/egresados/search/{tipo}','EgresadosController@search')
+        ->name('egresados_search');
 
-    // GET vista y PDF egresado
+    // GET vista y PDF egresado (de cualquiera de los dos tipos - usa el id)
     Route::get('/egresado/pdf/{id?}','EgresadosController@pdf')
         ->name('egresado_pdf');
     Route::get('/egresado/{id?}','EgresadosController@show')

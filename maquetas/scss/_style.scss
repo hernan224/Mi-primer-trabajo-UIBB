@@ -259,7 +259,7 @@ figure.container-foto-seccion{
   width: 100%;
   padding-left: 15%;
   @include media('<hd'){
-    padding-left: 10%;
+    padding-left: 20px;
   }
 
 
@@ -601,6 +601,7 @@ figure.container-foto-seccion{
 
     .fila-flex{
       flex-direction: row;
+      justify-content: center;
       @include media('<tablet'){
         flex-direction: column;
       }
@@ -2592,10 +2593,12 @@ footer.pie-pagina{
     }
 
     &.menu-principal{
-      margin-top: 4.5em;
-
-      @include media('<tablet'){
-        margin-top: 2em;
+      line-height: 1.5em;
+      &:first-child {
+        margin-top: 3em;
+        @include media('<tablet'){
+          margin-top: 1.5em;
+        }
       }
     }
   }

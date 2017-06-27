@@ -40,19 +40,31 @@
             <a class="logo-uibb uibb-blanco" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>
         </div> {{-- .mpt-by --}}
 
-        <a href="{{ route('egresados_public') }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
-            Acceder a la Plataforma
-            <span class="glyphicon glyphicon-arrow-right"></span>
-        </a>
-
-        @if (Auth::check())
-            <a href="{{ route('administracion') }}" class="btn btn-registro">
-                <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
-            </a>
-        @else
-            <a href="{{ route('login') }}" class="btn btn-registro">
-                <span class="glyphicon glyphicon-user"></span> &nbsp; Iniciar sesión
-            </a>
-        @endif
+        <div class="botones-home botones-acceso">
+            @if (Auth::check())
+            <div class="fila-flex">
+                <a href="{{ route('administracion') }}" class="btn btn-registro">
+                    <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
+                </a>
+            </div>
+            @endif
+            <p class="h2 texto-blanco text-center">¿Qué tipo de profesional está buscando?</p>
+            <div class="fila-flex">
+                <a href="{{ route('egresados', ['tipo'=>'tecnicos']) }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
+                    Egresados Técnicos
+                </a>
+                <a href="{{ route('egresados', ['tipo'=>'oficios']) }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
+                    Egresados de Oficios
+                </a>
+            </div>
+            @if (!Auth::check())
+            <div class="fila-flex">
+                <a href="{{ route('login') }}" class="btn btn-registro">
+                    <span class="glyphicon glyphicon-user"></span> &nbsp; Iniciar sesión
+                </a>
+            </div>
+            @endif
+            </div>
+        </div>
     </div> {{-- /.contenido-header-home --}}
 </header> {{-- .header-home --}}

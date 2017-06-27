@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-2 {{ ($editable) ? 'col-md-3': 'col-md-4' }}">
-                    <a id="volverListado" href="{{ ($editable) ? route('institucion.admin_egresados') : route('egresados_public') }}" class="link-nav-listado texto-blanco text-left">
+                    <a id="volverListado" href="{{ $url_back }}" class="link-nav-listado texto-blanco text-left">
                         <span class="glyphicon glyphicon-arrow-left"></span>
                         <span class="hidden-sm hidden-xs">Volver al listado de egresados</span>
                     </a>

@@ -318,7 +318,7 @@ figure.container-foto-seccion + p:first-of-type {
 
 @media (max-width: 1199px) {
   .navegacion-principal-pc {
-    padding-left: 10%;
+    padding-left: 20px;
   }
 }
 
@@ -638,6 +638,8 @@ a:hover > .btn-menu-usuario,
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 @media (max-width: 767px) {
@@ -2748,12 +2750,16 @@ footer.pie-pagina .nav-list li:first-child::before {
 }
 
 footer.pie-pagina .nav-list.menu-principal {
-  margin-top: 4.5em;
+  line-height: 1.5em;
+}
+
+footer.pie-pagina .nav-list.menu-principal:first-child {
+  margin-top: 3em;
 }
 
 @media (max-width: 767px) {
-  footer.pie-pagina .nav-list.menu-principal {
-    margin-top: 2em;
+  footer.pie-pagina .nav-list.menu-principal:first-child {
+    margin-top: 1.5em;
   }
 }
 

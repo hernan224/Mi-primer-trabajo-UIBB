@@ -17,16 +17,27 @@ use App\Models\Institucion;
 class EgresadosController extends Controller
 {
     /**
-     * Muestra pantalla listado público de egresados (sin data: la obtiene por AJAX de lista)
-     * Route: egresados_public - URL: /listado-egresados [GET]
+     * Muestra pantalla listado público de egresados del tipo indiccado (sin data: la obtiene por AJAX de lista)
+     *
+     * Route: egresados - URL: /egresados/{tipo} [GET]
+     *  Tipo puede ser tecnicos u oficios
+     *
+     * @param string $tipo constante (label) definida en Egresado
+     * @return \Illuminate\View\View
      */
-    public function showListado() {
+    public function showListado($tipo) {
+
+        if (!in_array($tipo,Egresado::TIPOS_LABELS)) {
+            return abort(404);
+        }
+
         $instituciones = Institucion::all();
         $view_data = [
+            'tipo' => $tipo,
             'admin_institucion' => false,
             'urls' => [
-                'get_list' =>  route('egresados_public_list'),
-                'search' => route('egresados_public_search'),
+                'get_list' => route('egresados_list',['tipo' => $tipo]),
+                'search' => route('egresados_search',['tipo' => $tipo]),
                 'fotos' => asset(Egresado::$image_path),
                 'show' => route('egresado_show'),
                 'edit' => false,
@@ -38,8 +49,12 @@ class EgresadosController extends Controller
     }
 
     /**
-     * Muestra pantalla listado de egresados de institucion para administrar (sin data: la obtiene por AJAX de listaInstitucion)
+     * Muestra pantalla listado de egresados de institucion logueada para administrar
+     *  (sin data: la obtiene por AJAX de listaInstitucion)
      * Route: institucion.admin_egresados - URL: /administrar-egresados  [GET, role institucion]
+     *
+     * En el routing se utiliza el middleware auth y role:institucion,
+     *      que asegura que haya usuario con role institución logueado
      */
     public function showListadoInstitucion() {
         $instituciones = Institucion::all();
@@ -66,11 +81,17 @@ class EgresadosController extends Controller
      *      Puede incluir filtros, ordenamiento o num pag (parametros en request):
      *      page=<number> : es interpretada automaticamente al invocar paginate() en la query
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  boolean  $admin_institucion si es true, se buscan solo los egresados de la institución
+     * @param  \Illuminate\Http\Request $request
+     * @param  string $tipo constante (label) definida en Egresado - No se indica si admin_institucion es true
+     * @param  boolean $admin_institucion si es true, se buscan solo los egresados de la institución
      * @return \Illuminate\Http\Response
      */
-    public function lista(Request $request, $admin_institucion = false){
+    public function lista(Request $request, $tipo, $admin_institucion = false){
+        if (!$admin_institucion && !in_array($tipo,Egresado::TIPOS_LABELS)) {
+            // Chequeo de tipo válido si no son los egresados de la institución
+            return abort(404);
+        }
+
         $select_array = [
             'egresados.id','egresados.nombre','egresados.apellido','egresados.nacimiento',
             'egresados.localidad','egresados.barrio','egresados.foto','egresados.sexo','egresados.privado',
@@ -100,8 +121,9 @@ class EgresadosController extends Controller
             $where_array[] = ['egresados.institucion_id',$institucion_id];
         }
         else {
-            // si no, solo los publicos
-            $query->where('egresados.privado',false);
+            // si no, sólo los publicos del tipo indicado
+            $where_array[] = ['egresados.privado', false];
+            $where_array[] = ['egresados.tipo', Egresado::TIPOS_MAP[$tipo] ];
         }
 
         // filtros
@@ -125,7 +147,8 @@ class EgresadosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function listaInstitucion(Request $request){
-        return $this->lista($request,true);
+        // No se define tipo ya que se obtienen los egresados de la institución
+        return $this->lista($request,null,true);
     }
 
     private function lista_filtros(Request $request,&$where_array) {
@@ -226,10 +249,16 @@ class EgresadosController extends Controller
      * Route: egresados_public_search - URL: /egresados/search [GET]
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string $tipo constante (label) definida en Egresado - No se indica si admin_institucion es true
      * @param  boolean  $admin_institucion si es true, se buscan solo los egresados de la institucion
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request,$admin_institucion = false) {
+    public function search(Request $request, $tipo, $admin_institucion = false) {
+        if (!$admin_institucion && !in_array($tipo,Egresado::TIPOS_LABELS)) {
+            // Chequeo de tipo válido si no son los egresados de la institución
+            return abort(404);
+        }
+
         $select_array = [
             'egresados.id','egresados.nombre','egresados.apellido','curriculums.especialidad',
             'instituciones.name as institucion',
@@ -246,8 +275,9 @@ class EgresadosController extends Controller
             $query->where('egresados.institucion_id',$institucion_id);
         }
         else {
-            // solo los publicos
+            // solo los publicos del tipo indicado
             $query->where('egresados.privado',false);
+            $query->where('egresados.tipo', Egresado::TIPOS_MAP[$tipo]);
         }
 
         $egresados = $query->get();
@@ -286,11 +316,13 @@ class EgresadosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function searchInstitucion(Request $request){
-        return $this->lista($request,true);
+        // No se define tipo ya que se obtienen los egresados de la institución
+        return $this->lista($request,null,true);
     }
 
     /**
-     * Muestra pantalla egresado / curriculum creado.
+     * Muestra pantalla egresado / curriculum creado (vista o edición)
+     *      El egresado puede ser de cualquiera de los dos tipos, ya que se usa el id
      * Route: egresado_show - URL: /egresados/{id} [GET]
      *
      * @param  int  $id
@@ -299,11 +331,11 @@ class EgresadosController extends Controller
     public function show($id = null)
     {
         if (!$id) {
-            return redirect()->route('egresados_public');
+            return abort(404);
         }
         $egresado = Egresado::find($id);
         if (!$egresado) {
-            return redirect()->route('egresados_public');
+            return abort(404);
         }
         // autorizo accion si egresado no es publico: sólo egresado de institucion
         if ($egresado->privado && Gate::denies('show-egresado-privado', $egresado)) {
@@ -312,12 +344,14 @@ class EgresadosController extends Controller
         $view_data = [
             'id' => $id,
             'egresado' => $egresado,
-            'editable' => false
+            'editable' => false,
+            'url_back' => route('egresados', ['tipo' => $egresado->getTipoLabel()])
         ];
-        // parametro editable: si usuario es institucion del egresado
+        // parametro editable: si usuario es institucion del egresado, muestra link de edición
         $user = Auth::user();
         if ($user && $user->hasRole('institucion') && $user->institucion->id == $egresado->institucion_id) {
             $view_data['editable'] = true;
+            $view_data['url_back'] = route('institucion.admin_egresados');
         }
         return view('egresados.show',$view_data);
     }
@@ -426,11 +460,11 @@ class EgresadosController extends Controller
     public function edit($id = null)
     {
         if (!$id) {
-            return redirect()->route('institucion.admin_egresados');
+            return abort(404);
         }
         $egresado = Egresado::find($id);
         if (!$egresado) {
-            return redirect()->route('institucion.admin_egresados');
+            return abort(404);
         }
         // autorizo accion (solo para institucion de ese egresado)
         if (Gate::denies('edit-egresado', $egresado)) {

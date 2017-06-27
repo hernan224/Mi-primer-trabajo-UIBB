@@ -2,27 +2,34 @@
 <nav class="navegacion-principal-pc hidden-sm hidden-xs">
     <ul class="list-unstyled fila-flex">
         <li>
-            <a href="{{ route('egresados_public')  }}" class="{{ Request::path() == 'listado-egresados' ? 'activo' : '' }}">
-                Acceder a la Plataforma
+            <a href="{{ route('egresados', ['tipo'=>'tecnicos']) }}"
+               class="{{ (Request::route()->getName() == 'egresados' && Request::route()->getParameter('tipo') == 'tecnicos') ? 'activo' : '' }}">
+                Egresados Técnicos
             </a>
         </li>
         <li>
-            <a href="{{ route('publicaciones_capacitaciones') }}" class="{{ Request::path() == 'publicaciones/capacitaciones' ? 'activo' : '' }}">
+            <a href="{{ route('egresados', ['tipo'=>'oficios'])  }}"
+               class="{{ (Request::route()->getName() == 'egresados' && Request::route()->getParameter('tipo') == 'oficios') ? 'activo' : '' }}">
+                Egresados de Oficios
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('publicaciones_capacitaciones') }}" class="{{ Request::route()->getName() == 'publicaciones_capacitaciones' ? 'activo' : '' }}">
                 Capacitaciones
             </a>
         </li>
         <li>
-            <a href="{{ route('publicaciones_practicas') }}" class="{{ Request::path() == 'publicaciones/practicas' ? 'activo' : '' }}">
+            <a href="{{ route('publicaciones_practicas') }}" class="{{ Request::route()->getName() == 'publicaciones_practicas' ? 'activo' : '' }}">
                 Prácticas
             </a>
         </li>
         <li>
-            <a href="{{ route('instituciones') }}" class="{{ Request::path() == 'instituciones-educativas' ? 'activo' : '' }}">
+            <a href="{{ route('instituciones') }}" class="{{ Request::route()->getName() == 'instituciones' ? 'activo' : '' }}">
                 Instituciones
             </a>
         </li>
         <li>
-            <a href="{{ route('contacto')}}" class="{{ Request::path() == 'contacto' ? 'activo' : '' }}">
+            <a href="{{ route('contacto')}}" class="{{ Request::route()->getName() == 'contacto' ? 'activo' : '' }}">
                 Contacto
             </a>
         </li>
@@ -122,8 +129,11 @@
         <hr class="separador-menu">
     @endif
         <li><a href="{{ route('home') }}">Inicio</a></li>
-        <li><a href="{{ route('egresados_public') }}" class="acceder-plataforma">
-            Acceder a la Plataforma
+        <li><a href="{{ route('egresados', ['tipo'=>'tecnicos']) }}" class="acceder-plataforma">
+            Egresados Técnicos
+        </a></li>
+        <li><a href="{{ route('egresados', ['tipo'=>'oficios']) }}" class="acceder-plataforma">
+            Egresados de Oficios
         </a></li>
         <li><a href="{{ route('publicaciones_capacitaciones') }}" class="acceder-plataforma">
             Capacitaciones

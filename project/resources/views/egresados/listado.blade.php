@@ -1,6 +1,6 @@
 {{-- Listado de egresados (sólo vista y template. La data se obtiene via AJAX).
     Cambia si es listado publico o de institucion
-    URL listado publico: /listado-egresados  [parametro $admin_institucion: false]
+    URL listado publico: /egresados/{tipo}  [parametro $admin_institucion: false - $tipo: tecnicos u oficios]
     URL listado institucion: /administrar-egresados (route: institucion.admin_egresados) [parametro $admin_institucion: true]
 --}}
 
@@ -10,7 +10,7 @@
     @if ($admin_institucion)
         Panel de administración
     @else
-        Listado de egresados
+        Listado de egresados {{ trans("app.$tipo") }}
     @endif
 @endsection
 
@@ -187,7 +187,7 @@
             @if (!$admin_institucion && Auth::check())
                 @if (Auth::user()->hasRole('institucion'))
                     <div class="text-center">
-                        <strong>Este es el listado público de todos los egresados cargados en la plataforma.</strong><br>
+                        <strong>Este es el listado público de todos los egresados {{ trans("app.$tipo") }} cargados en la plataforma.</strong><br>
                         Para ver y administrar los egresados de su institución educativa:
                         <a href="{{ route('administracion') }}">
                             Panel de administración <span class="glyphicon glyphicon-arrow-right"></span>

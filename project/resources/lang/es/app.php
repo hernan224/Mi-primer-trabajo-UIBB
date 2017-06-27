@@ -16,5 +16,7 @@ return [
     'saludable' => 'Hábitos saludables',
 
     'capacitaciones' => 'Capacitaciones',
-    'practicas' => "Prácticas profesionalizantes"
+    'practicas' => "Prácticas profesionalizantes",
+    'tecnicos' => 'Técnicos',
+    'oficios' => 'de Oficios'
 ];

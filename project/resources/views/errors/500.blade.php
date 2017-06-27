@@ -27,8 +27,12 @@
                     </div>
                 </div>
 
-                <a href="{{ route('egresados') }}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
-                    Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
+                <a href="{{ route('egresados', ['tipo'=>'tecnicos']) }}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
+                    Egresados Técnicos
+                </a>
+                <br>
+                <a href="{{ route('egresados', ['tipo'=>'oficios']) }}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
+                    Egresados de Oficios
                 </a>
 
                 <a href="{{ route('home') }}" class="text-center center-block link-home">
