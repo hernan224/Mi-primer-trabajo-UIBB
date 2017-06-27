@@ -2,7 +2,7 @@
 <header class="header-simple">
     <div class="center-block">
         <div class="marca-container">
-            <a href="{{ url('/') }}">
+            <a href="{{ route('home') }}">
                 <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-azul">
                     <use xlink:href="#logoMPT"></use>
                 </svg>

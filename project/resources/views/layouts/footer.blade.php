@@ -4,7 +4,7 @@
         <div class="contenido-footer row">
             <div class="col-md-3 col-sm-4">
                 <div class="marca-container">
-                    <a href="{{ url('/')}}">
+                    <a href="{{ route('home') }}">
                         <svg viewBox="0 0 324.343 164.374" class="logo-mpt logo-blanco">
                             <use xlink:href="#logoMPT"></use>
                         </svg>
@@ -17,10 +17,10 @@
             </div>
             <div class="col-md-9 col-sm-8">
                 <ul class="list-inline nav-list menu-principal text-right">
-                    <li><a href="{{ url('/')}}">
+                    <li><a href="{{ route('home') }}">
                         <strong>Inicio</strong>
                     </a></li>
-                    <li><a href="{{ url('/listado-egresados') }}">
+                    <li><a href="{{ route('egresados_public') }}">
                         <strong>Acceder a la plataforma</strong>
                     </a></li>
                     <li><a href="{{ route('publicaciones_capacitaciones') }}">
@@ -29,19 +29,19 @@
                     <li><a href="{{ route('publicaciones_practicas') }}">
                         <strong>Prácticas profesionalizantes</strong>
                     </a></li>
-                    <li><a href="{{ url('/instituciones-educativas') }}">
+                    <li><a href="{{ route('instituciones') }}">
                         <strong>Instituciones Educativas</strong>
                     </a></li>
                     {{-- <li><strong><a href="{{ url('/empresas')}}">Empresas</a></strong></li> --}}
                 </ul> {{-- .menu-principal --}}
                 <ul class="list-inline nav-list menu-tc-pp text-right">
-                    <li><a href="{{ url('/panel-administracion')}}">
+                    <li><a href="{{ route('administracion') }}">
                         Panel de administración
                     </a></li>
-                    <li><a href="{{ url('/contacto')}}">
+                    <li><a href="{{ route('contacto') }}">
                         Contacto
                     </a></li>
-                    <li><a href="{{ url('/legal')}}">
+                    <li><a href="{{ route('aviso_legal') }}">
                         Aviso legal
                     </a></li>
 

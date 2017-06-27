@@ -138,7 +138,7 @@
                         Bahía Blanca, con las PyMES y empresas que requieran técnicos calificados.</p>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-lg-5">
-                    <a href="{{ url('/instituciones-educativas')}}" class="btn-banner banner-instituciones" role="button">
+                    <a href="{{ route('instituciones') }}" class="btn-banner banner-instituciones" role="button">
                         <svg viewBox="0 0 100 100" class="banner-icono">
                             <use xlink:href="#iconoEducacion"></use>
                         </svg>
@@ -168,7 +168,7 @@
                             <p class="texto-especial text-center">
                                 <em>Si desea obtener más información, o hacernos llegar su comentario, acerca de la plataforma <strong>Mi Primer Trabajo</strong>:</em>
                             </p>
-                            <a href="{{url('/contacto')}}" class="btn-acceder btn-linea-azul btn-contacto btn-max-360 btn-h-celeste text-uppercase" role="button">
+                            <a href="{{ route('contacto') }}" class="btn-acceder btn-linea-azul btn-contacto btn-max-360 btn-h-celeste text-uppercase" role="button">
                                 Contáctese con nosotros
                             </a>
                         </div>

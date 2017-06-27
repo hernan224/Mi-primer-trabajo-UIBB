@@ -17,7 +17,7 @@
                 <div class="col-xs-8 col-md-4">
                     <a id="volverListado" class="link-nav-listado texto-blanco text-left"
                        href="{{ (Auth::check() && Auth::user()->hasRole('admin')) ?
-                            route('publicaciones.admin_publicaciones') : url('publicaciones') .'/'.$publicacion->categoria }}">
+                            route('publicaciones.admin_publicaciones') : route('publicaciones_'.$publicacion->categoria) }}">
                         <span class="glyphicon glyphicon-arrow-left"></span>
                         Volver {{ Auth::check() && Auth::user()->hasRole('admin') ?
                             'al listado de notas' : 'a '.trans('app.'.$publicacion->categoria) }}
@@ -52,7 +52,7 @@
                         <div class="datos-nota">
                             <span class="dato seccion">
                                 <strong>Sección:</strong>
-                                <a href="{{ url('publicaciones') .'/'.$publicacion->categoria }}">{{ trans('app.'.$publicacion->categoria) }}</a>
+                                <a href="{{ route('publicaciones_'.$publicacion->categoria) }}">{{ trans('app.'.$publicacion->categoria) }}</a>
                             </span>
                             <span class="dato fec-publicacion">
                                 <strong>Publicado:</strong> {{ $publicacion->updated_at }}

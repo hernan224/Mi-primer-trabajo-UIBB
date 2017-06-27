@@ -1,4 +1,4 @@
-{{-- Pantalla contacto. URL: /contacto --}}
+{{-- Pantalla aviso legal. URL: /legal --}}
 @extends('layouts.base')
 
 @section('title')

@@ -40,17 +40,17 @@
             <a class="logo-uibb uibb-blanco" href="http://uibb.org.ar/">Unión Industrial Bahía Blanca</a>
         </div> {{-- .mpt-by --}}
 
-        <a href="{{ url('/listado-egresados') }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
+        <a href="{{ route('egresados_public') }}" class="btn-acceder btn-linea-blanco btn-max-360" role="button">
             Acceder a la Plataforma
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
 
         @if (Auth::check())
-            <a href="{{ url('/panel-administracion') }}" class="btn btn-registro">
+            <a href="{{ route('administracion') }}" class="btn btn-registro">
                 <span class="glyphicon glyphicon-dashboard"></span>&nbsp; Panel de administración
             </a>
         @else
-            <a href="{{ url('/login') }}" class="btn btn-registro">
+            <a href="{{ route('login') }}" class="btn btn-registro">
                 <span class="glyphicon glyphicon-user"></span> &nbsp; Iniciar sesión
             </a>
         @endif

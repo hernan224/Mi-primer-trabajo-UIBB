@@ -27,11 +27,11 @@
                     </div>
                 </div>
 
-                <a href="{{url('/listado-egresados')}}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
+                <a href="{{ route('egresados') }}" class="btn-acceder btn-linea-azul btn-max-360" role="button">
                     Acceder a la Plataforma <span class="glyphicon glyphicon-arrow-right"></span>
                 </a>
 
-                <a href="{{url('/')}}" class="text-center center-block link-home">
+                <a href="{{ route('home') }}" class="text-center center-block link-home">
                     Volver a la página de Inicio
                 </a>
 

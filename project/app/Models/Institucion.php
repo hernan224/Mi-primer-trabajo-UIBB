@@ -40,6 +40,11 @@ class Institucion extends Model
     const TIPO_ESCUELA_TECNICA = 1;
     const TIPO_CENTRO_FORMACION = 2;
 
+    private $tipos_text = [
+        self::TIPO_ESCUELA_TECNICA => 'Escuela Técnica',
+        self::TIPO_CENTRO_FORMACION => 'Centro de Formación Profesional'
+    ];
+
     protected $table = 'instituciones';
 
     /**
@@ -74,6 +79,11 @@ class Institucion extends Model
             return asset(self::$image_path.'/'.$this->foto);
         }
         else return false;
+    }
+
+    public function getTipoText() {
+        return (isset($this->tipos_text[$this->tipo])) ?
+            $this->tipos_text[$this->tipo] : '';
     }
 
 }

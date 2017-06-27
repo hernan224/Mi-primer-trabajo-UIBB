@@ -189,7 +189,7 @@
                     <div class="text-center">
                         <strong>Este es el listado público de todos los egresados cargados en la plataforma.</strong><br>
                         Para ver y administrar los egresados de su institución educativa:
-                        <a href="{{ url('/panel-administracion')}}">
+                        <a href="{{ route('administracion') }}">
                             Panel de administración <span class="glyphicon glyphicon-arrow-right"></span>
                         </a>
                     </div>

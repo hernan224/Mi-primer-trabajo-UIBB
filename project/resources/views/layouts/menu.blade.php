@@ -2,7 +2,7 @@
 <nav class="navegacion-principal-pc hidden-sm hidden-xs">
     <ul class="list-unstyled fila-flex">
         <li>
-            <a href="{{ url('/listado-egresados') }}" class="{{ Request::path() == 'listado-egresados' ? 'activo' : '' }}">
+            <a href="{{ route('egresados_public')  }}" class="{{ Request::path() == 'listado-egresados' ? 'activo' : '' }}">
                 Acceder a la Plataforma
             </a>
         </li>
@@ -17,12 +17,12 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/instituciones-educativas') }}" class="{{ Request::path() == 'instituciones-educativas' ? 'activo' : '' }}">
+            <a href="{{ route('instituciones') }}" class="{{ Request::path() == 'instituciones-educativas' ? 'activo' : '' }}">
                 Instituciones
             </a>
         </li>
         <li>
-            <a href="{{ url('/contacto')}}" class="{{ Request::path() == 'contacto' ? 'activo' : '' }}">
+            <a href="{{ route('contacto')}}" class="{{ Request::path() == 'contacto' ? 'activo' : '' }}">
                 Contacto
             </a>
         </li>
@@ -49,19 +49,19 @@
                     </li>
                     <hr class="separador-menu">
                     <li>
-                        <a href="{{ url('/panel-administracion') }}" class="acceder-panel">
+                        <a href="{{ route('administracion') }}" class="acceder-panel">
                             <span class="glyphicon glyphicon glyphicon-dashboard"></span>
                             <strong>Panel de administración</strong>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/logout') }}" class="cerrar-sesion ">
+                        <a href="{{ route('logout') }}" class="cerrar-sesion ">
                             <span class="glyphicon glyphicon glyphicon-log-out"></span>
                             <strong>Cerrar sesión</strong>
                         </a>
                     </li>
                 @else
-                    <li><a href="{{ url('/login') }}" class="text-center">&nbsp;<strong>Iniciar sesión</strong></a></li>
+                    <li><a href="{{ route('login') }}" class="text-center">&nbsp;<strong>Iniciar sesión</strong></a></li>
                 @endif
             </ul> <!--//dropdown-menu-->
 
@@ -114,15 +114,15 @@
     <ul class="dropdown-menu submenu-usuario" aria-labelledby="dropdownMenu">
     @if (Auth::check())
         <li>
-            <a href="{{ url('/panel-administracion') }}" class="acceder-panel">
+            <a href="{{ route('administracion') }}" class="acceder-panel">
                 <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
                 <strong>Panel de administración</strong>
             </a>
         </li>
         <hr class="separador-menu">
     @endif
-        <li><a href="{{ url('/')}}">Inicio</a></li>
-        <li><a href="{{ url('/listado-egresados') }}" class="acceder-plataforma">
+        <li><a href="{{ route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('egresados_public') }}" class="acceder-plataforma">
             Acceder a la Plataforma
         </a></li>
         <li><a href="{{ route('publicaciones_capacitaciones') }}" class="acceder-plataforma">
@@ -131,20 +131,20 @@
         <li><a href="{{ route('publicaciones_practicas') }}" class="acceder-plataforma">
             Prácticas Profesionalizantes
         </a></li>
-        <li><a href="{{ url('/instituciones-educativas') }}" class="acceder-plataforma">
+        <li><a href="{{ route('instituciones') }}" class="acceder-plataforma">
             Instituciones Educativas
         </a></li>
-        <li><a href="{{ url('/contacto')}}" class="acceder-plataforma">
+        <li><a href="{{ route('contacto') }}" class="acceder-plataforma">
             Contacto
         </a></li>
         <hr class="separador-menu">
     @if (Auth::check())
-        <li><a href="{{ url('/logout') }}" class="text-center">
+        <li><a href="{{ route('logout') }}" class="text-center">
             <span class="glyphicon glyphicon glyphicon-log-out"></span>&nbsp;
             <strong>Cerrar sesión</strong>
         </a></li>
     @else
-        <li><a href="{{ url('/login') }}" class="text-center">
+        <li><a href="{{ route('login') }}" class="text-center">
             <span class="glyphicon glyphicon glyphicon-user"></span>&nbsp;
             <strong>Iniciar sesión</strong></a>
         </li>

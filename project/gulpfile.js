@@ -47,6 +47,8 @@ elixir(function(mix) {
     )
     // copio css sueltos
     .copy(src+'/css/vendor', dest+'/css/vendor')
+    // copio fonts para PDF
+    .copy(src+'/css/fuentes-pdf', dest+'/css/fuentes-pdf')
     // copio js sueltos
     .copy(src+'/js/vendor/tinymce', dest+'/js/vendor/tinymce')
     // copio img

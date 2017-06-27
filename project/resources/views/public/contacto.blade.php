@@ -37,7 +37,7 @@
             <!--<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">-->
             <div class="col-md-8 col-md-offset-2">
 
-                <form action="{{url('/contacto')}}" method="POST" role="form"
+                <form action="{{ route('contacto') }}" method="POST" role="form"
                       class="contacto-form form-mpt panel-bg-color form-invertido">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
