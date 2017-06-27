@@ -26,7 +26,7 @@ class UsuariosPrueba extends Seeder
             'role' => 'admin',
         ]);
 
-        // Data de instituciones y usuarios asociados
+        // Data de instituciones (escuelas tecnicas) y usuarios asociados
         $instituciones_users = [
             [
                 'institucion' => [
@@ -35,7 +35,7 @@ class UsuariosPrueba extends Seeder
                     'telefono' => '0291 456-1235',
                     'localidad' => 'Bahía Blanca',
                     'email' =>  'info@eet1.edu.ar',
-                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNICA
                 ],
                 'usuarios' => [
                     [
@@ -58,7 +58,7 @@ class UsuariosPrueba extends Seeder
                     'name' => 'Escuela de Educación Técnica Nº3',
                     'direccion' => 'Av.Siempreviva 742',
                     'localidad' => 'Bahía Blanca',
-                    'tipo' => Institucion::TIPO_ESCUELA_TECNINCA
+                    'tipo' => Institucion::TIPO_ESCUELA_TECNICA
                 ],
                 'usuarios' => [
                     [

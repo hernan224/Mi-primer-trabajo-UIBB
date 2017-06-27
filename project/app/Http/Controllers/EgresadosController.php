@@ -398,6 +398,8 @@ class EgresadosController extends Controller
         // creo y guardo egresado, asociado a la institucion
         /** @var Egresado $egresado */
         $egresado = $institucion->egresados()->create($data_egresado);
+        // Tipo de egresado: se setea en función al tipo de institucion
+        $egresado->tipo = $institucion->tipo;
         // creo y guardo curriculum, asociado al egresado
         $egresado->curriculum()->create($data_curriculum);
         // asocio docente
@@ -466,7 +468,6 @@ class EgresadosController extends Controller
 
         $data_egresado = $this->getDataPostEgresado($request);
         $data_curriculum = $this->getDataPostCurriculum($request);
-
         // actualizo data egresado
         $egresado->update($data_egresado);
         // actualizo data curriculum

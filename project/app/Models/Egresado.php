@@ -65,7 +65,7 @@ class Egresado extends Model
         'dni','nombre','apellido','sexo','nacimiento','nacionalidad',
         'domicilio','localidad','barrio','tel_fijo','celular','email',
         //'facebook','twitter','linkedin'
-        'privado', 'tipo'
+        'privado'
     ];
 
     public static $image_path = 'media/img/egresados';
