@@ -20,13 +20,13 @@ h6, .h6 {
   padding: 1.5em 0;
   width: 100%;
 }
-.contenedor-lista ul.lista-alumnos {
+.contenedor-lista ul.lista-egresados {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
   width: 100%;
 }
-.contenedor-lista li.item-alumno {
+.contenedor-lista li.item-egresado {
   width: 32%;
   margin: 1em 0.66667%;
   padding: 1.25em 0.75em 0;
@@ -35,7 +35,7 @@ h6, .h6 {
   flex-flow: column nowrap;
   transition: background 0.1s 0.2s ease;
 }
-.contenedor-lista li.item-alumno:after {
+.contenedor-lista li.item-egresado:after {
   display: block;
   content: '';
   width: 100%;
@@ -44,39 +44,39 @@ h6, .h6 {
   bottom: 0;
   right: 0;
 }
-.contenedor-lista li.item-alumno:hover {
+.contenedor-lista li.item-egresado:hover {
   background-color: #F1F7F8;
   transition: background 0.3s ease;
 }
-.contenedor-lista li.item-alumno:hover .nombre-alumno a {
+.contenedor-lista li.item-egresado:hover .nombre-egresado a {
   color: #2C72B4;
 }
-.contenedor-lista .foto-alumno {
+.contenedor-lista .foto-egresado {
   width: 160px;
   height: 160px;
   margin: 0 auto;
   border-radius: 100%;
   background: transparent no-repeat center center /cover;
 }
-.contenedor-lista .nombre-alumno {
+.contenedor-lista .nombre-egresado {
   font-size: 1.5em;
   font-weight: 700;
   text-align: center;
 }
-.contenedor-lista .nombre-alumno a {
+.contenedor-lista .nombre-egresado a {
   color: #000;
 }
-.contenedor-lista .datos-alumno span {
+.contenedor-lista .datos-egresado span {
   margin: 0.5em 0;
   display: inline-block;
 }
-.contenedor-lista .datos-alumno strong {
+.contenedor-lista .datos-egresado strong {
   display: block;
 }
-.contenedor-lista .datos-alumno .datos-personales span {
+.contenedor-lista .datos-egresado .datos-personales span {
   margin-left: 1.3em;
 }
-.contenedor-lista .datos-alumno .datos-personales span:first-child {
+.contenedor-lista .datos-egresado .datos-personales span:first-child {
   margin-left: 0;
 }
 .contenedor-lista .ultimo-bloque {
@@ -131,7 +131,7 @@ h6, .h6 {
   color: #2C72B4;
   transition: all 0.15s ease;
 }
-.contenedor-lista.vista-listado li.item-alumno {
+.contenedor-lista.vista-listado li.item-egresado {
   width: 100%;
   margin: 1em auto;
   padding: 0;
@@ -141,39 +141,39 @@ h6, .h6 {
   justify-content: space-between;
   align-items: flex-start;
 }
-.contenedor-lista.vista-listado li.item-alumno:after {
+.contenedor-lista.vista-listado li.item-egresado:after {
   height: 0;
   width: calc(100% - 140px);
 }
-.contenedor-lista.vista-listado .link-foto-alumno {
+.contenedor-lista.vista-listado .link-foto-egresado {
   align-self: center;
 }
-.contenedor-lista.vista-listado .foto-alumno {
+.contenedor-lista.vista-listado .foto-egresado {
   width: 135px;
   height: 135px;
   margin-right: 1.5em;
 }
-.contenedor-lista.vista-listado .nombre-alumno {
+.contenedor-lista.vista-listado .nombre-egresado {
   text-align: left;
 }
-.contenedor-lista.vista-listado .info-alumno {
+.contenedor-lista.vista-listado .info-egresado {
   flex: 1;
 }
-.contenedor-lista.vista-listado .datos-alumno {
+.contenedor-lista.vista-listado .datos-egresado {
   display: flex;
   flex-flow: row nowrap;
 }
-.contenedor-lista.vista-listado .datos-alumno .datos-personales {
+.contenedor-lista.vista-listado .datos-egresado .datos-personales {
   width: 39%;
 }
-.contenedor-lista.vista-listado .datos-alumno .datos-academicos {
+.contenedor-lista.vista-listado .datos-egresado .datos-academicos {
   width: 59%;
 }
-.contenedor-lista.vista-listado .datos-alumno span {
+.contenedor-lista.vista-listado .datos-egresado span {
   display: block;
   margin: 0 0 0.5em;
 }
-.contenedor-lista.vista-listado .datos-alumno strong {
+.contenedor-lista.vista-listado .datos-egresado strong {
   display: inline;
 }
 .contenedor-lista.vista-listado .ultimo-bloque {

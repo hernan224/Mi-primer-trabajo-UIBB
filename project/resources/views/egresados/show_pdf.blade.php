@@ -33,7 +33,7 @@
                                      class="img-responsive egresado-img">
                             @else
                                 <img src="{{ ($egresado->sexo == 'm') ? url('img/alumno-sin-foto-masculino.png') : url('img/alumno-sin-foto-femenino.png')}}"
-                                     class="img-responsive egresado-img">
+                                     class="img-responsive egresado-img" alt="{{ $egresado->getFullName() }}">
                             @endif
                         </figure>
                     </div>
@@ -51,10 +51,10 @@
                         </div>
                     </div>
 
-                    <div class="promedio">
+                    {{--<div class="promedio">
                         <strong class="promedio-titulo">Promedio General</strong>
                         <span class="promedio-valor">{{ number_format($egresado->curriculum->promedio,2,',','') }}</span>
-                    </div> <!--.promedio-->
+                    </div> --}}
 
                 </header> <!--/header info principal-->
                 <div class="fila-flex">
@@ -132,10 +132,24 @@
                                 <strong>Servicio Educativo: </strong>
                                 {{ $egresado->institucion->name }}
                             </p>
+                            @if ($egresado->curriculum->rubro) {{-- Sólo va a estar definido en oficios --}}
                             <p>
-                                <strong>Especialidad: </strong>
-                                {{ $egresado->curriculum->especialidad }}
+                                <strong>Rubro: </strong>
+                                {{ $egresado->curriculum->rubro }}
                             </p>
+                            @endif
+                            @if ($egresado->curriculum->especialidad)
+                                <p>
+                                    <strong>Especialidad: </strong>
+                                    {{ $egresado->curriculum->especialidad }}
+                                </p>
+                            @endif
+                            @if ($egresado->curriculum->promedio)
+                                <p>
+                                    <strong>Promedio General: </strong>
+                                    {{ number_format($egresado->curriculum->promedio,2,',','') }}
+                                </p>
+                            @endif
                             @if ($egresado->curriculum->asignaturas)
                                 <p>
                                     <strong>Asignaturas destacadas: </strong>
@@ -152,8 +166,15 @@
                                         {{ $egresado->curriculum->practicas_lugar }}</p>
                                 @endif
                             @endif
+                            @if ($egresado->curriculum->formacion_complementaria)
+                                <p>
+                                    <strong>Formación complementaria: </strong>
+                                    {{ $egresado->curriculum->formacion_complementaria }}
+                                </p>
+                            @endif
                         </section> <!--/.info-curricular-->
 
+                        @if (count($egresado->curriculum->getActitudes()))
                         <section class="actitudes">
                             <h5 class="subtitulo texto-azul">Actitudes destacadas</h5>
 
@@ -163,6 +184,7 @@
                                 @endforeach
                             </div>
                         </section> <!--/.actitudes-->
+                        @endif
 
                         @if ($egresado->curriculum->extras || $egresado->curriculum->participacion)
                         <section class="info-adicional">

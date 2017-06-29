@@ -86,104 +86,104 @@
     width: 165px;
     fill: #2C72B4;
   }
-  .alumno-individual {
+  .egresado-individual {
     margin-top: 0.5cm;
   }
-  .alumno-individual .fa-li::before,
-  .alumno-individual .texto-azul {
+  .egresado-individual .fa-li::before,
+  .egresado-individual .texto-azul {
     color: #2C72B4 !important;
   }
-  .alumno-individual .alumno-info-principal {
+  .egresado-individual .egresado-info-principal {
     display: block;
     border-bottom: 2px solid #2C72B4;
   }
-  .alumno-individual .alumno-info-principal:before, .alumno-individual .alumno-info-principal:after {
+  .egresado-individual .egresado-info-principal:before, .egresado-individual .egresado-info-principal:after {
     content: " ";
     display: table;
   }
-  .alumno-individual .alumno-info-principal:after {
+  .egresado-individual .egresado-info-principal:after {
     clear: both;
   }
-  .alumno-individual .alumno-info-principal .contenedor-foto,
-  .alumno-individual .alumno-info-principal .info-alumno {
+  .egresado-individual .egresado-info-principal .contenedor-foto,
+  .egresado-individual .egresado-info-principal .info-egresado {
     float: left;
   }
-  .alumno-individual .alumno-info-principal .promedio {
+  .egresado-individual .egresado-info-principal .promedio {
     float: right;
   }
-  .alumno-individual .contenedor-foto {
+  .egresado-individual .contenedor-foto {
     width: auto;
     margin: 0 0.5cm 0.5cm 0.25cm;
   }
-  .alumno-individual .foto-alumno {
+  .egresado-individual .foto-egresado {
     width: 2cm;
     height: 2cm;
     margin: 0;
     border-radius: 0;
   }
-  .alumno-individual .foto-alumno.sin-foto {
+  .egresado-individual .foto-egresado.sin-foto {
     display: none;
   }
-  .alumno-individual .info-alumno {
+  .egresado-individual .info-egresado {
     width: 12cm;
   }
-  .alumno-individual .nombre-alumno {
+  .egresado-individual .nombre-egresado {
     font-size: 1.8em;
     margin: 0 0 0.25em;
     font-weight: 700;
   }
-  .alumno-individual .datos-alumno span {
+  .egresado-individual .datos-egresado span {
     margin: 0.5em 1em 0.5em 0;
     line-height: 1.75;
   }
-  .alumno-individual .promedio {
+  .egresado-individual .promedio {
     width: 2.5cm;
     padding: 1.5em 0.25em 0.5em;
     text-align: center;
   }
-  .alumno-individual .promedio .promedio-titulo {
+  .egresado-individual .promedio .promedio-titulo {
     text-transform: uppercase;
     display: block;
     line-height: 1.2;
   }
-  .alumno-individual .promedio .promedio-valor {
+  .egresado-individual .promedio .promedio-valor {
     color: #2C72B4 !important;
     font-size: 1.71429em;
     font-weight: 700;
   }
-  .alumno-individual .fila-flex {
+  .egresado-individual .fila-flex {
     display: block !important;
   }
-  .alumno-individual .fila-flex:before, .alumno-individual .fila-flex:after {
+  .egresado-individual .fila-flex:before, .egresado-individual .fila-flex:after {
     content: " ";
     display: table;
   }
-  .alumno-individual .fila-flex:after {
+  .egresado-individual .fila-flex:after {
     clear: both;
   }
-  .alumno-individual .info-contactos {
+  .egresado-individual .info-contactos {
     width: 6.5cm;
     margin-right: 0.5cm;
     float: left;
   }
-  .alumno-individual .info-contactos section {
+  .egresado-individual .info-contactos section {
     padding: 1em;
     margin-bottom: 1em;
     border-top: 2px solid #2C72B4;
   }
-  .alumno-individual .info-contactos section.contacto-alumno {
+  .egresado-individual .info-contactos section.contacto-egresado {
     border-top: none;
   }
-  .alumno-individual .info-contactos section.contacto-docente li {
+  .egresado-individual .info-contactos section.contacto-docente li {
     padding: 0.1em 0 0.2em;
   }
-  .alumno-individual .info-contactos .lista-contacto {
+  .egresado-individual .info-contactos .lista-contacto {
     margin-top: 1em;
   }
-  .alumno-individual .info-contactos .lista-contacto li {
+  .egresado-individual .info-contactos .lista-contacto li {
     padding: 0.5em 0 0.5em 0.5em;
   }
-  .alumno-individual .info-contactos .lista-contacto .fa-li {
+  .egresado-individual .info-contactos .lista-contacto .fa-li {
     background-color: #2C72B4;
     color: #fff;
     border-radius: 100%;
@@ -193,24 +193,24 @@
     line-height: 2em;
     padding: 0;
   }
-  .alumno-individual .info-detalle {
+  .egresado-individual .info-detalle {
     width: 10cm;
     padding: 1em 0.5em 0;
     float: left;
   }
-  .alumno-individual .info-detalle section {
+  .egresado-individual .info-detalle section {
     margin-bottom: 0.5em;
     padding-bottom: 0.5em;
   }
-  .alumno-individual .info-detalle section:last-child {
+  .egresado-individual .info-detalle section:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
   }
-  .alumno-individual .info-detalle .lista-actitudes li {
+  .egresado-individual .info-detalle .lista-actitudes li {
     padding: 0.5em 0;
     margin-right: 2.5em;
   }
-  .alumno-individual .info-detalle .lista-actitudes .fa-li {
+  .egresado-individual .info-detalle .lista-actitudes .fa-li {
     left: -1.75em;
     width: 1.8em;
     top: 0.75em;

@@ -101,10 +101,10 @@
                     </div>
                 </div>
 
-                <div class="promedio">
+                {{--<div class="promedio">
                     <strong class="promedio-titulo">Promedio General</strong>
                     <span class="promedio-valor">{{ number_format($egresado->curriculum->promedio,2,',','') }}</span>
-                </div>
+                </div>--}}
 
             </header> {{-- /header info principal --}}
 
@@ -189,15 +189,29 @@
                             <strong>Servicio Educativo: </strong>
                             {{ $egresado->institucion->name }}
                         </p>
+                        @if ($egresado->curriculum->rubro) {{-- Sólo va a estar definido en oficios --}}
+                        <p>
+                            <strong>Rubro: </strong>
+                            {{ $egresado->curriculum->rubro }}
+                        </p>
+                        @endif
+                        @if ($egresado->curriculum->especialidad)
                         <p>
                             <strong>Especialidad: </strong>
                             {{ $egresado->curriculum->especialidad }}
                         </p>
+                        @endif
+                        @if ($egresado->curriculum->promedio)
+                        <p>
+                            <strong>Promedio General: </strong>
+                            {{ number_format($egresado->curriculum->promedio,2,',','') }}
+                        </p>
+                        @endif
                         @if ($egresado->curriculum->asignaturas)
-                            <p>
-                                <strong>Asignaturas destacadas: </strong>
-                                {{ $egresado->curriculum->asignaturas }}
-                            </p>
+                        <p>
+                            <strong>Asignaturas destacadas: </strong>
+                            {{ $egresado->curriculum->asignaturas }}
+                        </p>
                         @endif
                         @if ($egresado->curriculum->practicas_tipo)
                         <p>
@@ -222,8 +236,15 @@
                                 {{ $egresado->curriculum->estudios_lugar }}</p>
                             @endif
                         @endif
+                        @if ($egresado->curriculum->formacion_complementaria)
+                            <p>
+                                <strong>Formación complementaria: </strong>
+                                {{ $egresado->curriculum->formacion_complementaria }}
+                            </p>
+                        @endif
                     </section> {{-- /.info-curricular --}}
 
+                    @if (count($egresado->curriculum->getActitudes()))
                     <section class="actitudes">
                         <h5 class="subtitulo texto-azul">Actitudes destacadas</h5>
 
@@ -233,6 +254,7 @@
                         @endforeach
                         </ul>
                     </section> {{-- /.actitudes --}}
+                    @endif
 
                     @if ($egresado->curriculum->extras || $egresado->curriculum->participacion)
                     <section class="info-adicional">

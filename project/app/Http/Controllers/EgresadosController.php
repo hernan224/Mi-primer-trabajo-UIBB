@@ -337,7 +337,7 @@ class EgresadosController extends Controller
         if (!$egresado) {
             return abort(404);
         }
-        // autorizo accion si egresado no es publico: sólo egresado de institucion
+        // autorizo accion si egresado no es público: sólo egresado de institucion
         if ($egresado->privado && Gate::denies('show-egresado-privado', $egresado)) {
             return abort(403);
         }
