@@ -48,6 +48,10 @@ class Institucion extends Model
         self::TIPO_ESCUELA_TECNICA => Egresado::TIPO_TECNICOS_LABEL,
         self::TIPO_CENTRO_FORMACION => Egresado::TIPO_OFICIOS_LABEL
     ];
+    const TIPOS_MAP = [
+        Egresado::TIPO_TECNICOS_LABEL => self::TIPO_ESCUELA_TECNICA,
+        Egresado::TIPO_OFICIOS_LABEL => self::TIPO_CENTRO_FORMACION
+    ];
 
     protected $table = 'instituciones';
 

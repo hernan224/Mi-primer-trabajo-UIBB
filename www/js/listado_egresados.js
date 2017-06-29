@@ -4918,6 +4918,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* global Handlebars */
 /* global moment */
 /* global urls */
+/* global cargarSelectsEspecialidad */
 
 var template_egresado, template_busqueda, $container, $lista, $paginado,
     actual_page = 1, ordenamiento = false, filtros = {};
@@ -5076,6 +5077,13 @@ function bindOrdenamiento() {
 }
 
 function bindFiltros() {
+    // Carga selects de rubro y especialidad
+    //  Bindea cambios en select rubro para cambiar options de especialidad si tipo es oficios
+    if (window.categorias) {
+        // función definida en main.js
+        cargarSelectsEspecialidad(window.categorias);
+    }
+
     //Inicializar slider filtro promedio
     var slider_promedio = $("#filtro-promedio").slider({
         handle: 'triangle',
@@ -5086,24 +5094,28 @@ function bindFiltros() {
     });
 
     //Mostrar/Ocultar filtros
-    var $contenedorPrincipal = $('#bodyFiltro');
-    var $btnMostrarFiltros = $('#mostrarFiltrosBtn');
-    var $ocultarFiltros = $('.cerrar-filtros');
+    var $contenedorPrincipal = $('#bodyFiltro'),
+        $btnMostrarFiltros = $('#mostrarFiltrosBtn'),
+        $aplicarFiltros = $('#aplicar-filtro'),
+        $ocultarFiltros = $('.cerrar-filtros'),
+        $resetFiltros = $('#reset-filtros');
 
     $btnMostrarFiltros.on('click', function (e) {
        e.preventDefault();
        $contenedorPrincipal.addClass('mostrar-filtros');
        $('body').addClass('modal-open');
     });
-    // al cerrar filtro hago el get
-    $ocultarFiltros.on('click', function (e) {
+    $aplicarFiltros.on('click', function (e) {
        e.preventDefault();
-       $contenedorPrincipal.removeClass('mostrar-filtros');
        filtrar(slider_promedio);
-       $('body').removeClass('modal-open');
+    });
+    $ocultarFiltros.on('click', function (e) {
+        e.preventDefault();
+        $contenedorPrincipal.removeClass('mostrar-filtros');
+        $('body').removeClass('modal-open');
     });
 
-    $('a.reset-filtros').click(function(){
+    $resetFiltros.click(function(){
         $contenedorPrincipal.find('input, select').val('');
         $contenedorPrincipal.find('input[type="checkbox"]').attr('checked', false);
         slider_promedio.slider('setValue',[1,10]);

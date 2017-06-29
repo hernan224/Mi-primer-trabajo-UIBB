@@ -2400,36 +2400,11 @@ a.btn-cerrar.close:hover {
   overflow-y: visible;
 }
 
-#bodyFiltro a.cerrar-filtros {
+#bodyFiltro a.btn-cerrar.cerrar-filtros {
   position: absolute;
   top: 1.5em;
   right: 1.5em;
   z-index: 1050;
-}
-
-#bodyFiltro a.reset-filtros {
-  position: absolute;
-  top: 3.2em;
-  left: 7.8em;
-  color: #2C72B4;
-  background-color: transparent;
-  border-radius: 100%;
-  width: 2.2857142857em;
-  height: 2.2857142857em;
-  line-height: 2.5em;
-  text-align: center;
-  cursor: pointer;
-}
-
-#bodyFiltro a.reset-filtros:hover {
-  background-color: #2C72B4;
-  color: #fff;
-}
-
-#bodyFiltro a.reset-filtros.disabled, #bodyFiltro a.reset-filtros.disabled:hover, #bodyFiltro a.reset-filtros.disabled:focus, #bodyFiltro a.reset-filtros.disabled:active {
-  cursor: default;
-  color: #F1F7F8;
-  background-color: transparent;
 }
 
 #bodyFiltro.mostrar-filtros {

@@ -23,14 +23,14 @@
     @parent
     <script src="{{ url('js/form_egresado.js') }}"></script>
     <script>
-        var data_egresado = {
+        var categorias = {
             tipo: '{{ $tipo }}',
             rubros: '{!! json_encode(config("categorias.$tipo.rubros"), JSON_UNESCAPED_UNICODE) !!}',
             especialidades: '{!! json_encode(config("categorias.$tipo.especialidades"), JSON_UNESCAPED_UNICODE) !!}'
         };
         @if (!$nuevo)
-            data_egresado.rubro_selected = '{!! $egresado->curriculum->rubro !!}';
-            data_egresado.especialidad_selected = '{!! $egresado->curriculum->especialidad !!}';
+            categorias.rubro_selected = '{!! $egresado->curriculum->rubro !!}';
+            categorias.especialidad_selected = '{!! $egresado->curriculum->especialidad !!}';
         @endif
     </script>
 @endsection

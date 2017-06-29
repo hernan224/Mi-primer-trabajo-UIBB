@@ -31,7 +31,7 @@ class EgresadosController extends Controller
             return abort(404);
         }
 
-        $instituciones = Institucion::all();
+        $instituciones = Institucion::where('tipo',Institucion::TIPOS_MAP[$tipo])->get();
         $view_data = [
             'tipo' => $tipo,
             'admin_institucion' => false,
@@ -60,9 +60,9 @@ class EgresadosController extends Controller
 
         // obtengo docente y institucion para obtener tipo (esta accion sólo está autorizada para institucion)
         $docente = Auth::user();
-        $tipo_egresados = $docente->institucion->getTipoEgresadosLabel();
+        $institucion = $docente->institucion;
+        $tipo_egresados = $institucion->getTipoEgresadosLabel();
 
-        $instituciones = Institucion::all();
         $view_data = [
             'tipo' => $tipo_egresados,
             'admin_institucion' => true,
@@ -74,7 +74,7 @@ class EgresadosController extends Controller
                 'edit' => route('institucion.egresado_edit'),
                 'delete' => route('institucion.egresado_delete')
             ],
-            'instituciones' => $instituciones
+            'instituciones' => [$institucion]
         ];
 
         return view('egresados.listado',$view_data);
@@ -167,6 +167,11 @@ class EgresadosController extends Controller
         $promedio_max = $request->query('prom_max');
         if ($promedio_max && is_numeric($promedio_max)) {
             $where_array[] = ['curriculums.promedio','<=',$promedio_max];
+        }
+
+        $rubro = trim(filter_var($request->query('rub'),FILTER_SANITIZE_STRING));
+        if ($rubro) {
+            $where_array[] = ['curriculums.rubro','LIKE','%'.$rubro.'%'];
         }
 
         $especialidad = trim(filter_var($request->query('esp'),FILTER_SANITIZE_STRING));
@@ -272,7 +277,7 @@ class EgresadosController extends Controller
         }
 
         $select_array = [
-            'egresados.id','egresados.nombre','egresados.apellido','curriculums.especialidad',
+            'egresados.id','egresados.nombre','egresados.apellido','curriculums.rubro','curriculums.especialidad',
             'instituciones.name as institucion',
         ];
 
@@ -303,8 +308,10 @@ class EgresadosController extends Controller
             $search = strtolower($search);
             foreach ($egresados as $egresado) {
                 $nombre_apellido = strtolower($egresado->nombre.' '.$egresado->apellido);
+                $rubro = strtolower($egresado->rubro);
                 $especialidad = strtolower($egresado->especialidad);
-                if(strpos($nombre_apellido, $search) !== false || strpos($especialidad,$search) !== false) {
+                if(strpos($nombre_apellido, $search) !== false
+                    || strpos($rubro,$search) !== false || strpos($especialidad,$search) !== false) {
                     $busqueda[] = $egresado;
                     $cant ++;
                     if ($cant == $max_results) {
@@ -329,7 +336,7 @@ class EgresadosController extends Controller
      */
     public function searchInstitucion(Request $request){
         // No se define tipo ya que se obtienen los egresados de la institución
-        return $this->lista($request,null,true);
+        return $this->search($request,null,true);
     }
 
     /**

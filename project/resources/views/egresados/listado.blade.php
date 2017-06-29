@@ -38,6 +38,11 @@
             urls.edit = "{{$urls['edit']}}";
             urls.delete = "{{$urls['delete']}}";
         @endif
+        var categorias = {
+            tipo: '{{ $tipo }}',
+            rubros: '{!! json_encode(config("categorias.$tipo.rubros"), JSON_UNESCAPED_UNICODE) !!}',
+            especialidades: '{!! json_encode(config("categorias.$tipo.especialidades"), JSON_UNESCAPED_UNICODE) !!}'
+        };
     </script>
 @endsection
 
@@ -144,7 +149,12 @@
                                     @{{#each egresados}}
                                     <a href="{{$urls['show']}}/@{{id}}" class="list-group-item">
                                         <h4 class="list-group-item-heading">@{{nombre}} @{{apellido}}</h4>
+                                        @{{#if rubro }}
+                                        <span class="list-group-item-text"><i>Rubro: @{{rubro}}</i></span>
+                                        @{{/if}}
+                                        @{{#if especialidad }}
                                         <span class="list-group-item-text">@{{especialidad}}</span>
+                                        @{{/if}}
                                         <span class="list-group-item-text">@{{institucion}}</span>
                                     </a>
                                     @{{/each}}
@@ -340,9 +350,13 @@
             <a href="#" class="btn-cerrar cerrar-filtros">Cerrar</a>
             <div class="filtros-contenido">
                 <h3 class="texto-azul">Filtros</h3>
-                <a href="#empty" class="btn-reset reset-filtros" title="Restaurar filtros">
+                <a id="aplicar-filtro" href="#aplicar" class="btn btn-sm btn-filtros aplicar cerrar-filtros" title="Aplicar Filtros">
+                    <span class="sr-only">Aplicar</span>
+                    <span class="glyphicon glyphicon-ok"></span>&nbsp; <strong>Aplicar</strong>
+                </a>
+                <a id="reset-filtros" href="#empty" class="btn btn-sm btn-filtros reset texto-negro" title="Reestablecer filtros">
                     <span class="sr-only">Reset</span>
-                    <span class="glyphicon glyphicon-refresh"></span>
+                    <span class="glyphicon glyphicon-refresh"></span>&nbsp; Reestablecer
                 </a>
 
                 <div class="modulo-filtro modulo-promedio">
@@ -356,7 +370,16 @@
 
                 <div class="modulo-filtro">
                     <h5 class="text-uppercase texto-azul">Especialidad</h5>
-                    <input type='text' class="form-control select-filtro filtro-simple" data-filtro='esp'/>
+                    @if ($tipo == \App\Models\Egresado::TIPO_OFICIOS_LABEL)
+                    <select id="rubro" class="form-control select-filtro filtro-simple" data-filtro='rub'>
+                        <option value="">Filtrar Rubro</option>
+                        {{-- Options cargadas vía js--}}
+                    </select>
+                    @endif
+                    <select id="especialidad" class="form-control select-filtro filtro-simple" data-filtro='esp'>
+                        <option value="">Filtrar especialidad</option>
+                        {{-- Options cargadas vía js. Si tipo es oficios, se cargan dinámicamente al cambiar rubro--}}
+                    </select>
                 </div>
 
                 <div class="modulo-filtro">

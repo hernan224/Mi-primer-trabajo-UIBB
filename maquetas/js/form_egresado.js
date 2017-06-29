@@ -1,8 +1,13 @@
-// Script para formulario de creación/edición de egresado
+/** Script para formulario de creación/edición de egresado */
+/* global cargarSelectsEspecialidad */
+
 $(function () {
-    // Carga selects de especialidad (y opción selected si es indicada)
+    // Carga selects de rubro y especialidad (y opción selected si es indicada)
     //  Bindea cambios en select rubro para cambiar options de especialidad
-    cargarSelectsEspecialidad();
+    if (window.categorias) {
+        // función definida en main.js
+        cargarSelectsEspecialidad(window.categorias);
+    }
 
     //Inicializar datepicker
     var calendario = $('#nacimiento');
@@ -91,66 +96,6 @@ $(function () {
     });
 });
 
-function cargarSelectsEspecialidad() {
-    if (!window.data_egresado) {
-        return;
-    }
-    var data = window.data_egresado,
-        especialidades = $.parseJSON(data.especialidades),
-        rubros, // sólo tipo oficios
-        $select_especialidad = $('select#especialidad'),
-        $select_rubro; // sólo tipo oficios
-    // Cacheo HTML de option placeholder
-    var options_especialidad,
-        placeholder_especialidad = $select_especialidad.html(),
-        placeholder_rubro;
-    if (data.tipo === 'tecnicos') {
-        // No hay select rubro y el select especialidad no cambia de forma dinámica:
-        //  se setea inicialmente y no se bindean cambios
-        options_especialidad = placeholder_especialidad;
-        $.each(especialidades,function(index,item){
-            options_especialidad += '<option value="'+item+'">'+item+'</option>';
-        });
-        $select_especialidad.html(options_especialidad);
-        // Seteo options seleccionadas (sólo edición)
-        if (data.especialidad_selected) {
-            $select_especialidad.val(data.especialidad_selected);
-        }
-    }
-    else if (data.tipo === 'oficios') {
-        rubros = $.parseJSON(data.rubros);
-        $select_rubro = $('select#rubro');
-        placeholder_rubro = $select_rubro.html();
-        var options_rubro = placeholder_rubro;
-        $.each(rubros,function(index,item){
-            options_rubro += '<option value="'+item+'">'+item+'</option>';
-        });
-        $select_rubro.html(options_rubro);
-        $select_especialidad.html('');
-        // Bindeo cambios en rubro para setear options especialidades
-        $select_rubro.change(function(){
-            var rubro = $select_rubro.val();
-            options_especialidad = placeholder_especialidad;
-            if (especialidades[rubro]) {
-                $.each(especialidades[rubro],function(index,item){
-                    options_especialidad += '<option value="'+item+'">'+item+'</option>';
-                });
-                $select_especialidad.html(options_especialidad);
-            }
-            else {
-                $select_especialidad.html('');
-            }
-        });
-        // Seteo option seleccionada (sólo edición)
-        if (data.rubro_selected) {
-            $select_rubro.val(data.rubro_selected);
-            $select_rubro.trigger('change');
-            if (data.especialidad_selected) {
-                $select_especialidad.val(data.especialidad_selected);
-            }
-        }
-    }
-}
 
 function imgPreview(input_selector,preview_selector) {
     // http://www.phpgang.com/how-to-show-image-thumbnail-before-upload-with-jquery_573.html
