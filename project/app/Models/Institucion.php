@@ -44,6 +44,10 @@ class Institucion extends Model
         self::TIPO_ESCUELA_TECNICA => 'Escuela Técnica',
         self::TIPO_CENTRO_FORMACION => 'Centro de Formación Profesional'
     ];
+    CONST TIPOS_EGRESADOS_LABELS = [
+        self::TIPO_ESCUELA_TECNICA => Egresado::TIPO_TECNICOS_LABEL,
+        self::TIPO_CENTRO_FORMACION => Egresado::TIPO_OFICIOS_LABEL
+    ];
 
     protected $table = 'instituciones';
 
@@ -84,6 +88,11 @@ class Institucion extends Model
     public function getTipoLabel() {
         return (isset(self::TIPOS_LABELS[$this->tipo])) ?
             self::TIPOS_LABELS[$this->tipo] : '';
+    }
+
+    public function getTipoEgresadosLabel() {
+        return (isset(self::TIPOS_EGRESADOS_LABELS[$this->tipo])) ?
+            self::TIPOS_EGRESADOS_LABELS[$this->tipo] : '';
     }
 
 }

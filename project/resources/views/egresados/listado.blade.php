@@ -79,43 +79,45 @@
 
                     <div class="col-md-2 col-sm-2 {{ ($admin_institucion) ? 'col-md-offset-2 col-xs-3' : 'col-xs-3' }}">
                         <div class="dropdown">
-                        <form>
                             <a id="dropOrdenar" data-target="#" href="#" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false" class="link-nav-listado">
                                <span class="glyphicon glyphicon-sort"></span>
                                <span class="texto-nav texto-ordenar hidden-sm hidden-xs"> Ordenar</span>
                             </a>
-
                             <div id="contenedorOrdenar" class="contenedor-ordenar dropdown-menu"
                                  aria-labelledby="dropOrdenar">
-                                <select class="form-control select-ordenar">
-                                    <option value="ape">Apellido</option>
-                                    <option value="fecha">Fecha</option>
-                                    <option value="prom">Promedio</option>
-                                    <option value="esp">Especialidad</option>
-                                    <option value="nac">Edad</option>
-                                    <option value="loc">Localidad</option>
-                                    <option value="bar">Barrio</option>
-                                @if ($admin_institucion)
-                                    <option value="doc">Docente</option>
-                                @else
-                                    <option value="inst">Escuela</option>
-                                @endif
-                                </select>
+                                <form action="#" class="form-ordenar">
+                                    <select class="form-control select-ordenar">
+                                        <option value="ape">Apellido</option>
+                                        <option value="prom">Promedio</option>
+                                    @if($tipo == 'oficios')
+                                        <option value="rub">Rubro</option>
+                                    @endif
+                                        <option value="esp">Especialidad</option>
+                                        <option value="nac">Edad</option>
+                                        <option value="loc">Localidad</option>
+                                        {{--<option value="bar">Barrio</option>--}}
+                                    @if ($admin_institucion)
+                                        <option value="fecha">Fecha creación/edición</option>
+                                        <option value="doc">Docente</option>
+                                    @else
+                                        <option value="inst">Institución</option>
+                                    @endif
+                                    </select>
 
-                                <div class="modo-orden text-center">
-                                    <label class="radio-inline ordenar-asc">
-                                        <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="asc" checked>
-                                        <span class="sr-only">ASC</span><span class="glyphicon glyphicon-sort-by-alphabet"></span>
-                                    </label>
-                                    <label class="radio-inline ordenar-dsc">
-                                        <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="desc">
-                                        <span class="sr-only">DESC</span><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
-                                    </label>
-                                </div>
-
+                                    <div class="modo-orden text-center">
+                                        <label class="radio-inline ordenar-asc">
+                                            <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="asc" checked>
+                                            <span class="sr-only">ASC</span><span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                                        </label>
+                                        <label class="radio-inline ordenar-dsc">
+                                            <input type="radio" name="inlineRadioOptions" class="ordenamiento-tipo" value="desc">
+                                            <span class="sr-only">DESC</span><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                                        </label>
+                                    </div>
+                                </form>
                             </div> {{-- ./dropdown-menu --}}
-                        </form>
+
                         </div> {{-- .dropdown --}}
                     </div> {{-- contenedor ordenar --}}
 
@@ -237,29 +239,38 @@
                                     <span class="fec-nac">
                                         <strong>Fecha de Nac.:</strong> @{{format_date nacimiento}}
                                     </span>
-                                    <span class="edad">
-                                        <strong>Edad:</strong> @{{edad nacimiento}} años
-                                    </span>
-                                    <span class="localidad">
-                                        <strong>Localidad:</strong> @{{localidad}}
-                                    </span>
                                 @endif
+                                @{{#if nacimiento}}
+                                <span class="edad">
+                                    <strong>Edad:</strong> @{{edad nacimiento}} años
+                                </span>
+                                @{{/if}}
+                                @{{#if localidad}}
+                                <span class="localidad">
+                                    <strong>Localidad:</strong> @{{localidad}}
+                                </span>
+                                @{{/if}}
                                 </div>
                                 <div class="datos-academicos">
                                     <span class="institucion">
                                         <strong>Servicio Educativo:</strong> @{{institucion}}
                                     </span>
+                                    @{{#if rubro}}
+                                    <span class="especialidad">
+                                        <strong>Rubro:</strong> @{{rubro}}
+                                    </span>
+                                    @{{/if}}
+                                    @{{#if especialidad}}
                                     <span class="especialidad">
                                         <strong>Especialidad:</strong> @{{especialidad}}
                                     </span>
-                                    @if (!$admin_institucion)
+                                    @{{/if}}
                                     <span class="dato-promedio">
                                         <strong>Promedio: </strong>
                                         @{{#if promedio}}
                                             @{{format_decimal promedio}}
                                         @{{else}}-@{{/if}}
                                     </span>
-                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -57,8 +57,14 @@ class EgresadosController extends Controller
      *      que asegura que haya usuario con role institución logueado
      */
     public function showListadoInstitucion() {
+
+        // obtengo docente y institucion para obtener tipo (esta accion sólo está autorizada para institucion)
+        $docente = Auth::user();
+        $tipo_egresados = $docente->institucion->getTipoEgresadosLabel();
+
         $instituciones = Institucion::all();
         $view_data = [
+            'tipo' => $tipo_egresados,
             'admin_institucion' => true,
             'urls' => [
                 'get_list' =>  route('institucion.egresados_list'),
@@ -70,6 +76,7 @@ class EgresadosController extends Controller
             ],
             'instituciones' => $instituciones
         ];
+
         return view('egresados.listado',$view_data);
     }
 
@@ -97,7 +104,7 @@ class EgresadosController extends Controller
             'egresados.localidad','egresados.barrio','egresados.foto','egresados.sexo','egresados.privado',
             'instituciones.id as institucion_id', 'instituciones.name as institucion',
             'users.name as docente',
-            'curriculums.especialidad','curriculums.promedio','curriculums.updated_at',
+            'curriculums.rubro','curriculums.especialidad','curriculums.promedio','curriculums.updated_at',
         ];
         if(trim($request->query('actit'))) { // si quiere filtrar por actitudes, debo seleccionarlas
             $select_array = array_merge($select_array,[
@@ -206,6 +213,11 @@ class EgresadosController extends Controller
             $query->orderBy('curriculums.promedio','ASC');
         else if ($ordenamiento == 'prom_desc')
             $query->orderBy('curriculums.promedio','DESC');
+
+        else if ($ordenamiento == 'rub_asc')
+            $query->orderBy('curriculums.rubro','ASC');
+        else if ($ordenamiento == 'rub_desc')
+            $query->orderBy('curriculums.rubro','DESC');
 
         else if ($ordenamiento == 'esp_asc')
             $query->orderBy('curriculums.especialidad','ASC');
