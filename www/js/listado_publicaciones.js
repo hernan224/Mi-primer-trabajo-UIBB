@@ -4955,7 +4955,7 @@ function getPublicaciones(pag) {
     $.ajax({
         url: urls.list,
         type: 'GET',
-        data: url_params,
+        data: url_params
     })
     .done(function(resp) {
         renderLista(resp);
@@ -5030,7 +5030,7 @@ function bindEliminar() {
         var id = $(this).data('id');
         $.ajax({
             url: urls.destroy +'/'+id,
-            type: 'GET',
+            type: 'GET'
         })
         .done(function() {
             $lista.find('.item-nota[data-id="'+id+'"]').remove();

@@ -10,11 +10,16 @@ use Illuminate\Database\Query\Builder;
  *
  * @property integer $id
  * @property integer $egresado_id
+ * @property string $rubro
  * @property string $especialidad
  * @property float $promedio
  * @property string $asignaturas
  * @property string $practicas_tipo
  * @property string $practicas_lugar
+ * @property boolean $estudios
+ * @property string $estudios_carrera
+ * @property string $estudios_lugar
+ * @property string $formacion_complementaria
  * @property boolean $responsabilidad
  * @property boolean $puntualidad
  * @property boolean $proactividad
@@ -32,17 +37,16 @@ use Illuminate\Database\Query\Builder;
  * @property string $carta_presentacion
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property boolean $estudios
- * @property string $estudios_carrera
- * @property string $estudios_lugar
  * @property-read \App\Models\Egresado $egresado
  * @method static Builder|Curriculum whereId($value)
  * @method static Builder|Curriculum whereEgresadoId($value)
+ * @method static Builder|Curriculum whereRubro($value)
  * @method static Builder|Curriculum whereEspecialidad($value)
  * @method static Builder|Curriculum wherePromedio($value)
  * @method static Builder|Curriculum whereAsignaturas($value)
  * @method static Builder|Curriculum wherePracticasTipo($value)
  * @method static Builder|Curriculum wherePracticasLugar($value)
+ * @method static Builder|Curriculum whereFormacionComplementaria($value)
  * @method static Builder|Curriculum whereResponsabilidad($value)
  * @method static Builder|Curriculum wherePuntualidad($value)
  * @method static Builder|Curriculum whereProactividad($value)
@@ -70,8 +74,9 @@ class Curriculum extends Model
     protected $table = 'curriculums';
 
     protected $fillable = [
-        'especialidad','promedio','asignaturas','practicas_tipo','practicas_lugar',
-        'estudios', 'estudios_carrera', 'estudios_lugar','extras','participacion','carta_presentacion',
+        'rubro','especialidad','promedio','asignaturas','practicas_tipo','practicas_lugar',
+        'estudios', 'estudios_carrera', 'estudios_lugar','formacion_complementaria',
+        'extras','participacion','carta_presentacion',
         // actitudes (booleans)
         'responsabilidad','puntualidad','proactividad','equipo','creatividad','liderazgo',
         'conciliador','perseverancia','asertividad','relaciones','objetivos','saludable'

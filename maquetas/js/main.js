@@ -33,10 +33,10 @@ $(document).ready(function(){
         $.ajax({
             url: url,
             type: 'POST',
-            data: $formSolicitar.serialize(),
+            data: $formSolicitar.serialize()
         })
         .done(function(resp) {
-            if (resp.status && resp.status == 'ok') {
+            if (resp.status && resp.status === 'ok') {
                 $modalSolicitar.find('.modal-body.formulario').hide();
                 $modalSolicitar.find('.modal-body.post-ok').fadeIn();
             }
@@ -63,7 +63,7 @@ $(document).ready(function(){
     });
     // prevent send form on enter key
     $(document).on("keypress", "form:not(.login-form) :input:not(textarea)", function(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             event.preventDefault();
         }
     });

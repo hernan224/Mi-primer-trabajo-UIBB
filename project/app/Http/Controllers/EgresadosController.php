@@ -402,10 +402,16 @@ class EgresadosController extends Controller
      */
     public function nuevo()
     {
+        // obtengo docente y institucion (esta accion sólo está autorizada para institucion)
+        $docente = Auth::user();
+        $institucion = $docente->institucion;
+
         $egresado = new Egresado;
+        $egresado->tipo = $institucion->tipo;
         $view_data = [
             'nuevo' => true,
-            'egresado' => $egresado
+            'egresado' => $egresado,
+            'tipo' => $egresado->getTipoLabel()
         ];
         return view('egresados.form',$view_data);
     }
@@ -473,7 +479,8 @@ class EgresadosController extends Controller
         $view_data = [
             'nuevo' => false,
             'id' => $id,
-            'egresado' => $egresado
+            'egresado' => $egresado,
+            'tipo' => $egresado->getTipoLabel()
         ];
         return view('egresados.form',$view_data);
     }

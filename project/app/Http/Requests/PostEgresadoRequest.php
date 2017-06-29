@@ -53,7 +53,8 @@ class PostEgresadoRequest extends Request
             'email' => 'required_without:privado|email',
             'foto' => 'image',
             // data curriculum
-            'especialidad' => 'required_without:privado|string',
+            'rubro' => 'required_if:tipo,oficios|string',
+            'especialidad' => 'required_if:tipo,tecnicos|string',
             'promedio' => 'required_without:privado|between:0,10',
             'asignaturas' => 'string',
             'practicas_tipo' => 'required_without:privado|string',

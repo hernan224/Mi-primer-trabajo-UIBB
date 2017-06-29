@@ -22,6 +22,17 @@
 @section('scripts')
     @parent
     <script src="{{ url('js/form_egresado.js') }}"></script>
+    <script>
+        var data_egresado = {
+            tipo: '{{ $tipo }}',
+            rubros: '{!! json_encode(config("categorias.$tipo.rubros"), JSON_UNESCAPED_UNICODE) !!}',
+            especialidades: '{!! json_encode(config("categorias.$tipo.especialidades"), JSON_UNESCAPED_UNICODE) !!}'
+        };
+        @if (!$nuevo)
+            data_egresado.rubro_selected = '{!! $egresado->curriculum->rubro !!}';
+            data_egresado.especialidad_selected = '{!! $egresado->curriculum->especialidad !!}';
+        @endif
+    </script>
 @endsection
 
 @section('content')
@@ -54,6 +65,8 @@
                 'route' => ($nuevo) ? 'institucion.egresado_nuevo_post' : ['institucion.egresado_edit_put',$id],
                 'method' => ($nuevo) ? 'POST' : 'PUT', 'files' => true,
                 'role'=>"form", 'class'=>"fila-flex form-mpt" ] ) }}
+
+                {{ Form::hidden('tipo',$tipo) }}
 
                 <main class="cargar-datos">
                     <h3 class="titulo-seccion">
@@ -169,26 +182,25 @@
                     <fieldset class="carga-datos-curriculares row">
                         <legend class="subtitulo h5 texto-azul">Datos curriculares</legend>
 
-                        <div class="form-group col-xs-12 {{ $errors->has('especialidad') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12">
                             <div class="row">
-                                <div class="col-md-3 col-sm-4 col-xs-12">
-                                    {{ Form::label('especialidad', 'Especialidad cursada', ["class"=>"input-label label-select-carga-egresado"]) }}
+                                <div class="col-xs-12"><p><strong>Especialidad cursada:</strong></p></div>
+                                @if ($tipo == \App\Models\Egresado::TIPO_OFICIOS_LABEL)
+                                <div class="col-sm-5 col-xs-12 {{ $errors->has('rubro') ? ' has-error' : '' }}">
+                                    {{ Form::label('rubro', 'Rubro', ["class"=>"sr-only input-label small"]) }}
+                                    {{-- Las options y el valor seleccionado si no es nuevo se cargan inicialmente por js  --}}
+                                    {{ Form::select('rubro', [], null ,
+                                        ['class'=>'form-control select-carga-egresado','placeholder'=>'Elegir rubro...',
+                                        'required'=>'required']) }}
                                 </div>
-                                <div class="col-md-9 col-sm-8 col-xs-12">
-                                    {{ Form::select('especialidad',
-                                        [
-                                            'Tecnicatura en Aeronáutica' => 'Tecnicatura en Aeronáutica',
-                                            'Tecnicatura en Automotores' => 'Tecnicatura en Automotores',
-                                            'Tecnicatura en Administración y Gestión de las Organizaciones' => 'Tecnicatura en Administración y Gestión de las Organizaciones',
-                                            'Tecnicatura en Electrónica' => 'Tecnicatura en Electrónica',
-                                            'Tecnicatura en Electromecánica' => 'Tecnicatura en Electromecánica',
-                                            'Tecnicatura en Química' => 'Tecnicatura en Química',
-                                            'Tecnicatura en Informática Personal y Profesional' => 'Tecnicatura en Informática Personal y Profesional',
-                                            'Tecnicatura Maestro Mayor de obra' => 'Tecnicatura Maestro Mayor de obra'
-                                        ],
-                                        (!$nuevo) ? $egresado->curriculum->especialidad : null ,
-                                        ['class'=>'form-control select-carga-egresado','placeholder'=>'Elegir especialidad...']) }}
-                                            {{-- ToDo: setear atributo required si no es privado --}}
+                                @endif
+                                <div class="col-sm-7 col-xs-12 {{ $errors->has('especialidad') ? ' has-error' : '' }}">
+                                    {{ Form::label('especialidad', 'Especialidad', ["class"=>"sr-only input-label small"]) }}
+                                    {{-- Las options y el valor seleccionado si no es nuevo se cargan por js
+                                        Las opciones cambian de forma dinámica según rubro elegido, en caso de tipo=oficio--}}
+                                    {{ Form::select('especialidad', [], null ,
+                                        ['class'=>'form-control select-carga-egresado','placeholder'=>'Elegir especialidad...',
+                                        'required'=> ($tipo == \App\Models\Egresado::TIPO_TECNICOS_LABEL) ? 'required' : false]) }}
                                 </div>
                             </div>
                         </div>
@@ -252,6 +264,14 @@
                                 (!$nuevo) ? $egresado->curriculum->estudios_lugar : null,
                                 ['class'=>'form-control','placeholder'=>'Entidad educativa']) }}
                         </div>
+
+                        <div class="form-group col-xs-12 {{ $errors->has('formacion_complementaria') ? ' has-error' : '' }}">
+                            {{ Form::label('formacion_complementaria', 'Formación complementaria', ["class"=>"sr-only input-label small"]) }}
+                            {{ Form::text('formacion_complementaria',
+                                (!$nuevo) ? $egresado->curriculum->formacion_complementaria : null,
+                                ['class'=>'form-control','placeholder'=>'Formación complementaria']) }}
+                        </div>
+
 
                     </fieldset> {{-- /fieldset datos curriculares --}}
 

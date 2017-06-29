@@ -7,11 +7,12 @@
 /* global moment */
 /* global urls */
 
-var template_egresado, template_busqueda, $lista, $paginado,
+var template_egresado, template_busqueda, $container, $lista, $paginado,
     actual_page = 1, ordenamiento = false, filtros = {};
 $(function () {
-    $lista = $('#contenedorLista ul.lista-egresados');
-    $paginado =  $('#contenedorLista #paginado');
+    $container = $('#contenedorLista');
+    $lista = $container.find('ul.lista-egresados');
+    $paginado =  $container.find('#paginado');
 
     // compilo templates
     handlebarsHelpers();
@@ -83,7 +84,7 @@ function getEgresados(pag,filtro) {
     $.ajax({
         url: urls.list,
         type: 'GET',
-        data: url_params,
+        data: url_params
     })
     .done(function(resp) {
         renderLista(resp,filtro);
@@ -244,7 +245,7 @@ function bindBusqueda() {
             $.ajax({
                 url: urls.search,
                 type: 'GET',
-                data: {q: query},
+                data: {q: query}
             })
             .done(function(data) {
                 var html_busqueda = template_busqueda({egresados: data});
@@ -291,7 +292,7 @@ function bindEliminar() {
         var id = $(this).data('id');
         $.ajax({
             url: urls.delete +'/'+id,
-            type: 'GET',
+            type: 'GET'
         })
         .done(function() {
             $lista.find('.item-egresado[data-id="'+id+'"]').remove();
