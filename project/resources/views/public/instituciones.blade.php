@@ -40,7 +40,9 @@
                         <p class="subtitulo">{{$institucion->getTipoLabel()}}</p>
 
                         <div class="item-datos">
-                            <p><strong>Ciudad:</strong> {{$institucion->localidad}}</p>
+                            @if($institucion->direccion)
+                            <p><strong>Localidad:</strong> {{$institucion->localidad}}</p>
+                            @endif
                             @if($institucion->direccion)
                             <p><strong>Dirección:</strong> {{$institucion->direccion}}</p>
                             @endif
