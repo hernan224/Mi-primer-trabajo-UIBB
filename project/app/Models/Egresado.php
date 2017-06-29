@@ -138,8 +138,11 @@ class Egresado extends Model
     }
 
     public function getTipoLabel() {
-        return (isset(self::TIPOS_LABELS[$this->tipo])) ?
-            self::TIPOS_LABELS[$this->tipo] : '';
+        try {
+            return self::TIPOS_LABELS[$this->tipo];
+        } catch (\Exception $e) {
+            return '';
+        }
     }
 
 }
