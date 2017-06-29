@@ -8,6 +8,7 @@
     <body>
         <h2>Solicitud de datos de egresado</h2>
         <br>
+        <p><i>El presente mail es una copia del email enviado a la empresa que solicitó los datos del egresado.</i></p>
         <h3>Datos solicitante</h3>
         <div><strong>Nombre y apellido: </strong> {{$nombre}}</div>
         @if ($empresa)

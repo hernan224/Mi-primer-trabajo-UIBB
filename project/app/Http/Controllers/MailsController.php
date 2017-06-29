@@ -65,6 +65,10 @@ class MailsController extends Controller
     */
 
     /**
+     * Solicitud de datos de un egresado:
+     *  Se envía mail a la dirección que requiere y dos copias:
+     *      al mail de la UIBB y a la institución educativa
+     *
      * Route: egresado_solicitar - /solicitar-datos-egresado/{id} [POST]
      *
      * @param Request $request
@@ -116,12 +120,18 @@ class MailsController extends Controller
             return response()->json(['status' => 'error', 'mensaje' =>'No se pudo enviar el email.']);
         }
 
-        // envío copia
+        // envío copias: a la UIBB y al docente responsable asociado al egresado
         $view_data = ['egresado' => $egresado, 'nombre' => $nombre, 'empresa' => $empresa, 'email' =>$email];
-        Mail::send('emails.copia_solicitud_datos_egresado', $view_data, function($message) use($email,$nombre)
+        Mail::send('emails.copia_solicitud_datos_egresado', $view_data, function($message)
         {
             /** @var Message $message */
             $message->to($this->email_uibb, 'UIBB - Primer trabajo')->subject('UIBB Primer trabajo - Solicitud de datos de egresado');
+        });
+        $docente = $egresado->docente;
+        Mail::send('emails.copia_solicitud_datos_egresado', $view_data, function($message) use($docente)
+        {
+            /** @var Message $message */
+            $message->to($docente->email, $docente->name)->subject('UIBB Primer trabajo - Solicitud de datos de egresado');
         });
 
         return response()->json(['status' => 'ok']);
