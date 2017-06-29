@@ -32,7 +32,7 @@
                                 style="background-image: url(@{{ url_imagen }})"></figure>
                         @{{/if}}
                         <p class="descripcion-nota">
-                            @{{ texto_preview }}
+                            @{{{ texto_preview }}}
                         </p>
                     </div>
                     <a href="{{ route('publicacion_show') }}/@{{categoria}}/@{{id}}" class="nota-ver-mas">
