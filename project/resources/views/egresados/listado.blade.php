@@ -448,7 +448,7 @@
     </div>
 
     @if ($admin_institucion)
-        @include('publicaciones.modal_eliminar')
+        @include('egresados.modal_eliminar')
     @endif
 
 @endsection
