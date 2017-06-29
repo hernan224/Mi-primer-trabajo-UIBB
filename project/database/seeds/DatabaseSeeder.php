@@ -24,15 +24,9 @@ class DatabaseSeeder extends Seeder
     private function admin_user() {
         // Creo admin
         User::create([
-            'name' => 'Ramón Administrador',
+            'name' => 'Administrador',
             'email' => 'admin@mail.com',
-            'password' => bcrypt('uibb*2016..'),
-            'role' => 'admin',
-        ]);
-        User::create([
-            'name' => 'Don Admin',
-            'email' => 'admin@uibb.org',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt(''),
             'role' => 'admin',
         ]);
     }
@@ -42,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // Creo instituciones y usuarios asociados
         $instituciones_tipos = [
             //$this->escuelas_tecnicas,
-            $this->centros_formacion_profesional
+            //$this->centros_formacion_profesional
         ];
 
         foreach ($instituciones_tipos as $instituciones) {
@@ -55,8 +49,9 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
-
     }
+
+    // No guardó acá los mails y passwords de los usuarios por seguridad
 
     private $escuelas_tecnicas = [
         [
@@ -71,8 +66,8 @@ class DatabaseSeeder extends Seeder
             'usuarios' => [
                 [
                     'name' => 'Luis Geil',
-                    'email' => 'rector@obralapiedad.com.ar',
-                    'password' => 'mpt-lapiedad01',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion',
                 ],
             ]
@@ -90,8 +85,8 @@ class DatabaseSeeder extends Seeder
             'usuarios' => [
                 [
                     'name' => 'Mauro Campos',
-                    'email' => 'mt008001@yahoo.com.ar',
-                    'password' => 'tecnica12345',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion',
                     'direccion' => 'Santiago del estero 183',
                     'telefono' => '291 4166235'
@@ -111,8 +106,8 @@ class DatabaseSeeder extends Seeder
             'usuarios' => [
                 [
                     'name' => 'Federico Martín Pérez',
-                    'email' => 'eestn2bbca@gmail.com',
-                    'password' => 'industrial2016',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion'
                 ]
             ]
@@ -130,8 +125,8 @@ class DatabaseSeeder extends Seeder
             'usuarios' => [
                 [
                     'name' => 'Silvia Betancur',
-                    'email' => 'silvibetan@hotmail.com',
-                    'password' => 'eest3-mpt',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion'
                 ]
             ]
@@ -149,8 +144,8 @@ class DatabaseSeeder extends Seeder
             'usuarios' => [
                 [
                     'name' => 'Fernando David Campelo',
-                    'email' => 'fcampelo2@gmail.com',
-                    'password' => 'mpt-eest4',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion',
                     'direccion' => 'Tucumán 458',
                     'telefono' => '0291 154443338'
@@ -162,19 +157,152 @@ class DatabaseSeeder extends Seeder
         [
             'institucion' => [
                 'name' => 'Centro de Formación Profesional Nº401',
-                'direccion' => 'Dasso 3475',
+                'direccion' => 'Av. Dasso 3475',
                 'localidad' => 'Ingeniero White',
+                'telefono' => '0291 4572533',
                 'email' =>  'cfp401iw@yahoo.com.ar',
                 'tipo' => Institucion::TIPO_CENTRO_FORMACION
             ],
-            'usuarios' => [ // ToDo
+            'usuarios' => [
                 [
-                    'name' => 'Edna Clavados',
-                    'email' => 'cfp1@mail.com',
-                    'password' => 'cfp1',
+                    'name' => 'CFP 401',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº402',
+                'direccion' => 'Necochea 1015',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '0291 4823505',
+                'email' =>  'cfp402_bblanca@yahoo.com.ar',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 402',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº403',
+                'direccion' => 'Araucanos 930',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '0291 4817360',
+                'email' =>  'cfp403bb@hotmail.com',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 403',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº404',
+                'direccion' => 'Dean Funes 280',
+                'localidad' => 'Gral. Cerri',
+                'telefono' => '0291 4846988',
+                'email' =>  'cfp404cerri@yahoo.com.ar',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 404',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº405',
+                'direccion' => 'Chiclana 531',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '0291 4527973',
+                'email' =>  'cfp405@bvconline.com.ar',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 405',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº406',
+                'direccion' => 'Avellaneda 324 (La Piedad)',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '0291 4518456',
+                'email' =>  'cfp406bblanca@yahoo.com.ar',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 406',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº408',
+                'direccion' => 'Enrique Julio 906',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '0291 4303944',
+                'email' =>  'ingandrescontreras@yahoo.com.ar',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 408',
+                    'email' => 'i',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ],
+        [
+            'institucion' => [
+                'name' => 'Centro de Formación Profesional Nº402 (Lobería) - UPCN',
+                'direccion' => 'Lamadrid y General Paz',
+                // 'localidad' => '', ??
+                'telefono' => '45643553',
+                'email' =>  'bahiablanca@upcnba.org',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'CFP 402 (Lobería) UPCN',
+                    'email' => '',
+                    'password' => '',
                     'role' => 'institucion',
                 ],
+                [
+                    'name' => 'CFP 402 (Lobería) UPCN',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion'
+                ]
             ]
-        ]
+        ],
     ];
 }

@@ -12,7 +12,7 @@ class MailsController extends Controller
 {
 
     // private $email_uibb = 'info@primer-trabajo.com.ar';
-    private $email_uibb = 'diego.sch21@gmail.com';//'mesarseuibb@gmail.com';
+    private $email_uibb = 'mesarseuibb@gmail.com';
 
     public function contacto(Request $request) {
 
