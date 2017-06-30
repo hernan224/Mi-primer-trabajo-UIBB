@@ -235,7 +235,12 @@ function filtrar(slider_promedio) {
     if (!$.isEmptyObject(filtros)) {
         force_get = true;
     }
+    // Reset filtros (mantengo search si tenía)
+    var search = filtros.search;
     filtros = {};
+    if (search) {
+        filtros.search = search;
+    }
     var $filtro, actitud;
     $('.filtro-simple').each(function(index, el) {
         $filtro = $(el);

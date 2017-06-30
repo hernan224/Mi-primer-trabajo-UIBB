@@ -148,9 +148,7 @@ class EgresadosController extends Controller
 
         // Ordenamiento
         $ordenamiento = $request->query('order');
-        if ($ordenamiento) {
-            $this->lista_ordenamiento($ordenamiento,$query);
-        }
+        $this->lista_ordenamiento($ordenamiento,$query);
 
 
         return $query->paginate(18); // retorna JSON automáticamente, paginando el resultado
@@ -293,7 +291,7 @@ class EgresadosController extends Controller
         else if ($ordenamiento == 'ape_desc')
             $query->orderBy('egresados.apellido','DESC');
 
-        // Como segundo ordenamiento siempre elijo el apellido
+        // Como segundo ordenamiento (u ordenamiento default) siempre elijo el apellido
         $query->orderBy('egresados.apellido','ASC');
     }
 
