@@ -64,7 +64,7 @@ function handlebarsHelpers() {
 
 // en html se setea urls[lists]: url para hacer get
 // params: filtros u ordenamiento
-function getEgresados(pag,filtro) {
+function getEgresados(pag,es_filtro) {
     var $container = $('#contenedorLista');
     $container.addClass('loading');
     $container.removeClass('error-get sin-egresados filtro-vacio');
@@ -88,11 +88,11 @@ function getEgresados(pag,filtro) {
         data: url_params
     })
     .done(function(resp) {
-        renderLista(resp,filtro);
+        renderLista(resp,es_filtro);
         actual_page = resp.current_page;
         $container.removeClass('loading');
         if (!resp.data.length) {
-            if (filtro) {
+            if (es_filtro) {
                 $container.addClass('filtro-vacio');
             }
             else {
@@ -127,7 +127,7 @@ function renderLista(resp, reset_paginado) {
             prev: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-left"></span></span>',
             next: '<span aria-hidden="true"><span class="glyphicon glyphicon-menu-right"></span></span>',
             onPageClick: function (event, page) {
-                getEgresados(page);
+                getEgresados(page); // Mantiene ordenamiento y filtros
             }
         });
     }
@@ -139,7 +139,7 @@ function bindOrdenamiento() {
         tipo = $('.ordenamiento-tipo:checked').val();
 
         ordenamiento = orden+'_'+tipo;
-        getEgresados();
+        getEgresados(); // Mantiene pag actual y filtros
     });
 
     $('.ordenamiento-tipo').click (function(){
@@ -147,7 +147,7 @@ function bindOrdenamiento() {
         orden = $('.select-ordenar').val();
 
         ordenamiento = orden+'_'+tipo;
-        getEgresados();
+        getEgresados(); // Mantiene pag actual y filtros
     });
 
     //Cambiar forma en que se muestra el listado de egresados
@@ -184,9 +184,10 @@ function bindFiltros() {
     //Mostrar/Ocultar filtros
     var $contenedorPrincipal = $('#bodyFiltro'),
         $btnMostrarFiltros = $('#mostrarFiltrosBtn'),
-        $aplicarFiltros = $('#aplicar-filtro'),
+        $contenedorFiltros = $contenedorPrincipal.find('.filtros-contenido'),
+        $aplicarFiltros = $contenedorFiltros.find('#aplicar-filtro'),
         $ocultarFiltros = $('.cerrar-filtros'),
-        $resetFiltros = $('#reset-filtros');
+        $resetFiltros = $contenedorFiltros.find('#reset-filtros');
 
     $btnMostrarFiltros.on('click', function (e) {
        e.preventDefault();
@@ -204,9 +205,10 @@ function bindFiltros() {
     });
 
     $resetFiltros.click(function(){
-        $contenedorPrincipal.find('input, select').val('');
-        $contenedorPrincipal.find('input[type="checkbox"]').attr('checked', false);
+        $contenedorFiltros.find('input, select').val('');
+        $contenedorFiltros.find('input[type="checkbox"]').attr('checked', false);
         slider_promedio.slider('setValue',[1,10]);
+        $('#search-egresados').val('');
         filtros = {};
         getEgresados(1, true); // hay que volver a renderizar la paginación
     });
