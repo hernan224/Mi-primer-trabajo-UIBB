@@ -142,7 +142,8 @@
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
-                        </div>{{-- /input-group --}}
+                        </div>
+                        {{-- Deshabilito dropdown búsqueda: directamente se integra a los filtros y actualiza el listado principal
                         <div class="dropdown">
                             <div id="lista-busqueda" class="dropdown-menu list-group">
                                 <script id="template-busqueda" type="text/x-handlebars-template">
@@ -159,11 +160,10 @@
                                     </a>
                                     @{{/each}}
                                 </script>
+                            </div>
+                        </div> --}}
 
-                            </div> {{-- ./dropdown-menu --}}
-                        </div> {{-- .dropdown --}}
                     </div>  {{-- buscador --}}
-
                 </div>
             </div>
         </nav>

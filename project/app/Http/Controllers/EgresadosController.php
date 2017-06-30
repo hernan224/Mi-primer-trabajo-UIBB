@@ -56,8 +56,8 @@ class EgresadosController extends Controller
      * En el routing se utiliza el middleware auth y role:institucion,
      *      que asegura que haya usuario con role institución logueado
      */
-    public function showListadoInstitucion() {
-
+    public function showListadoInstitucion()
+    {
         // obtengo docente y institucion para obtener tipo (esta accion sólo está autorizada para institucion)
         $docente = Auth::user();
         $institucion = $docente->institucion;
@@ -93,7 +93,8 @@ class EgresadosController extends Controller
      * @param  boolean $admin_institucion si es true, se buscan solo los egresados de la institución
      * @return \Illuminate\Http\Response
      */
-    public function lista(Request $request, $tipo, $admin_institucion = false){
+    public function lista(Request $request, $tipo, $admin_institucion = false)
+    {
         if (!$admin_institucion && !in_array($tipo,Egresado::TIPOS_LABELS)) {
             // Chequeo de tipo válido si no son los egresados de la institución
             return abort(404);
@@ -133,15 +134,24 @@ class EgresadosController extends Controller
             $where_array[] = ['egresados.tipo', Egresado::TIPOS_MAP[$tipo] ];
         }
 
-        // filtros
+        // Filtros
         $this->lista_filtros($request,$where_array);
-
         if(count($where_array)) {
             $query->where($where_array);
         }
 
+        // Búsqueda rápida: filtra segun nombre-apellido o rubro o especialidad
+        $search = trim($request->query('search'));
+        if ($search) {
+            $this->lista_search($search,$query);
+        }
+
         // Ordenamiento
-        $this->lista_ordenamiento($request,$query);
+        $ordenamiento = $request->query('order');
+        if ($ordenamiento) {
+            $this->lista_ordenamiento($ordenamiento,$query);
+        }
+
 
         return $query->paginate(18); // retorna JSON automáticamente, paginando el resultado
     }
@@ -153,12 +163,20 @@ class EgresadosController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function listaInstitucion(Request $request){
+    public function listaInstitucion(Request $request)
+    {
         // No se define tipo ya que se obtienen los egresados de la institución
         return $this->lista($request,null,true);
     }
 
-    private function lista_filtros(Request $request,&$where_array) {
+    /**
+     * Agrega filtros a la query para obtener los egresados
+     *
+     * @param Request $request
+     * @param $where_array
+     */
+    private function lista_filtros(Request $request,&$where_array)
+    {
         $promedio_min = $request->query('prom_min');
         if ($promedio_min && is_numeric($promedio_min)) {
             $where_array[] = ['curriculums.promedio','>=',$promedio_min];
@@ -205,10 +223,28 @@ class EgresadosController extends Controller
         }
     }
 
-    private function lista_ordenamiento(Request $request,$query) {
-        /** @var Builder $query */
-        $ordenamiento = $request->query('order');
+    /**
+     * @param string $search
+     * @param \Illuminate\Database\Query\Builder $query
+     */
+    private function lista_search($search, $query) {
+        // Parameter grouping: AND (.. OR .. OR ..)
+        $query->where(function ($query) use($search) {
+            /** @var Builder $query */
+            $query->where(DB::raw('CONCAT(egresados.nombre," ",egresados.apellido)'),
+                        'LIKE',"%$search%")
+                ->orWhere('curriculums.rubro','LIKE',"%$search%")
+                ->orWhere('curriculums.especialidad','LIKE',"%$search%")
+                ->orWhere('instituciones.name','LIKE',"%$search%");
+        });
+    }
 
+    /**
+     * @param string $ordenamiento
+     * @param \Illuminate\Database\Query\Builder $query
+     */
+    private function lista_ordenamiento($ordenamiento, $query)
+    {
         if ($ordenamiento == 'fecha_asc')
             $query->orderBy('curriculums.updated_at','ASC');
         else if ($ordenamiento == 'fecha_desc')
@@ -263,6 +299,9 @@ class EgresadosController extends Controller
 
     /**
      * Busqueda de egresados publicos [JSON]
+     *
+     * No usado más - la búsqueda rápida se integra como filtro en lista()
+     *
      * Route: egresados_public_search - URL: /egresados/search [GET]
      *
      * @param  \Illuminate\Http\Request  $request
@@ -270,7 +309,8 @@ class EgresadosController extends Controller
      * @param  boolean  $admin_institucion si es true, se buscan solo los egresados de la institucion
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request, $tipo, $admin_institucion = false) {
+    public function search(Request $request, $tipo, $admin_institucion = false)
+    {
         if (!$admin_institucion && !in_array($tipo,Egresado::TIPOS_LABELS)) {
             // Chequeo de tipo válido si no son los egresados de la institución
             return abort(404);
@@ -334,10 +374,12 @@ class EgresadosController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function searchInstitucion(Request $request){
+    public function searchInstitucion(Request $request)
+    {
         // No se define tipo ya que se obtienen los egresados de la institución
-        return $this->search($request,null,true);
+        return $this->search($request, null, true);
     }
+
 
     /**
      * Muestra pantalla egresado / curriculum creado (vista o edición)

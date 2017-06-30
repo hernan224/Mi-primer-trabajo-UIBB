@@ -4920,7 +4920,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* global urls */
 /* global cargarSelectsEspecialidad */
 
-var template_egresado, template_busqueda, $container, $lista, $paginado,
+var template_egresado, $container, $lista, $paginado,
     actual_page = 1, ordenamiento = false, filtros = {};
 $(function () {
     $container = $('#contenedorLista');
@@ -4932,9 +4932,9 @@ $(function () {
     var $templateEgresado = $lista.find('#template-egresado');
     template_egresado = Handlebars.compile($templateEgresado.html());
     $templateEgresado.remove();
-    var $templateBusqueda = $('#template-busqueda');
-    template_busqueda = Handlebars.compile($templateBusqueda.html());
-    $templateBusqueda.remove();
+    // var $templateBusqueda = $('#template-busqueda');
+    // template_busqueda = Handlebars.compile($templateBusqueda.html());
+    // $templateBusqueda.remove();
 
     // obtengo del server lista de egresados y renderizo
     getEgresados(); // inicialmente setea paginado
@@ -4944,7 +4944,7 @@ $(function () {
 
     bindFiltros();
 
-    bindBusqueda();
+    // bindBusqueda();
 
     bindEliminar();
 });
@@ -4976,9 +4976,11 @@ function handlebarsHelpers() {
 
 // en html se setea urls[lists]: url para hacer get
 // params: filtros u ordenamiento
-function getEgresados(pag,es_filtro) {
+function getEgresados(pag,es_filtro,sin_loading) {
     var $container = $('#contenedorLista');
-    $container.addClass('loading');
+    if (!sin_loading) {
+        $container.addClass('loading');
+    }
     $container.removeClass('error-get sin-egresados filtro-vacio');
 
     var url_params = {};
@@ -5099,7 +5101,8 @@ function bindFiltros() {
         $contenedorFiltros = $contenedorPrincipal.find('.filtros-contenido'),
         $aplicarFiltros = $contenedorFiltros.find('#aplicar-filtro'),
         $ocultarFiltros = $('.cerrar-filtros'),
-        $resetFiltros = $contenedorFiltros.find('#reset-filtros');
+        $resetFiltros = $contenedorFiltros.find('#reset-filtros'),
+        $inputBusqueda = $('#search-egresados');
 
     $btnMostrarFiltros.on('click', function (e) {
        e.preventDefault();
@@ -5125,6 +5128,17 @@ function bindFiltros() {
         getEgresados(1, true); // hay que volver a renderizar la paginación
     });
 
+    // Búsqueda rápida: usada como filtro.
+    //  Para evitar exceso de requests al tipear espera 500ms
+    var timeoutBusqueda = null,
+        query = null;
+    $inputBusqueda.keyup(function() {
+        if (timeoutBusqueda !== null) clearTimeout(timeoutBusqueda); // quita timeout previo
+        query = $(this).val();
+        timeoutBusqueda = setTimeout(function () {
+            filtrarBusqueda(query);
+        }, 500);
+    });
 }
 
 function filtrar(slider_promedio) {
@@ -5162,47 +5176,64 @@ function filtrar(slider_promedio) {
     }
 }
 
-function bindBusqueda() {
-    var $listaBusqueda = $('#lista-busqueda'),
-        $inputBusqueda = $('#search-egresados');
-    $inputBusqueda.keyup(function() {
-        var query = $(this).val();
-        if (query.length >= 3) {
-            $.ajax({
-                url: urls.search,
-                type: 'GET',
-                data: {q: query}
-            })
-            .done(function(data) {
-                var html_busqueda = template_busqueda({egresados: data});
-                $listaBusqueda.html(html_busqueda);
-                $listaBusqueda.show();
-            })
-            .fail(function() {
-                $listaBusqueda.hide();
-                $listaBusqueda.html('');
-            });
+function filtrarBusqueda(search) {
+    if (search.length >= 3) {
+        if (search !== filtros.search) { // Cambió la búsqueda
+            filtros.search = search;
+            getEgresados(1,true,true); // No muestra spinner - Al filtrar siempre elijo la pag 1 y vuelve a renderizar paginado
         }
-        else {
-            $listaBusqueda.hide();
-            $listaBusqueda.html('');
+    }
+    else { // Sin query
+        if (filtros.search) { // Antes había busqueda, la quito
+            filtros.search = '';
+            // Vuelve a hacer get, ahora sin search
+            getEgresados(1,true,true); // No muestra spinner - al filtrar siempre elijo la pag 1 y vuelve a renderizar paginado
         }
-    }).click(function() {
-        if($listaBusqueda.children().length) {
-            $listaBusqueda.show();
-        }
-    });
-
-    $(document).mouseup(function (e)
-    {
-        var $busqueda = $('.busqueda');
-        if (!$busqueda.is(e.target) && // if the target of the click isn't the container...
-              $busqueda.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            $listaBusqueda.hide();
-        }
-    });
+    }
 }
+
+// La búsqueda rápida ahora se integra a los filtros, actualizando el listado principal
+// function bindBusqueda() {
+//     var $listaBusqueda = $('#lista-busqueda'),
+//         $inputBusqueda = $('#search-egresados');
+//     $inputBusqueda.keyup(function() {
+//         var query = $(this).val();
+//         if (query.length >= 3) {
+//             $.ajax({
+//                 url: urls.search,
+//                 type: 'GET',
+//                 data: {q: query}
+//             })
+//             .done(function(data) {
+//                 var html_busqueda = template_busqueda({egresados: data});
+//                 $listaBusqueda.html(html_busqueda);
+//                 $listaBusqueda.show();
+//             })
+//             .fail(function() {
+//                 $listaBusqueda.hide();
+//                 $listaBusqueda.html('');
+//             });
+//         }
+//         else {
+//             $listaBusqueda.hide();
+//             $listaBusqueda.html('');
+//         }
+//     }).click(function() {
+//         if($listaBusqueda.children().length) {
+//             $listaBusqueda.show();
+//         }
+//     });
+//
+//     $(document).mouseup(function (e)
+//     {
+//         var $busqueda = $('.busqueda');
+//         if (!$busqueda.is(e.target) && // if the target of the click isn't the container...
+//               $busqueda.has(e.target).length === 0) // ... nor a descendant of the container
+//         {
+//             $listaBusqueda.hide();
+//         }
+//     });
+// }
 
 function bindEliminar() {
     var $modal = $('#confirmarEliminar.modal');
