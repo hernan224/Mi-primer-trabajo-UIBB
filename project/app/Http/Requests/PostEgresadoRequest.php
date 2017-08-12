@@ -57,10 +57,10 @@ class PostEgresadoRequest extends Request
             'especialidad' => 'required_if:tipo,tecnicos|string',
             'promedio' => 'required_without:privado|between:0,10',
             'asignaturas' => 'string',
-            'practicas_tipo' => 'required_without:privado|string',
-            'practicas_lugar' => 'required_without:privado|string',
+            // 'practicas_tipo' => 'required_without:privado|string',
+            // 'practicas_lugar' => 'required_without:privado|string',
             // 'practicas_tipo' => 'required_with:practicas_lugar'
-            'carta_presentacion' => 'required_without:privado',
+            // 'carta_presentacion' => 'required_without:privado',
             'estudios_carrera' => 'required_if:estudios,si',
             'estudios_lugar' => 'required_if:estudios,si'
         ];

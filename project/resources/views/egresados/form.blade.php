@@ -225,14 +225,14 @@
                             {{ Form::text('practicas_tipo',
                                 (!$nuevo) ? $egresado->curriculum->practicas_tipo : null,
                                 ['class'=>'form-control','placeholder'=>'Prácticas profesionalizantes']) }}
-                                    {{-- ToDo: setear atributo required si no es privado --}}
+                                    {{-- ToDo: setear atributo required si no es privado y es egresado tecnico --}}
                         </div>
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('practicas_lugar') ? ' has-error' : '' }}">
                             {{ Form::label('practicas_lugar', '¿Dónde se desarrollaron?', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('practicas_lugar',
                                 (!$nuevo) ? $egresado->curriculum->practicas_lugar : null,
                                 ['class'=>'form-control','placeholder'=>'¿Dónde se desarrollaron?']) }}
-                                    {{-- ToDo: setear atributo required si no es privado --}}
+                                    {{-- ToDo: setear atributo required si no es privado y es egresado tecnico --}}
                         </div>
 
                         <div class="form-group col-xs-12 estudios-superiores{{ $errors->has('estudios') ? ' has-error' : '' }}">
@@ -391,7 +391,6 @@
                             {{ Form::textarea('carta_presentacion',
                                 (!$nuevo) ? $egresado->curriculum->carta_presentacion : null,
                                 ['class'=>'form-control','placeholder'=>'Carta de presentación','rows' => 6]) }}
-                                    {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
                     </fieldset>
 
@@ -442,7 +441,7 @@
                                 <a href="{{ route('institucion.admin_egresados') }}" class="btn btn-link btn-descartar">Descartar</a>
                             @else
                                 <a href="{{ route('egresado_show',['id' => $id ]) }}" class="btn btn-link btn-descartar">Descartar cambios</a>
-                                <a href="#" class="btn btn-link btn-descartar" data-toggle="modal" data-target="#confirmarEliminar">Eliminar nota</a>
+                                <a href="#" class="btn btn-link btn-descartar" data-toggle="modal" data-target="#confirmarEliminar">Eliminar egresado</a>
                             @endif
                         </div>
                     </section>
@@ -454,6 +453,6 @@
     </div> {{-- ./container --}}
     @include('layouts.spinner')
 
-    @include('publicaciones.modal_eliminar')
+    @include('egresados.modal_eliminar')
 
 @endsection
