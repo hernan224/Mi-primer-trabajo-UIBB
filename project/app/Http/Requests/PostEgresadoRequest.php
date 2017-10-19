@@ -30,18 +30,19 @@ class PostEgresadoRequest extends Request
         };
         $this->merge(array_map($trim_if_string, $this->all()));
 
-        $dni_validation = 'required_without:privado|integer|max:99999999|unique:egresados,dni';
+        // Deshabilito validación de DNI (a partir de Oct2017, no se incluye input DNI)
+        // $dni_validation = 'required_without:privado|integer|max:99999999|unique:egresados,dni';
         // Si estoy editando, verifico que el DNI sea unico, sin tener en cuenta el egresado actual
-        $route = $this->route()->getName();
-        if ($route == 'institucion.egresado_edit_put') {
-            $id_egresado = $this->route('id');
-            $dni_validation .= ','.$id_egresado;
-        }
+        // $route = $this->route()->getName();
+        // if ($route == 'institucion.egresado_edit_put') {
+        //     $id_egresado = $this->route('id');
+        //     $dni_validation .= ','.$id_egresado;
+        // }
         return [
             // data egresado
             'nombre' => 'required|max:50',
             'apellido' => 'required|max:50',
-            'dni' => $dni_validation,
+            // 'dni' => $dni_validation,
             'sexo' => 'required|in:m,f',
             'nacimiento' => 'required_without:privado|date_format:d/m/Y',
             'nacionalidad' => 'required_without:privado|string|max:50',

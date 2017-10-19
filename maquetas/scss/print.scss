@@ -136,6 +136,7 @@
         width: 20%;
         left: 0;
         bottom: 10px;
+        overflow: hidden;
       }
       .info-egresado {
         position: absolute;
@@ -269,7 +270,7 @@
         //}
 
         &.carta-presentacion{
-          page-break-inside: avoid;
+          // page-break-inside: avoid;
           //width: 16cm;
           //margin: 0 0 0 -6.5cm;
           padding: 0;

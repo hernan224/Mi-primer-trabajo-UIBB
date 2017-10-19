@@ -172,7 +172,13 @@
         <div id="contenedorLista" class="container contenedor-lista vista-listado loading {{ ($admin_institucion) ? 'vista-institucion' : 'vista-empresa' }}">
             @include('layouts.spinner')
 
-            <h2 class="texto-azul titulo-listado">Egresados {{ trans("app.$tipo") }}</h2>
+            <h2 class="texto-azul titulo-listado">
+                @if ($admin_institucion)
+                    Panel de administración: Egresados {{ trans("app.$tipo") }} de la institución
+                @else
+                    Egresados {{ trans("app.$tipo") }}
+                @endif
+            </h2>
 
             <!--ERROR-->
             <div class="error panel panel-danger">

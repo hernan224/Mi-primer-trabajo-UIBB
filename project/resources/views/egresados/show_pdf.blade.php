@@ -42,12 +42,12 @@
                         <h2 class="nombre-egresado">{{ $egresado->getFullName() }}</h2>
 
                         <div class="datos-egresado">
-                            <span class="li-falso sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span> &nbsp;&nbsp;
                             <span class="li-falso fec-nac"><strong>Fecha de Nac.:</strong> {{ $egresado->nacimiento }}</span> &nbsp;&nbsp;
                             <span class="li-falso edad"><strong>Edad:</strong> {{ $egresado->getEdad() }} años</span>
                             <br>
+                            <span class="li-falso sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span> &nbsp;&nbsp;
                             <span class="li-falso nacionalidad"><strong>Nacionalidad:</strong> {{ $egresado->nacionalidad }}</span> &nbsp;&nbsp;
-                            <span class="li-falso dni"><strong>DNI:</strong> {{ $egresado->dni }}</span>
+                            {{-- <span class="li-falso dni"><strong>DNI:</strong> {{ $egresado->dni }}</span> --}}
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
 
                             <ul class="lista-contacto list-unstyled">
                                 @if ($editable && $egresado->domicilio)
-                                {{-- Sólo se muestra si es de la institucion --}}
+                                {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                                 <li>
                                     <strong class="small">Direccion: </strong>
                                     {{ $egresado->domicilio }}
@@ -78,21 +78,21 @@
                                 </li>
                                 @endif
                                 @if ($editable && $egresado->tel_fijo)
-                                {{-- Sólo se muestra si es de la institucion --}}
+                                {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                                 <li>
                                     <strong class="small">Teléfono: </strong>
                                     {{ $egresado->tel_fijo }}
                                 </li>
                                 @endif
                                 @if ($editable && $egresado->celular)
-                                {{-- Sólo se muestra si es de la institucion --}}
+                                {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                                 <li>
                                     <strong class="small">Celular: </strong>
                                     {{ $egresado->celular }}
                                 </li>
                                 @endif
                                 @if ($editable && $egresado->email)
-                                {{-- Sólo se muestra si es de la institucion --}}
+                                {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                                 <li>
                                     <strong class="small">E-mail: </strong>
                                     {{$egresado->email}}
@@ -104,6 +104,8 @@
                             @endif
                         </section>
 
+                        {{-- Docente de contacto: sólo se muestra si el egresado es de la institución del usuario logueado --}}
+                        @if ($editable)
                         <section class="contacto-docente panel-bg-color">
                             <h5 class="subtitulo texto-azul">Docente de contacto</h5>
                             <ul class="list-unstyled">
@@ -123,6 +125,8 @@
                                 </li>
                             </ul>
                         </section><!--/.contacto-docente-->
+                        @endif
+
                     </aside><!--/.info-contactos-->
 
                     <main class="info-detalle">

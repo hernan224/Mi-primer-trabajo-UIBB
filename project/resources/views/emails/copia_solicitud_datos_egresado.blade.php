@@ -18,7 +18,7 @@
         <br>
         <h3>Datos egresado solicitado</h3>
         <div><strong>Nombre y apellido: </strong> {{$egresado->nombre}} {{$egresado->apellido}}</div>
-        <div><strong>DNI: </strong> {{$egresado->dni}}</div>
+        {{-- <div><strong>DNI: </strong> {{$egresado->dni}}</div> --}}
         <div><strong>Servicio educativo: </strong> {{$egresado->institucion->name}}</div>
         <div><strong>Especialidad: </strong> {{$egresado->curriculum->especialidad}}</div>
         @if ($egresado->domicilio)
