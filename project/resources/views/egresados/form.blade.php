@@ -93,13 +93,14 @@
                             {{ Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Apellido','required'=>'required']) }}
                         </div>
 
+                        {{-- DNI quitado a partir de Oct2017 
                         <div class="form-group col-xs-12 col-sm-6{{ $errors->has('dni') ? ' has-error' : '' }}">
                             {{ Form::label('dni', 'DNI', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('dni',($nuevo || !$egresado->dni) ? '' : null,['class'=>'form-control','placeholder'=>'DNI nº']) }}
-                                {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
+                        --}}
 
-                        <div class="form-group col-xs-12 col-sm-6 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-5 cargar-sexo{{ $errors->has('sexo') ? ' has-error' : '' }}">
                             <div class="radio">
                                 <strong>Sexo:</strong>
                                 <label>
@@ -113,13 +114,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-3{{ $errors->has('nacimiento') ? ' has-error' : '' }}">
                             <!-- FUNCIONA CON PLUGIN DATEPICKER -->
                             {{ Form::label('nacimiento', 'Fecha de nacimiento', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('nacimiento',($nuevo || !$egresado->nacimiento) ? '' : null,['class'=>'form-control','placeholder'=>'Fecha de nacimiento']) }}
                                 {{-- ToDo: setear atributo required si no es privado --}}
                         </div>
-                        <div class="form-group col-xs-12 col-sm-6{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
+                        <div class="form-group col-xs-12 col-sm-4{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
                             {{ Form::label('nacionalidad', 'Nacionalidad', ["class"=>"sr-only input-label small"]) }}
                             {{ Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Nacionalidad']) }}
                                 {{-- ToDo: setear atributo required si no es privado --}}
@@ -197,7 +198,7 @@
                                 <div class="col-sm-7 col-xs-12 {{ $errors->has('especialidad') ? ' has-error' : '' }}">
                                     {{ Form::label('especialidad', 'Especialidad', ["class"=>"sr-only input-label small"]) }}
                                     {{-- Las options y el valor seleccionado si no es nuevo se cargan por js
-                                        Las opciones cambian de forma dinámica según rubro elegido, en caso de tipo=oficio--}}
+                                        Las opciones cambian de forma dinámica según rubro elegido, en caso de tipo=oficio --}}
                                     {{ Form::select('especialidad', [], null ,
                                         ['class'=>'form-control select-carga-egresado','placeholder'=>'Elegir especialidad...',
                                         'required'=> ($tipo == \App\Models\Egresado::TIPO_TECNICOS_LABEL) ? 'required' : false]) }}

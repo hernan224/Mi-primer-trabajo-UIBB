@@ -10,7 +10,7 @@
         Este servicio es ofrecido por la Unión Industrial de Bahía Blanca en conjunto con las autoridades de Educación de la Provincia de Buenos Aires.</p>
         <p>Estos son los datos de contacto del egresado que usted requirió al sitio web <a href="http://www.primer-trabajo.com.ar">www.primer-trabajo.com.ar</a>:</p>
         <div><strong>Nombre y apellido: </strong> {{$egresado->nombre}} {{$egresado->apellido}}</div>
-        <div><strong>DNI: </strong> {{$egresado->dni}}</div>
+        {{-- <div><strong>DNI: </strong> {{$egresado->dni}}</div> --}}
         <div><strong>Servicio educativo: </strong> {{$egresado->institucion->name}}</div>
         <div><strong>Especialidad: </strong> {{$egresado->curriculum->especialidad}}</div>
         @if ($egresado->domicilio)

@@ -93,11 +93,11 @@
                     <h2 class="nombre-egresado">{{ $egresado->getFullName() }}</h2>
 
                     <div class="datos-egresado">
-                        <span class="sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span>
                         <span class="fec-nac"><strong>Fecha de Nac.:</strong> {{ $egresado->nacimiento }}</span>
                         <span class="edad"><strong>Edad:</strong> {{ $egresado->getEdad() }} años</span>
+                        <span class="sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span>
                         <span class="nacionalidad"><strong>Nacionalidad:</strong> {{ $egresado->nacionalidad }}</span>
-                        <span class="dni"><strong>DNI:</strong> {{ $egresado->dni }}</span>
+                        {{-- <span class="dni"><strong>DNI:</strong> {{ $egresado->dni }}</span> --}}
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
 
                         <ul class="fa-ul lista-contacto">
                             @if ($editable && $egresado->domicilio)
-                            {{-- Sólo se muestra si es de la institucion --}}
+                            {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                             <li>
                                 <span class="sr-only">Direccion: </span>
                                 <i class="fa fa-li fa-home"></i> {{ $egresado->domicilio }}
@@ -129,21 +129,21 @@
                             </li>
                             @endif
                             @if ($editable && $egresado->tel_fijo)
-                            {{-- Sólo se muestra si es de la institucion --}}
+                            {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                             <li>
                                 <span class="sr-only">Teléfono: </span>
                                 <i class="fa fa-li fa-phone"></i>{{ $egresado->tel_fijo }}
                             </li>
                             @endif
                             @if ($editable && $egresado->celular)
-                            {{-- Sólo se muestra si es de la institucion --}}
+                            {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                             <li>
                                 <span class="sr-only">Celular: </span>
                                 <i class="fa fa-li fa-mobile"></i>{{ $egresado->celular }}
                             </li>
                             @endif
                             @if ($editable && $egresado->email)
-                            {{-- Sólo se muestra si es de la institucion --}}
+                            {{-- Sólo se muestra si es egresado de la institución del usuario logueado (si no, debe pedirse por mail) --}}
                             <li>
                                 <span class="sr-only">E-mail: </span>
                                 <i class="fa fa-li fa-at"></i>
@@ -161,6 +161,8 @@
                         @endif
                     </section> {{-- /.contacto-egresado --}}
 
+                    {{-- Docente de contacto: sólo se muestra si el egresado es de la institución del usuario logueado --}}
+                    @if ($editable)
                     <section class="contacto-docente panel-bg-color">
                         <h5 class="subtitulo texto-azul">Docente de contacto</h5>
                         <ul class="list-unstyled">
@@ -180,6 +182,8 @@
                             </li>
                         </ul>
                     </section>{{-- /.contacto-docente --}}
+                    @endif
+
                 </aside>{{-- /.info-contactos --}}
 
                 <main class="info-detalle">
@@ -290,7 +294,7 @@
     </div>
 
     @if ($editable)
-        @include('publicaciones.modal_eliminar',['egresado'=>$egresado])
+        @include('egresados.modal_eliminar')  {{-- Ya está seteado $egresado --}}
     @endif
     @include('egresados.modal_solicitar_mail',['egresado_id'=>$egresado->id])
     @include('layouts.spinner')
