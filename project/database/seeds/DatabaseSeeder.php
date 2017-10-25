@@ -304,5 +304,24 @@ class DatabaseSeeder extends Seeder
                 ]
             ]
         ],
+        [
+            'institucion' => [
+                'name' => 'Escuela Municipal de Capacitación Laboral San Roque',
+                'direccion' => 'De Ángelis 45',
+                'localidad' => 'Bahía Blanca',
+                'telefono' => '4881990',
+                'foto' => 'san-roque.png',
+                'email' =>  'culturadeltrabajo@hotmail.com',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'Yamila Sol',
+                    'email' => '',
+                    'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ]
     ];
 }
