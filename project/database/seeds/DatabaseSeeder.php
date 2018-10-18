@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $instituciones_tipos = [
             //$this->escuelas_tecnicas,
             //$this->centros_formacion_profesional
+            //$this->programa_buen_trabajo
         ];
 
         foreach ($instituciones_tipos as $instituciones) {
@@ -319,6 +320,26 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Yamila Sol',
                     'email' => '',
                     'password' => '',
+                    'role' => 'institucion',
+                ]
+            ]
+        ]
+    ];
+    private $programa_buen_trabajo = [
+        [
+            'institucion' => [
+                'name' => 'Programa Buen Trabajo',
+                'direccion' => 'Eliseo Casanova y Mosconi, Parque Industrial',
+                'localidad' => 'Bahía Blanca',
+                'foto' => 'programa-buen-trabajo.png',
+                'email' =>  'c4p@frbb.utn.edu',
+                'tipo' => Institucion::TIPO_CENTRO_FORMACION
+            ],
+            'usuarios' => [
+                [
+                    'name' => 'Mariana Zubieta',
+                    'email' => 'cvbuentrabajo@gmail.com',
+                    'password' => 'pbuentrab-2018',
                     'role' => 'institucion',
                 ]
             ]

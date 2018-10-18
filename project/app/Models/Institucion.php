@@ -90,6 +90,9 @@ class Institucion extends Model
     }
 
     public function getTipoLabel() {
+        // Parche temporal para no mostrar Centro Formacion Profesional en Programa Buen Trabajo
+        if ($this->name == 'Programa Buen Trabajo')
+            return '';
         try {
             return self::TIPOS_LABELS[$this->tipo];
         } catch (\Exception $e) {
