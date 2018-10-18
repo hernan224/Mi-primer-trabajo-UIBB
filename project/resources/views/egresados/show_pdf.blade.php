@@ -48,6 +48,7 @@
                             <span class="li-falso sexo"><strong>Sexo:</strong> {{ ($egresado->sexo == 'm') ? 'Masculino' : 'Femenino' }}</span> &nbsp;&nbsp;
                             <span class="li-falso nacionalidad"><strong>Nacionalidad:</strong> {{ $egresado->nacionalidad }}</span> &nbsp;&nbsp;
                             {{-- <span class="li-falso dni"><strong>DNI:</strong> {{ $egresado->dni }}</span> --}}
+                            <span class="li-falso actualizacion"><strong>Últ. actualización:</strong> {{ $egresado->updated_at }}</span>
                         </div>
                     </div>
 

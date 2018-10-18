@@ -248,7 +248,7 @@
                                 <div class="datos-personales">
                                 @if ($admin_institucion)
                                     <span class="fec-nac">
-                                        <strong>Creado/Editado:</strong> @{{format_date updated_at}}
+                                        <strong>Ult. actualización:</strong> @{{format_date updated_at}}
                                     </span>
                                     <span class="edad">
                                         <strong>Docente:</strong> @{{docente}}

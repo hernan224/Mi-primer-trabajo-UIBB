@@ -145,4 +145,17 @@ class Egresado extends Model
         }
     }
 
+    /**
+     * Formatea fecha al obtener fecha de nacimiento
+     * @param $value
+     * @return null|string
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        if (!$value)
+            return null;
+        $date = new \DateTime($value);
+        return $date->format('d/m/Y');
+    }
+
 }
